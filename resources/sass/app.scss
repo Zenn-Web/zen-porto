@@ -796,23 +796,70 @@ section {
     align-items: center;
     gap: 10px;
     width: fit-content;
-    margin-bottom: 16px;
-    padding: 8px 14px;
-    border: 1px solid rgba(15, 185, 167, 0.18);
-    background: linear-gradient(135deg, rgba(15, 185, 167, 0.08), rgba(15, 185, 167, 0.02));
-    color: #1f2937;
-    font-size: 0.8rem;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
+    margin-bottom: 20px;
+    padding: 10px 20px;
+    border-radius: 50px;
+    border: 1px solid #000;
+    background-color: transparent;
+    color: #000;
+    font-size: 0.85rem;
+    font-weight: 300;
+    letter-spacing: 0.03em;
+    transition: all 0.3s ease;
+    cursor: pointer;
+
+    .icon-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        animation: float-icon 3s ease-in-out infinite;
+    }
 
     i {
-        color: #0fb9a7;
-        font-size: 0.95rem;
+        font-size: 1.1rem;
+        transition: transform 0.3s ease;
+        
+        background: linear-gradient(90deg, #ff007f, #7928ca, #0070f3, #00dfd8, #ff007f);
+        background-size: 200% auto;
+        color: transparent;
+        -webkit-background-clip: text;
+        background-clip: text;
+        animation: gradientScroll 3s linear infinite;
+        display: inline-block;
+    }
+
+    span {
+        color: #000;
+    }
+
+    &:hover {
+        transform: translateY(-3px) scale(1.02);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        border-color: #000;
+        background-color: rgba(0, 0, 0, 0.02);
+        
+        .icon-container i {
+            animation: pin-bounce 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) alternate infinite;
+        }
     }
 
     @media (max-width: 767px) {
-        margin: 0 auto 16px;
+        margin: 0 auto 20px;
         justify-content: center;
     }
+}
+
+@keyframes gradientScroll {
+    0% { background-position: 0% center; }
+    100% { background-position: 200% center; }
+}
+
+@keyframes pin-bounce {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-4px) scale(1.1); }
+}
+
+@keyframes float-icon {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-3px); }
 }

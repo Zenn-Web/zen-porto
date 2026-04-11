@@ -10,8 +10,10 @@
             
  <div class="col-lg-6 text-lg-start text-center mb-5 mb-lg-0">
     <div class="hero-location-badge animate-on-scroll">
-        <i class="bi bi-geo-alt-fill"></i>
-        <span>Based in Yogyakarta, Indonesia</span>
+        <div class="icon-container">
+            <i class="bi bi-geo-alt-fill"></i>
+        </div>
+        <span>berlokasi di "DI Yogyakarta"</span>
     </div>
     <h1 class="display-4 fw-bold animate-on-scroll">Zenifen Caesarof Agusti</h1>
     <p class="lead opacity-75 mb-0 animate-on-scroll">Web Developer & Front End Engineer</p>
@@ -153,8 +155,8 @@
             <div class="col-lg-3 col-md-6">
                 <div class="card skill-card h-100 text-center border-0 shadow py-4">
                     <div class="card-body">
-                        <img src="{{ asset('img/PYTHON_LOGO-removebg-preview.png') }}" class="img-fluid mb-4" style="height: 80px; object-fit: contain;">
-                        <h4 class="fw-bold mb-2">Python</h4>
+                        <img src="{{ asset('img/javascript_logo.png') }}" class="img-fluid mb-4" style="height: 80px; object-fit: contain;">
+                        <h4 class="fw-bold mb-2">JavaScript</h4>
                         <p class="text-muted mb-0">Logika pemrograman dan pengolahan data.</p>
                     </div>
                 </div>
@@ -286,9 +288,7 @@ Berperan dalam pengembangan website perusahaan Eyegil.co untuk mendukung kebutuh
 
 </form>
         </div>
-    </div>
-
-
-
+        </div>
+</section>
 
 @endsection
