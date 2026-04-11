@@ -13,7 +13,7 @@
         <div class="icon-container">
             <i class="bi bi-geo-alt-fill"></i>
         </div>
-        <span>berlokasi di "DI Yogyakarta"</span>
+        <span>Yogyakarta, Indonesia</span>
     </div>
     <h1 class="display-4 fw-bold animate-on-scroll">Zenifen Caesarof Agusti</h1>
     <p class="lead opacity-75 mb-0 animate-on-scroll">Web Developer & Front End Engineer</p>
@@ -229,6 +229,10 @@ Berperan dalam pengembangan website perusahaan Eyegil.co untuk mendukung kebutuh
             <p class="contact-subtitle">I'd like to hear from you!</p>
             
             <div class="contact-details">
+                <div class="detail-item mb-2" style="opacity: 1; transform: none;">
+                    <i class="bi bi-geo-alt-fill"></i>
+                    <span class="text-dark fw-medium" style="font-size: 0.95rem;">Yogyakarta, Indonesia</span>
+                </div>
                 <div class="detail-item">
                     <i class="bi bi-envelope"></i>
                     <a href="mailto:zenifenagusti70@gmail.com">zenifenagusti70@gmail.com</a>

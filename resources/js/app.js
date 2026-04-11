@@ -32,7 +32,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 // Seleksi semua elemen yang ingin dianimasikan
                 const elements = container.querySelectorAll(
                     'h1, h2, h3, p, .card, .row, .animate-text, .animate-buttons, ' +
-                    '.detail-item, .contact-socials, .form-group, .button-wrapper, .image-sweep'
+                    '.detail-item, .contact-socials, .form-group, .button-wrapper, .image-sweep, ' +
+                    '.animate-on-scroll, .profile-card-horizontal'
                 );
 
                 elements.forEach((el, index) => {

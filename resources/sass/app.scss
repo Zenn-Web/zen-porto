@@ -806,7 +806,7 @@ section {
     font-weight: 300;
     letter-spacing: 0.03em;
     transition: all 0.3s ease;
-    cursor: pointer;
+    cursor: default;
 
     .icon-container {
         display: flex;
@@ -830,17 +830,6 @@ section {
 
     span {
         color: #000;
-    }
-
-    &:hover {
-        transform: translateY(-3px) scale(1.02);
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-        border-color: #000;
-        background-color: rgba(0, 0, 0, 0.02);
-        
-        .icon-container i {
-            animation: pin-bounce 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) alternate infinite;
-        }
     }
 
     @media (max-width: 767px) {

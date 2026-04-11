@@ -393,7 +393,7 @@ html {
     .contact-subtitle {
         font-size: 1.1rem;
         color: #666;
-        margin-bottom: 40px;
+        margin-bottom: 25px;
         
         @media (max-width: 767px) {
             font-size: 1rem;
@@ -531,8 +531,8 @@ html {
 .detail-item {
     display: flex;
     align-items: center;
-    gap: 10px;
-    margin-bottom: 15px;
+    gap: 12px;
+    margin-bottom: 8px;
     
     i {
         font-size: 1.2rem;
