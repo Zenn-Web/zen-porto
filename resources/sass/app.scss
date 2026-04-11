@@ -372,17 +372,20 @@ $outer-circle-size-tablet: $profile-size-tablet + 90px;
 
 // ADDITIONAL: Adjust section padding
 section:first-of-type {
-    padding-top: 40px;
-    padding-bottom: 40px;
+    min-height: calc(100vh - 74px) !important; // 74px is the approx navbar height
+    padding-top: 20px;
+    padding-bottom: 20px;
     
     @media (min-width: 768px) {
-        padding-top: 60px;
-        padding-bottom: 60px;
+        min-height: calc(100vh - 74px) !important;
+        padding-top: 30px;
+        padding-bottom: 30px;
     }
     
     @media (min-width: 992px) {
-        padding-top: 80px;
-        padding-bottom: 80px;
+        min-height: calc(100vh - 74px) !important;
+        padding-top: 40px;
+        padding-bottom: 40px;
     }
 }
 
@@ -812,19 +815,20 @@ section {
         display: flex;
         align-items: center;
         justify-content: center;
-        animation: float-icon 3s ease-in-out infinite;
+        // Animation float dihapus sesuai permintaan
     }
 
     i {
         font-size: 1.1rem;
         transition: transform 0.3s ease;
         
-        background: linear-gradient(90deg, #ff007f, #7928ca, #0070f3, #00dfd8, #ff007f);
+        // Gradient warna hijau yang halus (Emerald/Teal)
+        background: linear-gradient(90deg, #10b981, #34d399, #059669, #10b981);
         background-size: 200% auto;
         color: transparent;
         -webkit-background-clip: text;
         background-clip: text;
-        animation: gradientScroll 3s linear infinite;
+        animation: gradientScroll 4s linear infinite; // Diperlambat sedikit agar lebih "smooth"
         display: inline-block;
     }
 

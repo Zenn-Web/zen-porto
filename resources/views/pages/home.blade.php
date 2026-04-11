@@ -188,7 +188,7 @@
                 <div class="card card-elegant border-0 shadow-sm h-100 overflow-hidden">
                     
                     <div class="image-container position-relative overflow-hidden">
-                        <img src="{{ asset('img/eyegil.porto.png') }}" class="img-hover" alt="UX Audit">
+                        <img src="{{ asset('img/eyegilv2.porto.png') }}" class="img-hover" alt="UX Audit">
                     </div>
 
                     <div class="position-absolute top-0 start-0 m-3 d-flex flex-wrap gap-2" style="z-index: 10;">
@@ -208,11 +208,41 @@
                     <div class="card-body px-4 pb-4">
                         <h5 class="fw-bold mb-2">Company Website Development – Eyegil.com</h5>
                         <p class="text-muted small mb-4">
-Berperan dalam pengembangan website perusahaan Eyegil.co untuk mendukung kebutuhan digital dan online presence.
+                        Berperan sebagai bagian dari tim developer Eyegil.co yang terlibat dalam pengembangan berbagai proyek website untuk mendukung kebutuhan digital.
                         </p>
                         <div class="d-flex justify-content-between align-items-center mt-auto">
                             <a href="https://eyegil.com" class="text-decoration-none fw-bold link-primary small">Lihat Project</a>
                             <span class="text-secondary small" style="font-size: 0.7rem;">2025</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card card-elegant border-0 shadow-sm h-100 overflow-hidden">
+                    
+                    <div class="image-container position-relative overflow-hidden">
+                        <img src="{{ asset('img/UMKM-tumbuh.porto.png') }}" class="img-hover" alt="UMKM TUMBUH">
+                    </div>
+
+                    <div class="position-absolute top-0 start-0 m-3 d-flex flex-wrap gap-2" style="z-index: 10;">
+                        <span class="badge rounded-pill bg-dark border border-secondary px-3 py-2">
+                            UI/UX Design
+                        </span>
+                        <span class="badge rounded-pill bg-dark border border-secondary px-3 py-2">
+                            Development
+                        </span>
+                    </div>
+
+                    <div class="card-body px-4 pb-4">
+                        <h5 class="fw-bold mb-2">UMKM Business Management Platform – TUMBUH</h5>
+                        <p class="text-muted small mb-4">
+                            Competition Project — Platform berbasis AI untuk membantu UMKM mengelola bisnis, tracking penjualan, dan analisis data.
+                        </p>
+                        <div class="d-flex justify-content-between align-items-center mt-auto">
+                            <a href="https://tumbuh-app-web.vercel.app" class="text-decoration-none fw-bold link-primary small">Lihat Project</a>
+                            <span class="text-secondary small" style="font-size: 0.7rem;">2026</span>
                         </div>
                     </div>
 
