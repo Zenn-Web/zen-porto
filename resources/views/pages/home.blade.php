@@ -9,6 +9,10 @@
         <div class="row align-items-center justify-content-center"> 
             
  <div class="col-lg-6 text-lg-start text-center mb-5 mb-lg-0">
+    <div class="hero-location-badge animate-on-scroll">
+        <i class="bi bi-geo-alt-fill"></i>
+        <span>Based in Yogyakarta, Indonesia</span>
+    </div>
     <h1 class="display-4 fw-bold animate-on-scroll">Zenifen Caesarof Agusti</h1>
     <p class="lead opacity-75 mb-0 animate-on-scroll">Web Developer & Front End Engineer</p>
     <p class="text-muted small mb-4 animate-on-scroll">Crafting high-quality digital solutions with precision and code.</p>
@@ -45,7 +49,7 @@
 
 <section id="about" class="about-section reveal-section py-5 bg-white">
     <div class="container">
-        <div class="card profile-card-horizontal border-dark">
+        <div class="card profile-card-horizontal">
             <div class="row g-0 align-items-center">
                 
                 <!-- IMAGE COLUMN -->
@@ -82,7 +86,7 @@
                         </p>
                         
                         <!-- SOCIAL BUTTONS -->
-                        <div class="d-flex flex-column flex-sm-row gap-3 mt-4 animate-buttons">
+                        <div class="mt-4 animate-buttons">
                             <a href="https://www.github.com/Zenn-Web"
                                target="_blank"
                                rel="noopener noreferrer"
@@ -113,12 +117,13 @@
             </div>
         </div>
     </div>
+
 </section>
                
 
 
 <section id="skills" class="py-5 my-5 bg-white reveal-section text-dark d-flex" style="scroll-margin-top: 100px;"> 
-    <div class="container py-5 px-0"> <div class="text-center mb-5">
+    <div class="container py-5"> <div class="text-center mb-5">
             <h2 class="fw-bold display-6">Keahlian Saya</h2>
             <p class="text-muted">Beberapa teknologi yang sedang saya pelajari untuk membangun website.</p>
         </div>
@@ -278,11 +283,12 @@ Berperan dalam pengembangan website perusahaan Eyegil.co untuk mendukung kebutuh
 <div class="button-wrapper">
     <button type="submit" class="btn-send-contact">Kirim</button>
 </div>
+
 </form>
         </div>
     </div>
 
-</section>
+
 
 
 @endsection
