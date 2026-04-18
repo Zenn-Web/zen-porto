@@ -12,13 +12,13 @@
     "src": "resources/css/app.css"
   },
   "resources/js/app.js": {
-    "file": "assets/app-tmBEJhl4.js",
+    "file": "assets/app-DGk3O0At.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true
   },
   "resources/sass/app.scss": {
-    "file": "assets/app-BDw0fbUy.css",
+    "file": "assets/app-DlQ18til.css",
     "src": "resources/sass/app.scss",
     "isEntry": true,
     "name": "app",
@@ -27,7 +27,7 @@
     ]
   },
   "resources/sass/app2.scss": {
-    "file": "assets/app2-BnownxA2.css",
+    "file": "assets/app2-CKe9rKXh.css",
     "src": "resources/sass/app2.scss",
     "isEntry": true,
     "name": "app2",

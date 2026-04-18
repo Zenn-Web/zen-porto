@@ -11,93 +11,93 @@ html {
 
 #resources {
 
-    scroll-margin-top: 80px; /* Jarak aman dari sticky navbar */
+    scroll-margin-top: 100px;
 
 }
 
 .card-elegant {
     position: relative;
-    border-radius: 20px !important;
     background: #fff;
     overflow: hidden;
     cursor: pointer;
+    transition: all 0.4s ease;
+}
 
-    transform: translateY(40px);
 
-    transition:
-        transform 0.7s cubic-bezier(0.16, 1, 0.3, 1),
-        box-shadow 0.6s ease;
 
-    /* 🔥 SHADOW DEFAULT (SUDAH TERASA NAIK) */
-    box-shadow:
-        0 3px 6px rgba(0, 0, 0, 0.06),     // contact shadow
-        0 14px 30px rgba(0, 0, 0, 0.12),   // mid depth
-        0 40px 80px rgba(0, 0, 0, 0.16);   // ambient depth
 
-    will-change: transform, box-shadow;
 
-    /* ✨ HIGHLIGHT EDGE */
-    &::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        border-radius: inherit;
-        pointer-events: none;
+/* --- STACK ANIMATED CARD --- */
+.stack-animated {
+    position: relative;
+    display: grid;
+    
+    & > * {
+        grid-column-start: 1;
+        grid-row-start: 1;
+        width: 100%;
+        height: 100%;
+        transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        background: #fff;
+        border: 1px solid #000;
+    }
 
-        background: linear-gradient(
-            180deg,
-            rgba(255,255,255,0.85),
-            rgba(255,255,255,0.25) 30%,
-            transparent 65%
-        );
+    // Kartu paling belakang
+    .card-stack-bg-3 {
+        z-index: -3;
+        transform: translateY(12px) scale(0.92);
+        opacity: 0.2;
+    }
+
+    // Kartu tengah
+    .card-stack-bg-2 {
+        z-index: -2;
+        transform: translateY(6px) scale(0.96);
+        opacity: 0.5;
+    }
+
+    // Kartu utama (depan)
+    .card-stack-main {
+        position: relative;
+        z-index: 1;
+    }
+
+    &:hover {
+        .card-stack-bg-3 {
+            transform: translateY(30px) scale(0.94);
+            opacity: 0.3;
+        }
+        .card-stack-bg-2 {
+            transform: translateY(15px) scale(0.97);
+            opacity: 0.7;
+        }
+        .card-stack-main {
+            transform: translateY(-5px);
+        }
     }
 }
 
-
-
-
-
-/* --- IMAGE CONTAINER --- */
-.image-container {
-    width: 100%;
-    aspect-ratio: 16 / 10;
-    background: #f8f9fa;
-    overflow: hidden; /* Memotong gambar saat membesar (zoom) */
-    position: relative;
+.project-category-text {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: #666;
+    text-transform: uppercase;
 }
 
-/* --- IMAGE STYLE & ANIMATION --- */
-.img-hover {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: grayscale(100%); /* Awalnya Abu-abu */
-    /* Transisi Smooth untuk Zoom dan Warna */
-    transition: transform 0.8s cubic-bezier(0.2, 1, 0.3, 1), 
-                filter 0.6s ease;
+.project-divider {
+    height: 1px;
+    background-color: #000;
+    opacity: 0.1;
+    margin: 8px 0 12px 0;
 }
 
 
 /* --- HOVER EFFECTS --- */
 
-/* 1. Kartu Terangkat */
-.card-elegant.reveal-visible:hover {
-    transform: translateY(-14px) scale(1.025) !important;
-
-    box-shadow:
-        0 6px 12px rgba(0, 0, 0, 0.08),
-        0 25px 50px rgba(0, 0, 0, 0.18),
-        0 50px 90px rgba(0, 0, 0, 0.22);
-
-    z-index: 10;
-}
-
-
-
-/* 2. Gambar Zoom & Berubah Warna (Grayscale -> Color) */
+/* 2. Gambar Zoom Terkontrol */
 .card-elegant:hover .img-hover {
-    transform: scale(1.1); /* Zoom In perlahan */
-    filter: grayscale(0%);  /* Kembali ke warna asli */
+    transform: scale(1.05);
 }
 
 
@@ -348,12 +348,13 @@ html {
 
 // CONTACT SECTION - RESPONSIVE
 .contact-section {
-    padding: 100px 0;
+    scroll-margin-top: 120px;
+    padding: 60px 0;
     background-color: #ffffff;
     color: #000000;
     
     @media (max-width: 767px) {
-        padding: 60px 0;
+        padding: 40px 0;
     }
 }
 
@@ -369,11 +370,16 @@ html {
     @media (max-width: 991px) {
         flex-direction: column;
         gap: 50px;
+        align-items: center; // Memastikan seluruh section (info & form) di tengah
     }
 }
 
 .contact-info {
     flex: 1;
+    @media (max-width: 991px) {
+        text-align: center;
+        width: 100%;
+    }
 
     .contact-title {
         font-family: 'Playfair Display', serif;
@@ -435,11 +441,17 @@ html {
     // Mobile: center text
     @media (max-width: 991px) {
         text-align: center;
+        width: 100%;
     }
 }
 
 .contact-form-wrapper {
     flex: 1.5;
+    
+    @media (max-width: 991px) {
+        width: 100%;
+        max-width: 100%;
+    }
 
     .form-row {
         display: flex;
@@ -467,6 +479,8 @@ html {
             
             @media (max-width: 767px) {
                 font-size: 0.8rem;
+                text-align: center;
+                width: 100%;
             }
         }
 
@@ -486,6 +500,10 @@ html {
             
             @media (max-width: 767px) {
                 font-size: 0.95rem;
+                text-align: center;
+                margin: 0 auto;
+                width: 100%; /* Kembali ke lebar penuh agar selaras dengan heading */
+                display: block;
             }
         }
         
@@ -527,15 +545,32 @@ html {
     }
 }
 
-// DETAIL ITEM (kalau ada)
+// DETAIL ITEM
 .detail-item {
     display: flex;
     align-items: center;
     gap: 12px;
-    margin-bottom: 8px;
+    margin-bottom: 12px;
+    
+    @media (max-width: 767px) {
+        justify-content: center;
+        text-align: center;
+    }
     
     i {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
+        color: #000;
+    }
+}
+
+.contact-socials {
+    display: flex;
+    gap: 25px;
+    margin-top: 25px;
+    
+    @media (max-width: 767px) {
+        justify-content: center;
+        margin-bottom: 40px;
     }
 }
 
