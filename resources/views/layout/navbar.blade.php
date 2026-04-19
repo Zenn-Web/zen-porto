@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light custom-navbar sticky-top">
+<nav class="navbar navbar-expand-lg navbar-light custom-navbar fixed-top">
     <div class="container">
         <a class="navbar-brand brand-logo" href="#home">
             Zenifen<span class="dot">.</span>
@@ -18,6 +18,9 @@
 
         <div class="collapse navbar-collapse" id="mainNavbar">
             <ul class="navbar-nav mx-auto nav-links-group">
+                <li class="nav-item">
+                    <a class="nav-link" href="#home">Beranda</a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#about">Tentang</a>
                 </li>

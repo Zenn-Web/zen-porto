@@ -71,7 +71,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (el.classList.contains('image-sweep')) {
             keyframes = [
                 { clipPath: 'inset(0 100% 0 0)', opacity: 0, visibility: 'visible' },
-                { clipPath: 'inset(0 0% 0 0)',   opacity: 1, visibility: 'visible' }
+                { clipPath: 'inset(0 0% 0 0)', opacity: 1, visibility: 'visible' }
             ];
             options.duration = 1000;
             options.easing = 'cubic-bezier(0.77, 0, 0.175, 1)';
@@ -80,7 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
         else {
             keyframes = [
                 { opacity: 0, transform: 'translateY(30px)', visibility: 'hidden' },
-                { opacity: 1, transform: 'translateY(0)',    visibility: 'visible' }
+                { opacity: 1, transform: 'translateY(0)', visibility: 'visible' }
             ];
         }
 

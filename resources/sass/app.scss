@@ -388,36 +388,39 @@ $outer-circle-size-tablet: $profile-size-tablet + 90px;
     }
 }
 
+// SECTION RESET
+section {
+    margin: 0 !important;
+}
+
 // ADDITIONAL: Adjust section padding
 section:first-of-type {
-    min-height: calc(100vh - 74px) !important; // 74px is the approx navbar height
-    padding-top: 20px;
+    min-height: 100vh !important;
+    display: flex;
+    align-items: center;
+    padding-top: 80px;
     padding-bottom: 20px;
-
-    @media (min-width: 768px) {
-        min-height: calc(100vh - 74px) !important;
-        padding-top: 30px;
-        padding-bottom: 30px;
-    }
+    scroll-margin-top: 0;
 
     @media (min-width: 992px) {
-        min-height: calc(100vh - 74px) !important;
-        padding-top: 40px;
-        padding-bottom: 40px;
+        padding-top: 80px;
+        padding-bottom: 0;
     }
 }
 
-// ABOUT SECTION
-#about {
-    scroll-margin-top: 100px;
-    padding: 20px 0;
+// SECTION SPACING (About, Skills, Projects)
+#about,
+#skills,
+#resources {
+    scroll-margin-top: 85px; // Matches navbar height + buffer
+    padding: 80px 0;
 
     @media (min-width: 768px) {
-        padding: 30px 0;
+        padding: 100px 0;
     }
 
     @media (min-width: 992px) {
-        padding: 40px 0;
+        padding: 120px 0;
     }
 }
 
@@ -436,18 +439,14 @@ section:first-of-type {
     opacity: 0;
     transform: translateX(-50px);
     border-radius: 0px;
-    border: none;
+    border: 2px solid #000; // Semi-bold border
     background: #fff;
-    margin: 0 15px 60px; // Ditambah margin bottom
+    margin: 0 15px 60px;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08); // Thinner, more subtle shadow
 
     &::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        border: 2px solid rgba(0, 0, 0, 0.2);
-        pointer-events: none;
-        z-index: 3;
-        box-sizing: border-box;
+        display: none;
     }
 
     transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1),
@@ -464,8 +463,8 @@ section:first-of-type {
         transform: translateX(0);
 
         &:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
         }
 
         .animate-text,
@@ -917,12 +916,13 @@ section {
         transform: translateY(-3px);
     }
 }
+
 // SKILLS V2 REDESIGN
 .card-skill-v2 {
     border: 2px solid #000 !important;
     background: transparent;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    
+
     &:hover {
         transform: translateY(-5px);
         box-shadow: 10px 10px 0px #000;
@@ -952,7 +952,7 @@ section {
     margin-bottom: 8px;
     display: flex;
     align-items: center;
-    
+
     i {
         font-size: 1.4rem;
         color: #000;
@@ -974,8 +974,8 @@ section {
     font-size: 0.75rem !important;
     line-height: 1.4;
 }
+
 .extra-small-badge {
     font-size: 0.65rem !important;
     padding: 3px 10px !important;
 }
-

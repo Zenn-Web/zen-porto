@@ -4,7 +4,7 @@
 @section('content')
 
 
-    <section class="bg-white text-black reveal-section ">
+    <section id="home" class="bg-white text-black reveal-section">
         <div class="container">
             <div class="row align-items-center justify-content-center">
 
@@ -16,7 +16,8 @@
                         <span>Yogyakarta, Indonesia</span>
                     </div>
                     <h1 class="display-4 fw-bold animate-on-scroll">Zenifen Caesarof Agusti</h1>
-                    <p class="lead opacity-75 mb-0 animate-on-scroll">Web Developer & Front End Engineer & Finance Analyst</p>
+                    <p class="lead opacity-75 mb-0 animate-on-scroll">Web Developer & Front End Engineer & Finance Analyst
+                    </p>
                     <p class="text-muted small mb-4 animate-on-scroll">Crafting high-quality digital solutions with
                         precision and code.</p>
 
@@ -128,7 +129,7 @@
 
 
 
-    <section id="skills" class="py-3 bg-white reveal-section text-dark d-flex align-items-center"
+    <section id="skills" class="py-5 bg-white reveal-section text-dark d-flex align-items-center"
         style="scroll-margin-top: 90px; min-height: 85vh;">
         <div class="container py-2">
 
@@ -143,11 +144,11 @@
                         <div class="skill-icon-v2 mb-3">
                             <i class="bi bi-code-slash fs-3"></i>
                         </div>
-                        <h4 class="fw-bold mb-2 ls-tight">PROGRAMMING</h4>
-                        <p class="text-secondary small mb-3">Building clean and scalable web applications.</p>
+                        <h4 class="fw-bold mb-2 ls-tight">PEMROGRAMAN</h4>
+                        <p class="text-secondary small mb-3">Membangun aplikasi web yang bersih dan skalabel.</p>
 
                         <div class="mb-3">
-                            <h6 class="text-uppercase fw-bold xsmall-text mb-2">Tech Stack</h6>
+                            <h6 class="text-uppercase fw-bold xsmall-text mb-2">Teknologi</h6>
                             <div class="d-flex flex-wrap gap-2">
                                 <span class="badge-tech">HTML</span>
                                 <span class="badge-tech">CSS</span>
@@ -158,12 +159,12 @@
                         </div>
 
                         <div>
-                            <h6 class="text-uppercase fw-bold xsmall-text mb-2">Highlights</h6>
+                            <h6 class="text-uppercase fw-bold xsmall-text mb-2">Poin Utama</h6>
                             <ul class="list-unstyled mb-0">
-                                <li class="highlight-item small"><i class="bi bi-arrow-right-short me-2"></i>problem solving
+                                <li class="highlight-item small"><i class="bi bi-arrow-right-short me-2"></i>pemecahan masalah
                                 </li>
-                                <li class="highlight-item small"><i class="bi bi-arrow-right-short me-2"></i>clean code</li>
-                                <li class="highlight-item small"><i class="bi bi-arrow-right-short me-2"></i>UI/UX awareness
+                                <li class="highlight-item small"><i class="bi bi-arrow-right-short me-2"></i>kode bersih</li>
+                                <li class="highlight-item small"><i class="bi bi-arrow-right-short me-2"></i>pemahaman UI/UX
                                 </li>
                             </ul>
                         </div>
@@ -176,20 +177,18 @@
                         <div class="skill-icon-v2 mb-3">
                             <i class="bi bi-graph-up-arrow fs-3"></i>
                         </div>
-                        <h4 class="fw-bold mb-2 ls-tight">FOREX ANALYST</h4>
-                        <p class="text-secondary small mb-3">Analyzing market trends and identifying high-probability
-                            trades.</p>
+                        <h4 class="fw-bold mb-2 ls-tight">ANALIS FOREX</h4>
+                        <p class="text-secondary small mb-3">Menganalisis tren pasar dan mengidentifikasi peluang trading probabilitas tinggi.</p>
 
                         <div class="mb-0">
-                            <h6 class="text-uppercase fw-bold xsmall-text mb-2">Highlights</h6>
+                            <h6 class="text-uppercase fw-bold xsmall-text mb-2">Poin Utama</h6>
                             <ul class="list-unstyled mb-0">
-                                <li class="highlight-item small"><i class="bi bi-arrow-right-short me-2"></i>market
-                                    structure</li>
+                                <li class="highlight-item small"><i class="bi bi-arrow-right-short me-2"></i>struktur pasar</li>
                                 <li class="highlight-item small"><i class="bi bi-arrow-right-short me-2"></i>price action
                                 </li>
                                 <li class="highlight-item small"><i class="bi bi-arrow-right-short me-2"></i>entry timing
                                 </li>
-                                <li class="highlight-item small"><i class="bi bi-arrow-right-short me-2"></i>risk management
+                                <li class="highlight-item small"><i class="bi bi-arrow-right-short me-2"></i>manajemen risiko
                                 </li>
                             </ul>
                         </div>
@@ -200,7 +199,7 @@
     </section>
 
 
-    <section id="resources" class="py-3 bg-white reveal-section d-flex align-items-center"
+    <section id="resources" class="py-5 bg-white reveal-section d-flex align-items-center"
         style="scroll-margin-top: 90px; min-height: 85vh;">
         <div class="container">
 
@@ -223,13 +222,12 @@
                             </div>
 
                             <div class="card-body p-3">
-                                <div class="project-category-text">UI/UX • DIGITAL BUSINESS</div>
+                                <div class="project-category-text">UI/UX • DIGITAL BUSINESS • Enterprise Solutions Provider • Custom Software Development Services</div>
                                 <div class="project-divider"></div>
 
                                 <h6 class="fw-bold mb-1">Company Website Development – Eyegil.com</h6>
                                 <p class="text-muted extra-small-text mb-2">
-                                    Berperan sebagai developer Eyegil.co dalam pengembangan berbagai proyek website
-                                    strategis.
+                                  Platform yang membantu perusahaan meningkatkan efisiensi melalui solusi teknologi dan sistem digital yang terintegrasi.
                                 </p>
                                 <div class="d-flex justify-content-between align-items-center mt-auto pt-2">
                                     <a href="https://eyegil.com"
@@ -246,19 +244,23 @@
                     <div class="stack-animated">
                         <div class="card-stack-bg-3 rounded-0"></div>
                         <div class="card-stack-bg-2 rounded-0"></div>
-                        <div class="card card-elegant card-stack-main border-dark rounded-0 shadow-none h-100 overflow-hidden">
-                            
+                        <div
+                            class="card card-elegant card-stack-main border-dark rounded-0 shadow-none h-100 overflow-hidden">
+
                             <div class="px-3 pt-3">
-                                <img src="{{ asset('img/UMKM-tumbuh.porto.png') }}" class="img-fluid border border-dark border-opacity-10" style="aspect-ratio: 16/10; object-fit: cover; width: 100%;" alt="Project 2">
+                                <img src="{{ asset('img/UMKM-tumbuh.porto.png') }}"
+                                    class="img-fluid border border-dark border-opacity-10"
+                                    style="aspect-ratio: 16/10; object-fit: cover; width: 100%;" alt="Project 2">
                             </div>
 
                             <div class="card-body p-3">
-                                <div class="project-category-text">UI/UX • DEVELOPMENT</div>
+                                <div class="project-category-text">UI/UX • DEVELOPMENT • Personal Growth Platform • AI Growth Partner</div>
                                 <div class="project-divider"></div>
 
                                 <h6 class="fw-bold mb-1">UMKM Business Management – TUMBUH</h6>
                                 <p class="text-muted extra-small-text mb-2">
                                     Platform AI untuk membantu UMKM mengelola bisnis, penjualan, dan analisis data.
+                                </p>
                                 <div class="d-flex justify-content-between align-items-center mt-auto pt-2">
                                     <a href="https://tumbuh-app-web.vercel.app"
                                         class="text-decoration-none fw-bold link-primary extra-small-text">Lihat Project</a>
@@ -273,23 +275,27 @@
                     <div class="stack-animated">
                         <div class="card-stack-bg-3 rounded-0"></div>
                         <div class="card-stack-bg-2 rounded-0"></div>
-                        <div class="card card-elegant card-stack-main border-dark rounded-0 shadow-none h-100 overflow-hidden">
-                            
+                        <div
+                            class="card card-elegant card-stack-main border-dark rounded-0 shadow-none h-100 overflow-hidden">
+
                             <div class="px-3 pt-3">
-                                <img src="{{ asset('img/Amazain.porto.png') }}" class="img-fluid border border-dark border-opacity-10" style="aspect-ratio: 16/10; object-fit: cover; width: 100%;" alt="Project 3">
+                                <img src="{{ asset('img/Amazaincompro.porto.png') }}"
+                                    class="img-fluid border border-dark border-opacity-10"
+                                    style="aspect-ratio: 16/10; object-fit: cover; width: 100%;" alt="Project 3">
                             </div>
 
                             <div class="card-body p-3">
-                                <div class="project-category-text">UI/UX • DEVELOPMENT</div>
+                                <div class="project-category-text">UI/UX • DEVELOPMENT • Training Consultant • Human Capital Development </div>
                                 <div class="project-divider"></div>
 
                                 <h6 class="fw-bold mb-1">Training Platform – AMAZAIN</h6>
                                 <p class="text-muted extra-small-text mb-2">
-                                    Platform untuk meningkatkan skill digital marketing dan analisis data.
+                                    Platform untuk meningkatkan skill digital marketing dan mengkonsultasikan strategi bisnis.
                                 </p>
                                 <div class="d-flex justify-content-between align-items-center mt-auto pt-2">
-                                    <a href="https://amazaintraining.com/" class="text-decoration-none fw-bold link-primary extra-small-text">Lihat Project</a>
-                                    <span class="text-secondary extra-small-text">2024</span>
+                                    <a href="https://amazaintraining.com/"
+                                        class="text-decoration-none fw-bold link-primary extra-small-text">Lihat Project</a>
+                                    <span class="text-secondary extra-small-text">2026</span>
                                 </div>
                             </div>
                         </div>
