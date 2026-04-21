@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // 2. LOGIKA ANIMASI (Intersection Observer)
     const observerOptions = {
-        threshold: 0.15,
+        threshold: 0.1, // Diperkecil agar lebih sensitif
         rootMargin: "0px 0px -50px 0px"
     };
 
@@ -70,8 +70,8 @@ document.addEventListener("DOMContentLoaded", () => {
         // Animasi KHUSUS untuk Foto (Sweep / Tirai Terbuka)
         if (el.classList.contains('image-sweep')) {
             keyframes = [
-                { clipPath: 'inset(0 100% 0 0)', opacity: 0, visibility: 'visible' },
-                { clipPath: 'inset(0 0% 0 0)', opacity: 1, visibility: 'visible' }
+                { clipPath: 'inset(0 100% 0 0)', opacity: 0 },
+                { clipPath: 'inset(0 0% 0 0)', opacity: 1 }
             ];
             options.duration = 1000;
             options.easing = 'cubic-bezier(0.77, 0, 0.175, 1)';
@@ -79,15 +79,16 @@ document.addEventListener("DOMContentLoaded", () => {
         // Animasi STANDAR untuk Teks & Card (Fade Up)
         else {
             keyframes = [
-                { opacity: 0, transform: 'translateY(30px)', visibility: 'hidden' },
-                { opacity: 1, transform: 'translateY(0)', visibility: 'visible' }
+                { opacity: 0, transform: 'translateY(20px)' },
+                { opacity: 1, transform: 'translateY(0)' }
             ];
         }
 
         const animation = el.animate(keyframes, options);
 
-        // Kunci posisi akhir agar tidak reset setelah animasi selesai
+        // Kunci posisi akhir dan tambahkan class penanda selesai
         animation.onfinish = () => {
+            el.classList.add('animation-finished');
             el.style.opacity = '1';
             el.style.visibility = 'visible';
 
