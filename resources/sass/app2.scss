@@ -33,7 +33,8 @@ html {
 .stack-animated {
     position: relative;
     display: grid;
-    perspective: 1000px;
+    perspective: 1500px;
+    transform-style: preserve-3d;
     
     & > * {
         grid-column-start: 1;
@@ -42,47 +43,49 @@ html {
         height: 100%;
         background: #fff;
         border: 1px solid #000;
-        transform-origin: bottom center;
+        transform-origin: center bottom;
         will-change: transform, opacity, box-shadow;
     }
 
+    // Transition diaktifkan saat class animation-finished ada
     &.animation-finished > * {
-        transition: all 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+        transition: all 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
 
-    // Kartu paling belakang
+    // Kartu paling belakang (3)
     .card-stack-bg-3 {
         z-index: -3;
-        transform: translateY(16px) scale(0.92);
-        opacity: 0.2;
+        transform: translateY(12px) scale(0.94) translateZ(-30px);
+        opacity: 0.25;
     }
 
-    // Kartu tengah
+    // Kartu tengah (2)
     .card-stack-bg-2 {
         z-index: -2;
-        transform: translateY(8px) scale(0.96);
-        opacity: 0.5;
+        transform: translateY(6px) scale(0.97) translateZ(-15px);
+        opacity: 0.55;
     }
 
     // Kartu utama (depan)
     .card-stack-main {
         position: relative;
         z-index: 1;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        box-shadow: 0 8px 24px rgba(0,0,0,0.05);
+        transform: translateZ(0);
     }
 
     &.animation-finished:hover {
         .card-stack-bg-3 {
-            transform: translateY(32px) scale(0.94) rotate(-3deg);
-            opacity: 0.35;
+            transform: translateX(-12px) translateY(15px) scale(0.96) translateZ(-40px) rotateZ(-2deg);
+            opacity: 0.45;
         }
         .card-stack-bg-2 {
-            transform: translateY(16px) scale(0.97) rotate(2deg);
-            opacity: 0.75;
+            transform: translateX(12px) translateY(15px) scale(0.96) translateZ(-20px) rotateZ(2deg);
+            opacity: 0.8;
         }
         .card-stack-main {
-            transform: translateY(-10px) rotate(-1.5deg);
-            box-shadow: 0 25px 50px rgba(0,0,0,0.12);
+            transform: translateY(-10px) translateZ(30px);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.15);
         }
     }
 }

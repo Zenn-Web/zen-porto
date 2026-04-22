@@ -16,7 +16,7 @@
                         <span>Yogyakarta, Indonesia</span>
                     </div>
                     <h1 class="display-4 fw-bold animate-on-scroll">Zenifen Caesarof Agusti</h1>
-                    <p class="lead opacity-75 mb-0 animate-on-scroll">Web Developer & Front End Engineer & Finance Analyst
+                    <p class="lead opacity-75 mb-0 animate-on-scroll">Web Developer & Front End Engineer Specializing in Forex Analysis
                     </p>
                     <p class="text-muted small mb-4 animate-on-scroll">Crafting high-quality digital solutions with
                         precision and code.</p>
@@ -209,7 +209,7 @@
 
             <div class="row g-3">
                 <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="stack-animated">
+                    <div class="stack-animated animate-on-scroll">
                         <div class="card-stack-bg-3 rounded-0"></div>
                         <div class="card-stack-bg-2 rounded-0"></div>
                         <div
@@ -241,7 +241,7 @@
                 </div>
 
                 <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="stack-animated">
+                    <div class="stack-animated animate-on-scroll">
                         <div class="card-stack-bg-3 rounded-0"></div>
                         <div class="card-stack-bg-2 rounded-0"></div>
                         <div
@@ -272,7 +272,7 @@
                 </div>
 
                 <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="stack-animated">
+                    <div class="stack-animated animate-on-scroll">
                         <div class="card-stack-bg-3 rounded-0"></div>
                         <div class="card-stack-bg-2 rounded-0"></div>
                         <div

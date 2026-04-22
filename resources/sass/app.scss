@@ -248,7 +248,7 @@ $outer-circle-size-tablet: $profile-size-tablet + 90px;
     // Mobile
     width: 45px;
     height: 45px;
-    background: rgba(0, 0, 0, 0.8);
+    background: #000;
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 14px;
@@ -324,7 +324,7 @@ $outer-circle-size-tablet: $profile-size-tablet + 90px;
     position: absolute;
     z-index: 100;
     will-change: transform;
-    background: rgba(0, 0, 0, 0.9);
+    background: #000;
     backdrop-filter: blur(8px);
     color: #e9edef;
     padding: 8px 16px;
