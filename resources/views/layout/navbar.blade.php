@@ -18,12 +18,7 @@
 
         <div class="collapse navbar-collapse" id="mainNavbar">
             <ul class="navbar-nav mx-auto nav-links-group">
-                <li class="nav-item">
-                    <a class="nav-link" href="#home">
-                        <span>Beranda</span>
-                        <i class="bi bi-house-door d-lg-none"></i>
-                    </a>
-                </li>
+
                 <li class="nav-item">
                     <a class="nav-link" href="#about">
                         <span>Tentang</span>
