@@ -280,39 +280,39 @@ $outer-circle-size-tablet: $profile-size-tablet + 90px;
 
     &.computer {
         // Mobile
-        top: -10px;
+        top: 20px;
         right: -10px;
         animation-delay: 0s;
 
         // Tablet
         @media (min-width: 768px) {
-            top: -15px;
+            top: 15px;
             right: -15px;
         }
 
         // Desktop
         @media (min-width: 992px) {
-            top: -20px;
+            top: 20px;
             right: -20px;
         }
     }
 
     &.greek {
         // Mobile
-        bottom: 10px;
+        bottom: 40px;
         left: -20px;
         animation-delay: 1.5s;
 
         // Tablet
         @media (min-width: 768px) {
-            bottom: 15px;
+            bottom: 30px;
             left: -30px;
         }
 
         // Desktop
         @media (min-width: 992px) {
             bottom: 20px;
-            left: -40px;
+            left: -20px;
         }
     }
 }
@@ -344,7 +344,7 @@ $outer-circle-size-tablet: $profile-size-tablet + 90px;
     // 💻 TABLET+: SAMPING KANAN (tidak berubah)
     @media (min-width: 768px) {
         left: auto;
-        right: -80px;
+        right: -110px;
         bottom: 40%;
         transform: none;
         border-radius: 0 15px 15px 15px;
@@ -353,7 +353,7 @@ $outer-circle-size-tablet: $profile-size-tablet + 90px;
     }
 
     @media (min-width: 992px) {
-        right: -103px;
+        right: -150px;
         font-size: 14px;
     }
 
