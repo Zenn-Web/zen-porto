@@ -58,16 +58,14 @@ $outer-circle-size: $profile-size + 100px;
 }
 
 @keyframes pulse-dot {
-
-    0%,
-    100% {
-        transform: scale(0.9);
+    0% {
+        transform: scale(0.95);
         box-shadow: 0 0 0 0 rgba(0, 168, 132, 0.7);
     }
 
-    70% {
-        transform: scale(1.1);
-        box-shadow: 0 0 0 10px rgba(0, 168, 132, 0);
+    70%, 100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 14px rgba(0, 168, 132, 0);
     }
 }
 
@@ -248,17 +246,17 @@ $outer-circle-size-tablet: $profile-size-tablet + 90px;
     // Mobile
     width: 45px;
     height: 45px;
-    background: #000;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.25); // Bening (Glassmorphism)
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
     border-radius: 14px;
     display: flex;
     align-items: center;
     justify-content: center;
     font-family: 'Poppins', sans-serif;
     font-size: 20px;
-    color: #fff;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    color: #111; // Teks gelap agar terbaca di background bening/putih
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
     animation: floating 5s ease-in-out infinite;
     padding: 10px;
 
@@ -324,15 +322,16 @@ $outer-circle-size-tablet: $profile-size-tablet + 90px;
     position: absolute;
     z-index: 100;
     will-change: transform;
-    background: #000;
-    backdrop-filter: blur(8px);
-    color: #e9edef;
+    background: rgba(255, 255, 255, 0.25); // Bening (Glassmorphism)
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    color: #111; // Teks gelap
     padding: 8px 16px;
     font-size: 13px;
     display: flex;
     align-items: center;
     gap: 8px;
-    box-shadow: none;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
     white-space: nowrap;
     animation: floating-badge 4s ease-in-out 1s infinite;
 
@@ -364,7 +363,7 @@ $outer-circle-size-tablet: $profile-size-tablet + 90px;
 
     #live-clock {
         font-size: 11px;
-        color: rgba(255, 255, 255, 0.5);
+        color: rgba(0, 0, 0, 0.5); // Warna jam abu-abu gelap
         margin-left: 5px;
         flex-shrink: 0;
 
@@ -383,8 +382,8 @@ $outer-circle-size-tablet: $profile-size-tablet + 90px;
         background-color: #00a884;
         border-radius: 50%;
         display: inline-block;
-        box-shadow: 0 0 8px rgba(0, 168, 132, 0.8);
-        animation: pulse-dot 2s infinite;
+        box-shadow: 0 0 8px rgba(0, 168, 132, 0.6);
+        animation: pulse-dot 2.5s ease-out infinite;
     }
 }
 
