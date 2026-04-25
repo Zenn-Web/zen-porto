@@ -538,8 +538,11 @@ section:first-of-type {
 .image-sweep {
     overflow: hidden;
     clip-path: inset(0 100% 0 0);
+    -webkit-clip-path: inset(0 100% 0 0);
     opacity: 0;
     visibility: visible; // Tetap visible agar JS bisa menganimasikannya
+    transform: translateZ(0); // Force Hardware Acceleration (Fix bug foto hilang)
+    will-change: clip-path, opacity;
 
     img {
         display: block;
@@ -757,7 +760,6 @@ section {
     h3,
     p,
     .card,
-    .row,
     .animate-text,
     .animate-buttons,
     .profile-card-horizontal,

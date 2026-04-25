@@ -458,17 +458,21 @@ html {
 
 // CONTACT SECTION
 .contact-section {
-    scroll-margin-top: 100px;
-    padding: 100px 0;
+    scroll-margin-top: 85px;
+    padding: 80px 0;
     background-color: #fff;
 
-    @media (max-width: 767px) {
-        padding: 60px 0;
+    @media (min-width: 768px) {
+        padding: 100px 0;
+    }
+
+    @media (min-width: 992px) {
+        padding: 120px 0;
     }
 }
 
 .contact-container {
-    max-width: 1000px;
+    max-width: 1200px;
     margin: 0 auto;
     padding: 0 30px;
     display: grid;
@@ -485,12 +489,12 @@ html {
 // KIRI — Info
 .contact-info {
     .contact-eyebrow {
-        font-size: 0.75rem;
+        font-size: 0.72rem;
         font-weight: 700;
-        letter-spacing: 0.15em;
+        letter-spacing: 0.18em;
         text-transform: uppercase;
-        color: #999;
-        margin-bottom: 12px;
+        color: #aaa;
+        margin-bottom: 8px;
     }
 
     .contact-title {
@@ -499,7 +503,7 @@ html {
         line-height: 1.15;
         letter-spacing: -0.02em;
         color: #111;
-        margin-bottom: 12px;
+        margin-bottom: 8px;
 
         @media (max-width: 767px) {
             font-size: 2rem;
@@ -507,34 +511,44 @@ html {
     }
 
     .contact-subtitle {
-        font-size: 1rem;
-        color: #777;
-        margin-bottom: 36px;
+        font-size: 0.95rem;
+        color: #888;
+        margin-bottom: 24px;
         line-height: 1.6;
+    }
+
+    // Divider tipis pemisah sebelum detail
+    .contact-divider {
+        width: 32px;
+        height: 2px;
+        background: #111;
+        margin-bottom: 24px;
     }
 
     .contact-details {
         display: flex;
         flex-direction: column;
-        gap: 14px;
-        margin-bottom: 32px;
+        gap: 12px;
+        margin-bottom: 24px;
     }
 
     .contact-detail-row {
         display: flex;
         align-items: center;
-        gap: 12px;
-        font-size: 0.9rem;
-        color: #444;
+        gap: 10px;
+        font-size: 0.875rem;
+        color: #555;
 
         i {
-            font-size: 1rem;
+            font-size: 0.95rem;
             color: #111;
             flex-shrink: 0;
+            width: 16px;
+            text-align: center;
         }
 
         a {
-            color: #444;
+            color: #555;
             text-decoration: none;
 
             &:hover {
@@ -546,17 +560,17 @@ html {
 
     .contact-social-row {
         display: flex;
-        gap: 12px;
+        gap: 8px;
 
         .contact-social-link {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 38px;
-            height: 38px;
-            border: 1.5px solid #ddd;
-            color: #444;
-            font-size: 1rem;
+            width: 36px;
+            height: 36px;
+            border: 1.5px solid #e0e0e0;
+            color: #555;
+            font-size: 0.95rem;
             text-decoration: none;
             transition: border-color 0.2s ease, color 0.2s ease;
 
@@ -574,7 +588,7 @@ html {
         .form-row {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 20px;
+            gap: 16px;       // Lebih rapat agar tidak terlalu longgar
 
             @media (max-width: 576px) {
                 grid-template-columns: 1fr;
@@ -584,28 +598,28 @@ html {
         .form-group {
             display: flex;
             flex-direction: column;
-            margin-bottom: 24px;
+            margin-bottom: 20px;   // Dikurangi dari 24px → konsisten dengan gap sisi kiri
 
             label {
-                font-size: 0.75rem;
-                font-weight: 600;
-                letter-spacing: 0.08em;
+                font-size: 0.72rem;
+                font-weight: 700;
+                letter-spacing: 0.1em;
                 text-transform: uppercase;
-                color: #999;
+                color: #aaa;           // Diselaraskan dengan eyebrow warna
                 margin-bottom: 8px;
             }
 
             input,
             textarea {
                 border: none;
-                border-bottom: 1.5px solid #ddd;
+                border-bottom: 1.5px solid #e0e0e0;  // Sama dengan border social icon
                 padding: 10px 0;
-                font-size: 0.95rem;
+                font-size: 0.9rem;
                 color: #111;
                 background: transparent;
                 outline: none;
                 font-family: inherit;
-                transition: border-color 0.2s ease;
+                transition: border-color 0.25s ease;
 
                 &:focus {
                     border-color: #111;
@@ -614,22 +628,23 @@ html {
 
             textarea {
                 resize: none;
-                min-height: 120px;
+                min-height: 100px;
             }
         }
 
         .button-wrapper {
-            margin-top: 8px;
+            margin-top: 12px;
         }
 
         .btn-send-contact {
             background: #111;
             color: #fff;
             border: none;
-            padding: 13px 36px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            letter-spacing: 0.05em;
+            padding: 12px 32px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
             cursor: pointer;
             transition: background 0.2s ease, transform 0.2s ease;
 

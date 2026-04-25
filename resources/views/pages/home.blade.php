@@ -315,18 +315,20 @@
                 <h2 class="contact-title">Kontak Saya</h2>
                 <p class="contact-subtitle">Mari bekerjasama untuk solusi digitalmu.</p>
 
+                <div class="contact-divider animate-on-scroll"></div>
+
                 <div class="contact-details">
-                    <div class="contact-detail-row">
+                    <div class="contact-detail-row animate-on-scroll">
                         <i class="bi bi-geo-alt"></i>
                         <span>Yogyakarta, Indonesia</span>
                     </div>
-                    <div class="contact-detail-row">
+                    <div class="contact-detail-row animate-on-scroll">
                         <i class="bi bi-envelope"></i>
                         <a href="mailto:zenifenagusti70@gmail.com">zenifenagusti70@gmail.com</a>
                     </div>
                 </div>
 
-                <div class="contact-social-row">
+                <div class="contact-social-row animate-on-scroll">
                     <a href="https://www.github.com/Zenn-Web" target="_blank" rel="noopener" class="contact-social-link" aria-label="GitHub">
                         <i class="bi bi-github"></i>
                     </a>

@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 // Seleksi semua elemen yang ingin dianimasikan
                 const elements = container.querySelectorAll(
-                    'h1, h2, h3, p, .card, .row, .animate-text, .animate-buttons, ' +
+                    'h1, h2, h3, p, .card, .animate-text, .animate-buttons, ' +
                     '.detail-item, .contact-socials, .form-group, .button-wrapper, .image-sweep, ' +
                     '.animate-on-scroll, .profile-card-horizontal'
                 );
@@ -70,8 +70,8 @@ document.addEventListener("DOMContentLoaded", () => {
         // Animasi KHUSUS untuk Foto (Sweep / Tirai Terbuka)
         if (el.classList.contains('image-sweep')) {
             keyframes = [
-                { clipPath: 'inset(0 100% 0 0)', opacity: 0 },
-                { clipPath: 'inset(0 0% 0 0)', opacity: 1 }
+                { clipPath: 'inset(0 100% 0 0)', WebkitClipPath: 'inset(0 100% 0 0)', opacity: 0 },
+                { clipPath: 'inset(0 0% 0 0)', WebkitClipPath: 'inset(0 0% 0 0)', opacity: 1 }
             ];
             options.duration = 1000;
             options.easing = 'cubic-bezier(0.77, 0, 0.175, 1)';
@@ -94,6 +94,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (el.classList.contains('image-sweep')) {
                 el.style.clipPath = 'inset(0 0% 0 0)';
+                el.style.webkitClipPath = 'inset(0 0% 0 0)';
             } else {
                 el.style.transform = 'translateY(0)';
             }
