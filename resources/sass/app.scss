@@ -770,6 +770,23 @@ section {
     }
 }
 
+// Override untuk #skills — tidak pakai animasi, tampil langsung
+#skills {
+    h1, h2, h3, h4, h5, h6,
+    p,
+    .card,
+    .row,
+    .animate-text,
+    .animate-buttons,
+    .detail-item,
+    .contact-socials,
+    .form-group,
+    .button-wrapper {
+        opacity: 1 !important;
+        transform: none !important;
+    }
+}
+
 .animate-on-scroll {
     opacity: 0;
     transform: translateY(40px);
@@ -889,15 +906,6 @@ section {
 .card-skill-v2 {
     border: 2px solid #000 !important;
     background: transparent;
-
-    &.animation-finished {
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-
-        &:hover {
-            transform: translateY(-5px);
-            box-shadow: 10px 10px 0px #000;
-        }
-    }
 }
 
 .badge-tech {

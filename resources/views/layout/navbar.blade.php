@@ -19,21 +19,36 @@
         <div class="collapse navbar-collapse" id="mainNavbar">
             <ul class="navbar-nav mx-auto nav-links-group">
                 <li class="nav-item">
-                    <a class="nav-link" href="#home">Beranda</a>
+                    <a class="nav-link" href="#home">
+                        <span>Beranda</span>
+                        <i class="bi bi-house-door d-lg-none"></i>
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#about">Tentang</a>
+                    <a class="nav-link" href="#about">
+                        <span>Tentang</span>
+                        <i class="bi bi-person d-lg-none"></i>
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#skills">Keahlian</a>
+                    <a class="nav-link" href="#skills">
+                        <span>Keahlian</span>
+                        <i class="bi bi-journal-code d-lg-none"></i>
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#resources">Projek</a>
+                    <a class="nav-link" href="#resources">
+                        <span>Projek</span>
+                        <i class="bi bi-grid d-lg-none"></i>
+                    </a>
                 </li>
             </ul>
 
             <div class="nav-actions">
-                <a href="#contact" class="btn-contact-me">Kontak Saya</a>
+                <a href="#contact" class="btn-contact-me">
+                    <span>Kontak Saya</span>
+                    <i class="bi bi-chat-dots ms-2 d-lg-none"></i>
+                </a>
             </div>
         </div>
     </div>

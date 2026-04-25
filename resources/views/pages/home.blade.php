@@ -129,17 +129,17 @@
 
 
 
-    <section id="skills" class="py-5 bg-white reveal-section text-dark d-flex align-items-center"
+    <section id="skills" class="py-5 bg-white text-dark d-flex align-items-center"
         style="scroll-margin-top: 90px; min-height: 85vh;">
         <div class="container py-2">
 
-            <div class="mb-4 animate-on-scroll">
+            <div class="mb-4">
                 <h2 class="fw-bold mb-0">Keahlian Saya</h2>
             </div>
 
             <div class="row g-3">
                 <!-- PROGRAMMING CARD -->
-                <div class="col-lg-6 animate-on-scroll">
+                <div class="col-lg-6">
                     <div class="card card-skill-v2 h-100 p-3 p-md-4 border-dark rounded-0">
                         <div class="skill-icon-v2 mb-3">
                             <i class="bi bi-code-slash fs-3"></i>
@@ -172,7 +172,7 @@
                 </div>
 
                 <!-- FOREX ANALYST CARD -->
-                <div class="col-lg-6 animate-on-scroll">
+                <div class="col-lg-6">
                     <div class="card card-skill-v2 h-100 p-3 p-md-4 border-dark rounded-0">
                         <div class="skill-icon-v2 mb-3">
                             <i class="bi bi-graph-up-arrow fs-3"></i>
@@ -308,45 +308,49 @@
 
     <section id="contact" class="contact-section reveal-section">
         <div class="contact-container">
+
+            {{-- KIRI: Info --}}
             <div class="contact-info">
-                <h2 class="contact-title fw-bold">Get in Touch</h2>
-                <p class="contact-subtitle">I'd like to hear from you!</p>
+                <p class="contact-eyebrow">Hubungi Saya</p>
+                <h2 class="contact-title">Kontak Saya</h2>
+                <p class="contact-subtitle">Mari bekerjasama untuk solusi digitalmu.</p>
 
                 <div class="contact-details">
-                    <div class="detail-item mb-2" style="opacity: 1; transform: none;">
-                        <i class="bi bi-geo-alt-fill"></i>
-                        <span class="text-dark fw-medium" style="font-size: 0.95rem;">Yogyakarta, Indonesia</span>
+                    <div class="contact-detail-row">
+                        <i class="bi bi-geo-alt"></i>
+                        <span>Yogyakarta, Indonesia</span>
                     </div>
-                    <div class="detail-item">
+                    <div class="contact-detail-row">
                         <i class="bi bi-envelope"></i>
                         <a href="mailto:zenifenagusti70@gmail.com">zenifenagusti70@gmail.com</a>
                     </div>
                 </div>
 
-                <div class="contact-socials">
-                    <a href="https://www.github.com/Zenn-Web" class="social-icon"><i class="bi bi-github"></i></a>
-                    <a href="https://www.linkedin.com/in/zen-agusti-2928ba38a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
-                        class="social-icon"><i class="bi bi-linkedin"></i></a>
-                    <a href="https://www.instagram.com/zenagust_?igsh=MW5jcXZsNGx1ajY1dw==" class="social-icon"><i
-                            class="bi bi-instagram"></i></a>
+                <div class="contact-social-row">
+                    <a href="https://www.github.com/Zenn-Web" target="_blank" rel="noopener" class="contact-social-link" aria-label="GitHub">
+                        <i class="bi bi-github"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/zen-agusti-2928ba38a" target="_blank" rel="noopener" class="contact-social-link" aria-label="LinkedIn">
+                        <i class="bi bi-linkedin"></i>
+                    </a>
+                    <a href="https://www.instagram.com/zenagust_" target="_blank" rel="noopener" class="contact-social-link" aria-label="Instagram">
+                        <i class="bi bi-instagram"></i>
+                    </a>
                 </div>
             </div>
 
+            {{-- KANAN: Form --}}
             <div class="contact-form-wrapper">
                 <form action="{{ route('contact.store') }}" method="POST" class="contact-form">
                     @csrf
 
-                    {{-- Tampilkan pesan sukses --}}
                     @if(session('success'))
-                        <div class="alert alert-success">
-                            {{ session('success') }}
-                        </div>
+                        <div class="alert alert-success mb-4">{{ session('success') }}</div>
                     @endif
 
-                    {{-- Tampilkan error validasi --}}
                     @if($errors->any())
-                        <div class="alert alert-danger">
-                            <ul>
+                        <div class="alert alert-danger mb-4">
+                            <ul class="mb-0 ps-3">
                                 @foreach($errors->all() as $error)
                                     <li>{{ $error }}</li>
                                 @endforeach
@@ -356,31 +360,32 @@
 
                     <div class="form-row">
                         <div class="form-group">
-                            <label>Nama Depan</label>
-                            <input type="text" name="first_name" value="{{ old('first_name') }}"
-                                placeholder="Nama depan Anda">
+                            <label for="first_name">Nama Depan</label>
+                            <input type="text" id="first_name" name="first_name" value="{{ old('first_name') }}">
                         </div>
                         <div class="form-group">
-                            <label>Nama Belakang</label>
-                            <input type="text" name="last_name" value="{{ old('last_name') }}"
-                                placeholder="Nama belakang Anda">
+                            <label for="last_name">Nama Belakang</label>
+                            <input type="text" id="last_name" name="last_name" value="{{ old('last_name') }}">
                         </div>
                     </div>
+
                     <div class="form-group">
-                        <label>Email *</label>
-                        <input type="email" name="email" value="{{ old('email') }}" required placeholder="email@contoh.com">
+                        <label for="email">Email <span class="text-danger">*</span></label>
+                        <input type="email" id="email" name="email" value="{{ old('email') }}" required>
                     </div>
+
                     <div class="form-group">
-                        <label>Pesan</label>
-                        <textarea name="message" rows="4"
-                            placeholder="Apa yang bisa saya bantu?">{{ old('message') }}</textarea>
+                        <label for="message">Pesan</label>
+                        <textarea id="message" name="message" rows="5">{{ old('message') }}</textarea>
                     </div>
+
                     <div class="button-wrapper">
-                        <button type="submit" class="btn-send-contact">Kirim</button>
+                        <button type="submit" class="btn-send-contact">Kirim Pesan</button>
                     </div>
 
                 </form>
             </div>
+
         </div>
     </section>
 

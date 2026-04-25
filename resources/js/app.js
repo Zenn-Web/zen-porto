@@ -100,4 +100,30 @@ document.addEventListener("DOMContentLoaded", () => {
         };
     }
 
+    // 4. MOBILE MENU ENHANCEMENT
+    const navbarCollapse = document.getElementById('mainNavbar');
+    const body = document.body;
+
+    if (navbarCollapse) {
+        navbarCollapse.addEventListener('show.bs.collapse', () => {
+            body.style.overflow = 'hidden';
+            body.classList.add('mobile-menu-open');
+        });
+
+        navbarCollapse.addEventListener('hide.bs.collapse', () => {
+            body.style.overflow = '';
+            body.classList.remove('mobile-menu-open');
+        });
+        
+        const navLinks = navbarCollapse.querySelectorAll('.nav-link');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                const bsCollapse = bootstrap.Collapse.getInstance(navbarCollapse);
+                if (bsCollapse) {
+                    bsCollapse.hide();
+                }
+            });
+        });
+    }
+
 });
