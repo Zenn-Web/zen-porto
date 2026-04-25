@@ -108,7 +108,7 @@
                             <!-- PARAGRAPH 3 -->
                             <p class="text-secondary mb-4 animate-text">
                                 Saya memiliki ketertarikan besar dalam mempelajari berbagai bahasa pemrograman, khususnya
-                                HTML, CSS, JavaScript, Laravel, dan Python. Dalam proses belajar dan mengembangkan proyek,
+                                HTML, CSS, JavaScript, Laravel, dan lain sebagainya. Dalam proses belajar dan mengembangkan proyek,
                                 saya selalu berusaha memahami tidak hanya bagaimana sebuah fitur dibuat, tetapi juga alasan
                                 di balik penggunaannya.
                             </p>
