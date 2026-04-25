@@ -27,7 +27,7 @@ class ContactController extends Controller
             }
         );
 
-        return redirect()->back()->with('success', 'Pesan berhasil dikirim!');
+        return redirect(url()->previous() . '#contact')->with('success', 'Pesan berhasil dikirim!');
     }
 }
 

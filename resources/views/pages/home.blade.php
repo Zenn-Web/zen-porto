@@ -4,8 +4,14 @@
 @section('content')
 
 
-    <section id="home" class="bg-white text-black reveal-section">
-        <div class="container">
+    <section id="home" class="bg-white text-black reveal-section position-relative overflow-hidden">
+        <!-- Background Ornaments -->
+        <div class="hero-bg-ornaments">
+            <div class="bg-grid-pattern"></div>
+            <div class="bg-big-text">ZEN</div>
+        </div>
+        
+        <div class="container position-relative" style="z-index: 2;">
             <div class="row align-items-center justify-content-center">
 
                 <div class="col-lg-6 text-lg-start text-center mb-5 mb-lg-0">
@@ -15,8 +21,10 @@
                         </div>
                         <span>Yogyakarta, Indonesia</span>
                     </div>
-                    <h1 class="display-4 fw-bold animate-on-scroll">Zenifen Caesarof Agusti</h1>
-                    <p class="lead opacity-75 mb-0 animate-on-scroll">Web Developer & Front End Engineer Specializing in Forex Analysis
+                    <h1 class="display-4 fw-bold animate-on-scroll"><span class="text-gradient-emerald">Zenifen</span> Caesarof Agusti</h1>
+                    <p class="mb-3 animate-on-scroll hero-role-text">
+                        <span class="lead fw-bold text-dark d-block mb-1">Web Developer & Front End Engineer.</span>
+                        <span class="text-muted">Also passionate about Forex Analysis.</span>
                     </p>
                     <p class="text-muted small mb-4 animate-on-scroll">Crafting high-quality digital solutions with
                         precision and code.</p>
@@ -30,6 +38,10 @@
                             <h5 class="fw-bold mb-0">Open</h5>
                             <small class="text-muted">To Collaboration</small>
                         </div>
+                    </div>
+                    <div class="hero-cta-group animate-on-scroll mt-4 d-flex gap-3 justify-content-center justify-content-lg-start">
+                        <a href="#resources" class="btn-hero-primary">Lihat Projek</a>
+                        <a href="#contact" class="btn-hero-secondary">Hubungi Saya</a>
                     </div>
                 </div>
 
@@ -350,35 +362,37 @@
                         <div class="alert alert-success mb-4">{{ session('success') }}</div>
                     @endif
 
-                    @if($errors->any())
-                        <div class="alert alert-danger mb-4">
-                            <ul class="mb-0 ps-3">
-                                @foreach($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
-
                     <div class="form-row">
                         <div class="form-group">
                             <label for="first_name">Nama Depan</label>
-                            <input type="text" id="first_name" name="first_name" value="{{ old('first_name') }}">
+                            <input type="text" id="first_name" name="first_name" value="{{ old('first_name') }}" class="@error('first_name') is-invalid @enderror">
+                            @error('first_name')
+                                <span class="error-text">{{ $message }}</span>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label for="last_name">Nama Belakang</label>
-                            <input type="text" id="last_name" name="last_name" value="{{ old('last_name') }}">
+                            <input type="text" id="last_name" name="last_name" value="{{ old('last_name') }}" class="@error('last_name') is-invalid @enderror">
+                            @error('last_name')
+                                <span class="error-text">{{ $message }}</span>
+                            @enderror
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label for="email">Email <span class="text-danger">*</span></label>
-                        <input type="email" id="email" name="email" value="{{ old('email') }}" required>
+                        <input type="email" id="email" name="email" value="{{ old('email') }}" class="@error('email') is-invalid @enderror">
+                        @error('email')
+                            <span class="error-text">{{ $message }}</span>
+                        @enderror
                     </div>
 
                     <div class="form-group">
                         <label for="message">Pesan</label>
-                        <textarea id="message" name="message" rows="5">{{ old('message') }}</textarea>
+                        <textarea id="message" name="message" rows="5" class="@error('message') is-invalid @enderror">{{ old('message') }}</textarea>
+                        @error('message')
+                            <span class="error-text">{{ $message }}</span>
+                        @enderror
                     </div>
 
                     <div class="button-wrapper">

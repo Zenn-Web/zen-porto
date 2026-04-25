@@ -31,9 +31,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 // Seleksi semua elemen yang ingin dianimasikan
                 const elements = container.querySelectorAll(
-                    'h1, h2, h3, p, .card, .animate-text, .animate-buttons, ' +
+                    'h1, h2, h3, h4, h5, h6, p, ul, .card, .animate-text, .animate-buttons, ' +
                     '.detail-item, .contact-socials, .form-group, .button-wrapper, .image-sweep, ' +
-                    '.animate-on-scroll, .profile-card-horizontal'
+                    '.animate-on-scroll, .profile-card-horizontal, .hero-location-badge, .badge-tech, .resource-img'
                 );
 
                 elements.forEach((el, index) => {
@@ -125,6 +125,20 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             });
         });
+    }
+
+    // 5. AUTO-SCROLL TO CONTACT ON ERROR/SUCCESS
+    const hasErrors = document.querySelector('.is-invalid');
+    const hasSuccess = document.querySelector('.alert-success');
+    
+    if (hasErrors || hasSuccess) {
+        // Gunakan timeout sedikit agar tidak tabrakan dengan loading awal
+        setTimeout(() => {
+            const contactSection = document.getElementById('contact');
+            if (contactSection) {
+                contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }, 300);
     }
 
 });

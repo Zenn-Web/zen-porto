@@ -397,13 +397,13 @@ section:first-of-type {
     min-height: 100vh !important;
     display: flex;
     align-items: center;
-    padding-top: 80px;
-    padding-bottom: 20px;
+    padding-top: 110px !important; // Increased to prevent navbar overlap on mobile
+    padding-bottom: 40px !important;
     scroll-margin-top: 0;
 
     @media (min-width: 992px) {
-        padding-top: 80px;
-        padding-bottom: 0;
+        padding-top: 80px !important;
+        padding-bottom: 0 !important;
     }
 }
 
@@ -757,7 +757,11 @@ section {
     h1,
     h2,
     h3,
+    h4,
+    h5,
+    h6,
     p,
+    ul,
     .card,
     .animate-text,
     .animate-buttons,
@@ -765,28 +769,16 @@ section {
     .detail-item,
     .contact-socials,
     .form-group,
-    .button-wrapper {
+    .button-wrapper,
+    .hero-location-badge,
+    .badge-tech,
+    .resource-img {
         opacity: 0;
         transform: translateY(40px);
     }
 }
 
-// Override untuk #skills — tidak pakai animasi, tampil langsung
-#skills {
-    h1, h2, h3, h4, h5, h6,
-    p,
-    .card,
-    .row,
-    .animate-text,
-    .animate-buttons,
-    .detail-item,
-    .contact-socials,
-    .form-group,
-    .button-wrapper {
-        opacity: 1 !important;
-        transform: none !important;
-    }
-}
+
 
 .animate-on-scroll {
     opacity: 0;
@@ -958,4 +950,96 @@ section {
 .extra-small-badge {
     font-size: 0.65rem !important;
     padding: 3px 10px !important;
+}
+
+// HERO ENHANCEMENTS
+.text-gradient-emerald {
+    background: linear-gradient(135deg, #10b981 0%, #34d399 50%, #059669 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: inline-block;
+}
+
+.btn-hero-primary {
+    display: inline-block;
+    padding: 12px 28px;
+    background-color: #000;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    border: 2px solid #000;
+    transition: all 0.3s ease;
+    
+    &:hover {
+        background-color: transparent;
+        color: #000;
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+}
+
+.btn-hero-secondary {
+    display: inline-block;
+    padding: 12px 28px;
+    background-color: transparent;
+    color: #000;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    border: 2px solid #000;
+    transition: all 0.3s ease;
+    
+    &:hover {
+        background-color: #000;
+        color: #fff;
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+}
+
+.hero-role-text {
+    transition: all 0.4s ease;
+    cursor: default;
+
+    &:hover {
+        .lead {
+            color: #10b981 !important;
+            transition: color 0.3s ease;
+        }
+        .text-muted {
+            color: #333 !important;
+            transition: color 0.3s ease;
+        }
+    }
+}
+
+// BACKGROUND ORNAMENTS
+.hero-bg-ornaments {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.bg-grid-pattern {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(rgba(0, 0, 0, 0.04) 1.5px, transparent 1.5px);
+    background-size: 60px 60px;
+}
+
+.bg-big-text {
+    position: absolute;
+    font-size: 38vw;
+    font-weight: 800;
+    color: rgba(0, 0, 0, 0.015);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    user-select: none;
+    line-height: 1;
+    white-space: nowrap;
+    font-family: 'Playfair Display', serif !important; // Use the stylish font for decoration
 }

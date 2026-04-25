@@ -437,15 +437,16 @@ html {
     text-decoration: none;
     font-weight: 600;
     font-size: 0.9rem;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border: 2px solid #1a1a1a;
+    transition: all 0.3s ease;
     display: inline-block;
     text-align: center;
     
     &:hover {
-        background-color: #333;
-        color: #fff;
-        transform: translateY(-2px);
-        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        background-color: transparent;
+        color: #1a1a1a;
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
     }
     
     // Mobile: full width
@@ -646,11 +647,14 @@ html {
             letter-spacing: 0.08em;
             text-transform: uppercase;
             cursor: pointer;
-            transition: background 0.2s ease, transform 0.2s ease;
+            border: 2px solid #111;
+            transition: all 0.3s ease;
 
             &:hover {
-                background: #333;
-                transform: translateY(-1px);
+                background: transparent;
+                color: #111;
+                transform: translateY(-3px);
+                box-shadow: 0 10px 20px rgba(0,0,0,0.1);
             }
 
             @media (max-width: 576px) {
@@ -659,5 +663,20 @@ html {
             }
         }
     }
+}
+
+// VALIDATION ERRORS
+.error-text {
+    color: #dc3545;
+    font-size: 0.7rem;
+    margin-top: 5px;
+    font-weight: 600;
+    text-transform: none;
+    letter-spacing: normal;
+}
+
+input.is-invalid,
+textarea.is-invalid {
+    border-bottom-color: #dc3545 !important;
 }
 
