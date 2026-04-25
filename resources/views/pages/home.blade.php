@@ -24,19 +24,18 @@
                     <h1 class="display-4 fw-bold animate-on-scroll"><span class="text-gradient-emerald">Zenifen</span> Caesarof Agusti</h1>
                     <p class="mb-3 animate-on-scroll hero-role-text">
                         <span class="lead fw-bold text-dark d-block mb-1">Web Developer & Front End Engineer.</span>
-                        <span class="text-muted">Also passionate about Forex Analysis.</span>
+                        <span class="text-muted">Juga memiliki minat mendalam di Analisis Forex.</span>
                     </p>
-                    <p class="text-muted small mb-4 animate-on-scroll">Crafting high-quality digital solutions with
-                        precision and code.</p>
+                    <p class="text-muted small mb-4 animate-on-scroll">Membangun solusi digital berkualitas tinggi dengan presisi dan kode.</p>
 
                     <div class="row g-3 justify-content-center justify-content-lg-start mt-3">
                         <div class="col-auto">
                             <h5 class="fw-bold mb-0">5+</h5>
-                            <small class="text-muted">Tech Explored</small>
+                            <small class="text-muted">Teknologi</small>
                         </div>
                         <div class="col-auto border-start ps-3">
-                            <h5 class="fw-bold mb-0">Open</h5>
-                            <small class="text-muted">To Collaboration</small>
+                            <h5 class="fw-bold mb-0">Terbuka</h5>
+                            <small class="text-muted">Untuk Kolaborasi</small>
                         </div>
                     </div>
                     <div class="hero-cta-group animate-on-scroll mt-4 d-flex gap-3 justify-content-center justify-content-lg-start">
@@ -59,7 +58,7 @@
                         <div class="ornamen-box greek">🏛</div>
                         <div class="status-badge">
                             <span class="dot"></span>
-                            <span class="status-text">Focused on Growth</span>
+                            <span class="status-text">Fokus pada Pertumbuhan</span>
                             <span id="live-clock">00:00</span>
                         </div>
                     </div>
