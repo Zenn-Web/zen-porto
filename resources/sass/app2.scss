@@ -626,11 +626,13 @@ html {
             color: var(--text-secondary);
             font-size: 0.95rem;
             text-decoration: none;
-            transition: border-color 0.2s ease, color 0.2s ease;
+            transition: all 0.3s ease;
 
             &:hover {
                 border-color: var(--text-primary);
                 color: var(--text-primary);
+                transform: translateY(-5px);
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
             }
         }
     }

@@ -674,10 +674,7 @@ section:first-of-type {
     border-radius: 0; // Sharp corners
     position: relative;
     flex-shrink: 0; // Prevent shrinking
-    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
-        background-color 0.4s,
-        color 0.4s,
-        box-shadow 0.4s;
+    transition: all 0.3s ease;
 
     @media (min-width: 768px) {
         width: 45px;
@@ -694,13 +691,8 @@ section:first-of-type {
     &:hover {
         background: var(--border-primary);
         color: var(--text-white);
-        transform: scale(1.15) translateY(-4px);
-        box-shadow: 6px 6px 0px var(--border-primary);
-
-        @media (min-width: 992px) {
-            transform: scale(1.2) translateY(-5px);
-            box-shadow: 7px 7px 0px var(--border-primary);
-        }
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
     }
 
     &:active {
@@ -711,31 +703,19 @@ section:first-of-type {
     &.github:hover {
         background: #333;
         border-color: #333;
-        box-shadow: 6px 6px 0px #333;
-
-        @media (min-width: 992px) {
-            box-shadow: 7px 7px 0px #333;
-        }
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
     }
 
     &.linkedin:hover {
         background: #0077b5;
         border-color: #0077b5;
-        box-shadow: 6px 6px 0px #0077b5;
-
-        @media (min-width: 992px) {
-            box-shadow: 7px 7px 0px #0077b5;
-        }
+        box-shadow: 0 10px 20px rgba(0, 119, 181, 0.3);
     }
 
     &.instagram:hover {
         background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
         border-color: #dc2743;
-        box-shadow: 6px 6px 0px #dc2743;
-
-        @media (min-width: 992px) {
-            box-shadow: 7px 7px 0px #dc2743;
-        }
+        box-shadow: 0 10px 20px rgba(220, 39, 67, 0.3);
     }
 }
 
