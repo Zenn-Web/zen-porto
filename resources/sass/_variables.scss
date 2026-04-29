@@ -1,0 +1,108 @@
+// COLOR SYSTEM (SASS)
+$emerald-light: #a7f3d0;
+$emerald-medium: #34d399;
+$emerald-dark: #0fb9a7;
+$emerald-deep: #0a8f7a;
+
+// CSS VARIABLES FOUNDATION
+:root {
+    // Backgrounds
+    --bg-primary: #ffffff;
+    --bg-secondary: #f9f9f9;
+    --bg-card: #ffffff;
+    --bg-glass: rgba(255, 255, 255, 0.25);
+    --bg-navbar: rgba(255, 255, 255, 0.95);
+    --bg-navbar-mobile: rgba(255, 255, 255, 0.98);
+    
+    // Text
+    --text-primary: #111111;
+    --text-secondary: #555555;
+    --text-muted: #888888;
+    --text-dim: #aaaaaa;
+    --text-white: #ffffff;
+    
+    // Borders & Dividers
+    --border-primary: #000000;
+    --border-light: #f1f1f1;
+    --border-dim: #e0e0e0;
+    
+    // Accents (Emerald)
+    --accent-emerald: #0fb9a7;
+    --accent-emerald-light: #34d399;
+    --accent-emerald-deep: #0a8f7a;
+    
+    // Shadows
+    --shadow-sm: 0 4px 15px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 10px 40px rgba(0, 0, 0, 0.08);
+    --shadow-lg: 0 18px 40px rgba(0, 0, 0, 0.25);
+}
+
+[data-theme="dark"] {
+    // Backgrounds
+    --bg-primary: #0f172a; // Slate 900
+    --bg-secondary: #1e293b; // Slate 800
+    --bg-card: #1e293b;
+    --bg-glass: rgba(30, 41, 59, 0.5);
+    --bg-navbar: rgba(15, 23, 42, 0.9);
+    --bg-navbar-mobile: rgba(30, 41, 59, 0.98);
+    
+    // Text
+    --text-primary: #f8fafc; // Slate 50
+    --text-secondary: #e2e8f0; // Slate 200 (Increased contrast)
+    --text-muted: #cbd5e1; // Slate 300 (Increased contrast)
+    --text-dim: #94a3b8; // Slate 400
+    --text-white: #ffffff;
+    
+    // Borders & Dividers
+    --border-primary: #334155; // Slate 700
+    --border-light: #1e293b;
+    --border-dim: #334155;
+    
+    // Accents (Emerald stays vibrant)
+    --accent-emerald: #10b981;
+    --accent-emerald-light: #34d399;
+    --accent-emerald-deep: #059669;
+    
+    // Shadows (Invert or soften shadows for dark mode)
+    --shadow-sm: 0 4px 15px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 10px 40px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 18px 40px rgba(0, 0, 0, 0.5);
+
+    // NUCLEAR OVERRIDES
+    .card, 
+    .card-skill-v2, 
+    .profile-card-horizontal,
+    .card-elegant {
+        background-color: var(--bg-card) !important;
+        border-color: var(--border-primary) !important;
+        color: var(--text-primary) !important;
+    }
+
+    .text-dark, .text-black, .text-secondary, .text-muted {
+        color: var(--text-primary) !important;
+    }
+
+    .bg-white {
+        background-color: var(--bg-primary) !important;
+    }
+
+    label, 
+    .contact-eyebrow, 
+    .contact-subtitle,
+    .project-category-text,
+    .extra-small-text,
+    .text-muted.small {
+        color: var(--text-secondary) !important;
+    }
+
+    ::placeholder {
+        color: var(--text-dim) !important;
+        opacity: 0.7;
+    }
+
+    footer p, 
+    footer span, 
+    footer strong {
+        color: var(--text-primary) !important;
+    }
+}

@@ -4,7 +4,7 @@
 @section('content')
 
 
-    <section id="home" class="bg-white text-black reveal-section position-relative overflow-hidden">
+    <section id="home" class="reveal-section position-relative overflow-hidden">
         <!-- Background Ornaments -->
         <div class="hero-bg-ornaments">
             <div class="bg-grid-pattern"></div>
@@ -23,7 +23,7 @@
                     </div>
                     <h1 class="display-4 fw-bold animate-on-scroll"><span class="text-gradient-emerald">Zenifen</span> Caesarof Agusti</h1>
                     <p class="mb-3 animate-on-scroll hero-role-text">
-                        <span class="lead fw-bold text-dark d-block mb-1">Web Developer & Front End Engineer.</span>
+                        <span class="lead fw-bold d-block mb-1">Web Developer & Front End Engineer.</span>
                         <span class="text-muted">Juga memiliki minat mendalam di Analisis Forex.</span>
                     </p>
                     <p class="text-muted small mb-4 animate-on-scroll">Membangun solusi digital berkualitas tinggi dengan presisi dan kode.</p>
@@ -67,13 +67,13 @@
         </div>
     </section>
 
-    <section id="about" class="about-section reveal-section py-5 bg-white">
+    <section id="about" class="about-section reveal-section py-5">
         <div class="container">
             <div class="card profile-card-horizontal">
                 <div class="row g-0 align-items-center">
 
                     <!-- IMAGE COLUMN -->
-                    <div class="col-md-4 profile-img-container bg-white text-center py-4 py-md-5">
+                    <div class="col-md-4 profile-img-container text-center py-4 py-md-5">
                         <div class="image-frame">
                             <div class="image-sweep">
                                 <img src="{{ asset('img/foto_about_me.jpeg') }}" alt="Profile Zenifen Agusti">
@@ -82,23 +82,23 @@
                     </div>
 
                     <!-- TEXT COLUMN -->
-                    <div class="col-md-8 bg-white">
+                    <div class="col-md-8">
                         <div class="card-body p-3 p-md-4 p-lg-5">
 
                             <!-- HEADER -->
-                            <h6 class="text-uppercase fw-bold text-muted mb-3 animate-text" style="letter-spacing: 2px;">
+                            <h6 class="text-uppercase fw-bold mb-3 animate-text" style="letter-spacing: 2px;">
                                 Tentang Saya
                             </h6>
 
                             <!-- PARAGRAPH 1 -->
-                            <p class="text-secondary mb-3 animate-text">
+                            <p class="mb-3 animate-text">
                                 Saya adalah seorang web developer yang memiliki ketertarikan besar pada dunia pengembangan
                                 website dan teknologi digital. Saya lahir di Jakarta pada 29 Agustus 2007, dan saat ini
                                 menjalani kehidupan serta aktivitas sehari-hari di Yogyakarta.
                             </p>
 
                             <!-- PARAGRAPH 2 -->
-                            <p class="text-secondary mb-3 animate-text">
+                            <p class="mb-3 animate-text">
                                 Saat ini, saya sedang menempuh pendidikan di Universitas Islam Indonesia dengan jurusan
                                 Teknik Informatika, di mana saya terus mengembangkan pemahaman tentang teknologi,
                                 pemrograman, dan konsep dasar pengembangan perangkat lunak.
@@ -140,7 +140,7 @@
 
 
 
-    <section id="skills" class="py-5 bg-white text-dark d-flex align-items-center"
+    <section id="skills" class="py-5 d-flex align-items-center"
         style="scroll-margin-top: 90px; min-height: 85vh;">
         <div class="container py-2">
 
@@ -151,7 +151,7 @@
             <div class="row g-3">
                 <!-- PROGRAMMING CARD -->
                 <div class="col-lg-6">
-                    <div class="card card-skill-v2 h-100 p-3 p-md-4 border-dark rounded-0">
+                    <div class="card card-skill-v2 h-100 p-3 p-md-4 rounded-0">
                         <div class="skill-icon-v2 mb-3">
                             <i class="bi bi-code-slash fs-3"></i>
                         </div>
@@ -184,7 +184,7 @@
 
                 <!-- FOREX ANALYST CARD -->
                 <div class="col-lg-6">
-                    <div class="card card-skill-v2 h-100 p-3 p-md-4 border-dark rounded-0">
+                    <div class="card card-skill-v2 h-100 p-3 p-md-4 rounded-0">
                         <div class="skill-icon-v2 mb-3">
                             <i class="bi bi-graph-up-arrow fs-3"></i>
                         </div>
@@ -210,12 +210,12 @@
     </section>
 
 
-    <section id="resources" class="py-5 bg-white reveal-section d-flex align-items-center"
+    <section id="resources" class="py-5 reveal-section d-flex align-items-center"
         style="scroll-margin-top: 90px; min-height: 85vh;">
         <div class="container">
 
             <div class="mb-3 animate-on-scroll">
-                <h4 class="fw-bold text-dark mb-0">Projek Saya</h4>
+                <h4 class="fw-bold mb-0">Projek Saya</h4>
             </div>
 
             <div class="row g-3">
@@ -224,11 +224,11 @@
                         <div class="card-stack-bg-3 rounded-0"></div>
                         <div class="card-stack-bg-2 rounded-0"></div>
                         <div
-                            class="card card-elegant card-stack-main border-dark rounded-0 shadow-none h-100 overflow-hidden">
+                            class="card card-elegant card-stack-main rounded-0 shadow-none h-100 overflow-hidden">
 
                             <div class="px-3 pt-3">
                                 <img src="{{ asset('img/eyegilv2.porto.png') }}"
-                                    class="img-fluid border border-dark border-opacity-10"
+                                    class="img-fluid border border-opacity-10"
                                     style="aspect-ratio: 16/10; object-fit: cover; width: 100%;" alt="Project 1">
                             </div>
 
@@ -256,11 +256,11 @@
                         <div class="card-stack-bg-3 rounded-0"></div>
                         <div class="card-stack-bg-2 rounded-0"></div>
                         <div
-                            class="card card-elegant card-stack-main border-dark rounded-0 shadow-none h-100 overflow-hidden">
+                            class="card card-elegant card-stack-main rounded-0 shadow-none h-100 overflow-hidden">
 
                             <div class="px-3 pt-3">
                                 <img src="{{ asset('img/UMKM-tumbuh.porto.png') }}"
-                                    class="img-fluid border border-dark border-opacity-10"
+                                    class="img-fluid border border-opacity-10"
                                     style="aspect-ratio: 16/10; object-fit: cover; width: 100%;" alt="Project 2">
                             </div>
 
@@ -287,11 +287,11 @@
                         <div class="card-stack-bg-3 rounded-0"></div>
                         <div class="card-stack-bg-2 rounded-0"></div>
                         <div
-                            class="card card-elegant card-stack-main border-dark rounded-0 shadow-none h-100 overflow-hidden">
+                            class="card card-elegant card-stack-main rounded-0 shadow-none h-100 overflow-hidden">
 
                             <div class="px-3 pt-3">
                                 <img src="{{ asset('img/Amazaincompro.porto.png') }}"
-                                    class="img-fluid border border-dark border-opacity-10"
+                                    class="img-fluid border border-opacity-10"
                                     style="aspect-ratio: 16/10; object-fit: cover; width: 100%;" alt="Project 3">
                             </div>
 

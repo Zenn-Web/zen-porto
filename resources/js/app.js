@@ -141,4 +141,23 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 300);
     }
 
+    // 6. THEME TOGGLE (Dark Mode)
+    const themeToggle = document.getElementById('theme-toggle');
+    const currentTheme = localStorage.getItem('theme') || 'light';
+
+    // Apply current theme on load
+    if (currentTheme === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+    }
+
+    if (themeToggle) {
+        themeToggle.addEventListener('click', () => {
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            const newTheme = isDark ? 'light' : 'dark';
+            
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        });
+    }
+
 });

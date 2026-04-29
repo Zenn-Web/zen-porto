@@ -10,11 +10,32 @@ select {
     font-family: 'Poppins', sans-serif !important;
 }
 
-// COLOR SYSTEM (TECH EMERALD)
-$emerald-light: #a7f3d0;
-$emerald-medium: #34d399;
-$emerald-dark: #0fb9a7;
-$emerald-deep: #0a8f7a;
+html, body {
+    background-color: var(--bg-primary) !important;
+    color: var(--text-primary);
+    transition: background-color 0.3s ease, color 0.3s ease;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden; // Menghilangkan blok putih di samping akibat overflow
+}
+
+// GLOBAL BOOTSTRAP OVERRIDES
+.card {
+    --bs-card-bg: var(--bg-card);
+    --bs-card-border-color: var(--border-primary);
+    background-color: var(--bs-card-bg) !important;
+    border-color: var(--bs-card-border-color) !important;
+}
+
+section {
+    background-color: var(--bg-primary) !important;
+    color: var(--text-primary);
+    width: 100%;
+    position: relative;
+}
+
+@import "variables";
 
 // VARIABLES
 $profile-size: 300px;
@@ -184,13 +205,13 @@ $outer-circle-size-tablet: $profile-size-tablet + 90px;
     border: 4px solid $emerald-dark; // Border lebih tipis di mobile
     box-shadow:
         inset 0 2px 6px rgba(0, 0, 0, 0.06),
-        inset 0 0 0 3px #ffffff,
+        inset 0 0 0 3px var(--bg-card),
         0 12px 30px rgba($emerald-dark, 0.25);
     overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #fff;
+    background: var(--bg-card);
     z-index: 3;
 
     // Tablet
@@ -200,7 +221,7 @@ $outer-circle-size-tablet: $profile-size-tablet + 90px;
         border-width: 5px;
         box-shadow:
             inset 0 2px 6px rgba(0, 0, 0, 0.06),
-            inset 0 0 0 3.5px #ffffff,
+            inset 0 0 0 3.5px var(--bg-card),
             0 15px 35px rgba($emerald-dark, 0.25);
     }
 
@@ -211,7 +232,7 @@ $outer-circle-size-tablet: $profile-size-tablet + 90px;
         border-width: 6px;
         box-shadow:
             inset 0 2px 6px rgba(0, 0, 0, 0.06),
-            inset 0 0 0 4px #ffffff,
+            inset 0 0 0 4px var(--bg-card),
             0 18px 40px rgba($emerald-dark, 0.25);
     }
 
@@ -246,7 +267,7 @@ $outer-circle-size-tablet: $profile-size-tablet + 90px;
     // Mobile
     width: 45px;
     height: 45px;
-    background: rgba(255, 255, 255, 0.25); // Bening (Glassmorphism)
+    background: var(--bg-glass); // Bening (Glassmorphism)
     backdrop-filter: blur(12px);
     border: 1px solid rgba(255, 255, 255, 0.5);
     border-radius: 14px;
@@ -255,7 +276,7 @@ $outer-circle-size-tablet: $profile-size-tablet + 90px;
     justify-content: center;
     font-family: 'Poppins', sans-serif;
     font-size: 20px;
-    color: #111; // Teks gelap agar terbaca di background bening/putih
+    color: var(--text-primary); // Teks gelap agar terbaca di background bening/putih
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
     animation: floating 5s ease-in-out infinite;
     padding: 10px;
@@ -325,7 +346,7 @@ $outer-circle-size-tablet: $profile-size-tablet + 90px;
     background: rgba(255, 255, 255, 0.25); // Bening (Glassmorphism)
     backdrop-filter: blur(12px);
     border: 1px solid rgba(255, 255, 255, 0.5);
-    color: #111; // Teks gelap
+    color: var(--text-primary); // Teks gelap
     padding: 8px 16px;
     font-size: 13px;
     display: flex;
@@ -438,11 +459,12 @@ section:first-of-type {
     opacity: 0;
     transform: translateX(-50px);
     border-radius: 0px;
-    border: 2px solid #000; // Semi-bold border
-    background: #fff;
-    margin: 0 15px 60px;
+    border: 2px solid var(--border-primary); // Semi-bold border
+    background: var(--bg-card);
+    margin: 0 0 60px; // Removed side margins to prevent "collision" on smaller screens
+    width: 100%; // Ensure full width
     overflow: hidden;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+    box-shadow: var(--shadow-md);
 
     &.animation-finished {
         transition: transform 0.4s ease, box-shadow 0.4s ease;
@@ -484,7 +506,7 @@ section:first-of-type {
     position: relative;
     display: inline-block;
     padding: 8px;
-    background: #fff;
+    background: var(--bg-card);
     max-width: 100%;
 
     @media (min-width: 768px) {
@@ -502,7 +524,7 @@ section:first-of-type {
         // Mobile: corner lebih kecil
         width: 20px;
         height: 20px;
-        border: 2px solid #000;
+        border: 2px solid var(--border-primary);
         z-index: 3;
         pointer-events: none;
 
@@ -645,9 +667,9 @@ section:first-of-type {
     width: 42px;
     height: 42px;
     font-size: 1.3rem;
-    color: #000;
-    background-color: #fff;
-    border: 2px solid #000;
+    color: var(--text-primary);
+    background-color: var(--bg-card);
+    border: 2px solid var(--border-primary);
     text-decoration: none;
     border-radius: 0; // Sharp corners
     position: relative;
@@ -670,20 +692,20 @@ section:first-of-type {
     }
 
     &:hover {
-        background: #000;
-        color: #fff;
+        background: var(--border-primary);
+        color: var(--text-white);
         transform: scale(1.15) translateY(-4px);
-        box-shadow: 6px 6px 0px #000;
+        box-shadow: 6px 6px 0px var(--border-primary);
 
         @media (min-width: 992px) {
             transform: scale(1.2) translateY(-5px);
-            box-shadow: 7px 7px 0px #000;
+            box-shadow: 7px 7px 0px var(--border-primary);
         }
     }
 
     &:active {
         transform: scale(1) translateY(0);
-        box-shadow: 0px 0px 0px #000;
+        box-shadow: 0px 0px 0px var(--border-primary);
     }
 
     &.github:hover {
@@ -823,9 +845,9 @@ section {
     margin-bottom: 20px;
     padding: 10px 20px;
     border-radius: 50px;
-    border: 1px solid #000;
+    border: 1px solid var(--border-primary);
     background-color: transparent;
-    color: #000;
+    color: var(--text-primary);
     font-size: 0.85rem;
     font-weight: 300;
     letter-spacing: 0.03em;
@@ -854,7 +876,7 @@ section {
     }
 
     span {
-        color: #000;
+        color: var(--text-primary);
     }
 
     @media (max-width: 767px) {
@@ -897,30 +919,37 @@ section {
 
 // SKILLS V2 REDESIGN
 .card-skill-v2 {
-    border: 2px solid #000 !important;
+    border: 2px solid var(--border-primary) !important;
     background: transparent;
 }
 
 .badge-tech {
-    background-color: #000;
-    color: #fff;
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
     padding: 6px 14px;
     font-size: 0.7rem;
-    font-weight: 600;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    display: inline-block;
+    font-weight: 700;
+    letter-spacing: 1px;
+    border-radius: 4px;
+    border: 1px solid var(--border-primary);
+    transition: all 0.3s ease;
+
+    &:hover {
+        background-color: var(--accent-emerald);
+        color: var(--text-white);
+        border-color: var(--accent-emerald);
+    }
 }
 
 .xsmall-text {
     font-size: 0.75rem;
     letter-spacing: 0.1em;
-    color: #777;
+    color: var(--text-muted);
 }
 
 .highlight-item {
     font-size: 0.95rem;
-    color: #444;
+    color: var(--text-secondary);
     margin-bottom: 8px;
     display: flex;
     align-items: center;
@@ -932,7 +961,7 @@ section {
         background: none !important;
         -webkit-background-clip: initial !important;
         background-clip: initial !important;
-        color: #000 !important;
+        color: var(--text-primary) !important;
     }
 }
 
@@ -964,19 +993,19 @@ section {
 .btn-hero-primary {
     display: inline-block;
     padding: 12px 28px;
-    background-color: #000;
-    color: #fff;
+    background-color: var(--text-primary);
+    color: var(--bg-primary);
     text-decoration: none;
     font-weight: 600;
     font-size: 0.95rem;
-    border: 2px solid #000;
+    border: 2px solid var(--text-primary);
     transition: all 0.3s ease;
     
     &:hover {
         background-color: transparent;
-        color: #000;
+        color: var(--text-primary);
         transform: translateY(-3px);
-        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        box-shadow: var(--shadow-md);
     }
 }
 
@@ -984,18 +1013,18 @@ section {
     display: inline-block;
     padding: 12px 28px;
     background-color: transparent;
-    color: #000;
+    color: var(--text-primary);
     text-decoration: none;
     font-weight: 600;
     font-size: 0.95rem;
-    border: 2px solid #000;
+    border: 2px solid var(--text-primary);
     transition: all 0.3s ease;
     
     &:hover {
-        background-color: #000;
-        color: #fff;
+        background-color: var(--text-primary);
+        color: var(--bg-primary);
         transform: translateY(-3px);
-        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        box-shadow: var(--shadow-md);
     }
 }
 
@@ -1005,11 +1034,11 @@ section {
 
     &:hover {
         .lead {
-            color: #10b981 !important;
+            color: var(--accent-emerald) !important;
             transition: color 0.3s ease;
         }
         .text-muted {
-            color: #333 !important;
+            color: var(--text-primary) !important;
             transition: color 0.3s ease;
         }
     }
@@ -1034,12 +1063,18 @@ section {
     position: absolute;
     font-size: 38vw;
     font-weight: 800;
-    color: rgba(0, 0, 0, 0.015);
+    color: var(--text-primary);
+    opacity: 0.035; // Sedikit lebih terlihat tapi tetap subtle
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     user-select: none;
     line-height: 1;
     white-space: nowrap;
-    font-family: 'Playfair Display', serif !important; // Use the stylish font for decoration
+    z-index: 0;
+    font-family: 'Playfair Display', serif !important;
+
+    @media (max-width: 991px) {
+        display: none; // Sembunyikan di mobile/tablet agar tidak overlap heading
+    }
 }

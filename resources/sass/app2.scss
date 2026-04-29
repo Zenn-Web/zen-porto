@@ -1,4 +1,5 @@
 @import "bootstrap/scss/bootstrap";
+@import "variables";
 
 
 html {
@@ -16,7 +17,7 @@ html {
 }
 
 .card-elegant {
-    background: #fff;
+    background: var(--bg-card);
     overflow: hidden;
     cursor: pointer;
 
@@ -41,7 +42,7 @@ html {
         grid-row-start: 1;
         width: 100%;
         height: 100%;
-        background: #fff;
+        background: var(--bg-card);
         border: 1px solid #000;
         transform-origin: center bottom;
         will-change: transform, opacity, box-shadow;
@@ -115,20 +116,20 @@ html {
 }
 
 .size-28 { width: 7rem; height: 7rem; }
-.bg-base-100 { background-color: #fff; }
+.bg-base-100 { background-color: var(--bg-card); }
 .border-base-content { border-color: rgba(0,0,0,0.1) !important; }
 
 .project-category-text {
     font-size: 0.65rem;
     font-weight: 700;
     letter-spacing: 0.1em;
-    color: #666;
+    color: var(--text-muted);
     text-transform: uppercase;
 }
 
 .project-divider {
     height: 1px;
-    background-color: #000;
+    background-color: var(--border-primary);
     opacity: 0.1;
     margin: 8px 0 12px 0;
 }
@@ -147,7 +148,7 @@ html {
     right: 15px;
     background: rgb(0, 0, 0); /* Transparan gelap agar lebih elegan di atas gambar */
     backdrop-filter: blur(5px);
-    color: #fff;
+    color: var(--text-white);
     font-size: 9px;
     font-weight: 700;
     padding: 5px 12px;
@@ -165,21 +166,21 @@ html {
 
 // NAVBAR
 .custom-navbar {
-    background-color: rgba(255, 255, 255, 0.95);
+    background-color: var(--bg-navbar);
     backdrop-filter: blur(10px);
     padding: 18px 0;
-    border-bottom: 1px solid #f1f1f1;
+    border-bottom: 1px solid var(--border-light);
     font-family: 'Plus Jakarta Sans', sans-serif;
 }
 
 .brand-logo {
     font-weight: 700;
     font-size: 1.6rem;
-    color: #1a1a1a !important;
+    color: var(--text-primary) !important;
     letter-spacing: -0.5px;
     
     .dot {
-        color: #000000;
+        color: var(--border-primary);
     }
 }
 
@@ -210,7 +211,7 @@ html {
         display: block;
         width: 100%;
         height: 3px;
-        background-color: #000;
+        background-color: var(--border-primary);
         border-radius: 3px;
         position: absolute;
         left: 0;
@@ -295,7 +296,7 @@ html {
     @media (max-width: 991px) {
         margin-top: 15px;
         padding: 20px;
-        background: rgba(255, 255, 255, 0.98);
+        background: var(--bg-navbar-mobile);
         backdrop-filter: blur(15px);
         border-radius: 24px;
         box-shadow: 
@@ -351,7 +352,7 @@ html {
 }
 
 .custom-navbar .nav-link {
-    color: #555 !important;
+    color: var(--text-secondary) !important;
     font-weight: 500;
     font-size: 0.95rem;
     padding: 5px 0 !important;
@@ -367,7 +368,7 @@ html {
             height: 2px;
             bottom: 0;
             left: 0;
-            background-color: #000000;
+            background-color: var(--border-primary);
             transition: width 0.3s ease;
         }
         
@@ -393,7 +394,7 @@ html {
             left: 10px;
             width: 4px;
             height: 0;
-            background: #000;
+            background: var(--border-primary);
             border-radius: 10px;
             transition: height 0.3s ease;
         }
@@ -415,7 +416,7 @@ html {
     
     &:hover,
     &.active {
-        color: #1a1a1a !important;
+        color: var(--text-primary) !important;
     }
 }
 
@@ -430,21 +431,21 @@ html {
 
 // CONTACT BUTTON
 .btn-contact-me {
-    background-color: #1a1a1a;
-    color: #fff;
+    background-color: var(--text-primary);
+    color: var(--bg-primary); // Menggunakan background-primary agar selalu kontras dengan teks utama
     padding: 10px 24px;
     border-radius: 50px;
     text-decoration: none;
     font-weight: 600;
     font-size: 0.9rem;
-    border: 2px solid #1a1a1a;
+    border: 2px solid var(--text-primary);
     transition: all 0.3s ease;
     display: inline-block;
     text-align: center;
     
     &:hover {
         background-color: transparent;
-        color: #1a1a1a;
+        color: var(--text-primary);
         transform: translateY(-3px);
         box-shadow: 0 10px 20px rgba(0,0,0,0.1);
     }
@@ -457,11 +458,63 @@ html {
     }
 }
 
+// THEME TOGGLE BUTTON
+.btn-theme-toggle {
+    background: transparent;
+    border: 1.5px solid var(--border-dim);
+    color: var(--text-primary);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+
+    &:hover {
+        border-color: var(--text-primary);
+        transform: scale(1.05);
+    }
+
+    i {
+        font-size: 1.2rem;
+        position: absolute;
+        transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+    }
+
+    .sun-icon {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .moon-icon {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+}
+
+// Theme specific icon states
+[data-theme="dark"] {
+    .btn-theme-toggle {
+        .sun-icon {
+            opacity: 0;
+            transform: translateY(-30px);
+        }
+        .moon-icon {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+}
+
 // CONTACT SECTION
 .contact-section {
     scroll-margin-top: 85px;
     padding: 80px 0;
-    background-color: #fff;
+    background-color: var(--bg-primary);
 
     @media (min-width: 768px) {
         padding: 100px 0;
@@ -494,7 +547,7 @@ html {
         font-weight: 700;
         letter-spacing: 0.18em;
         text-transform: uppercase;
-        color: #aaa;
+        color: var(--text-dim);
         margin-bottom: 8px;
     }
 
@@ -503,7 +556,7 @@ html {
         font-weight: 700;
         line-height: 1.15;
         letter-spacing: -0.02em;
-        color: #111;
+        color: var(--text-primary);
         margin-bottom: 8px;
 
         @media (max-width: 767px) {
@@ -513,7 +566,7 @@ html {
 
     .contact-subtitle {
         font-size: 0.95rem;
-        color: #888;
+        color: var(--text-muted);
         margin-bottom: 24px;
         line-height: 1.6;
     }
@@ -522,7 +575,7 @@ html {
     .contact-divider {
         width: 32px;
         height: 2px;
-        background: #111;
+        background: var(--text-primary);
         margin-bottom: 24px;
     }
 
@@ -538,22 +591,22 @@ html {
         align-items: center;
         gap: 10px;
         font-size: 0.875rem;
-        color: #555;
+        color: var(--text-secondary);
 
         i {
             font-size: 0.95rem;
-            color: #111;
+            color: var(--text-primary);
             flex-shrink: 0;
             width: 16px;
             text-align: center;
         }
 
         a {
-            color: #555;
+            color: var(--text-secondary);
             text-decoration: none;
 
             &:hover {
-                color: #111;
+                color: var(--text-primary);
                 text-decoration: underline;
             }
         }
@@ -569,15 +622,15 @@ html {
             justify-content: center;
             width: 36px;
             height: 36px;
-            border: 1.5px solid #e0e0e0;
-            color: #555;
+            border: 1.5px solid var(--border-dim);
+            color: var(--text-secondary);
             font-size: 0.95rem;
             text-decoration: none;
             transition: border-color 0.2s ease, color 0.2s ease;
 
             &:hover {
-                border-color: #111;
-                color: #111;
+                border-color: var(--text-primary);
+                color: var(--text-primary);
             }
         }
     }
@@ -606,24 +659,24 @@ html {
                 font-weight: 700;
                 letter-spacing: 0.1em;
                 text-transform: uppercase;
-                color: #aaa;           // Diselaraskan dengan eyebrow warna
+                color: var(--text-dim);           // Diselaraskan dengan eyebrow warna
                 margin-bottom: 8px;
             }
 
             input,
             textarea {
                 border: none;
-                border-bottom: 1.5px solid #e0e0e0;  // Sama dengan border social icon
+                border-bottom: 1.5px solid var(--border-dim);  // Sama dengan border social icon
                 padding: 10px 0;
                 font-size: 0.9rem;
-                color: #111;
+                color: var(--text-primary);
                 background: transparent;
                 outline: none;
                 font-family: inherit;
                 transition: border-color 0.25s ease;
 
                 &:focus {
-                    border-color: #111;
+                    border-color: var(--text-primary);
                 }
             }
 
@@ -638,8 +691,8 @@ html {
         }
 
         .btn-send-contact {
-            background: #111;
-            color: #fff;
+            background: var(--text-primary);
+            color: var(--bg-primary); // Menggunakan warna Navy agar kontras dengan background putih tombol
             border: none;
             padding: 12px 32px;
             font-size: 0.85rem;
@@ -647,12 +700,12 @@ html {
             letter-spacing: 0.08em;
             text-transform: uppercase;
             cursor: pointer;
-            border: 2px solid #111;
+            border: 2px solid var(--text-primary);
             transition: all 0.3s ease;
 
             &:hover {
                 background: transparent;
-                color: #111;
+                color: var(--text-primary);
                 transform: translateY(-3px);
                 box-shadow: 0 10px 20px rgba(0,0,0,0.1);
             }
@@ -673,6 +726,14 @@ html {
     font-weight: 600;
     text-transform: none;
     letter-spacing: normal;
+}
+
+// FOOTER
+footer, .footer-section {
+    background-color: var(--bg-card);
+    border-top: 1px solid var(--border-primary) !important;
+    color: var(--text-primary);
+    transition: all 0.3s ease;
 }
 
 input.is-invalid,

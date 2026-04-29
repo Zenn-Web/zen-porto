@@ -39,7 +39,13 @@
                 </li>
             </ul>
 
-            <div class="nav-actions">
+            <div class="nav-actions d-flex align-items-center gap-2 gap-lg-3">
+                <!-- Theme Toggle Button -->
+                <button id="theme-toggle" class="btn-theme-toggle" aria-label="Toggle Theme">
+                    <i class="bi bi-sun-fill sun-icon"></i>
+                    <i class="bi bi-moon-fill moon-icon"></i>
+                </button>
+
                 <a href="#contact" class="btn-contact-me">
                     <span>Kontak Saya</span>
                     <i class="bi bi-chat-dots ms-2 d-lg-none"></i>
