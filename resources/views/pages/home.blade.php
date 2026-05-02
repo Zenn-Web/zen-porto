@@ -166,6 +166,7 @@
                                 <span class="badge-tech">JAVASCRIPT</span>
                                 <span class="badge-tech">PHP</span>
                                 <span class="badge-tech">LARAVEL</span>
+                                <span class="badge-tech-learning" title="Terus mengeksplorasi teknologi baru lainnya">& LAINNYA...</span>
                             </div>
                         </div>
 
@@ -190,6 +191,15 @@
                         </div>
                         <h4 class="fw-bold mb-2 ls-tight">ANALIS FOREX</h4>
                         <p class="text-secondary small mb-3">Menganalisis tren pasar dan mengidentifikasi peluang trading probabilitas tinggi.</p>
+
+                        <div class="mb-3">
+                            <h6 class="text-uppercase fw-bold xsmall-text mb-2">Metode</h6>
+                            <div class="d-flex flex-wrap gap-2">
+                                <span class="badge-tech">CRT</span>
+                                <span class="badge-tech">SMC</span>
+                                <span class="badge-tech-learning" title="Terus mengeksplorasi metode lainnya...">& LAINNYA...</span>
+                            </div>
+                        </div>
 
                         <div class="mb-0">
                             <h6 class="text-uppercase fw-bold xsmall-text mb-2">Poin Utama</h6>

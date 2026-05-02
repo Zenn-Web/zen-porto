@@ -2,12 +2,13 @@
 @import 'bootstrap-icons/font/bootstrap-icons.css';
 
 // GLOBAL STYLES
-*,
-input,
-textarea,
-button,
-select {
+* {
     font-family: 'Poppins', sans-serif !important;
+}
+
+body {
+    overflow-x: hidden;
+    width: 100%;
 }
 
 html, body {
@@ -918,6 +919,25 @@ section {
         background-color: var(--accent-emerald);
         color: var(--text-white);
         border-color: var(--accent-emerald);
+    }
+}
+
+.badge-tech-learning {
+    border: 1px dashed var(--border-primary);
+    background-color: transparent;
+    color: var(--text-muted);
+    padding: 6px 14px;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    cursor: help;
+
+    &:hover {
+        border-color: var(--accent-emerald);
+        color: var(--accent-emerald);
+        background-color: rgba(16, 185, 129, 0.05);
     }
 }
 
