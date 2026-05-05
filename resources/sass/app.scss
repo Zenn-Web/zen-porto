@@ -21,6 +21,27 @@ html, body {
     overflow-x: hidden; // Menghilangkan blok putih di samping akibat overflow
 }
 
+// LENIS SMOOTH SCROLL CSS
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
 // GLOBAL BOOTSTRAP OVERRIDES
 .card {
     --bs-card-bg: var(--bg-card);
@@ -429,19 +450,32 @@ section:first-of-type {
     }
 }
 
-// SECTION SPACING (About, Skills, Projects)
+// SECTION SPACING — Matematika Geometris Presisi
 #about,
 #skills,
-#resources {
-    scroll-margin-top: 85px; // Matches navbar height + buffer
-    padding: 80px 0;
+#resources,
+#contact {
+    scroll-margin-top: 80px !important; // Untuk native scroll
+    min-height: calc(100vh - 80px) !important; // Tinggi layar dikurangi navbar
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important; // Memusatkan persis di tengah
+    padding-top: 20px !important; // Sedikit jarak aman jika konten penuh
+    padding-bottom: 20px !important;
+    position: relative;
+    overflow: hidden;
 
-    @media (min-width: 768px) {
-        padding: 100px 0;
+    // Reset padding Bootstrap
+    > .container,
+    > .contact-container {
+        padding-top: 0;
+        padding-bottom: 0;
     }
 
-    @media (min-width: 992px) {
-        padding: 120px 0;
+    @media (max-width: 991px) {
+        min-height: auto !important;
+        padding-top: 60px !important;
+        padding-bottom: 60px !important;
     }
 }
 
@@ -462,8 +496,9 @@ section:first-of-type {
     border-radius: 0px;
     border: 2px solid var(--border-primary); // Semi-bold border
     background: var(--bg-card);
-    margin: 0 0 60px; // Removed side margins to prevent "collision" on smaller screens
-    width: 100%; // Ensure full width
+    margin: 0 auto 60px; // Centered with margin auto
+    max-width: 1200px; // Prevent getting too wide on huge screens
+    width: 100%;
     overflow: hidden;
     box-shadow: var(--shadow-md);
 
@@ -525,50 +560,62 @@ section:first-of-type {
         // Mobile: corner lebih kecil
         width: 20px;
         height: 20px;
-        border: 2px solid var(--border-primary);
+        border: 2.5px solid var(--accent-emerald); // Improved contrast
         z-index: 3;
         pointer-events: none;
 
         @media (min-width: 768px) {
             width: 24px;
             height: 24px;
-            border-width: 2.5px;
+            border-width: 3px;
         }
 
         @media (min-width: 992px) {
-            width: 28px;
-            height: 28px;
-            border-width: 3px;
+            width: 30px;
+            height: 30px;
+            border-width: 3.5px;
         }
     }
 
     &::before {
-        top: 0;
-        left: 0;
+        top: -4px;
+        left: -4px;
         border-right: none;
         border-bottom: none;
     }
 
     &::after {
-        bottom: 0;
-        right: 0;
+        bottom: -4px;
+        right: -4px;
         border-left: none;
         border-top: none;
     }
 }
+
 
 .image-sweep {
     overflow: hidden;
     clip-path: inset(0 100% 0 0);
     -webkit-clip-path: inset(0 100% 0 0);
     opacity: 0;
-    visibility: visible; // Tetap visible agar JS bisa menganimasikannya
-    transform: translateZ(0); // Force Hardware Acceleration (Fix bug foto hilang)
+    transition: clip-path 1.2s cubic-bezier(0.77, 0, 0.175, 1), 
+                -webkit-clip-path 1.2s cubic-bezier(0.77, 0, 0.175, 1), 
+                opacity 0.8s ease;
     will-change: clip-path, opacity;
+    min-height: 150px; // Reduced to avoid gap, still enough for observer
+    background-color: rgba(0, 0, 0, 0.01);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &.reveal-active {
+        clip-path: inset(0 0% 0 0);
+        -webkit-clip-path: inset(0 0% 0 0);
+        opacity: 1;
+    }
 
     img {
         display: block;
-        // Mobile first: 100% tapi limited
         width: 100%;
         max-width: 180px;
         height: auto;
@@ -690,35 +737,19 @@ section:first-of-type {
     }
 
     &:hover {
-        background: var(--border-primary);
-        color: var(--text-white);
+        background: var(--text-primary); // Menjadi hitam/gelap sesuai tema
+        border-color: var(--text-primary);
+        color: var(--bg-primary); // Ikon menjadi warna background (kontras)
         transform: translateY(-5px);
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
     }
 
     &:active {
-        transform: scale(1) translateY(0);
-        box-shadow: 0px 0px 0px var(--border-primary);
-    }
-
-    &.github:hover {
-        background: #333;
-        border-color: #333;
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-    }
-
-    &.linkedin:hover {
-        background: #0077b5;
-        border-color: #0077b5;
-        box-shadow: 0 10px 20px rgba(0, 119, 181, 0.3);
-    }
-
-    &.instagram:hover {
-        background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
-        border-color: #dc2743;
-        box-shadow: 0 10px 20px rgba(220, 39, 67, 0.3);
+        transform: scale(0.95) translateY(0);
+        box-shadow: none;
     }
 }
+
 
 // RESOURCE IMAGE (bonus - kalau ada di about section)
 .resource-img {
@@ -755,37 +786,50 @@ section:first-of-type {
     }
 }
 
-section {
-
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6,
-    p,
-    ul,
-    .card,
-    .animate-text,
-    .animate-buttons,
-    .profile-card-horizontal,
-    .detail-item,
-    .contact-socials,
-    .form-group,
-    .button-wrapper,
-    .hero-location-badge,
-    .badge-tech,
-    .resource-img {
-        opacity: 0;
-        transform: translateY(40px);
-    }
+// NEW REVEAL SYSTEM
+.reveal-ready {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: opacity, transform;
 }
 
+.reveal-active {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+    visibility: visible !important;
+}
+
+    .animate-on-scroll, 
+    .profile-card-horizontal, .hero-location-badge, 
+    .stack-animated, .card-skill-v2, .project-card, 
+    .btn-send-contact, .animate-text, .animate-buttons, 
+    .form-group, .reveal-ready {
+        @extend .reveal-ready;
+    }
 
 
 .animate-on-scroll {
+    @extend .reveal-ready;
+}
+
+// STAGGERED TEXT REVEAL (CHAR ANIMATION)
+.split-chars {
+    display: inline-block;
+    white-space: pre-wrap; // Menjaga spasi tetap ada
+}
+
+.char {
+    display: inline-block;
     opacity: 0;
-    transform: translateY(40px);
+    transform: translateY(0.5em);
+    transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    will-change: opacity, transform;
+}
+
+.reveal-active .char {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .container {
@@ -799,19 +843,18 @@ section {
 }
 
 
-section {
+// Global section reset — tidak override section spesifik
+section:not(#about):not(#skills):not(#resources):not(#contact) {
     min-height: auto;
     display: flex;
     align-items: center;
     position: relative;
 
-    // Mobile: ikuti content height
     @media (max-width: 768px) {
         min-height: auto;
         padding: 60px 0;
     }
 
-    // Tablet
     @media (min-width: 769px) and (max-width: 991px) {
         min-height: 100vh;
         padding: 40px 0;
@@ -988,6 +1031,13 @@ section {
     -webkit-text-fill-color: transparent;
     background-clip: text;
     display: inline-block;
+
+    // Fix: Karakter di dalam gradasi harus punya warna solid agar tidak transparan/hilang
+    .char {
+        -webkit-text-fill-color: #10b981 !important; // Warna emerald awal gradient
+        color: #10b981 !important;
+        display: inline-block;
+    }
 }
 
 .btn-hero-primary {

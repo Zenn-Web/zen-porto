@@ -1,6 +1,111 @@
 import './bootstrap';
+import Lenis from 'lenis';
 
 document.addEventListener("DOMContentLoaded", () => {
+
+    // 0. INITIALIZE LENIS (Smooth Scroll)
+    const lenis = new Lenis({
+        duration: 1.2,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        direction: 'vertical',
+        gestureDirection: 'vertical',
+        smooth: true,
+        mouseMultiplier: 1,
+        smoothTouch: false,
+        touchMultiplier: 2,
+        infinite: false,
+    });
+
+    function raf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
+
+    // 0.1 TEXT REVEAL LOGIC (Split Characters - Fixed Word Breaking)
+    const splitChars = (el) => {
+        const walk = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, null, false);
+        const textNodes = [];
+        let node;
+        while (node = walk.nextNode()) textNodes.push(node);
+
+        let charIndex = 0;
+        textNodes.forEach(textNode => {
+            const text = textNode.textContent;
+            const fragment = document.createDocumentFragment();
+            
+            // Pecah berdasarkan kata (dan simpan spasi)
+            const words = text.split(/(\s+)/);
+            
+            words.forEach(word => {
+                if (word.trim() === '') {
+                    // Jika hanya spasi, biarkan sebagai node teks biasa
+                    fragment.appendChild(document.createTextNode(word));
+                } else {
+                    // Bungkus kata dalam span agar tidak terpotong (nowrap)
+                    const wordSpan = document.createElement('span');
+                    wordSpan.style.display = 'inline-block';
+                    wordSpan.style.whiteSpace = 'nowrap';
+                    
+                    word.split('').forEach(char => {
+                        const span = document.createElement('span');
+                        span.textContent = char;
+                        span.classList.add('char');
+                        span.style.transitionDelay = `${charIndex * 35}ms`;
+                        wordSpan.appendChild(span);
+                        charIndex++;
+                    });
+                    fragment.appendChild(wordSpan);
+                }
+            });
+            textNode.parentNode.replaceChild(fragment, textNode);
+        });
+    };
+
+    // Terapkan splitChars ke elemen yang ditandai
+    document.querySelectorAll('.text-reveal').forEach(el => splitChars(el));
+
+    // 3. UNIFIED ANCHOR SCROLL (Desktop & Mobile)
+    const navbarCollapse = document.getElementById('mainNavbar');
+    const body = document.body;
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            const targetId = this.getAttribute('href');
+            if (!targetId || targetId === '#' || !targetId.startsWith('#')) return;
+
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                e.preventDefault();
+
+                // Cek jika menu mobile sedang terbuka
+                const isMobileMenuOpen = navbarCollapse && navbarCollapse.classList.contains('show');
+                
+                // Offset selaras dengan scroll-margin-top: 70px di CSS
+                const scrollOptions = { 
+                    offset: -70, 
+                    duration: 1.4,
+                    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
+                };
+
+                if (isMobileMenuOpen && this.classList.contains('nav-link')) {
+                    const bsCollapse = bootstrap.Collapse.getInstance(navbarCollapse) || new bootstrap.Collapse(navbarCollapse, { toggle: false });
+                    if (bsCollapse) bsCollapse.hide();
+                    
+                    setTimeout(() => {
+                        lenis.scrollTo(targetElement, scrollOptions);
+                    }, 200);
+                } else {
+                    lenis.scrollTo(targetElement, scrollOptions);
+                }
+
+                // Update URL tanpa refresh (opsional)
+                history.pushState(null, null, targetId);
+            }
+        });
+    });
+
 
     // 1. FUNGSI JAM (Live Clock)
     const updateClock = () => {
@@ -17,113 +122,70 @@ document.addEventListener("DOMContentLoaded", () => {
     setInterval(updateClock, 60000); // Update setiap 60 detik
 
 
-    // 2. LOGIKA ANIMASI (Intersection Observer)
+    // 2. LOGIKA ANIMASI (Intersection Observer) - CSS Transition Based
     const observerOptions = {
-        threshold: 0.1, // Diperkecil agar lebih sensitif
-        rootMargin: "0px 0px -50px 0px"
+        threshold: 0, 
+        rootMargin: "100px 0px 100px 0px"
     };
 
     const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
+        entries.forEach((entry, index) => {
             if (entry.isIntersecting) {
-                const container = entry.target;
-                container.classList.add('active');
+                const el = entry.target;
+                if (el.classList.contains('reveal-active')) return;
 
-                // Seleksi semua elemen yang ingin dianimasikan
-                const elements = container.querySelectorAll(
-                    'h1, h2, h3, h4, h5, h6, p, ul, .card, .animate-text, .animate-buttons, ' +
-                    '.detail-item, .contact-socials, .form-group, .button-wrapper, .image-sweep, ' +
-                    '.animate-on-scroll, .profile-card-horizontal, .hero-location-badge, .badge-tech, .resource-img'
-                );
+                // Cap the stagger index to avoid very long delays
+                const staggerIndex = index % 8;
+                el.style.transitionDelay = `${staggerIndex * 100}ms`;
+                
+                el.classList.add('reveal-active');
 
-                elements.forEach((el, index) => {
-                    animateElement(el, index);
-                });
+                // Menambahkan kelas animation-finished setelah transisi selesai (biasanya 800ms - 1000ms)
+                // Ini penting untuk mengaktifkan efek hover di SASS
+                const transitionDuration = parseFloat(getComputedStyle(el).transitionDuration) * 1000 || 800;
+                const transitionDelay = parseFloat(getComputedStyle(el).transitionDelay) * 1000 || 0;
+                
+                setTimeout(() => {
+                    el.classList.add('animation-finished');
+                }, transitionDuration + transitionDelay + 50);
 
-                // Berhenti mengamati section ini setelah animasi jalan
-                observer.unobserve(container);
+                observer.unobserve(el);
             }
         });
     }, observerOptions);
 
-    // Mulai mengamati semua section
-    document.querySelectorAll('section').forEach(section => {
-        observer.observe(section);
+    // Selektor elemen yang akan dianimasikan - Fokus pada blok utama
+    const animationSelectors = [
+        '.reveal-ready',
+        '.animate-on-scroll', 
+        '.image-sweep', 
+        '.profile-card-horizontal', 
+        '.stack-animated',
+        '.card-skill-v2',
+        '.hero-location-badge',
+        '.animate-text',
+        '.animate-buttons',
+        '.form-group',
+        '.btn-send-contact',
+        '.project-card',
+        'section h1', 'section h2'
+    ].join(', ');
+
+    // Mulai mengamati
+    document.querySelectorAll(animationSelectors).forEach(el => {
+        observer.observe(el);
     });
 
-
-    // 3. FUNGSI INTI ANIMASI
-    function animateElement(el, index) {
-
-        // Cegah animasi dobel pada elemen yang sama
-        if (el.classList.contains('animated')) return;
-        el.classList.add('animated');
-
-        let keyframes;
-        let options = {
-            duration: 800,
-            delay: index * 100, // Efek muncul bergantian (stagger)
-            fill: 'forwards',
-            easing: 'cubic-bezier(0.22, 1, 0.36, 1)'
-        };
-
-        // Animasi KHUSUS untuk Foto (Sweep / Tirai Terbuka)
-        if (el.classList.contains('image-sweep')) {
-            keyframes = [
-                { clipPath: 'inset(0 100% 0 0)', WebkitClipPath: 'inset(0 100% 0 0)', opacity: 0 },
-                { clipPath: 'inset(0 0% 0 0)', WebkitClipPath: 'inset(0 0% 0 0)', opacity: 1 }
-            ];
-            options.duration = 1000;
-            options.easing = 'cubic-bezier(0.77, 0, 0.175, 1)';
-        }
-        // Animasi STANDAR untuk Teks & Card (Fade Up)
-        else {
-            keyframes = [
-                { opacity: 0, transform: 'translateY(20px)' },
-                { opacity: 1, transform: 'translateY(0)' }
-            ];
-        }
-
-        const animation = el.animate(keyframes, options);
-
-        // Kunci posisi akhir dan tambahkan class penanda selesai
-        animation.onfinish = () => {
-            el.classList.add('animation-finished');
-            el.style.opacity = '1';
-            el.style.visibility = 'visible';
-
-            if (el.classList.contains('image-sweep')) {
-                el.style.clipPath = 'inset(0 0% 0 0)';
-                el.style.webkitClipPath = 'inset(0 0% 0 0)';
-            } else {
-                el.style.transform = 'translateY(0)';
-            }
-        };
-    }
-
-    // 4. MOBILE MENU ENHANCEMENT
-    const navbarCollapse = document.getElementById('mainNavbar');
-    const body = document.body;
-
+    // 4. MOBILE MENU SCROLL LOCK (Lenis Integration)
     if (navbarCollapse) {
         navbarCollapse.addEventListener('show.bs.collapse', () => {
-            body.style.overflow = 'hidden';
             body.classList.add('mobile-menu-open');
+            lenis.stop(); // Kunci scroll Lenis saat menu terbuka
         });
 
         navbarCollapse.addEventListener('hide.bs.collapse', () => {
-            body.style.overflow = '';
             body.classList.remove('mobile-menu-open');
-        });
-        
-        const navLinks = navbarCollapse.querySelectorAll('.nav-link');
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                const bsCollapse = bootstrap.Collapse.getInstance(navbarCollapse);
-                if (bsCollapse) {
-                    bsCollapse.hide();
-                }
-            });
+            lenis.start(); // Aktifkan kembali scroll Lenis saat menu tertutup
         });
     }
 
@@ -132,24 +194,17 @@ document.addEventListener("DOMContentLoaded", () => {
     const hasSuccess = document.querySelector('.alert-success');
     
     if (hasErrors || hasSuccess) {
-        // Gunakan timeout sedikit agar tidak tabrakan dengan loading awal
         setTimeout(() => {
             const contactSection = document.getElementById('contact');
             if (contactSection) {
-                contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                lenis.scrollTo(contactSection); // Gunakan Lenis untuk konsistensi
             }
-        }, 300);
+        }, 500);
     }
 
-    // 6. THEME TOGGLE (Dark Mode)
+    // 6. THEME TOGGLE (Dark Mode) - Optimized
     const themeToggle = document.getElementById('theme-toggle');
-    const currentTheme = localStorage.getItem('theme') || 'light';
-
-    // Apply current theme on load
-    if (currentTheme === 'dark') {
-        document.documentElement.setAttribute('data-theme', 'dark');
-    }
-
+    
     if (themeToggle) {
         themeToggle.addEventListener('click', () => {
             const isDark = document.documentElement.getAttribute('data-theme') === 'dark';

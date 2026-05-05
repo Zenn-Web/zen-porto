@@ -21,25 +21,27 @@
                         </div>
                         <span>Yogyakarta, Indonesia</span>
                     </div>
-                    <h1 class="display-4 fw-bold animate-on-scroll"><span class="text-gradient-emerald">Zenifen</span> Caesarof Agusti</h1>
+                    <h1 class="display-4 fw-bold animate-on-scroll text-reveal"><span class="text-gradient-emerald">Zenifen</span> Caesarof Agusti</h1>
                     <p class="mb-3 animate-on-scroll hero-role-text">
                         <span class="lead fw-bold d-block mb-1">Web Developer & Front End Engineer.</span>
                         <span class="text-muted">Juga memiliki minat mendalam di Analisis Forex.</span>
                     </p>
                     <p class="text-muted small mb-4 animate-on-scroll">Membangun solusi digital berkualitas tinggi dengan presisi dan kode.</p>
 
-                    <div class="row g-3 justify-content-center justify-content-lg-start mt-3">
-                        <div class="col-auto">
-                            <h5 class="fw-bold mb-0">5+</h5>
-                            <small class="text-muted">Teknologi</small>
+                    <div class="d-flex align-items-center justify-content-center justify-content-lg-start gap-4 mt-5 animate-buttons">
+                        <div class="d-flex align-items-center gap-3">
+                            <h3 class="fw-bold mb-0">5+</h3>
+                            <span class="text-muted small lh-sm">Teknologi<br>Terpilih</span>
                         </div>
-                        <div class="col-auto border-start ps-3">
-                            <h5 class="fw-bold mb-0">Terbuka</h5>
-                            <small class="text-muted">Untuk Kolaborasi</small>
+                        <div class="vr opacity-25 d-none d-lg-block"></div>
+                        <div class="d-flex align-items-center gap-3">
+                            <h3 class="fw-bold mb-0">Terbuka</h3>
+                            <span class="text-muted small lh-sm">Untuk<br>Kolaborasi</span>
                         </div>
                     </div>
-                    <div class="hero-cta-group animate-on-scroll mt-4 d-flex gap-3 justify-content-center justify-content-lg-start">
-                        <a href="#resources" class="btn-hero-primary">Lihat Projek</a>
+
+                    <div class="d-flex flex-column flex-sm-row gap-3 mt-5 animate-buttons justify-content-center justify-content-lg-start">
+                        <a href="#projects" class="btn-hero-primary">Lihat Projek</a>
                         <a href="#contact" class="btn-hero-secondary">Hubungi Saya</a>
                     </div>
                 </div>
@@ -67,9 +69,9 @@
         </div>
     </section>
 
-    <section id="about" class="about-section reveal-section py-5">
+    <section id="about" class="about-section">
         <div class="container">
-            <div class="card profile-card-horizontal">
+            <div class="card profile-card-horizontal animate-on-scroll">
                 <div class="row g-0 align-items-center">
 
                     <!-- IMAGE COLUMN -->
@@ -86,7 +88,7 @@
                         <div class="card-body p-3 p-md-4 p-lg-5">
 
                             <!-- HEADER -->
-                            <h6 class="text-uppercase fw-bold mb-3 animate-text" style="letter-spacing: 2px;">
+                            <h6 class="text-uppercase fw-bold mb-3 animate-text text-reveal" style="letter-spacing: 2px;">
                                 Tentang Saya
                             </h6>
 
@@ -140,18 +142,18 @@
 
 
 
-    <section id="skills" class="py-5 d-flex align-items-center"
-        style="scroll-margin-top: 90px; min-height: 85vh;">
-        <div class="container py-2">
+    <section id="skills" class="skills-section">
+        <div class="container">
 
-            <div class="mb-4">
-                <h2 class="fw-bold mb-0">Keahlian Saya</h2>
+            <div class="mb-5 text-center">
+                <h2 class="fw-bold mb-0 animate-on-scroll text-reveal d-inline-block">Keahlian Saya</h2>
+                <div class="mx-auto mt-2 animate-on-scroll" style="width: 50px; height: 3px; background: var(--accent-emerald);"></div>
             </div>
 
             <div class="row g-3">
                 <!-- PROGRAMMING CARD -->
                 <div class="col-lg-6">
-                    <div class="card card-skill-v2 h-100 p-3 p-md-4 rounded-0">
+                    <div class="card card-skill-v2 h-100 p-3 p-md-4 rounded-0 animate-on-scroll">
                         <div class="skill-icon-v2 mb-3">
                             <i class="bi bi-code-slash fs-3"></i>
                         </div>
@@ -185,7 +187,7 @@
 
                 <!-- FOREX ANALYST CARD -->
                 <div class="col-lg-6">
-                    <div class="card card-skill-v2 h-100 p-3 p-md-4 rounded-0">
+                    <div class="card card-skill-v2 h-100 p-3 p-md-4 rounded-0 animate-on-scroll">
                         <div class="skill-icon-v2 mb-3">
                             <i class="bi bi-graph-up-arrow fs-3"></i>
                         </div>
@@ -220,12 +222,12 @@
     </section>
 
 
-    <section id="resources" class="py-5 reveal-section d-flex align-items-center"
-        style="scroll-margin-top: 90px; min-height: 85vh;">
+    <section id="resources" class="projects-section">
         <div class="container">
 
-            <div class="mb-3 animate-on-scroll">
-                <h4 class="fw-bold mb-0">Projek Saya</h4>
+            <div class="mb-5 text-center">
+                <h2 class="fw-bold mb-0 animate-on-scroll text-reveal d-inline-block">Projek Saya</h2>
+                <div class="mx-auto mt-2 animate-on-scroll" style="width: 50px; height: 3px; background: var(--accent-emerald);"></div>
             </div>
 
             <div class="row g-3">
@@ -237,9 +239,11 @@
                             class="card card-elegant card-stack-main rounded-0 shadow-none h-100 overflow-hidden">
 
                             <div class="px-3 pt-3">
-                                <img src="{{ asset('img/eyegilv2.porto.png') }}"
-                                    class="img-fluid border border-opacity-10"
-                                    style="aspect-ratio: 16/10; object-fit: cover; width: 100%;" alt="Project 1">
+                                <div class="img-container">
+                                    <img src="{{ asset('img/eyegilv2.porto.png') }}"
+                                        class="img-fluid border border-opacity-10"
+                                        style="aspect-ratio: 16/10; object-fit: cover; width: 100%;" alt="Project 1">
+                                </div>
                             </div>
 
                             <div class="card-body p-3">
@@ -269,9 +273,11 @@
                             class="card card-elegant card-stack-main rounded-0 shadow-none h-100 overflow-hidden">
 
                             <div class="px-3 pt-3">
-                                <img src="{{ asset('img/UMKM-tumbuh.porto.png') }}"
-                                    class="img-fluid border border-opacity-10"
-                                    style="aspect-ratio: 16/10; object-fit: cover; width: 100%;" alt="Project 2">
+                                <div class="img-container">
+                                    <img src="{{ asset('img/UMKM-tumbuh.porto.png') }}"
+                                        class="img-fluid border border-opacity-10"
+                                        style="aspect-ratio: 16/10; object-fit: cover; width: 100%;" alt="Project 2">
+                                </div>
                             </div>
 
                             <div class="card-body p-3">
@@ -300,9 +306,11 @@
                             class="card card-elegant card-stack-main rounded-0 shadow-none h-100 overflow-hidden">
 
                             <div class="px-3 pt-3">
-                                <img src="{{ asset('img/Amazaincompro.porto.png') }}"
-                                    class="img-fluid border border-opacity-10"
-                                    style="aspect-ratio: 16/10; object-fit: cover; width: 100%;" alt="Project 3">
+                                <div class="img-container">
+                                    <img src="{{ asset('img/Amazaincompro.porto.png') }}"
+                                        class="img-fluid border border-opacity-10"
+                                        style="aspect-ratio: 16/10; object-fit: cover; width: 100%;" alt="Project 3">
+                                </div>
                             </div>
 
                             <div class="card-body p-3">
@@ -332,9 +340,9 @@
 
             {{-- KIRI: Info --}}
             <div class="contact-info">
-                <p class="contact-eyebrow">Hubungi Saya</p>
-                <h2 class="contact-title">Kontak Saya</h2>
-                <p class="contact-subtitle">Mari bekerjasama untuk solusi digitalmu.</p>
+                <p class="contact-eyebrow animate-on-scroll">Hubungi Saya</p>
+                <h2 class="contact-title animate-on-scroll text-reveal">Kontak Saya</h2>
+                <p class="contact-subtitle animate-on-scroll">Mari bekerjasama untuk solusi digitalmu.</p>
 
                 <div class="contact-divider animate-on-scroll"></div>
 
