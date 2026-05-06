@@ -41,7 +41,7 @@
                     </div>
 
                     <div class="d-flex flex-column flex-sm-row gap-3 mt-5 animate-buttons justify-content-center justify-content-lg-start">
-                        <a href="#projects" class="btn-hero-primary">Lihat Projek</a>
+                        <a href="#resources" class="btn-hero-primary">Lihat Projek</a>
                         <a href="#contact" class="btn-hero-secondary">Hubungi Saya</a>
                     </div>
                 </div>
