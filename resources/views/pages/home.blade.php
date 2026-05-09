@@ -8,25 +8,17 @@
         <!-- Background Ornaments -->
         <div class="hero-bg-ornaments">
             <div class="bg-grid-pattern"></div>
-            <div class="bg-big-text">ZEN</div>
         </div>
         
         <div class="container position-relative" style="z-index: 2;">
             <div class="row align-items-center justify-content-center">
 
                 <div class="col-lg-6 text-lg-start text-center mb-5 mb-lg-0">
-                    <div class="hero-location-badge animate-on-scroll">
-                        <div class="icon-container">
-                            <i class="bi bi-geo-alt-fill"></i>
-                        </div>
-                        <span>Yogyakarta, Indonesia</span>
-                    </div>
                     <h1 class="display-4 fw-bold animate-on-scroll text-reveal"><span class="text-gradient-emerald">Zenifen</span> Caesarof Agusti</h1>
                     <p class="mb-3 animate-on-scroll hero-role-text">
                         <span class="lead fw-bold d-block mb-1">Web Developer & Front End Engineer.</span>
-                        <span class="text-muted">Juga memiliki minat mendalam di Analisis Forex.</span>
+                        <span class="text-muted">Juga memiliki keahlian dalam Analisis Teknikal Pasar Finansial (Forex, Crypto, & Saham).</span>
                     </p>
-                    <p class="text-muted small mb-4 animate-on-scroll">Membangun solusi digital berkualitas tinggi dengan presisi dan kode.</p>
 
                     <div class="d-flex align-items-center justify-content-center justify-content-lg-start gap-4 mt-5 animate-buttons">
                         <div class="d-flex align-items-center gap-3">
@@ -49,19 +41,14 @@
                 <div class="col-lg-6 d-flex justify-content-center">
                     <div class="profile-animation-wrapper">
 
-                        <div class="animated-gradient-bg"></div>
                         <div class="pulsing-circle-outer"></div>
-                        <div class="pulsing-circle-inner"></div>
                         <div class="profile-picture-container">
                             <img src="{{ asset('img/foto_portofolio_animate.png') }}" class="img-fluid profile-image"
                                 alt="Zenifen">
                         </div>
-                        <div class="ornamen-box computer">🖥️</div>
-                        <div class="ornamen-box greek">🏛</div>
                         <div class="status-badge">
                             <span class="dot"></span>
                             <span class="status-text">Fokus pada Pertumbuhan</span>
-                            <span id="live-clock">00:00</span>
                         </div>
                     </div>
                 </div>
@@ -185,14 +172,14 @@
                     </div>
                 </div>
 
-                <!-- FOREX ANALYST CARD -->
+                <!-- TECHNICAL ANALYST CARD -->
                 <div class="col-lg-6">
                     <div class="card card-skill-v2 h-100 p-3 p-md-4 rounded-0 animate-on-scroll">
                         <div class="skill-icon-v2 mb-3">
                             <i class="bi bi-graph-up-arrow fs-3"></i>
                         </div>
-                        <h4 class="fw-bold mb-2 ls-tight">ANALIS FOREX</h4>
-                        <p class="text-secondary small mb-3">Menganalisis tren pasar dan mengidentifikasi peluang trading probabilitas tinggi.</p>
+                        <h4 class="fw-bold mb-2 ls-tight">TECHNICAL ANALYST</h4>
+                        <p class="text-secondary small mb-3">Menganalisis tren pasar global (Forex, Crypto, Saham) dan mengidentifikasi peluang probabilitas tinggi.</p>
 
                         <div class="mb-3">
                             <h6 class="text-uppercase fw-bold xsmall-text mb-2">Metode</h6>

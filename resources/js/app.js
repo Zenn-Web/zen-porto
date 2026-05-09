@@ -89,7 +89,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
                 };
 
-                if (isMobileMenuOpen && this.classList.contains('nav-link')) {
+                if (isMobileMenuOpen && navbarCollapse.contains(this)) {
                     const bsCollapse = bootstrap.Collapse.getInstance(navbarCollapse) || new bootstrap.Collapse(navbarCollapse, { toggle: false });
                     if (bsCollapse) bsCollapse.hide();
                     
@@ -214,5 +214,28 @@ document.addEventListener("DOMContentLoaded", () => {
             localStorage.setItem('theme', newTheme);
         });
     }
+
+    // 7. AUTO-EXPAND TEXTAREA (Pesan)
+    const textareas = document.querySelectorAll('textarea');
+    textareas.forEach(textarea => {
+        // Atur tinggi awal jika ada isi (misal saat edit/error)
+        if(textarea.value) {
+            textarea.style.height = 'auto';
+            textarea.style.height = (textarea.scrollHeight) + 'px';
+        }
+
+        textarea.addEventListener('input', function() {
+            // Reset height sementara untuk mendapatkan scrollHeight yang sebenarnya
+            this.style.height = 'auto';
+            // Setel tinggi sesuai dengan konten di dalamnya
+            this.style.height = (this.scrollHeight) + 'px';
+            
+            // Jaga-jaga agar scroll smooth Lenis tetap update
+            if(window.lenis) {
+                // Resize trigger, meski lenis bisa detect native DOM changes,
+                // kadang butuh sedikit waktu
+            }
+        });
+    });
 
 });

@@ -150,27 +150,10 @@ $outer-circle-size-tablet: $profile-size-tablet + 90px;
     }
 }
 
-// ANIMATED GRADIENT BG
-.animated-gradient-bg {
-    position: absolute;
-    width: 100%; // Ikuti parent
-    height: 100%;
-    border-radius: 50%;
-    background: radial-gradient(circle at 30% 30%,
-            $emerald-light 0%,
-            rgba($emerald-medium, 0.85) 40%,
-            rgba($emerald-dark, 0.9) 70%,
-            rgba($emerald-deep, 0.95) 100%);
-    animation: rotateGradient 18s linear infinite;
-    opacity: 0.85;
-    filter: blur(1px);
-    z-index: 1;
-    will-change: transform, opacity;
-}
+
 
 // PULSING CIRCLES
-.pulsing-circle-outer,
-.pulsing-circle-inner {
+.pulsing-circle-outer {
     position: absolute;
     border-radius: 50%;
     z-index: 2;
@@ -197,25 +180,7 @@ $outer-circle-size-tablet: $profile-size-tablet + 90px;
     }
 }
 
-.pulsing-circle-inner {
-    // Mobile
-    width: $profile-size-mobile + 20px;
-    height: $profile-size-mobile + 20px;
-    border: 1.5px solid rgba($emerald-medium, 0.4);
-    animation-delay: 1.2s;
 
-    // Tablet
-    @media (min-width: 768px) {
-        width: $profile-size-tablet + 22px;
-        height: $profile-size-tablet + 22px;
-    }
-
-    // Desktop
-    @media (min-width: 992px) {
-        width: $profile-size + 24px;
-        height: $profile-size + 24px;
-    }
-}
 
 // PROFILE PICTURE CONTAINER
 .profile-picture-container {
@@ -282,83 +247,7 @@ $outer-circle-size-tablet: $profile-size-tablet + 90px;
 }
 
 
-// ORNAMEN BOXES - Responsive
-.ornamen-box {
-    position: absolute;
-    z-index: 10;
-    // Mobile
-    width: 45px;
-    height: 45px;
-    background: var(--bg-glass); // Bening (Glassmorphism)
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    border-radius: 14px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Poppins', sans-serif;
-    font-size: 20px;
-    color: var(--text-primary); // Teks gelap agar terbaca di background bening/putih
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
-    animation: floating 5s ease-in-out infinite;
-    padding: 10px;
 
-    // Tablet
-    @media (min-width: 768px) {
-        width: 55px;
-        height: 55px;
-        font-size: 24px;
-        border-radius: 16px;
-        padding: 12px;
-    }
-
-    // Desktop
-    @media (min-width: 992px) {
-        width: 65px;
-        height: 65px;
-        font-size: 28px;
-        border-radius: 18px;
-        padding: 15px;
-    }
-
-    &.computer {
-        // Mobile
-        top: 20px;
-        right: -10px;
-        animation-delay: 0s;
-
-        // Tablet
-        @media (min-width: 768px) {
-            top: 15px;
-            right: -15px;
-        }
-
-        // Desktop
-        @media (min-width: 992px) {
-            top: 20px;
-            right: -20px;
-        }
-    }
-
-    &.greek {
-        // Mobile
-        bottom: 40px;
-        left: -20px;
-        animation-delay: 1.5s;
-
-        // Tablet
-        @media (min-width: 768px) {
-            bottom: 30px;
-            left: -30px;
-        }
-
-        // Desktop
-        @media (min-width: 992px) {
-            bottom: 20px;
-            left: -20px;
-        }
-    }
-}
 
 // LIVE CLOCK STATUS BADGE
 .status-badge {
@@ -404,20 +293,7 @@ $outer-circle-size-tablet: $profile-size-tablet + 90px;
         font-weight: 500;
     }
 
-    #live-clock {
-        font-size: 11px;
-        color: rgba(0, 0, 0, 0.5); // Warna jam abu-abu gelap
-        margin-left: 5px;
-        flex-shrink: 0;
 
-        @media (min-width: 768px) {
-            font-size: 11.5px;
-        }
-
-        @media (min-width: 992px) {
-            font-size: 12px;
-        }
-    }
 
     .dot {
         width: 8px;
@@ -1107,24 +983,4 @@ section:not(#about):not(#skills):not(#resources):not(#contact) {
     inset: 0;
     background-image: radial-gradient(rgba(0, 0, 0, 0.04) 1.5px, transparent 1.5px);
     background-size: 60px 60px;
-}
-
-.bg-big-text {
-    position: absolute;
-    font-size: 38vw;
-    font-weight: 800;
-    color: var(--text-primary);
-    opacity: 0.035; // Sedikit lebih terlihat tapi tetap subtle
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    user-select: none;
-    line-height: 1;
-    white-space: nowrap;
-    z-index: 0;
-    font-family: 'Playfair Display', serif !important;
-
-    @media (max-width: 991px) {
-        display: none; // Sembunyikan di mobile/tablet agar tidak overlap heading
-    }
 }

@@ -741,7 +741,14 @@ html {
 
 // KANAN — Form
 .contact-form-wrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    
     .contact-form {
+        width: 100%;
+        max-width: 450px; // Membatasi lebar agar garis input tidak terlalu panjang
+        
         .form-row {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -785,7 +792,8 @@ html {
 
             textarea {
                 resize: none;
-                min-height: 100px;
+                min-height: 40px; // Awalnya pendek (sekitar 1 baris)
+                overflow: hidden; // Sembunyikan scrollbar agar rapi saat memanjang
             }
         }
 
