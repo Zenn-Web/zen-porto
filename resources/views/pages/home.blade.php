@@ -349,7 +349,7 @@
                     </div>
                     <div class="contact-detail-row animate-on-scroll">
                         <i class="bi bi-whatsapp"></i>
-                        <a href="https://wa.me/6280000000000" target="_blank" rel="noopener" title="Hubungi via WhatsApp">+62 800-0000-0000</a>
+                        <a href="https://wa.me/6285174344683" target="_blank" rel="noopener" title="Hubungi via WhatsApp">WhatsApp</a>
                     </div>
                 </div>
 
