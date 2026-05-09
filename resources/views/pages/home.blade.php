@@ -117,6 +117,11 @@
                                     class="social-link instagram" aria-label="Instagram">
                                     <i class="bi bi-instagram"></i>
                                 </a>
+
+                                <a href="https://www.tradingview.com/" target="_blank" rel="noopener noreferrer"
+                                    class="social-link tradingview" aria-label="TradingView">
+                                    <svg viewBox="0 0 28 21" width="1.2em" height="1.2em" xmlns="http://www.w3.org/2000/svg" style="fill: currentColor; vertical-align: middle;"><path d="M14 21l-5.6-10.4L2.8 21H0l8.4-15.6L14 15.8l6.3-11.7-1.4-2.6H21l4.2 7.8L14 21z"/><circle cx="23.5" cy="4.5" r="4.5"/></svg>
+                                </a>
                             </div>
 
                         </div>
@@ -342,6 +347,10 @@
                         <i class="bi bi-envelope"></i>
                         <a href="mailto:zenifenagusti70@gmail.com">zenifenagusti70@gmail.com</a>
                     </div>
+                    <div class="contact-detail-row animate-on-scroll">
+                        <i class="bi bi-whatsapp"></i>
+                        <a href="https://wa.me/6280000000000" target="_blank" rel="noopener" title="Hubungi via WhatsApp">+62 800-0000-0000</a>
+                    </div>
                 </div>
 
                 <div class="contact-social-row animate-on-scroll">
@@ -353,6 +362,9 @@
                     </a>
                     <a href="https://www.instagram.com/zenagust_" target="_blank" rel="noopener" class="contact-social-link" aria-label="Instagram">
                         <i class="bi bi-instagram"></i>
+                    </a>
+                    <a href="https://www.tradingview.com/" target="_blank" rel="noopener" class="contact-social-link" aria-label="TradingView">
+                        <svg viewBox="0 0 28 21" width="1.2em" height="1.2em" xmlns="http://www.w3.org/2000/svg" style="fill: currentColor; vertical-align: middle;"><path d="M14 21l-5.6-10.4L2.8 21H0l8.4-15.6L14 15.8l6.3-11.7-1.4-2.6H21l4.2 7.8L14 21z"/><circle cx="23.5" cy="4.5" r="4.5"/></svg>
                     </a>
                 </div>
             </div>
