@@ -238,4 +238,111 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
+    // 8. LANGUAGE TOGGLE (ID ↔ EN)
+    const translations = {
+        // Navbar
+        'nav.about': 'About',
+        'nav.skills': 'Skills',
+        'nav.projects': 'Projects',
+        'nav.contact': 'Contact Me',
+
+        // Hero Section
+        'hero.role': 'Web Developer & Front End Engineer.',
+        'hero.extra': 'Also skilled in Financial Market Technical Analysis (Forex, Crypto, & Stocks).',
+        'hero.stats.tech': 'Technologies<br>Selected',
+        'hero.stats.collab': 'Open',
+        'hero.stats.collab.sub': 'For<br>Collaboration',
+        'hero.btn.projects': 'View Projects',
+        'hero.btn.contact': 'Contact Me',
+        'hero.status': 'Focused on Growth',
+
+        // About Section
+        'about.title': 'About Me',
+        'about.p1': 'I am a web developer with a deep passion for website development and digital technology. I was born in Jakarta on August 29, 2007, and currently live and carry out my daily activities in Yogyakarta.',
+        'about.p2': 'Currently, I am pursuing my education at Universitas Islam Indonesia majoring in Informatics Engineering, where I continue to develop my understanding of technology, programming, and fundamental software development concepts.',
+        'about.p3': 'I have a great interest in learning various programming languages, especially HTML, CSS, JavaScript, Laravel, and others. In the process of learning and developing projects, I always strive to understand not only how a feature is built, but also the reasoning behind its usage.',
+
+        // Skills Section
+        'skills.title': 'My Skills',
+        'skills.programming': 'PROGRAMMING',
+        'skills.programming.desc': 'Building clean and scalable web applications.',
+        'skills.tech': 'Technologies',
+        'skills.highlights': 'Key Highlights',
+        'skills.h1': 'problem solving',
+        'skills.h2': 'clean code',
+        'skills.h3': 'UI/UX understanding',
+        'skills.analyst.desc': 'Analyzing global market trends (Forex, Crypto, Stocks) and identifying high-probability opportunities.',
+        'skills.method': 'Methods',
+        'skills.highlights2': 'Key Highlights',
+        'skills.h4': 'market structure',
+        'skills.h6': 'risk management',
+        'skills.learning': '& MORE...',
+        'skills.learning2': '& MORE...',
+
+        // Projects Section
+        'projects.title': 'My Projects',
+        'projects.view': 'View Project',
+        'projects.view2': 'View Project',
+        'projects.view3': 'View Project',
+        'projects.p1.desc': 'A platform that helps companies improve efficiency through integrated technology solutions and digital systems.',
+        'projects.p2.desc': 'An AI platform to help MSMEs manage business, sales, and data analysis.',
+        'projects.p3.desc': 'A platform to enhance digital marketing skills and consult on business strategies.',
+
+        // Contact Section
+        'contact.eyebrow': 'Get in Touch',
+        'contact.title': 'Contact Me',
+        'contact.subtitle': "Let's collaborate on your digital solutions.",
+        'contact.firstname': 'First Name',
+        'contact.lastname': 'Last Name',
+        'contact.message': 'Message',
+        'contact.submit': 'Send Message',
+    };
+
+    const langToggle = document.getElementById('lang-toggle');
+    const langLabel = langToggle ? langToggle.querySelector('.lang-label') : null;
+
+    // Simpan teks original Indonesia saat halaman pertama kali load
+    const originalTexts = {};
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        originalTexts[key] = el.innerHTML;
+    });
+
+    // Fungsi untuk menerapkan bahasa
+    const applyLanguage = (lang) => {
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            if (lang === 'en' && translations[key]) {
+                el.innerHTML = translations[key];
+            } else if (lang === 'id' && originalTexts[key]) {
+                el.innerHTML = originalTexts[key];
+            }
+        });
+
+        // Update label tombol: tampilkan bahasa yang BISA dipilih (kebalikan dari aktif)
+        if (langLabel) {
+            langLabel.textContent = lang === 'en' ? 'ID' : 'EN';
+        }
+
+        // Update html lang attribute
+        document.documentElement.setAttribute('lang', lang);
+    };
+
+    // Cek bahasa tersimpan di localStorage
+    const savedLang = localStorage.getItem('lang') || 'id';
+    if (savedLang === 'en') {
+        applyLanguage('en');
+    }
+
+    // Event listener toggle
+    if (langToggle) {
+        langToggle.addEventListener('click', () => {
+            const currentLang = localStorage.getItem('lang') || 'id';
+            const newLang = currentLang === 'id' ? 'en' : 'id';
+
+            localStorage.setItem('lang', newLang);
+            applyLanguage(newLang);
+        });
+    }
+
 });

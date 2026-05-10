@@ -12,7 +12,7 @@
     "src": "resources/css/app.css"
   },
   "resources/js/app.js": {
-    "file": "assets/app-C0UK6xYD.js",
+    "file": "assets/app-CxC4GKpN.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true
@@ -27,7 +27,7 @@
     ]
   },
   "resources/sass/app2.scss": {
-    "file": "assets/app2-j0z2AIfe.css",
+    "file": "assets/app2-BP5kDiBQ.css",
     "src": "resources/sass/app2.scss",
     "isEntry": true,
     "name": "app2",

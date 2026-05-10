@@ -16,25 +16,25 @@
                 <div class="col-lg-6 text-lg-start text-center mb-5 mb-lg-0">
                     <h1 class="display-4 fw-bold animate-on-scroll text-reveal"><span class="text-gradient-emerald">Zenifen</span> Caesarof Agusti</h1>
                     <p class="mb-3 animate-on-scroll hero-role-text">
-                        <span class="lead fw-bold d-block mb-1">Web Developer & Front End Engineer.</span>
-                        <span class="text-muted">Juga memiliki keahlian dalam Analisis Teknikal Pasar Finansial (Forex, Crypto, & Saham).</span>
+                        <span class="lead fw-bold d-block mb-1" data-i18n="hero.role">Web Developer & Front End Engineer.</span>
+                        <span class="text-muted" data-i18n="hero.extra">Juga memiliki keahlian dalam Analisis Teknikal Pasar Finansial (Forex, Crypto, & Saham).</span>
                     </p>
 
                     <div class="d-flex align-items-center justify-content-center justify-content-lg-start gap-4 mt-5 animate-buttons">
                         <div class="d-flex align-items-center gap-3">
                             <h3 class="fw-bold mb-0">5+</h3>
-                            <span class="text-muted small lh-sm">Teknologi<br>Terpilih</span>
+                            <span class="text-muted small lh-sm" data-i18n="hero.stats.tech">Teknologi<br>Terpilih</span>
                         </div>
                         <div class="vr opacity-25 d-none d-lg-block"></div>
                         <div class="d-flex align-items-center gap-3">
-                            <h3 class="fw-bold mb-0">Terbuka</h3>
-                            <span class="text-muted small lh-sm">Untuk<br>Kolaborasi</span>
+                            <h3 class="fw-bold mb-0" data-i18n="hero.stats.collab">Terbuka</h3>
+                            <span class="text-muted small lh-sm" data-i18n="hero.stats.collab.sub">Untuk<br>Kolaborasi</span>
                         </div>
                     </div>
 
                     <div class="d-flex flex-column flex-sm-row gap-3 mt-5 animate-buttons justify-content-center justify-content-lg-start">
-                        <a href="#resources" class="btn-hero-primary">Lihat Projek</a>
-                        <a href="#contact" class="btn-hero-secondary">Hubungi Saya</a>
+                        <a href="#resources" class="btn-hero-primary" data-i18n="hero.btn.projects">Lihat Projek</a>
+                        <a href="#contact" class="btn-hero-secondary" data-i18n="hero.btn.contact">Hubungi Saya</a>
                     </div>
                 </div>
 
@@ -48,7 +48,7 @@
                         </div>
                         <div class="status-badge">
                             <span class="dot"></span>
-                            <span class="status-text">Fokus pada Pertumbuhan</span>
+                            <span class="status-text" data-i18n="hero.status">Fokus pada Pertumbuhan</span>
                         </div>
                     </div>
                 </div>
@@ -75,26 +75,26 @@
                         <div class="card-body p-3 p-md-4 p-lg-5">
 
                             <!-- HEADER -->
-                            <h6 class="text-uppercase fw-bold mb-3 animate-text text-reveal" style="letter-spacing: 2px;">
+                            <h6 class="text-uppercase fw-bold mb-3 animate-text text-reveal" style="letter-spacing: 2px;" data-i18n="about.title">
                                 Tentang Saya
                             </h6>
 
                             <!-- PARAGRAPH 1 -->
-                            <p class="mb-3 animate-text">
+                            <p class="mb-3 animate-text" data-i18n="about.p1">
                                 Saya adalah seorang web developer yang memiliki ketertarikan besar pada dunia pengembangan
                                 website dan teknologi digital. Saya lahir di Jakarta pada 29 Agustus 2007, dan saat ini
                                 menjalani kehidupan serta aktivitas sehari-hari di Yogyakarta.
                             </p>
 
                             <!-- PARAGRAPH 2 -->
-                            <p class="mb-3 animate-text">
+                            <p class="mb-3 animate-text" data-i18n="about.p2">
                                 Saat ini, saya sedang menempuh pendidikan di Universitas Islam Indonesia dengan jurusan
                                 Teknik Informatika, di mana saya terus mengembangkan pemahaman tentang teknologi,
                                 pemrograman, dan konsep dasar pengembangan perangkat lunak.
                             </p>
 
                             <!-- PARAGRAPH 3 -->
-                            <p class="text-secondary mb-4 animate-text">
+                            <p class="text-secondary mb-4 animate-text" data-i18n="about.p3">
                                 Saya memiliki ketertarikan besar dalam mempelajari berbagai bahasa pemrograman, khususnya
                                 HTML, CSS, JavaScript, Laravel, dan lain sebagainya. Dalam proses belajar dan mengembangkan proyek,
                                 saya selalu berusaha memahami tidak hanya bagaimana sebuah fitur dibuat, tetapi juga alasan
@@ -138,7 +138,7 @@
         <div class="container">
 
             <div class="mb-5 text-center">
-                <h2 class="fw-bold mb-0 animate-on-scroll text-reveal d-inline-block">Keahlian Saya</h2>
+                <h2 class="fw-bold mb-0 animate-on-scroll text-reveal d-inline-block" data-i18n="skills.title">Keahlian Saya</h2>
                 <div class="mx-auto mt-2 animate-on-scroll" style="width: 50px; height: 3px; background: var(--accent-emerald);"></div>
             </div>
 
@@ -149,28 +149,28 @@
                         <div class="skill-icon-v2 mb-3">
                             <i class="bi bi-code-slash fs-3"></i>
                         </div>
-                        <h4 class="fw-bold mb-2 ls-tight">PEMROGRAMAN</h4>
-                        <p class="text-secondary small mb-3">Membangun aplikasi web yang bersih dan skalabel.</p>
+                        <h4 class="fw-bold mb-2 ls-tight" data-i18n="skills.programming">PEMROGRAMAN</h4>
+                        <p class="text-secondary small mb-3" data-i18n="skills.programming.desc">Membangun aplikasi web yang bersih dan skalabel.</p>
 
                         <div class="mb-3">
-                            <h6 class="text-uppercase fw-bold xsmall-text mb-2">Teknologi</h6>
+                            <h6 class="text-uppercase fw-bold xsmall-text mb-2" data-i18n="skills.tech">Teknologi</h6>
                             <div class="d-flex flex-wrap gap-2">
                                 <span class="badge-tech">HTML</span>
                                 <span class="badge-tech">CSS</span>
                                 <span class="badge-tech">JAVASCRIPT</span>
                                 <span class="badge-tech">PHP</span>
                                 <span class="badge-tech">LARAVEL</span>
-                                <span class="badge-tech-learning" title="Terus mengeksplorasi teknologi baru lainnya">& LAINNYA...</span>
+                                <span class="badge-tech-learning" title="Terus mengeksplorasi teknologi baru lainnya" data-i18n="skills.learning">& LAINNYA...</span>
                             </div>
                         </div>
 
                         <div>
-                            <h6 class="text-uppercase fw-bold xsmall-text mb-2">Poin Utama</h6>
+                            <h6 class="text-uppercase fw-bold xsmall-text mb-2" data-i18n="skills.highlights">Poin Utama</h6>
                             <ul class="list-unstyled mb-0">
-                                <li class="highlight-item small"><i class="bi bi-arrow-right-short me-2"></i>pemecahan masalah
+                                <li class="highlight-item small"><i class="bi bi-arrow-right-short me-2"></i><span data-i18n="skills.h1">pemecahan masalah</span>
                                 </li>
-                                <li class="highlight-item small"><i class="bi bi-arrow-right-short me-2"></i>kode bersih</li>
-                                <li class="highlight-item small"><i class="bi bi-arrow-right-short me-2"></i>pemahaman UI/UX
+                                <li class="highlight-item small"><i class="bi bi-arrow-right-short me-2"></i><span data-i18n="skills.h2">kode bersih</span></li>
+                                <li class="highlight-item small"><i class="bi bi-arrow-right-short me-2"></i><span data-i18n="skills.h3">pemahaman UI/UX</span>
                                 </li>
                             </ul>
                         </div>
@@ -184,26 +184,26 @@
                             <i class="bi bi-graph-up-arrow fs-3"></i>
                         </div>
                         <h4 class="fw-bold mb-2 ls-tight">TECHNICAL ANALYST</h4>
-                        <p class="text-secondary small mb-3">Menganalisis tren pasar global (Forex, Crypto, Saham) dan mengidentifikasi peluang probabilitas tinggi.</p>
+                        <p class="text-secondary small mb-3" data-i18n="skills.analyst.desc">Menganalisis tren pasar global (Forex, Crypto, Saham) dan mengidentifikasi peluang probabilitas tinggi.</p>
 
                         <div class="mb-3">
-                            <h6 class="text-uppercase fw-bold xsmall-text mb-2">Metode</h6>
+                            <h6 class="text-uppercase fw-bold xsmall-text mb-2" data-i18n="skills.method">Metode</h6>
                             <div class="d-flex flex-wrap gap-2">
                                 <span class="badge-tech">CRT</span>
                                 <span class="badge-tech">SMC</span>
-                                <span class="badge-tech-learning" title="Terus mengeksplorasi metode lainnya...">& LAINNYA...</span>
+                                <span class="badge-tech-learning" title="Terus mengeksplorasi metode lainnya..." data-i18n="skills.learning2">& LAINNYA...</span>
                             </div>
                         </div>
 
                         <div class="mb-0">
-                            <h6 class="text-uppercase fw-bold xsmall-text mb-2">Poin Utama</h6>
+                            <h6 class="text-uppercase fw-bold xsmall-text mb-2" data-i18n="skills.highlights2">Poin Utama</h6>
                             <ul class="list-unstyled mb-0">
-                                <li class="highlight-item small"><i class="bi bi-arrow-right-short me-2"></i>struktur pasar</li>
+                                <li class="highlight-item small"><i class="bi bi-arrow-right-short me-2"></i><span data-i18n="skills.h4">struktur pasar</span></li>
                                 <li class="highlight-item small"><i class="bi bi-arrow-right-short me-2"></i>price action
                                 </li>
                                 <li class="highlight-item small"><i class="bi bi-arrow-right-short me-2"></i>entry timing
                                 </li>
-                                <li class="highlight-item small"><i class="bi bi-arrow-right-short me-2"></i>manajemen risiko
+                                <li class="highlight-item small"><i class="bi bi-arrow-right-short me-2"></i><span data-i18n="skills.h6">manajemen risiko</span>
                                 </li>
                             </ul>
                         </div>
@@ -218,7 +218,7 @@
         <div class="container">
 
             <div class="mb-5 text-center">
-                <h2 class="fw-bold mb-0 animate-on-scroll text-reveal d-inline-block">Projek Saya</h2>
+                <h2 class="fw-bold mb-0 animate-on-scroll text-reveal d-inline-block" data-i18n="projects.title">Projek Saya</h2>
                 <div class="mx-auto mt-2 animate-on-scroll" style="width: 50px; height: 3px; background: var(--accent-emerald);"></div>
             </div>
 
@@ -243,12 +243,12 @@
                                 <div class="project-divider"></div>
 
                                 <h6 class="fw-bold mb-1">Company Website Development – Eyegil.com</h6>
-                                <p class="text-muted extra-small-text mb-2">
+                                <p class="text-muted extra-small-text mb-2" data-i18n="projects.p1.desc">
                                   Platform yang membantu perusahaan meningkatkan efisiensi melalui solusi teknologi dan sistem digital yang terintegrasi.
                                 </p>
                                 <div class="d-flex justify-content-between align-items-center mt-auto pt-2">
                                     <a href="https://eyegil.com"
-                                        class="text-decoration-none fw-bold link-primary extra-small-text">Lihat Project</a>
+                                        class="text-decoration-none fw-bold link-primary extra-small-text" data-i18n="projects.view">Lihat Project</a>
                                     <span class="text-secondary extra-small-text">2025</span>
                                 </div>
                             </div>
@@ -277,12 +277,12 @@
                                 <div class="project-divider"></div>
 
                                 <h6 class="fw-bold mb-1">UMKM Business Management – TUMBUH</h6>
-                                <p class="text-muted extra-small-text mb-2">
+                                <p class="text-muted extra-small-text mb-2" data-i18n="projects.p2.desc">
                                     Platform AI untuk membantu UMKM mengelola bisnis, penjualan, dan analisis data.
                                 </p>
                                 <div class="d-flex justify-content-between align-items-center mt-auto pt-2">
                                     <a href="https://tumbuh-app-web.vercel.app"
-                                        class="text-decoration-none fw-bold link-primary extra-small-text">Lihat Project</a>
+                                        class="text-decoration-none fw-bold link-primary extra-small-text" data-i18n="projects.view2">Lihat Project</a>
                                     <span class="text-secondary extra-small-text">2026</span>
                                 </div>
                             </div>
@@ -310,12 +310,12 @@
                                 <div class="project-divider"></div>
 
                                 <h6 class="fw-bold mb-1">Training Platform – AMAZAIN</h6>
-                                <p class="text-muted extra-small-text mb-2">
+                                <p class="text-muted extra-small-text mb-2" data-i18n="projects.p3.desc">
                                     Platform untuk meningkatkan skill digital marketing dan mengkonsultasikan strategi bisnis.
                                 </p>
                                 <div class="d-flex justify-content-between align-items-center mt-auto pt-2">
                                     <a href="https://amazaintraining.com/"
-                                        class="text-decoration-none fw-bold link-primary extra-small-text">Lihat Project</a>
+                                        class="text-decoration-none fw-bold link-primary extra-small-text" data-i18n="projects.view3">Lihat Project</a>
                                     <span class="text-secondary extra-small-text">2026</span>
                                 </div>
                             </div>
@@ -332,9 +332,9 @@
 
             {{-- KIRI: Info --}}
             <div class="contact-info">
-                <p class="contact-eyebrow animate-on-scroll">Hubungi Saya</p>
-                <h2 class="contact-title animate-on-scroll text-reveal">Kontak Saya</h2>
-                <p class="contact-subtitle animate-on-scroll">Mari bekerjasama untuk solusi digitalmu.</p>
+                <p class="contact-eyebrow animate-on-scroll" data-i18n="contact.eyebrow">Hubungi Saya</p>
+                <h2 class="contact-title animate-on-scroll text-reveal" data-i18n="contact.title">Kontak Saya</h2>
+                <p class="contact-subtitle animate-on-scroll" data-i18n="contact.subtitle">Mari bekerjasama untuk solusi digitalmu.</p>
 
                 <div class="contact-divider animate-on-scroll"></div>
 
@@ -380,14 +380,14 @@
 
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="first_name">Nama Depan</label>
+                            <label for="first_name" data-i18n="contact.firstname">Nama Depan</label>
                             <input type="text" id="first_name" name="first_name" value="{{ old('first_name') }}" class="@error('first_name') is-invalid @enderror">
                             @error('first_name')
                                 <span class="error-text">{{ $message }}</span>
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="last_name">Nama Belakang</label>
+                            <label for="last_name" data-i18n="contact.lastname">Nama Belakang</label>
                             <input type="text" id="last_name" name="last_name" value="{{ old('last_name') }}" class="@error('last_name') is-invalid @enderror">
                             @error('last_name')
                                 <span class="error-text">{{ $message }}</span>
@@ -404,7 +404,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="message">Pesan</label>
+                        <label for="message" data-i18n="contact.message">Pesan</label>
                         <textarea id="message" name="message" rows="5" class="@error('message') is-invalid @enderror">{{ old('message') }}</textarea>
                         @error('message')
                             <span class="error-text">{{ $message }}</span>
@@ -412,7 +412,7 @@
                     </div>
 
                     <div class="button-wrapper">
-                        <button type="submit" class="btn-send-contact">Kirim Pesan</button>
+                        <button type="submit" class="btn-send-contact" data-i18n="contact.submit">Kirim Pesan</button>
                     </div>
 
                 </form>

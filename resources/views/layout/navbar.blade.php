@@ -21,33 +21,40 @@
 
                 <li class="nav-item">
                     <a class="nav-link" href="#about">
-                        <span>Tentang</span>
+                        <span data-i18n="nav.about">Tentang</span>
                         <i class="bi bi-person d-lg-none"></i>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#skills">
-                        <span>Keahlian</span>
+                        <span data-i18n="nav.skills">Keahlian</span>
                         <i class="bi bi-journal-code d-lg-none"></i>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#resources">
-                        <span>Projek</span>
+                        <span data-i18n="nav.projects">Projek</span>
                         <i class="bi bi-grid d-lg-none"></i>
                     </a>
                 </li>
             </ul>
 
-            <div class="nav-actions d-flex align-items-center gap-2 gap-lg-3">
-                <!-- Theme Toggle Button -->
-                <button id="theme-toggle" class="btn-theme-toggle" aria-label="Toggle Theme">
-                    <i class="bi bi-sun-fill sun-icon"></i>
-                    <i class="bi bi-moon-fill moon-icon"></i>
-                </button>
+            <div class="nav-actions d-flex align-items-center gap-3 gap-lg-4">
+                <div class="utility-toggles d-flex gap-2">
+                    <!-- Language Toggle Button -->
+                    <button id="lang-toggle" class="btn-lang-toggle" aria-label="Switch Language">
+                        <span class="lang-label">EN</span>
+                    </button>
+
+                    <!-- Theme Toggle Button -->
+                    <button id="theme-toggle" class="btn-theme-toggle" aria-label="Toggle Theme">
+                        <i class="bi bi-sun-fill sun-icon"></i>
+                        <i class="bi bi-moon-fill moon-icon"></i>
+                    </button>
+                </div>
 
                 <a href="#contact" class="btn-contact-me">
-                    <span>Kontak Saya</span>
+                    <span data-i18n="nav.contact">Kontak Saya</span>
                     <i class="bi bi-chat-dots ms-2 d-lg-none"></i>
                 </a>
             </div>

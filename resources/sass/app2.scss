@@ -360,9 +360,17 @@ html {
     // 📱 Mobile style
     @media (max-width: 991px) {
         flex-direction: column;
-        padding: 30px 20px;
         text-align: center;
         align-items: center;
+        margin-top: 12px;
+        padding: 24px 24px 20px;
+        background: var(--bg-navbar-mobile);
+        backdrop-filter: blur(15px);
+        border-radius: 20px;
+        box-shadow: 
+            0 10px 40px rgba(0, 0, 0, 0.08),
+            0 0 0 1px rgba(0, 0, 0, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.08);
 
         .profile-info {
             padding: 0;
@@ -370,15 +378,6 @@ html {
             flex-direction: column;
             align-items: center;
         }
-        margin-top: 15px;
-        padding: 20px;
-        background: var(--bg-navbar-mobile);
-        backdrop-filter: blur(15px);
-        border-radius: 24px;
-        box-shadow: 
-            0 10px 40px rgba(0, 0, 0, 0.06),
-            0 0 0 1px rgba(0, 0, 0, 0.03);
-        border: 1px solid rgba(255, 255, 255, 0.5);
 
         // Default state nav-item (tersembunyi, siap animasi masuk)
         .nav-item {
@@ -387,8 +386,6 @@ html {
             transition: opacity 0.45s cubic-bezier(0.34, 1.56, 0.64, 1),
                         transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
             border-bottom: none;
-
-            // Staggered delay HANYA saat masuk (diterapkan via .show)
         }
 
         .nav-actions {
@@ -419,7 +416,8 @@ html {
     gap: 15px;
     
     @media (max-width: 991px) {
-        gap: 8px;
+        gap: 5px;
+        width: 100%;
     }
 }
 
@@ -500,18 +498,22 @@ html {
 .nav-actions {
     display: flex;
     align-items: center;
-    gap: 12px;
 
     @media (max-width: 991px) {
-        margin-top: 25px;
-        padding-top: 25px;
+        margin-top: 20px;
+        padding-top: 18px;
         border-top: 1px solid var(--glass-border);
-        justify-content: space-between;
+        flex-direction: column;
+        gap: 12px;
         width: 100%;
         
+        .utility-toggles {
+            justify-content: center;
+            gap: 16px !important;
+        }
+
         .btn-contact-me {
-            flex: 1;
-            margin-left: 10px;
+            width: 100%;
         }
     }
 }
@@ -519,16 +521,19 @@ html {
 // CONTACT BUTTON
 .btn-contact-me {
     background-color: var(--text-primary);
-    color: var(--bg-primary); // Menggunakan background-primary agar selalu kontras dengan teks utama
-    padding: 10px 24px;
+    color: var(--bg-primary); 
+    padding: 0 24px;
+    height: 40px; // Sama dengan tinggi toggle
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border-radius: 50px;
     text-decoration: none;
-    font-weight: 600;
-    font-size: 0.9rem;
+    font-weight: 700;
+    font-size: 0.85rem;
     border: 2px solid var(--text-primary);
-    transition: all 0.3s ease;
-    display: inline-block;
-    text-align: center;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    white-space: nowrap;
     
     &:hover {
         background-color: transparent;
@@ -540,8 +545,10 @@ html {
     // Mobile: full width
     @media (max-width: 991px) {
         width: 100%;
-        display: block;
-        padding: 14px 28px;
+        display: flex;
+        height: 44px;
+        padding: 0 28px;
+        font-size: 0.9rem;
     }
 }
 
@@ -594,6 +601,45 @@ html {
             opacity: 1;
             transform: translateY(0);
         }
+    }
+}
+
+// LANGUAGE TOGGLE BUTTON
+.btn-lang-toggle {
+    background: transparent;
+    border: 1.5px solid var(--border-dim);
+    color: var(--text-primary);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+
+    &:hover {
+        border-color: var(--text-primary);
+        transform: scale(1.05);
+    }
+
+    &:active {
+        transform: scale(0.95);
+    }
+
+    .lang-label {
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: -0.01em;
+        line-height: 1;
+        user-select: none;
+        transition: all 0.3s ease;
+    }
+
+    &:hover .lang-label {
+        color: var(--accent-emerald);
     }
 }
 
