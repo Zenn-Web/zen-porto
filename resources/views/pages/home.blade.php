@@ -56,7 +56,7 @@
         </div>
     </section>
 
-    <section id="about" class="about-section">
+    <section id="about" class="about-section reveal-section">
         <div class="container">
             <div class="card profile-card-horizontal animate-on-scroll">
                 <div class="row g-0 align-items-center">
@@ -134,7 +134,7 @@
 
 
 
-    <section id="skills" class="skills-section">
+    <section id="skills" class="skills-section reveal-section">
         <div class="container">
 
             <div class="mb-5 text-center">
@@ -214,7 +214,7 @@
     </section>
 
 
-    <section id="resources" class="projects-section">
+    <section id="resources" class="projects-section reveal-section">
         <div class="container">
 
             <div class="mb-5 text-center">

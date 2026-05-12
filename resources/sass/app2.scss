@@ -10,10 +10,18 @@ html {
 /* --- BASE CARD STYLE --- */
 
 
-#resources {
+#home, #about, #skills, #resources, #contact {
+    scroll-margin-top: 90px;
+}
 
-    scroll-margin-top: 100px;
+.reveal-section {
+    padding: 100px 0;
+    position: relative;
+    overflow: hidden;
 
+    @media (max-width: 768px) {
+        padding: 60px 0;
+    }
 }
 
 .card-elegant {
@@ -646,7 +654,6 @@ html {
 // CONTACT SECTION
 .contact-section {
     background-color: var(--bg-primary);
-    // padding & scroll-margin diatur oleh #contact di app.scss
 }
 
 .contact-container {
