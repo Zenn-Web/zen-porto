@@ -258,23 +258,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // About Section
         'about.title': 'About Me',
-        'about.p1': 'Lahir pada 2007, saya tumbuh besar di era digital. Saat ini saya sedang mendalami Teknik Informatika di UII Yogyakarta, sambil terus mengeksplorasi titik temu antara dunia software engineering dan analisis pasar finansial.',
-        'about.p2': 'Bagi saya, pemrograman adalah cara untuk menyelesaikan masalah, dan analisis adalah cara untuk memahaminya. Saya senang membangun sesuatu yang tidak hanya terlihat bagus, tapi juga fungsional dan berbasis data.',
-        'about.p3': 'Saya selalu terbuka untuk diskusi mengenai teknologi, market, atau ide-ide baru yang menantang.',
+        'about.p1': 'Born in 2007, I grew up in the digital age. I am currently pursuing Informatics Engineering at UII Yogyakarta, while continuously exploring the intersection of software engineering and financial market analysis.',
+        'about.p2': 'For me, programming is a way to solve problems, and analysis is a way to understand them. I enjoy building things that are not only visually appealing, but also functional and data-driven.',
+        'about.p3': 'I am always open to discussions about technology, markets, or any new challenging ideas.',
 
         // Skills Section
         'skills.title': 'My Skills',
         'skills.programming': 'PROGRAMMING',
-        'skills.programming.desc': 'Membangun arsitektur web yang skalabel dan clean code untuk keberlanjutan bisnis jangka panjang.',
+        'skills.programming.desc': 'Building scalable web architectures with clean code for long-term business sustainability.',
         'skills.tech': 'Technologies',
         'skills.highlights': 'Key Highlights',
         'skills.h1': 'problem solving',
         'skills.h2': 'clean code',
         'skills.h3': 'UI/UX understanding',
-        'skills.analyst.desc': 'Menganalisis tren pasar global dengan manajemen risiko ketat untuk mendukung pengambilan keputusan berbasis data.',
+        'skills.analyst.desc': 'Analyzing global market trends with strict risk management to support data-driven decision making.',
         'skills.method': 'Methods',
         'skills.highlights2': 'Key Highlights',
         'skills.h4': 'market structure',
+        'skills.h5': 'price action',
+        'skills.h7': 'entry timing',
         'skills.h6': 'risk management',
         'skills.learning': '& MORE...',
         'skills.learning2': '& MORE...',
@@ -284,9 +286,9 @@ document.addEventListener("DOMContentLoaded", () => {
         'projects.view': 'View Project',
         'projects.view2': 'View Project',
         'projects.view3': 'View Project',
-        'projects.p1.desc': 'Membangun tulang punggung digital yang meningkatkan efisiensi operasional perusahaan hingga 40% melalui sistem terintegrasi.',
-        'projects.p2.desc': 'Eksperimen AI yang mengakselerasi pertumbuhan UMKM melalui pengolahan data dan laporan keuangan otomatis.',
-        'projects.p3.desc': 'Platform pendidikan digital yang didesain untuk mempercepat penguasaan skill strategis di era digital.',
+        'projects.p1.desc': 'Building the digital backbone that improved company operational efficiency by up to 40% through an integrated system.',
+        'projects.p2.desc': 'An AI experiment that accelerates UMKM growth through data processing and automated financial reporting.',
+        'projects.p3.desc': 'A digital education platform designed to accelerate the mastery of strategic skills in the digital era.',
 
         // Contact Section
         'contact.eyebrow': 'Get in Touch',

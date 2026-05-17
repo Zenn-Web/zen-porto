@@ -16,7 +16,7 @@
                 <div class="col-lg-6 text-lg-start text-center mb-5 mb-lg-0">
                     <h1 class="display-4 fw-bold animate-on-scroll text-reveal"><span class="text-gradient-emerald">Zenifen</span> Caesarof Agusti</h1>
                     <p class="mb-3 animate-on-scroll hero-role-text">
-                        <span class="lead fw-bold d-block mb-1" data-i18n="hero.role">Developer & Technical Analyst</span>
+                        <span class="lead fw-bold d-block mb-1" data-i18n="hero.role">Web Developer & Technical Analyst</span>
                         <span class="text-muted" data-i18n="hero.extra">Lahir pada 2007, saya membangun produk digital dengan perspektif seorang analis.</span>
                     </p>
 
@@ -192,9 +192,9 @@
                             <h6 class="text-uppercase fw-bold xsmall-text mb-2" data-i18n="skills.highlights2">Poin Utama</h6>
                             <ul class="list-unstyled mb-0">
                                 <li class="highlight-item small"><i class="bi bi-arrow-right-short me-2"></i><span data-i18n="skills.h4">struktur pasar</span></li>
-                                <li class="highlight-item small"><i class="bi bi-arrow-right-short me-2"></i>price action
+                                <li class="highlight-item small"><i class="bi bi-arrow-right-short me-2"></i><span data-i18n="skills.h5">price action</span>
                                 </li>
-                                <li class="highlight-item small"><i class="bi bi-arrow-right-short me-2"></i>entry timing
+                                <li class="highlight-item small"><i class="bi bi-arrow-right-short me-2"></i><span data-i18n="skills.h7">entry timing</span>
                                 </li>
                                 <li class="highlight-item small"><i class="bi bi-arrow-right-short me-2"></i><span data-i18n="skills.h6">manajemen risiko</span>
                                 </li>
