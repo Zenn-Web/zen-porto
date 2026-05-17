@@ -16,8 +16,8 @@
                 <div class="col-lg-6 text-lg-start text-center mb-5 mb-lg-0">
                     <h1 class="display-4 fw-bold animate-on-scroll text-reveal"><span class="text-gradient-emerald">Zenifen</span> Caesarof Agusti</h1>
                     <p class="mb-3 animate-on-scroll hero-role-text">
-                        <span class="lead fw-bold d-block mb-1" data-i18n="hero.role">Web Developer & Front End Engineer.</span>
-                        <span class="text-muted" data-i18n="hero.extra">Juga memiliki keahlian dalam Analisis Teknikal Pasar Finansial (Forex, Crypto, & Saham).</span>
+                        <span class="lead fw-bold d-block mb-1" data-i18n="hero.role">Developer & Technical Analyst</span>
+                        <span class="text-muted" data-i18n="hero.extra">Lahir pada 2007, saya membangun produk digital dengan perspektif seorang analis.</span>
                     </p>
 
                     <div class="d-flex align-items-center justify-content-center justify-content-lg-start gap-4 mt-5 animate-buttons">
@@ -33,8 +33,8 @@
                     </div>
 
                     <div class="d-flex flex-column flex-sm-row gap-3 mt-5 animate-buttons justify-content-center justify-content-lg-start">
-                        <a href="#resources" class="btn-hero-primary" data-i18n="hero.btn.projects">Lihat Projek</a>
-                        <a href="#contact" class="btn-hero-secondary" data-i18n="hero.btn.contact">Hubungi Saya</a>
+                        <a href="#resources" class="btn-hero-primary" data-i18n="hero.btn.projects">Lihat Karya Saya</a>
+                        <a href="#contact" class="btn-hero-secondary" data-i18n="hero.btn.contact">Mari Ngobrol</a>
                     </div>
                 </div>
 
@@ -48,7 +48,7 @@
                         </div>
                         <div class="status-badge">
                             <span class="dot"></span>
-                            <span class="status-text" data-i18n="hero.status">Fokus pada Pertumbuhan</span>
+                            <span class="status-text" data-i18n="hero.status">Siap untuk Tantangan Baru</span>
                         </div>
                     </div>
                 </div>
@@ -81,24 +81,17 @@
 
                             <!-- PARAGRAPH 1 -->
                             <p class="mb-3 animate-text" data-i18n="about.p1">
-                                Saya adalah seorang web developer yang memiliki ketertarikan besar pada dunia pengembangan
-                                website dan teknologi digital. Saya lahir di Jakarta pada 29 Agustus 2007, dan saat ini
-                                menjalani kehidupan serta aktivitas sehari-hari di Yogyakarta.
+                                Lahir pada 2007, saya tumbuh besar di era digital. Saat ini saya sedang mendalami Teknik Informatika di UII Yogyakarta, sambil terus mengeksplorasi titik temu antara dunia software engineering dan analisis pasar finansial.
                             </p>
 
                             <!-- PARAGRAPH 2 -->
                             <p class="mb-3 animate-text" data-i18n="about.p2">
-                                Saat ini, saya sedang menempuh pendidikan di Universitas Islam Indonesia dengan jurusan
-                                Teknik Informatika, di mana saya terus mengembangkan pemahaman tentang teknologi,
-                                pemrograman, dan konsep dasar pengembangan perangkat lunak.
+                                Bagi saya, pemrograman adalah cara untuk menyelesaikan masalah, dan analisis adalah cara untuk memahaminya. Saya senang membangun sesuatu yang tidak hanya terlihat bagus, tapi juga fungsional dan berbasis data.
                             </p>
 
                             <!-- PARAGRAPH 3 -->
                             <p class="text-secondary mb-4 animate-text" data-i18n="about.p3">
-                                Saya memiliki ketertarikan besar dalam mempelajari berbagai bahasa pemrograman, khususnya
-                                HTML, CSS, JavaScript, Laravel, dan lain sebagainya. Dalam proses belajar dan mengembangkan proyek,
-                                saya selalu berusaha memahami tidak hanya bagaimana sebuah fitur dibuat, tetapi juga alasan
-                                di balik penggunaannya.
+                                Saya selalu terbuka untuk diskusi mengenai teknologi, market, atau ide-ide baru yang menantang.
                             </p>
 
                             <!-- SOCIAL BUTTONS -->
@@ -150,7 +143,7 @@
                             <i class="bi bi-code-slash fs-3"></i>
                         </div>
                         <h4 class="fw-bold mb-2 ls-tight" data-i18n="skills.programming">PEMROGRAMAN</h4>
-                        <p class="text-secondary small mb-3" data-i18n="skills.programming.desc">Membangun aplikasi web yang bersih dan skalabel.</p>
+                        <p class="text-secondary small mb-3" data-i18n="skills.programming.desc">Membangun arsitektur web yang skalabel dan clean code untuk keberlanjutan bisnis jangka panjang.</p>
 
                         <div class="mb-3">
                             <h6 class="text-uppercase fw-bold xsmall-text mb-2" data-i18n="skills.tech">Teknologi</h6>
@@ -184,7 +177,7 @@
                             <i class="bi bi-graph-up-arrow fs-3"></i>
                         </div>
                         <h4 class="fw-bold mb-2 ls-tight">TECHNICAL ANALYST</h4>
-                        <p class="text-secondary small mb-3" data-i18n="skills.analyst.desc">Menganalisis tren pasar global (Forex, Crypto, Saham) dan mengidentifikasi peluang probabilitas tinggi.</p>
+                        <p class="text-secondary small mb-3" data-i18n="skills.analyst.desc">Menganalisis tren pasar global dengan manajemen risiko ketat untuk mendukung pengambilan keputusan berbasis data.</p>
 
                         <div class="mb-3">
                             <h6 class="text-uppercase fw-bold xsmall-text mb-2" data-i18n="skills.method">Metode</h6>
@@ -244,7 +237,7 @@
 
                                 <h6 class="fw-bold mb-1">Company Website Development – Eyegil.com</h6>
                                 <p class="text-muted extra-small-text mb-2" data-i18n="projects.p1.desc">
-                                  Platform yang membantu perusahaan meningkatkan efisiensi melalui solusi teknologi dan sistem digital yang terintegrasi.
+                                  Membangun tulang punggung digital yang meningkatkan efisiensi operasional perusahaan hingga 40% melalui sistem terintegrasi.
                                 </p>
                                 <div class="d-flex justify-content-between align-items-center mt-auto pt-2">
                                     <a href="https://eyegil.com"
@@ -278,7 +271,7 @@
 
                                 <h6 class="fw-bold mb-1">UMKM Business Management – TUMBUH</h6>
                                 <p class="text-muted extra-small-text mb-2" data-i18n="projects.p2.desc">
-                                    Platform AI untuk membantu UMKM mengelola bisnis, penjualan, dan analisis data.
+                                    Eksperimen AI yang mengakselerasi pertumbuhan UMKM melalui pengolahan data dan laporan keuangan otomatis.
                                 </p>
                                 <div class="d-flex justify-content-between align-items-center mt-auto pt-2">
                                     <a href="https://tumbuh-app-web.vercel.app"
@@ -311,7 +304,7 @@
 
                                 <h6 class="fw-bold mb-1">Training Platform – AMAZAIN</h6>
                                 <p class="text-muted extra-small-text mb-2" data-i18n="projects.p3.desc">
-                                    Platform untuk meningkatkan skill digital marketing dan mengkonsultasikan strategi bisnis.
+                                    Platform pendidikan digital yang didesain untuk mempercepat penguasaan skill strategis di era digital.
                                 </p>
                                 <div class="d-flex justify-content-between align-items-center mt-auto pt-2">
                                     <a href="https://amazaintraining.com/"

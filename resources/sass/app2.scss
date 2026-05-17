@@ -44,6 +44,8 @@ html {
     display: grid;
     perspective: 1500px;
     transform-style: preserve-3d;
+    align-items: start; // Memastikan semua elemen tumpukan mulai dari atas
+    height: 100%;
     
     & > * {
         grid-column-start: 1;
@@ -52,7 +54,7 @@ html {
         height: 100%;
         background: var(--bg-card);
         border: 1px solid var(--border-primary);
-        transform-origin: center bottom;
+        transform-origin: center top; // PINDAH KE ATAS agar puncak sejajar
         will-change: transform, opacity, box-shadow;
         transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
     }
@@ -129,14 +131,41 @@ html {
     // Gaya dasar untuk Shine Effect & Image
     .card-stack-main {
         position: relative;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        z-index: 1;
+        background: var(--bg-card); // Memastikan menutup kartu di belakang
+        margin-top: 0; // Reset margin agar nempel ke atas
+        top: 0;
         
         .img-container {
             overflow: hidden;
             border-radius: 4px;
+            background: #1a1a1a;
+            position: relative;
             
             img {
                 transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+                display: block;
             }
+
+            // Overlay agar gambar putih tidak bocor
+            &::after {
+                content: '';
+                position: absolute;
+                top: 0; left: 0; right: 0; bottom: 0;
+                box-shadow: inset 0 0 40px rgba(0,0,0,0.1);
+                border: 1px solid rgba(255, 255, 255, 0.05);
+                pointer-events: none;
+            }
+        }
+
+        .card-body {
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            padding: 1.25rem !important;
         }
 
         &::after {
@@ -192,19 +221,60 @@ html {
 .bg-base-100 { background-color: var(--bg-card); }
 .border-base-content { border-color: rgba(0,0,0,0.1) !important; }
 
+.projects-section {
+    .row {
+        display: flex !important;
+        align-items: stretch !important; // Memaksa semua kolom punya tinggi sama
+    }
+    
+    [class*="col-"] {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+.brand-logo {
+    font-size: 1.5rem;
+    font-weight: 850;
+    letter-spacing: -0.03em;
+    color: var(--text-primary);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    min-width: 200px; // Memberikan lebar tetap yang seimbang dengan sisi kanan
+
+    @media (min-width: 992px) {
+        flex: 1;
+        justify-content: flex-start;
+    }
+}
+
 .project-category-text {
-    font-size: 0.65rem;
+    font-size: 0.62rem;
     font-weight: 700;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.05em;
     color: var(--text-muted);
     text-transform: uppercase;
+    min-height: 2.8em; 
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
 .project-divider {
-    height: 1px;
-    background-color: var(--border-primary);
-    opacity: 0.1;
-    margin: 8px 0 12px 0;
+    height: 1.5px;
+    background-color: var(--border-dim);
+    opacity: 0.25;
+    margin: 10px 0 14px 0;
+}
+
+.project-description, .card-body p {
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem !important;
+    flex-grow: 1; // Memaksa footer turun ke bawah
 }
 
 
@@ -244,6 +314,11 @@ html {
     padding: 18px 0;
     border-bottom: 1px solid var(--border-light);
     font-family: 'Plus Jakarta Sans', sans-serif;
+
+    // Pastikan container bisa jadi acuan absolute positioning
+    .container {
+        position: relative;
+    }
 }
 
 .brand-logo {
@@ -335,6 +410,14 @@ html {
                 opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1),
                 height 0.45s cubic-bezier(0.16, 1, 0.3, 1) !important;
 
+    @media (min-width: 992px) {
+        display: flex !important;
+        flex-basis: auto;
+        flex-grow: 1;
+        justify-content: flex-end; // Nav-actions ke kanan
+        align-items: center;
+    }
+
     // Saat sedang collapsing (MENUTUP): container fade + slide up
     &.collapsing {
         transition: transform 0.35s cubic-bezier(0.4, 0, 1, 1), 
@@ -421,11 +504,22 @@ html {
 }
 
 .nav-links-group {
-    gap: 15px;
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    
+    // Desktop: posisi absolut agar benar-benar di tengah navbar
+    @media (min-width: 992px) {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        margin: 0 !important;
+    }
     
     @media (max-width: 991px) {
         gap: 5px;
         width: 100%;
+        margin: 15px 0 !important;
     }
 }
 
@@ -506,8 +600,13 @@ html {
 .nav-actions {
     display: flex;
     align-items: center;
+    justify-content: flex-end;
+    // Flex: 1 agar bobot sama dengan brand-logo, mendorong konten ke tepi kanan
+    flex: 1;
+    min-width: 200px;
 
     @media (max-width: 991px) {
+        min-width: auto;
         margin-top: 20px;
         padding-top: 18px;
         border-top: 1px solid var(--glass-border);

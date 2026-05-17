@@ -326,22 +326,22 @@ section:first-of-type {
     }
 }
 
-// SECTION SPACING — Matematika Geometris Presisi
+// SECTION SPACING — Konsisten & Proporsional
 #about,
 #skills,
 #resources,
 #contact {
-    scroll-margin-top: 80px !important; // Untuk native scroll
-    min-height: calc(100vh - 80px) !important; // Tinggi layar dikurangi navbar
+    scroll-margin-top: 80px !important;
+    min-height: calc(100vh - 80px) !important;
     display: flex !important;
     flex-direction: column !important;
-    justify-content: center !important; // Memusatkan persis di tengah
-    padding-top: 20px !important; // Sedikit jarak aman jika konten penuh
-    padding-bottom: 20px !important;
+    justify-content: center !important;
+    padding-top: 80px !important;    // Breathing room yang cukup antar section
+    padding-bottom: 80px !important;
     position: relative;
     overflow: hidden;
 
-    // Reset padding Bootstrap
+    // Reset padding Bootstrap container
     > .container,
     > .contact-container {
         padding-top: 0;
