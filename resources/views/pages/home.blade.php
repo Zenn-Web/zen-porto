@@ -129,11 +129,6 @@
                                     class="social-link instagram" aria-label="Instagram">
                                     <i class="bi bi-instagram"></i>
                                 </a>
-
-                                <a href="https://www.tradingview.com/" target="_blank" rel="noopener noreferrer"
-                                    class="social-link tradingview" aria-label="TradingView">
-                                    <svg viewBox="0 0 28 21" width="1.2em" height="1.2em" xmlns="http://www.w3.org/2000/svg" style="fill: currentColor; vertical-align: middle;"><path d="M14 21l-5.6-10.4L2.8 21H0l8.4-15.6L14 15.8l6.3-11.7-1.4-2.6H21l4.2 7.8L14 21z"/><circle cx="23.5" cy="4.5" r="4.5"/></svg>
-                                </a>
                             </div>
 
                         </div>
@@ -382,17 +377,14 @@
 
                 <!-- Social Links Row -->
                 <div class="d-flex justify-content-center gap-4">
-                    <a href="https://www.github.com/Zenn-Web" target="_blank" rel="noopener" class="social-icon-classic" aria-label="GitHub">
+                    <a href="https://www.github.com/Zenn-Web" target="_blank" rel="noopener" class="social-link-rounded github" aria-label="GitHub">
                         <i class="bi bi-github"></i>
                     </a>
-                    <a href="https://www.linkedin.com/in/zen-agusti-2928ba38a" target="_blank" rel="noopener" class="social-icon-classic" aria-label="LinkedIn">
+                    <a href="https://www.linkedin.com/in/zen-agusti-2928ba38a" target="_blank" rel="noopener" class="social-link-rounded linkedin" aria-label="LinkedIn">
                         <i class="bi bi-linkedin"></i>
                     </a>
-                    <a href="https://www.instagram.com/zenagust_" target="_blank" rel="noopener" class="social-icon-classic" aria-label="Instagram">
+                    <a href="https://www.instagram.com/zenagust_" target="_blank" rel="noopener" class="social-link-rounded instagram" aria-label="Instagram">
                         <i class="bi bi-instagram"></i>
-                    </a>
-                    <a href="https://www.tradingview.com/" target="_blank" rel="noopener" class="social-icon-classic" aria-label="TradingView">
-                        <svg viewBox="0 0 28 21" width="1.2em" height="1.2em" xmlns="http://www.w3.org/2000/svg" style="fill: currentColor; vertical-align: middle;"><path d="M14 21l-5.6-10.4L2.8 21H0l8.4-15.6L14 15.8l6.3-11.7-1.4-2.6H21l4.2 7.8L14 21z"/><circle cx="23.5" cy="4.5" r="4.5"/></svg>
                     </a>
                 </div>
             </div>

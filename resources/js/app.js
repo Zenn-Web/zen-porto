@@ -313,6 +313,7 @@ document.addEventListener("DOMContentLoaded", () => {
         'footer.location': 'Yogyakarta, ID (GMT+7)',
         'footer.rights': '© 2026 Zenifen. All rights reserved.',
         'footer.tagline': '"It\'s not about you can\'t do it. It\'s about you don\'t do it" - Zen',
+        'footer.still_making': 'Still Making Websites',
     };
 
     const langToggle = document.getElementById('lang-toggle');
