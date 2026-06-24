@@ -236,10 +236,7 @@
 
             <div class="row g-3">
                 <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="stack-animated animate-on-scroll">
-                        <div class="card-stack-bg-3"></div>
-                        <div class="card-stack-bg-2"></div>
-                        <div
+                    <div class="stack-animated animate-on-scroll">                        <div
                             class="card card-elegant card-stack-main shadow-none h-100 overflow-hidden">
 
                             <div class="px-3 pt-3">
@@ -270,10 +267,7 @@
                 </div>
 
                 <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="stack-animated animate-on-scroll">
-                        <div class="card-stack-bg-3"></div>
-                        <div class="card-stack-bg-2"></div>
-                        <div
+                    <div class="stack-animated animate-on-scroll">                        <div
                             class="card card-elegant card-stack-main shadow-none h-100 overflow-hidden">
 
                             <div class="px-3 pt-3">
@@ -303,10 +297,7 @@
                 </div>
 
                 <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="stack-animated animate-on-scroll">
-                        <div class="card-stack-bg-3"></div>
-                        <div class="card-stack-bg-2"></div>
-                        <div
+                    <div class="stack-animated animate-on-scroll">                        <div
                             class="card card-elegant card-stack-main shadow-none h-100 overflow-hidden">
 
                             <div class="px-3 pt-3">

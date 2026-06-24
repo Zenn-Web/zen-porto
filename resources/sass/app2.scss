@@ -24,7 +24,36 @@ html {
     }
 }
 
-.card-elegant {
+
+
+// MOBILE OPTIMIZATION - Disable complex animations on mobile
+@media (max-width: 768px) {
+    .stack-animated {
+        perspective: none;
+        transform-style: flat;
+        
+        & > * {
+            will-change: auto;
+            transition: none;
+        }
+        
+        .card-stack-main {
+            transform: none !important;
+            
+            &::after {
+                display: none; // Disable shine effect on mobile
+            }
+        }
+        
+        &.animation-finished:hover .card-stack-main {
+            transform: none !important;
+            
+            .img-container img {
+                transform: none !important; // Disable zoom on mobile
+            }
+        }
+    }
+}.card-elegant {
     background: var(--bg-card);
     overflow: hidden;
     cursor: pointer;
@@ -59,20 +88,6 @@ html {
         transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
     }
 
-    // Kartu paling belakang (3)
-    .card-stack-bg-3 {
-        z-index: -3;
-        transform: translateY(0) scale(0.9) translateZ(-40px);
-        opacity: 0;
-    }
-
-    // Kartu tengah (2)
-    .card-stack-bg-2 {
-        z-index: -2;
-        transform: translateY(0) scale(0.95) translateZ(-20px);
-        opacity: 0;
-    }
-
     // Kartu utama (depan)
     .card-stack-main {
         position: relative;
@@ -81,35 +96,8 @@ html {
         transform: translateZ(0);
     }
 
-    // ANIMASI REVEAL (FAN OUT)
-    &.reveal-active {
-        .card-stack-bg-3 {
-            transform: translateY(14px) scale(0.92) translateZ(-30px);
-            opacity: 0.2;
-            transition-delay: 0.4s;
-        }
-        .card-stack-bg-2 {
-            transform: translateY(7px) scale(0.96) translateZ(-15px);
-            opacity: 0.4;
-            transition-delay: 0.2s;
-        }
-    }
-
     // INTERAKSI HOVER (Hanya aktif setelah animasi selesai)
     &.animation-finished:hover {
-        .card-stack-bg-3 {
-            // Jarak geser dikurangi agar tidak menabrak kartu sebelah
-            transform: translateX(-8px) translateY(8px) scale(0.95) translateZ(-40px) rotateZ(-1.5deg);
-            opacity: 0.45;
-            background: var(--bg-secondary);
-            filter: blur(1px) brightness(0.9); // Sedikit lebih gelap & blur untuk depth
-        }
-        .card-stack-bg-2 {
-            transform: translateX(8px) translateY(8px) scale(0.95) translateZ(-20px) rotateZ(1.5deg);
-            opacity: 0.75;
-            background: var(--bg-secondary);
-            filter: blur(0.5px) brightness(0.95);
-        }
         .card-stack-main {
             transform: translateY(-5px) translateZ(50px);
             box-shadow: 0 15px 35px rgba(0,0,0,0.08);
@@ -1463,14 +1451,6 @@ textarea.is-invalid {
 
     // Hover stack transformation refinement
     &.animation-finished:hover {
-        .card-stack-bg-3 {
-            background-color: var(--bg-primary-classic, #FAF9F6) !important;
-            border-color: var(--border-classic, #e7e5e4) !important;
-        }
-        .card-stack-bg-2 {
-            background-color: var(--bg-primary-classic, #FAF9F6) !important;
-            border-color: var(--border-classic, #e7e5e4) !important;
-        }
         .card-stack-main {
             background-color: var(--bg-primary-classic, #FAF9F6) !important;
             border-color: var(--border-classic, #e7e5e4) !important;
