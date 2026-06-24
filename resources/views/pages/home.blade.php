@@ -100,17 +100,17 @@
 
                             <!-- PARAGRAPH 1 -->
                             <p class="mb-3 animate-text" data-i18n="about.p1">
-                                Lahir pada 2007, saya tumbuh besar di era digital. Saat ini saya sedang mendalami Teknik Informatika di UII Yogyakarta, sambil terus mengeksplorasi titik temu antara dunia software engineering dan analisis pasar finansial.
+                                Saya adalah Front-End Engineer yang berfokus pada pengembangan website modern, cepat, dan mudah digunakan. Saat ini aktif berkontribusi dalam lingkungan agensi digital, membangun berbagai solusi web dengan pendekatan clean code, performa yang optimal, dan pengalaman pengguna yang baik.
                             </p>
 
                             <!-- PARAGRAPH 2 -->
                             <p class="mb-3 animate-text" data-i18n="about.p2">
-                                Bagi saya, pemrograman adalah cara untuk menyelesaikan masalah, dan analisis adalah cara untuk memahaminya. Saya senang membangun sesuatu yang tidak hanya terlihat bagus, tapi juga fungsional dan berbasis data.
+                                Bagi saya, pengembangan web bukan hanya tentang menulis kode, tetapi tentang menerjemahkan kebutuhan bisnis menjadi produk digital yang efektif dan berkelanjutan. Dengan pengalaman menggunakan teknologi modern seperti React, Next.js, JavaScript, dan berbagai alat pengembangan profesional, saya terus mengembangkan kemampuan untuk menciptakan solusi yang lebih efisien dan scalable.
                             </p>
 
                             <!-- PARAGRAPH 3 -->
                             <p class="text-secondary mb-4 animate-text" data-i18n="about.p3">
-                                Saya selalu terbuka untuk diskusi mengenai teknologi, market, atau ide-ide baru yang menantang.
+                                Dunia teknologi terus berkembang, karena itu saya selalu meluangkan waktu untuk mempelajari pendekatan, tools, dan workflow terbaru agar dapat memberikan hasil yang relevan dengan kebutuhan industri saat ini.
                             </p>
 
                             <!-- SOCIAL BUTTONS -->

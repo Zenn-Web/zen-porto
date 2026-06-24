@@ -261,9 +261,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // About Section
         'about.title': 'About Me',
-        'about.p1': 'Born in 2007, I grew up in the digital age. I am currently pursuing Informatics Engineering at UII Yogyakarta, while continuously exploring the intersection of software engineering and financial market analysis.',
-        'about.p2': 'For me, programming is a way to solve problems, and analysis is a way to understand them. I enjoy building things that are not only visually appealing, but also functional and data-driven.',
-        'about.p3': 'I am always open to discussions about technology, markets, or any new challenging ideas.',
+        'about.p1': 'I am a Front-End Engineer focused on building modern, fast, and user-friendly websites. I am currently actively contributing in a digital agency environment, building various web solutions with a clean code approach, optimal performance, and a great user experience.',
+        'about.p2': 'For me, web development is not just about writing code, but about translating business needs into effective and sustainable digital products. With experience using modern technologies like React, Next.js, JavaScript, and various professional development tools, I continue to develop my skills to create more efficient and scalable solutions.',
+        'about.p3': 'The technology world is constantly evolving, which is why I always take the time to learn the latest approaches, tools, and workflows to provide results that are relevant to current industry needs.',
 
         // Skills Section
         'skills.title': 'My Skills',
