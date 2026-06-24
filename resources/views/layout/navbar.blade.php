@@ -21,20 +21,20 @@
 
                 <li class="nav-item">
                     <a class="nav-link" href="#about">
-                        <span data-i18n="nav.about">Tentang</span>
                         <i class="bi bi-person d-lg-none"></i>
+                        <span data-i18n="nav.about">Tentang</span>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#skills">
-                        <span data-i18n="nav.skills">Keahlian</span>
                         <i class="bi bi-journal-code d-lg-none"></i>
+                        <span data-i18n="nav.skills">Keahlian</span>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#resources">
-                        <span data-i18n="nav.projects">Projek</span>
                         <i class="bi bi-grid d-lg-none"></i>
+                        <span data-i18n="nav.projects">Projek</span>
                     </a>
                 </li>
             </ul>
@@ -54,8 +54,8 @@
                 </div>
 
                 <a href="#contact" class="btn-contact-me">
+                    <i class="bi bi-chat-dots me-2 d-lg-none"></i>
                     <span data-i18n="nav.contact">Kontak Saya</span>
-                    <i class="bi bi-chat-dots ms-2 d-lg-none"></i>
                 </a>
             </div>
         </div>

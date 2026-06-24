@@ -300,6 +300,19 @@ document.addEventListener("DOMContentLoaded", () => {
         'contact.lastname': 'Last Name',
         'contact.message': 'Message',
         'contact.submit': 'Send Message',
+
+        // Footer Section
+        'footer.navigation': 'NAVIGATION',
+        'footer.home': 'Home',
+        'footer.about': 'About',
+        'footer.projects': 'Projects',
+        'footer.skills': 'Skills',
+        'footer.contact': 'Contact',
+        'footer.current': 'CURRENT STATUS',
+        'footer.status': 'Open for work & collaboration',
+        'footer.location': 'Yogyakarta, ID (GMT+7)',
+        'footer.rights': '© 2026 Zenifen. All rights reserved.',
+        'footer.tagline': '"It\'s not about you can\'t do it. It\'s about you don\'t do it" - Zen',
     };
 
     const langToggle = document.getElementById('lang-toggle');
