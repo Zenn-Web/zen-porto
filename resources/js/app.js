@@ -247,11 +247,9 @@ document.addEventListener("DOMContentLoaded", () => {
         'nav.contact': 'Contact Me',
 
         // Hero Section
-        'hero.role': 'Developer & Technical Analyst',
-        'hero.extra': 'Born in 2007, I build digital products with the perspective of an analyst.',
-        'hero.stats.tech': 'Technologies<br>Selected',
-        'hero.stats.collab': 'Open',
-        'hero.stats.collab.sub': 'For<br>Collaboration',
+        'hero.available': 'Available for work',
+        'hero.role': 'Web Developer & Front End Enthusiast',
+        'hero.extra': 'Building aesthetic, functional digital interfaces backed by clean, maintainable code.',
         'hero.btn.projects': 'See My Work',
         'hero.btn.contact': "Let's Chat",
         'hero.status': 'Ready for New Challenges',

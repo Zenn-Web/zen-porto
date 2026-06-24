@@ -11,36 +11,37 @@
         </div>
         
         <div class="container position-relative" style="z-index: 2;">
-            <div class="row align-items-center justify-content-center">
+            <div class="row align-items-center justify-content-between g-5">
 
-                <div class="col-lg-6 text-lg-start text-center mb-5 mb-lg-0">
-                    <h1 class="display-4 fw-bold animate-on-scroll text-reveal"><span class="text-gradient-emerald">Zenifen</span> Caesarof Agusti</h1>
-                    <p class="mb-3 animate-on-scroll hero-role-text">
-                        <span class="lead fw-bold d-block mb-1" data-i18n="hero.role">Web Developer & Technical Analyst</span>
-                        <span class="text-muted" data-i18n="hero.extra">Lahir pada 2007, saya membangun produk digital dengan perspektif seorang analis.</span>
+                <!-- TEXT COLUMN -->
+                <div class="col-lg-6 text-lg-start text-center">
+
+                    <!-- Name -->
+                    <h1 class="hero-name fw-bold animate-on-scroll text-reveal">
+                        <span class="text-gradient-emerald">Zenifen</span><br>
+                        Caesarof Agusti
+                    </h1>
+
+                    <!-- Role -->
+                    <p class="hero-role-label animate-on-scroll" data-i18n="hero.role">
+                        Web Developer &amp; Front End Enthusiast
                     </p>
 
-                    <div class="d-flex align-items-center justify-content-center justify-content-lg-start gap-4 mt-5 animate-buttons">
-                        <div class="d-flex align-items-center gap-3">
-                            <h3 class="fw-bold mb-0">5+</h3>
-                            <span class="text-muted small lh-sm" data-i18n="hero.stats.tech">Teknologi<br>Terpilih</span>
-                        </div>
-                        <div class="vr opacity-25 d-none d-lg-block"></div>
-                        <div class="d-flex align-items-center gap-3">
-                            <h3 class="fw-bold mb-0" data-i18n="hero.stats.collab">Terbuka</h3>
-                            <span class="text-muted small lh-sm" data-i18n="hero.stats.collab.sub">Untuk<br>Kolaborasi</span>
-                        </div>
-                    </div>
+                    <!-- Short bio -->
+                    <p class="hero-bio text-muted animate-on-scroll" data-i18n="hero.extra">
+                        Building aesthetic, functional digital interfaces backed by clean, maintainable code.
+                    </p>
 
-                    <div class="d-flex flex-column flex-sm-row gap-3 mt-5 animate-buttons justify-content-center justify-content-lg-start">
-                        <a href="#resources" class="btn-hero-primary" data-i18n="hero.btn.projects">Lihat Karya Saya</a>
-                        <a href="#contact" class="btn-hero-secondary" data-i18n="hero.btn.contact">Mari Ngobrol</a>
+                    <!-- CTA Buttons -->
+                    <div class="hero-cta animate-buttons">
+                        <a href="#resources" class="btn-hero-compact btn-hero-filled" data-i18n="hero.btn.projects">Lihat Karya Saya</a>
+                        <a href="#contact" class="btn-hero-compact btn-hero-outline" data-i18n="hero.btn.contact">Mari Ngobrol</a>
                     </div>
                 </div>
 
-                <div class="col-lg-6 d-flex justify-content-center">
+                <!-- IMAGE COLUMN -->
+                <div class="col-lg-5 d-flex justify-content-center justify-content-lg-end order-first order-lg-last">
                     <div class="profile-animation-wrapper">
-
                         <div class="pulsing-circle-outer"></div>
                         <div class="profile-picture-container">
                             <img src="{{ asset('img/foto_portofolio_animate.png') }}" class="img-fluid profile-image"
@@ -52,6 +53,7 @@
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>

@@ -119,11 +119,11 @@ $profile-size: 300px;
 $outer-circle-size: $profile-size + 100px;
 
 // Responsive variables
-$profile-size-mobile: 200px;
-$outer-circle-size-mobile: $profile-size-mobile + 80px;
+$profile-size-mobile: 170px;
+$outer-circle-size-mobile: $profile-size-mobile + 60px;
 
-$profile-size-tablet: 250px;
-$outer-circle-size-tablet: $profile-size-tablet + 90px;
+$profile-size-tablet: 230px;
+$outer-circle-size-tablet: $profile-size-tablet + 80px;
 
 // PROFILE ANIMATION WRAPPER
 .profile-animation-wrapper {
@@ -316,13 +316,14 @@ section:first-of-type {
     min-height: 100vh !important;
     display: flex;
     align-items: center;
-    padding-top: 110px !important; // Increased to prevent navbar overlap on mobile
-    padding-bottom: 40px !important;
+    padding-top: 130px !important; // Increased to push content slightly down from navbar
+    padding-bottom: 60px !important;
     scroll-margin-top: 0;
 
     @media (min-width: 992px) {
         padding-top: 80px !important;
         padding-bottom: 0 !important;
+        align-items: center;
     }
 }
 
@@ -954,19 +955,100 @@ section:not(#about):not(#skills):not(#resources):not(#contact) {
     }
 }
 
-.hero-role-text {
-    transition: all 0.4s ease;
-    cursor: default;
+// HERO MINIMALIST STYLES
+.hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent-emerald);
+    margin-bottom: 1.25rem;
+
+    .dot-sm {
+        width: 6px;
+        height: 6px;
+        background-color: var(--accent-emerald);
+        border-radius: 50%;
+        display: inline-block;
+        animation: pulse-dot 2.5s ease-out infinite;
+    }
+
+    @media (max-width: 991.98px) {
+        justify-content: center;
+        width: 100%;
+    }
+}
+
+.hero-name {
+    font-size: clamp(2.4rem, 5.5vw, 3.75rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.1rem;
+}
+
+.hero-role-label {
+    font-size: clamp(0.95rem, 2vw, 1.1rem);
+    font-weight: 500;
+    color: var(--text-secondary, #6c757d);
+    letter-spacing: 0.01em;
+    margin-bottom: 2rem;
+    opacity: 0.85;
+}
+
+.hero-bio {
+    font-size: clamp(0.875rem, 1.5vw, 0.975rem);
+    line-height: 1.75;
+    max-width: 440px;
+    margin-bottom: 1.75rem;
+
+    @media (max-width: 991.98px) {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+.hero-tech-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 2rem;
+    justify-content: center;
+
+    @media (min-width: 992px) {
+        justify-content: flex-start;
+    }
+}
+
+.hero-pill {
+    display: inline-block;
+    padding: 4px 12px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border: 1px solid rgba(var(--accent-emerald-rgb, 16, 185, 129), 0.4);
+    color: var(--accent-emerald);
+    border-radius: 2px;
+    background: rgba(var(--accent-emerald-rgb, 16, 185, 129), 0.06);
+    transition: all 0.2s ease;
 
     &:hover {
-        .lead {
-            color: var(--accent-emerald) !important;
-            transition: color 0.3s ease;
-        }
-        .text-muted {
-            color: var(--text-primary) !important;
-            transition: color 0.3s ease;
-        }
+        background: rgba(var(--accent-emerald-rgb, 16, 185, 129), 0.15);
+        border-color: var(--accent-emerald);
+    }
+}
+
+.hero-pill-muted {
+    border-color: var(--border-primary, rgba(0,0,0,0.12));
+    color: var(--text-muted, #9ca3af);
+    background: transparent;
+
+    &:hover {
+        background: var(--bg-card);
+        border-color: var(--text-muted);
     }
 }
 
@@ -983,4 +1065,52 @@ section:not(#about):not(#skills):not(#resources):not(#contact) {
     inset: 0;
     background-image: radial-gradient(rgba(0, 0, 0, 0.04) 1.5px, transparent 1.5px);
     background-size: 60px 60px;
+}
+// HERO COMPACT CTA BUTTONS
+.hero-cta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    justify-content: center;
+
+    @media (min-width: 992px) {
+        justify-content: flex-start;
+    }
+}
+
+.btn-hero-compact {
+    display: inline-block;
+    padding: 9px 22px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    text-decoration: none;
+    border: 1.5px solid var(--text-primary);
+    transition: all 0.25s ease;
+    white-space: nowrap;
+
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-md);
+    }
+}
+
+.btn-hero-filled {
+    background-color: var(--text-primary);
+    color: var(--bg-primary);
+
+    &:hover {
+        background-color: transparent;
+        color: var(--text-primary);
+    }
+}
+
+.btn-hero-outline {
+    background-color: transparent;
+    color: var(--text-primary);
+
+    &:hover {
+        background-color: var(--text-primary);
+        color: var(--bg-primary);
+    }
 }
