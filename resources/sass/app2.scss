@@ -753,231 +753,99 @@ html {
 // CONTACT SECTION
 .contact-section {
     background-color: var(--bg-primary);
-}
+    padding: 100px 0;
 
-.contact-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 24px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
-    align-items: center;
-    width: 100%; // penting agar mengisi flex parent
-
-    @media (max-width: 991px) {
-        grid-template-columns: 1fr;
-        text-align: center;
-        gap: 40px;
+    @media (max-width: 768px) {
+        padding: 60px 0;
     }
 }
 
-// KIRI — Info
-.contact-info {
-    @media (max-width: 991px) {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .contact-eyebrow {
-        font-size: 0.85rem;
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 0.15em;
-        color: var(--accent-emerald);
-        margin-bottom: 12px;
-    }
-
-    .contact-title {
-        font-size: 3rem;
-        font-weight: 700;
-        line-height: 1.1;
-        letter-spacing: -0.02em;
-        color: var(--text-primary);
-        margin-bottom: 16px;
-
-        @media (max-width: 767px) {
-            font-size: 2.2rem;
-        }
-    }
-
-    .contact-subtitle {
-        font-size: 1rem;
-        color: var(--text-muted);
-        margin-bottom: 32px;
-        line-height: 1.6;
-    }
-
-    // Divider tipis pemisah sebelum detail
-    .contact-divider {
-        width: 60px;
-        height: 3px;
-        background: var(--accent-emerald);
-        margin-bottom: 32px;
-
-        @media (max-width: 991px) {
-            margin-left: auto;
-            margin-right: auto;
-        }
-    }
-
-    .contact-details {
-        display: flex;
-        flex-direction: column;
-        gap: 16px;
-        margin-bottom: 32px;
-        width: 100%;
-    }
-
-    .contact-detail-row {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        font-size: 0.95rem;
-        color: var(--text-secondary);
-
-        @media (max-width: 991px) {
-            justify-content: center;
-        }
-
-        i {
-            font-size: 0.95rem;
-            color: var(--text-primary);
-            flex-shrink: 0;
-            width: 16px;
-            text-align: center;
-        }
-
-        a {
-            color: var(--text-secondary);
-            text-decoration: none;
-
-            &:hover {
-                color: var(--text-primary);
-                text-decoration: underline;
-            }
-        }
-    }
-
-    .contact-social-row {
-        display: flex;
-        gap: 8px;
-
-        @media (max-width: 991px) {
-            justify-content: center;
-        }
-
-        .contact-social-link {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 36px;
-            height: 36px;
-            border: 1.5px solid var(--border-dim);
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            text-decoration: none;
-            transition: all 0.3s ease;
-
-            &:hover {
-                background: var(--text-primary);
-                border-color: var(--text-primary);
-                color: var(--bg-primary);
-                transform: translateY(-5px);
-                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-            }
-        }
-    }
-}
-
-// KANAN — Form
-.contact-form-wrapper {
-    display: flex;
-    justify-content: center;
+.contact-card-classic {
+    max-width: 750px;
     width: 100%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.contact-eyebrow-classic {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent-emerald, #0fb9a7);
+}
+
+.contact-title-classic {
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(2rem, 6vw, 2.75rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--text-primary-classic, #1c1917);
+}
+
+.contact-subtitle-classic {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.95rem;
+    color: var(--text-secondary-classic, #44403c);
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+}
+
+.contact-btn-classic {
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 22px;
+    border-radius: 9999px;
+    background: transparent;
+    border: 1.5px solid var(--border-classic, #e7e5e4);
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-primary-classic, #1c1917);
+    text-decoration: none;
+    transition: all 0.25s ease;
+
+    i {
+        font-size: 1rem;
+    }
+
+    &:hover:not(.no-link) {
+        border-color: var(--accent-emerald, #0fb9a7);
+        color: var(--accent-emerald, #0fb9a7);
+        transform: translateY(-2px);
+        background-color: rgba(15, 185, 167, 0.02);
+    }
     
-    .contact-form {
+    &.no-link {
+        cursor: default;
+    }
+
+    @media (max-width: 576px) {
         width: 100%;
-        max-width: 450px; // Membatasi lebar agar garis input tidak terlalu panjang
-        
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 16px;       // Lebih rapat agar tidak terlalu longgar
+        justify-content: center;
+    }
+}
 
-            @media (max-width: 576px) {
-                grid-template-columns: 1fr;
-            }
-        }
+.contact-divider-classic {
+    width: 60px;
+    height: 1.5px;
+    background-color: var(--border-classic, #e7e5e4);
+}
 
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            margin-bottom: 20px;   // Dikurangi dari 24px → konsisten dengan gap sisi kiri
+.social-icon-classic {
+    color: var(--text-secondary-classic, #44403c);
+    font-size: 1.4rem;
+    transition: all 0.25s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 
-            label {
-                font-size: 0.72rem;
-                font-weight: 700;
-                letter-spacing: 0.1em;
-                text-transform: uppercase;
-                color: var(--text-dim);           // Diselaraskan dengan eyebrow warna
-                margin-bottom: 8px;
-            }
-
-            input,
-            textarea {
-                border: none;
-                border-bottom: 1.5px solid var(--border-dim);  // Sama dengan border social icon
-                padding: 10px 0;
-                font-size: 0.9rem;
-                color: var(--text-primary);
-                background: transparent;
-                outline: none;
-                font-family: inherit;
-                transition: border-color 0.25s ease;
-
-                &:focus {
-                    border-color: var(--text-primary);
-                }
-            }
-
-            textarea {
-                resize: none;
-                min-height: 40px; // Awalnya pendek (sekitar 1 baris)
-                overflow: hidden; // Sembunyikan scrollbar agar rapi saat memanjang
-            }
-        }
-
-        .button-wrapper {
-            margin-top: 12px;
-        }
-
-        .btn-send-contact {
-            background: var(--text-primary);
-            color: var(--bg-primary); // Menggunakan warna Navy agar kontras dengan background putih tombol
-            border: none;
-            padding: 12px 32px;
-            font-size: 0.85rem;
-            font-weight: 700;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            cursor: pointer;
-            border: 2px solid var(--text-primary);
-            transition: all 0.3s ease;
-
-            &:hover {
-                background: transparent;
-                color: var(--text-primary);
-                transform: translateY(-3px);
-                box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-            }
-
-            @media (max-width: 576px) {
-                width: 100%;
-                padding: 14px;
-            }
-        }
+    &:hover {
+        color: var(--accent-emerald, #0fb9a7);
+        transform: translateY(-3px);
     }
 }
 
@@ -1003,4 +871,603 @@ input.is-invalid,
 textarea.is-invalid {
     border-bottom-color: #dc3545 !important;
 }
+
+
+// ==========================================
+// HERO CLASSIC SECTION (EDITORIAL CLASSIC MODERN)
+// ==========================================
+.hero-classic-section {
+    background-color: var(--bg-primary-classic, #FAF9F6);
+    padding: 160px 0 100px 0;
+    min-height: 95vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+    transition: background-color 0.3s ease;
+
+    .hero-classic-bg {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        z-index: 1;
+    }
+
+    .classic-grid-pattern {
+        position: absolute;
+        inset: 0;
+        background-image: radial-gradient(var(--dot-color-classic, rgba(0, 0, 0, 0.05)) 1px, transparent 1px);
+        background-size: 32px 32px;
+    }
+
+    // Sparkle Ornaments
+    .ornament-sparkle {
+        position: absolute;
+        color: var(--sparkle-color, #d6d3d1);
+        pointer-events: none;
+        z-index: 2;
+        opacity: 0.8;
+        
+        svg {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        &.sparkle-1 {
+            width: 28px;
+            height: 28px;
+            top: 25%;
+            left: 8%;
+            animation: twinkle-sparkle 4s ease-in-out infinite;
+        }
+
+        &.sparkle-2 {
+            width: 18px;
+            height: 18px;
+            top: 15%;
+            right: 40%;
+            animation: twinkle-sparkle 6s ease-in-out infinite 1s;
+        }
+
+        &.sparkle-3 {
+            width: 22px;
+            height: 22px;
+            bottom: 25%;
+            right: 8%;
+            animation: twinkle-sparkle 5s ease-in-out infinite 2s;
+        }
+    }
+
+    // Halftone Sweep Ornament
+    .ornament-halftone {
+        position: absolute;
+        width: 500px;
+        height: 350px;
+        bottom: 5%;
+        right: 5%;
+        pointer-events: none;
+        z-index: 1;
+        opacity: 0.08;
+        background-image: 
+            radial-gradient(circle, var(--text-primary-classic, #1c1917) 1.5px, transparent 1.5px),
+            radial-gradient(circle, var(--text-primary-classic, #1c1917) 1.5px, transparent 1.5px);
+        background-size: 16px 16px;
+        background-position: 0 0, 8px 8px;
+        mask-image: radial-gradient(circle at bottom right, rgba(0, 0, 0, 1) 20%, rgba(0, 0, 0, 0) 75%);
+        -webkit-mask-image: radial-gradient(circle at bottom right, rgba(0, 0, 0, 1) 20%, rgba(0, 0, 0, 0) 75%);
+        transition: opacity 0.3s ease;
+    }
+
+    .hero-classic-badge-wrapper {
+        margin-bottom: 1.5rem;
+    }
+
+    .hero-classic-badge-pill {
+        display: inline-block;
+        font-family: 'Poppins', sans-serif;
+        font-size: 0.72rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--text-primary-classic, #1c1917);
+        border: 1px solid var(--border-classic, #e7e5e4);
+        padding: 6px 18px;
+        border-radius: 9999px; // Pill shape
+        background: transparent;
+        opacity: 0.85;
+    }
+
+    .hero-classic-title {
+        font-family: 'Poppins', sans-serif;
+        font-size: clamp(2.6rem, 5.5vw, 4.6rem);
+        font-weight: 700; // Poppins looks great bold
+        line-height: 1.1;
+        color: var(--text-primary-classic, #1c1917);
+        margin-bottom: 1.5rem;
+        letter-spacing: -0.03em;
+        
+        span.char {
+            display: inline-block;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.8s ease;
+        }
+
+        &.reveal-active span.char {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+
+    .hero-classic-bio {
+        font-family: 'Poppins', sans-serif;
+        font-size: clamp(0.95rem, 1.8vw, 1.125rem);
+        line-height: 1.75;
+        font-weight: 300;
+        color: var(--text-secondary-classic, #44403c);
+        max-width: 540px;
+        margin-bottom: 2.25rem;
+    }
+
+    .hero-classic-cta {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        margin-top: 1.5rem;
+        position: relative;
+        z-index: 3;
+    }
+
+    .btn-classic-solid, .btn-classic-outline {
+        display: inline-block;
+        font-family: 'Poppins', sans-serif;
+        font-size: 0.875rem;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+        padding: 12px 32px;
+        border-radius: 9999px;
+        text-decoration: none;
+        transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        text-align: center;
+        white-space: nowrap;
+    }
+
+    .btn-classic-solid {
+        background-color: var(--btn-solid-bg, #1c1917);
+        color: var(--btn-solid-text, #ffffff);
+        border: 1.5px solid var(--btn-solid-bg, #1c1917);
+
+        &:hover {
+            background-color: transparent;
+            color: var(--btn-solid-bg, #1c1917);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+    }
+
+    .btn-classic-outline {
+        background-color: transparent;
+        color: var(--btn-outline-text, #1c1917);
+        border: 1.5px solid var(--btn-outline-border, #1c1917);
+
+        &:hover {
+            background-color: var(--btn-solid-bg, #1c1917);
+            color: var(--btn-solid-text, #ffffff);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+    }
+
+    .hero-classic-stats-row {
+        margin-top: 3.5rem;
+        
+        .stat-value {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: var(--text-primary-classic, #1c1917);
+            line-height: 1.1;
+            margin-bottom: 0.4rem;
+        }
+        
+        .stat-label {
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.68rem;
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--text-secondary-classic, #78716c);
+            line-height: 1.4;
+            opacity: 0.8;
+        }
+    }
+
+    // IMAGE CARD - EDITORIAL FRAMED CONTAINER
+    .hero-classic-card {
+        position: relative;
+        z-index: 2;
+        width: 100%;
+        max-width: 480px;
+        height: 600px; // Tall rectangular card
+        border-radius: 28px;
+        overflow: hidden;
+        border: 1px solid var(--border-classic, #e7e5e4);
+        background-color: var(--bg-primary-classic, #FAF9F6);
+        box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.05);
+        transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s ease;
+
+        &:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 40px 80px -20px rgba(0, 0, 0, 0.08);
+        }
+    }
+
+    .hero-classic-card-image-wrapper {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+    }
+
+    .hero-classic-card-image {
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: cover;
+        object-position: 33% 8%; // Focus tightly on head/hands
+        filter: saturate(0.95);
+        transform: scale(1.22); // Zoom in slightly within the frame for clean details
+        transform-origin: 33% 8%;
+        transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    // GLASSMORPHIC FLOATING BADGE
+    .hero-classic-glass-badge {
+        position: absolute;
+        bottom: 24px;
+        left: 24px;
+        right: 24px;
+        background: var(--badge-glass-bg, rgba(255, 255, 255, 0.55));
+        backdrop-filter: blur(20px) saturate(180%);
+        -webkit-backdrop-filter: blur(20px) saturate(180%);
+        padding: 16px 20px;
+        border-radius: 20px;
+        border: 1px solid var(--badge-glass-border, rgba(255, 255, 255, 0.25));
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+        z-index: 3;
+        transition: background-color 0.3s, border-color 0.3s;
+
+        .glass-badge-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 6px;
+        }
+
+        .glass-dot-active {
+            width: 8px;
+            height: 8px;
+            background-color: #10b981;
+            border-radius: 50%;
+            display: inline-block;
+            position: relative;
+            
+            &::after {
+                content: '';
+                position: absolute;
+                inset: -2px;
+                border-radius: 50%;
+                border: 2px solid #10b981;
+                animation: pulse-ring 2s ease-out infinite;
+                opacity: 0;
+            }
+        }
+
+        .glass-badge-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            color: var(--badge-glass-title, #1c1917);
+            text-transform: uppercase;
+        }
+
+        .glass-badge-text {
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.76rem;
+            font-weight: 400;
+            line-height: 1.45;
+            color: var(--badge-glass-text, #44403c);
+            margin: 0;
+        }
+    }
+}
+
+// Sparkle twinkling keyframes
+@keyframes twinkle-sparkle {
+    0%, 100% {
+        transform: scale(0.6) rotate(0deg);
+        opacity: 0.2;
+    }
+    50% {
+        transform: scale(1.1) rotate(90deg);
+        opacity: 0.9;
+    }
+}
+
+// Muse floating keyframes
+@keyframes float-figure-zoom {
+    0%, 100% {
+        transform: translate(-5%, -5%);
+    }
+    50% {
+        transform: translate(-5%, -13px);
+    }
+}
+
+// Variables for Theme (Light Mode defaults, Dark Mode overrides)
+:root {
+    --bg-primary-classic: #ffffff;
+    --dot-color-classic: rgba(0, 0, 0, 0.04);
+    --text-primary-classic: #1c1917;
+    --text-secondary-classic: #44403c;
+    --border-classic: #e7e5e4;
+    --sparkle-color: #d6d3d1;
+    --btn-solid-bg: #1c1917;
+    --btn-solid-text: #ffffff;
+    --btn-outline-text: #1c1917;
+    --btn-outline-border: #1c1917;
+    --badge-bg: rgba(255, 255, 255, 0.92);
+    --badge-border: rgba(0, 0, 0, 0.04);
+    --badge-text: #1c1917;
+    
+    // Glassmorphic badge variables
+    --badge-glass-bg: rgba(255, 255, 255, 0.55);
+    --badge-glass-border: rgba(255, 255, 255, 0.25);
+    --badge-glass-title: #1c1917;
+    --badge-glass-text: #44403c;
+}
+
+[data-theme="dark"] {
+    --bg-primary-classic: #0f172a;
+    --dot-color-classic: rgba(255, 255, 255, 0.05);
+    --text-primary-classic: #f8fafc;
+    --text-secondary-classic: #cbd5e1;
+    --border-classic: #334155;
+    --sparkle-color: #475569;
+    --btn-solid-bg: #f8fafc;
+    --btn-solid-text: #0f172a;
+    --btn-outline-text: #f8fafc;
+    --btn-outline-border: #f8fafc;
+    --badge-bg: rgba(30, 41, 59, 0.92);
+    --badge-border: rgba(255, 255, 255, 0.04);
+    --badge-text: #f8fafc;
+    
+    // Glassmorphic badge variables
+    --badge-glass-bg: rgba(30, 41, 59, 0.55);
+    --badge-glass-border: rgba(255, 255, 255, 0.08);
+    --badge-glass-title: #f8fafc;
+    --badge-glass-text: #cbd5e1;
+}
+
+/* SKILLS CARD REDESIGN - WARM CLASSIC-MODERN STYLE */
+.card-skill-classic {
+    background-color: var(--bg-primary-classic, #FAF9F6) !important;
+    border: 1px solid var(--border-classic, #e7e5e4) !important;
+    border-radius: 24px !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+}
+.skill-icon-classic {
+    color: var(--accent-emerald, #0fb9a7);
+}
+.skill-desc-classic {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.92rem;
+    line-height: 1.6;
+    color: var(--text-secondary-classic, #44403c);
+}
+.skill-subtitle-classic {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-dim, #78716c);
+    margin-bottom: 12px;
+}
+.badge-tech-classic {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--text-primary-classic, #1c1917);
+    border: 1.5px solid var(--border-classic, #e7e5e4);
+    padding: 4px 12px;
+    border-radius: 9999px; // Pill shape
+    background: transparent;
+    transition: all 0.2s ease;
+
+    &:hover {
+        border-color: var(--accent-emerald, #0fb9a7);
+        color: var(--accent-emerald, #0fb9a7);
+    }
+}
+.badge-tech-classic-more {
+    @extend .badge-tech-classic;
+    color: var(--accent-emerald, #0fb9a7);
+    border-color: rgba(15, 185, 167, 0.3);
+    
+    &:hover {
+        background: rgba(15, 185, 167, 0.05);
+    }
+}
+.highlight-item-classic {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: var(--text-secondary-classic, #44403c);
+    display: flex;
+    align-items: center;
+    margin-bottom: 6px;
+    text-transform: capitalize;
+
+    .text-emerald {
+        color: var(--accent-emerald, #0fb9a7);
+    }
+}
+
+/* UNIFIED CLASSIC-MODERN STYLE FOR ALL MAIN CARDS */
+.profile-card-horizontal,
+.card-elegant {
+    background-color: var(--bg-primary-classic, #FAF9F6) !important;
+    border: 1px solid var(--border-classic, #e7e5e4) !important;
+    border-radius: 24px !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02) !important;
+}
+
+// Adjust layout components inside profile card for rounded border-radius
+.profile-card-horizontal {
+    overflow: hidden !important;
+}
+
+// Stacking cards animation compatibility with rounded corners
+.stack-animated {
+    & > * {
+        background-color: var(--bg-primary-classic, #FAF9F6) !important;
+        border: 1px solid var(--border-classic, #e7e5e4) !important;
+        border-radius: 24px !important;
+    }
+
+    // Hover stack transformation refinement
+    &.animation-finished:hover {
+        .card-stack-bg-3 {
+            background-color: var(--bg-primary-classic, #FAF9F6) !important;
+            border-color: var(--border-classic, #e7e5e4) !important;
+        }
+        .card-stack-bg-2 {
+            background-color: var(--bg-primary-classic, #FAF9F6) !important;
+            border-color: var(--border-classic, #e7e5e4) !important;
+        }
+        .card-stack-main {
+            background-color: var(--bg-primary-classic, #FAF9F6) !important;
+            border-color: var(--border-classic, #e7e5e4) !important;
+        }
+    }
+}
+
+// RESPONSIVENESS OVERRIDES
+@media (max-width: 991.98px) {
+    .hero-classic-section {
+        padding: 90px 0 40px 0; // Compact padding
+        min-height: auto;
+        
+        .row {
+            flex-direction: column; // Text on top, image card on bottom
+            text-align: center !important; // Center align text
+        }
+
+        .col-lg-6 {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center; // Center child elements like badge & cta
+        }
+
+        .hero-classic-badge-wrapper {
+            margin-bottom: 0.75rem;
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .hero-classic-badge-pill {
+            font-size: 0.65rem;
+            padding: 5px 12px;
+        }
+
+        .hero-classic-title {
+            font-size: clamp(2rem, 7.5vw, 2.3rem); // Compact size
+            margin-bottom: 0.75rem;
+            line-height: 1.15;
+            text-align: center;
+            width: 100%;
+        }
+
+        .hero-classic-bio {
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin-bottom: 1.25rem;
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .hero-classic-cta {
+            flex-direction: row; // Side by side buttons
+            align-items: center;
+            justify-content: center; // Center buttons horizontally
+            width: 100%;
+            max-width: 320px; // Restrict width so they remain compact side-by-side
+            margin-left: auto;
+            margin-right: auto;
+            gap: 10px;
+
+            .btn-classic-solid, .btn-classic-outline {
+                flex: 1; // Equal widths
+                width: auto;
+                padding: 10px 16px; // Compact padding
+                font-size: 0.8rem;
+            }
+        }
+
+        .hero-classic-card {
+            max-width: 100%;
+            width: 100%;
+            height: 280px; // Shorter card for better fit
+            margin: 1.75rem auto 0 auto;
+            border-radius: 20px;
+        }
+
+        .hero-classic-glass-badge {
+            bottom: 12px;
+            left: 12px;
+            right: 12px;
+            padding: 10px 14px;
+            border-radius: 12px;
+            text-align: left; // Revert to left-align for status details
+            
+            .glass-badge-header {
+                margin-bottom: 4px;
+            }
+
+            .glass-badge-title {
+                font-size: 0.6rem;
+            }
+
+            .glass-badge-text {
+                font-size: 0.7rem;
+                line-height: 1.35;
+            }
+        }
+
+        .ornament-sparkle {
+            &.sparkle-1 {
+                top: 45%;
+                left: 5%;
+            }
+            &.sparkle-3 {
+                bottom: 45%;
+                right: 5%;
+            }
+        }
+        
+        .ornament-halftone {
+            width: 200px;
+            height: 160px;
+            bottom: 0;
+            right: 0;
+        }
+    }
+}
+
 

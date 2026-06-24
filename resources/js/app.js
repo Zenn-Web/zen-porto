@@ -247,12 +247,17 @@ document.addEventListener("DOMContentLoaded", () => {
         'nav.contact': 'Contact Me',
 
         // Hero Section
+        'hero.badge': 'DIGITAL WEB ARCHITECTURE',
         'hero.available': 'Available for work',
         'hero.role': 'Web Developer & Front End Enthusiast',
-        'hero.extra': 'Building aesthetic, functional digital interfaces backed by clean, maintainable code.',
+        'hero.extra': 'I build websites that combine modern design, high performance, and memorable user experiences.',
         'hero.btn.projects': 'See My Work',
         'hero.btn.contact': "Let's Chat",
         'hero.status': 'Ready for New Challenges',
+        'hero.stat1.label': 'CLEAN CODE COMPLIANCE',
+        'hero.stat2.label': 'DIGITAL SOLUTIONS CREATED',
+        'hero.glass.badge': 'CURRENT STATUS',
+        'hero.glass.text': 'Currently developing high-performance web applications with modern architecture.',
 
         // About Section
         'about.title': 'About Me',
@@ -262,20 +267,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Skills Section
         'skills.title': 'My Skills',
-        'skills.programming': 'PROGRAMMING',
+        'skills.programming': 'WEB DEVELOPMENT',
         'skills.programming.desc': 'Building scalable web architectures with clean code for long-term business sustainability.',
+        'skills.tools': 'TOOLS & WORKFLOWS',
+        'skills.tools.desc': 'Utilizing modern tools and structured workflows to build high-performance web products.',
         'skills.tech': 'Technologies',
+        'skills.toolset': 'Tools',
         'skills.highlights': 'Key Highlights',
         'skills.h1': 'problem solving',
         'skills.h2': 'clean code',
         'skills.h3': 'UI/UX understanding',
-        'skills.analyst.desc': 'Analyzing global market trends with strict risk management to support data-driven decision making.',
-        'skills.method': 'Methods',
-        'skills.highlights2': 'Key Highlights',
-        'skills.h4': 'market structure',
-        'skills.h5': 'price action',
-        'skills.h7': 'entry timing',
-        'skills.h6': 'risk management',
+        'skills.h4': 'version control',
+        'skills.h5': 'API testing',
+        'skills.h7': 'workflow automation',
         'skills.learning': '& MORE...',
         'skills.learning2': '& MORE...',
 

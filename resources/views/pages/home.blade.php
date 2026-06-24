@@ -4,52 +4,69 @@
 @section('content')
 
 
-    <section id="home" class="reveal-section position-relative overflow-hidden">
-        <!-- Background Ornaments -->
-        <div class="hero-bg-ornaments">
-            <div class="bg-grid-pattern"></div>
+    <section id="home" class="hero-classic-section position-relative overflow-hidden">
+        <!-- Background Grid Pattern & Ornaments -->
+        <div class="hero-classic-bg">
+            <div class="classic-grid-pattern"></div>
+            
+            <!-- Sparkle Star Ornaments (4-Pointed Stars) -->
+            <div class="ornament-sparkle sparkle-1">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0L15 9L24 12L15 15L12 24L9 15L0 12L9 9L12 0Z"/></svg>
+            </div>
+            <div class="ornament-sparkle sparkle-2">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0L15 9L24 12L15 15L12 24L9 15L0 12L9 9L12 0Z"/></svg>
+            </div>
+            <div class="ornament-sparkle sparkle-3">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0L15 9L24 12L15 15L12 24L9 15L0 12L9 9L12 0Z"/></svg>
+            </div>
+
+            <!-- Halftone Dot Clusters -->
+            <div class="ornament-halftone"></div>
         </div>
         
         <div class="container position-relative" style="z-index: 2;">
             <div class="row align-items-center justify-content-between g-5">
 
                 <!-- TEXT COLUMN -->
-                <div class="col-lg-6 text-lg-start text-center">
+                <div class="col-lg-6 text-start">
+                    <!-- Eyebrow Badge Pill -->
+                    <div class="hero-classic-badge-wrapper animate-on-scroll">
+                        <span class="hero-classic-badge-pill" data-i18n="hero.role">Web Developer &amp; Front End Enthusiast</span>
+                    </div>
 
-                    <!-- Name -->
-                    <h1 class="hero-name fw-bold animate-on-scroll text-reveal">
-                        <span class="text-gradient-emerald">Zenifen</span><br>
-                        Caesarof Agusti
+                    <!-- Name / Main Heading 1 -->
+                    <h1 class="hero-classic-title fw-semibold animate-on-scroll text-reveal">
+                        Zenifen Caesarof Agusti
                     </h1>
 
-                    <!-- Role -->
-                    <p class="hero-role-label animate-on-scroll" data-i18n="hero.role">
-                        Web Developer &amp; Front End Enthusiast
-                    </p>
-
-                    <!-- Short bio -->
-                    <p class="hero-bio text-muted animate-on-scroll" data-i18n="hero.extra">
-                        Building aesthetic, functional digital interfaces backed by clean, maintainable code.
+                    <!-- Sub Heading / Paragraph -->
+                    <p class="hero-classic-bio animate-on-scroll" data-i18n="hero.extra">
+                        Saya membuat website yang menggabungkan desain modern, performa tinggi, dan pengalaman pengguna yang berkesan
                     </p>
 
                     <!-- CTA Buttons -->
-                    <div class="hero-cta animate-buttons">
-                        <a href="#resources" class="btn-hero-compact btn-hero-filled" data-i18n="hero.btn.projects">Lihat Karya Saya</a>
-                        <a href="#contact" class="btn-hero-compact btn-hero-outline" data-i18n="hero.btn.contact">Mari Ngobrol</a>
+                    <div class="hero-classic-cta animate-buttons">
+                        <a href="#resources" class="btn-classic-solid" data-i18n="hero.btn.projects">Lihat Karya Saya</a>
+                        <a href="#contact" class="btn-classic-outline" data-i18n="hero.btn.contact">Mari Ngobrol</a>
                     </div>
                 </div>
 
-                <!-- IMAGE COLUMN -->
-                <div class="col-lg-5 d-flex justify-content-center justify-content-lg-end order-first order-lg-last">
-                    <div class="profile-animation-wrapper">
-                        <div class="pulsing-circle-outer"></div>
-                        <div class="profile-picture-container">
-                            <img src="{{ asset('img/foto_portofolio_animate.png') }}" class="img-fluid profile-image"
-                                alt="Zenifen">
+                <!-- IMAGE COLUMN (Tall Rounded Card with Glassmorphic Overlay) -->
+                <div class="col-lg-6 d-flex justify-content-center justify-content-lg-end">
+                    <div class="hero-classic-card animate-on-scroll">
+                        <div class="hero-classic-card-image-wrapper">
+                            <img src="{{ asset('img/hero-classical-muse.png') }}" class="img-fluid hero-classic-card-image" alt="Zenifen Caesarof Agusti">
                         </div>
-                        <div class="status-badge">
-                            <span class="dot"></span>
-                            <span class="status-text" data-i18n="hero.status">Siap untuk Tantangan Baru</span>
+                        
+                        <!-- Floating Glassmorphic Overlay Badge -->
+                        <div class="hero-classic-glass-badge">
+                            <div class="glass-badge-header">
+                                <span class="glass-dot-active"></span>
+                                <span class="glass-badge-title" data-i18n="hero.glass.badge">STATUS UTAMA</span>
+                            </div>
+                            <p class="glass-badge-text" data-i18n="hero.glass.text">
+                                Sedang mengembangkan aplikasi web performa tinggi dengan arsitektur modern.
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -137,69 +154,74 @@
                 <div class="mx-auto mt-2 animate-on-scroll" style="width: 50px; height: 3px; background: var(--accent-emerald);"></div>
             </div>
 
-            <div class="row g-3">
-                <!-- PROGRAMMING CARD -->
+            <div class="row g-4">
+                <!-- WEB DEVELOPMENT CARD -->
                 <div class="col-lg-6">
-                    <div class="card card-skill-v2 h-100 p-3 p-md-4 rounded-0 animate-on-scroll">
-                        <div class="skill-icon-v2 mb-3">
+                    <div class="card card-skill-classic h-100 p-4 animate-on-scroll">
+                        <div class="skill-icon-classic mb-3">
                             <i class="bi bi-code-slash fs-3"></i>
                         </div>
-                        <h4 class="fw-bold mb-2 ls-tight" data-i18n="skills.programming">PEMROGRAMAN</h4>
-                        <p class="text-secondary small mb-3" data-i18n="skills.programming.desc">Membangun arsitektur web yang skalabel dan clean code untuk keberlanjutan bisnis jangka panjang.</p>
+                        <h4 class="fw-bold mb-2 ls-tight" data-i18n="skills.programming">PEMROGRAMAN WEB</h4>
+                        <p class="skill-desc-classic mb-4" data-i18n="skills.programming.desc">Membangun arsitektur web yang skalabel dan clean code untuk keberlanjutan bisnis jangka panjang.</p>
 
-                        <div class="mb-3">
-                            <h6 class="text-uppercase fw-bold xsmall-text mb-2" data-i18n="skills.tech">Teknologi</h6>
+                        <div class="mb-4">
+                            <h6 class="skill-subtitle-classic" data-i18n="skills.tech">Teknologi</h6>
                             <div class="d-flex flex-wrap gap-2">
-                                <span class="badge-tech">HTML</span>
-                                <span class="badge-tech">CSS</span>
-                                <span class="badge-tech">JAVASCRIPT</span>
-                                <span class="badge-tech">PHP</span>
-                                <span class="badge-tech">LARAVEL</span>
-                                <span class="badge-tech-learning" title="Terus mengeksplorasi teknologi baru lainnya" data-i18n="skills.learning">& LAINNYA...</span>
+                                <span class="badge-tech-classic">HTML</span>
+                                <span class="badge-tech-classic">CSS</span>
+                                <span class="badge-tech-classic">JAVASCRIPT</span>
+                                <span class="badge-tech-classic">NODE.JS</span>
+                                <span class="badge-tech-classic">REACT</span>
+                                <span class="badge-tech-classic">NEXT.JS</span>
+                                <span class="badge-tech-classic">PHP</span>
+                                <span class="badge-tech-classic">LARAVEL</span>
+                                <span class="badge-tech-classic">JAVA</span>
+                                <span class="badge-tech-classic">TAILWIND CSS</span>
+                                <span class="badge-tech-classic">BOOTSTRAP</span>
+                                <span class="badge-tech-classic-more" title="Terus mengeksplorasi teknologi baru lainnya" data-i18n="skills.learning">& LAINNYA...</span>
                             </div>
                         </div>
 
                         <div>
-                            <h6 class="text-uppercase fw-bold xsmall-text mb-2" data-i18n="skills.highlights">Poin Utama</h6>
+                            <h6 class="skill-subtitle-classic" data-i18n="skills.highlights">Poin Utama</h6>
                             <ul class="list-unstyled mb-0">
-                                <li class="highlight-item small"><i class="bi bi-arrow-right-short me-2"></i><span data-i18n="skills.h1">pemecahan masalah</span>
-                                </li>
-                                <li class="highlight-item small"><i class="bi bi-arrow-right-short me-2"></i><span data-i18n="skills.h2">kode bersih</span></li>
-                                <li class="highlight-item small"><i class="bi bi-arrow-right-short me-2"></i><span data-i18n="skills.h3">pemahaman UI/UX</span>
-                                </li>
+                                <li class="highlight-item-classic"><i class="bi bi-arrow-right-short me-2 text-emerald"></i><span data-i18n="skills.h1">pemecahan masalah</span></li>
+                                <li class="highlight-item-classic"><i class="bi bi-arrow-right-short me-2 text-emerald"></i><span data-i18n="skills.h2">kode bersih</span></li>
+                                <li class="highlight-item-classic"><i class="bi bi-arrow-right-short me-2 text-emerald"></i><span data-i18n="skills.h3">pemahaman UI/UX</span></li>
                             </ul>
                         </div>
                     </div>
                 </div>
 
-                <!-- TECHNICAL ANALYST CARD -->
+                <!-- TOOLS & WORKFLOW CARD -->
                 <div class="col-lg-6">
-                    <div class="card card-skill-v2 h-100 p-3 p-md-4 rounded-0 animate-on-scroll">
-                        <div class="skill-icon-v2 mb-3">
-                            <i class="bi bi-graph-up-arrow fs-3"></i>
+                    <div class="card card-skill-classic h-100 p-4 animate-on-scroll">
+                        <div class="skill-icon-classic mb-3">
+                            <i class="bi bi-tools fs-3"></i>
                         </div>
-                        <h4 class="fw-bold mb-2 ls-tight">TECHNICAL ANALYST</h4>
-                        <p class="text-secondary small mb-3" data-i18n="skills.analyst.desc">Menganalisis tren pasar global dengan manajemen risiko ketat untuk mendukung pengambilan keputusan berbasis data.</p>
+                        <h4 class="fw-bold mb-2 ls-tight" data-i18n="skills.tools">ALAT &amp; ALUR KERJA</h4>
+                        <p class="skill-desc-classic mb-4" data-i18n="skills.tools.desc">Menggunakan alat bantu modern dan alur kerja terstruktur untuk membangun produk web performa tinggi.</p>
 
-                        <div class="mb-3">
-                            <h6 class="text-uppercase fw-bold xsmall-text mb-2" data-i18n="skills.method">Metode</h6>
+                        <div class="mb-4">
+                            <h6 class="skill-subtitle-classic" data-i18n="skills.toolset">Alat Kerja</h6>
                             <div class="d-flex flex-wrap gap-2">
-                                <span class="badge-tech">CRT</span>
-                                <span class="badge-tech">SMC</span>
-                                <span class="badge-tech-learning" title="Terus mengeksplorasi metode lainnya..." data-i18n="skills.learning2">& LAINNYA...</span>
+                                <span class="badge-tech-classic">GIT</span>
+                                <span class="badge-tech-classic">GITHUB</span>
+                                <span class="badge-tech-classic">POSTMAN</span>
+                                <span class="badge-tech-classic">9ROUTER</span>
+                                <span class="badge-tech-classic">VS CODE</span>
+                                <span class="badge-tech-classic">NPM</span>
+                                <span class="badge-tech-classic">Model Context Protocol (MCP)</span>
+                                <span class="badge-tech-classic-more" title="Terus mengeksplorasi alat lainnya" data-i18n="skills.learning2">& LAINNYA...</span>
                             </div>
                         </div>
 
-                        <div class="mb-0">
-                            <h6 class="text-uppercase fw-bold xsmall-text mb-2" data-i18n="skills.highlights2">Poin Utama</h6>
+                        <div>
+                            <h6 class="skill-subtitle-classic" data-i18n="skills.highlights">Poin Utama</h6>
                             <ul class="list-unstyled mb-0">
-                                <li class="highlight-item small"><i class="bi bi-arrow-right-short me-2"></i><span data-i18n="skills.h4">struktur pasar</span></li>
-                                <li class="highlight-item small"><i class="bi bi-arrow-right-short me-2"></i><span data-i18n="skills.h5">price action</span>
-                                </li>
-                                <li class="highlight-item small"><i class="bi bi-arrow-right-short me-2"></i><span data-i18n="skills.h7">entry timing</span>
-                                </li>
-                                <li class="highlight-item small"><i class="bi bi-arrow-right-short me-2"></i><span data-i18n="skills.h6">manajemen risiko</span>
-                                </li>
+                                <li class="highlight-item-classic"><i class="bi bi-arrow-right-short me-2 text-emerald"></i><span data-i18n="skills.h4">kontrol versi</span></li>
+                                <li class="highlight-item-classic"><i class="bi bi-arrow-right-short me-2 text-emerald"></i><span data-i18n="skills.h5">pengujian API</span></li>
+                                <li class="highlight-item-classic"><i class="bi bi-arrow-right-short me-2 text-emerald"></i><span data-i18n="skills.h7">otomasi alur kerja</span></li>
                             </ul>
                         </div>
                     </div>
@@ -220,10 +242,10 @@
             <div class="row g-3">
                 <div class="col-lg-4 col-md-6 mb-4">
                     <div class="stack-animated animate-on-scroll">
-                        <div class="card-stack-bg-3 rounded-0"></div>
-                        <div class="card-stack-bg-2 rounded-0"></div>
+                        <div class="card-stack-bg-3"></div>
+                        <div class="card-stack-bg-2"></div>
                         <div
-                            class="card card-elegant card-stack-main rounded-0 shadow-none h-100 overflow-hidden">
+                            class="card card-elegant card-stack-main shadow-none h-100 overflow-hidden">
 
                             <div class="px-3 pt-3">
                                 <div class="img-container">
@@ -254,10 +276,10 @@
 
                 <div class="col-lg-4 col-md-6 mb-4">
                     <div class="stack-animated animate-on-scroll">
-                        <div class="card-stack-bg-3 rounded-0"></div>
-                        <div class="card-stack-bg-2 rounded-0"></div>
+                        <div class="card-stack-bg-3"></div>
+                        <div class="card-stack-bg-2"></div>
                         <div
-                            class="card card-elegant card-stack-main rounded-0 shadow-none h-100 overflow-hidden">
+                            class="card card-elegant card-stack-main shadow-none h-100 overflow-hidden">
 
                             <div class="px-3 pt-3">
                                 <div class="img-container">
@@ -287,10 +309,10 @@
 
                 <div class="col-lg-4 col-md-6 mb-4">
                     <div class="stack-animated animate-on-scroll">
-                        <div class="card-stack-bg-3 rounded-0"></div>
-                        <div class="card-stack-bg-2 rounded-0"></div>
+                        <div class="card-stack-bg-3"></div>
+                        <div class="card-stack-bg-2"></div>
                         <div
-                            class="card card-elegant card-stack-main rounded-0 shadow-none h-100 overflow-hidden">
+                            class="card card-elegant card-stack-main shadow-none h-100 overflow-hidden">
 
                             <div class="px-3 pt-3">
                                 <div class="img-container">
@@ -323,96 +345,57 @@
     </section>
 
     <section id="contact" class="contact-section reveal-section">
-        <div class="contact-container">
+        <div class="container d-flex justify-content-center px-4">
+            <div class="contact-card-classic p-4 p-md-5 text-center animate-on-scroll">
+                <!-- Eyebrow -->
+                <p class="contact-eyebrow-classic mb-2" data-i18n="contact.eyebrow">Hubungi Saya</p>
+                
+                <!-- Title -->
+                <h2 class="contact-title-classic mb-3 text-reveal" data-i18n="contact.title">Kontak Saya</h2>
+                
+                <!-- Subtitle -->
+                <p class="contact-subtitle-classic mb-4 mb-md-5" data-i18n="contact.subtitle">Mari bekerjasama untuk solusi digitalmu.</p>
 
-            {{-- KIRI: Info --}}
-            <div class="contact-info">
-                <p class="contact-eyebrow animate-on-scroll" data-i18n="contact.eyebrow">Hubungi Saya</p>
-                <h2 class="contact-title animate-on-scroll text-reveal" data-i18n="contact.title">Kontak Saya</h2>
-                <p class="contact-subtitle animate-on-scroll" data-i18n="contact.subtitle">Mari bekerjasama untuk solusi digitalmu.</p>
+                <!-- Clean Contact Buttons Grid/Row -->
+                <div class="d-flex flex-wrap justify-content-center gap-3 mb-4 mb-md-5">
+                    <!-- Email Method -->
+                    <a href="mailto:zenifenagusti70@gmail.com" class="contact-btn-classic">
+                        <i class="bi bi-envelope-fill me-2 text-emerald"></i>
+                        <span>zenifenagusti70@gmail.com</span>
+                    </a>
+                    
+                    <!-- WhatsApp Method -->
+                    <a href="https://wa.me/6285174344683" target="_blank" rel="noopener" class="contact-btn-classic">
+                        <i class="bi bi-whatsapp me-2 text-emerald"></i>
+                        <span>WhatsApp</span>
+                    </a>
 
-                <div class="contact-divider animate-on-scroll"></div>
-
-                <div class="contact-details">
-                    <div class="contact-detail-row animate-on-scroll">
-                        <i class="bi bi-geo-alt"></i>
+                    <!-- Location Method -->
+                    <span class="contact-btn-classic no-link">
+                        <i class="bi bi-geo-alt-fill me-2 text-emerald"></i>
                         <span>Yogyakarta, Indonesia</span>
-                    </div>
-                    <div class="contact-detail-row animate-on-scroll">
-                        <i class="bi bi-envelope"></i>
-                        <a href="mailto:zenifenagusti70@gmail.com">zenifenagusti70@gmail.com</a>
-                    </div>
-                    <div class="contact-detail-row animate-on-scroll">
-                        <i class="bi bi-whatsapp"></i>
-                        <a href="https://wa.me/6285174344683" target="_blank" rel="noopener" title="Hubungi via WhatsApp">WhatsApp</a>
-                    </div>
+                    </span>
                 </div>
 
-                <div class="contact-social-row animate-on-scroll">
-                    <a href="https://www.github.com/Zenn-Web" target="_blank" rel="noopener" class="contact-social-link" aria-label="GitHub">
+                <!-- Divider -->
+                <div class="contact-divider-classic mx-auto mb-4 mb-md-5"></div>
+
+                <!-- Social Links Row -->
+                <div class="d-flex justify-content-center gap-4">
+                    <a href="https://www.github.com/Zenn-Web" target="_blank" rel="noopener" class="social-icon-classic" aria-label="GitHub">
                         <i class="bi bi-github"></i>
                     </a>
-                    <a href="https://www.linkedin.com/in/zen-agusti-2928ba38a" target="_blank" rel="noopener" class="contact-social-link" aria-label="LinkedIn">
+                    <a href="https://www.linkedin.com/in/zen-agusti-2928ba38a" target="_blank" rel="noopener" class="social-icon-classic" aria-label="LinkedIn">
                         <i class="bi bi-linkedin"></i>
                     </a>
-                    <a href="https://www.instagram.com/zenagust_" target="_blank" rel="noopener" class="contact-social-link" aria-label="Instagram">
+                    <a href="https://www.instagram.com/zenagust_" target="_blank" rel="noopener" class="social-icon-classic" aria-label="Instagram">
                         <i class="bi bi-instagram"></i>
                     </a>
-                    <a href="https://www.tradingview.com/" target="_blank" rel="noopener" class="contact-social-link" aria-label="TradingView">
+                    <a href="https://www.tradingview.com/" target="_blank" rel="noopener" class="social-icon-classic" aria-label="TradingView">
                         <svg viewBox="0 0 28 21" width="1.2em" height="1.2em" xmlns="http://www.w3.org/2000/svg" style="fill: currentColor; vertical-align: middle;"><path d="M14 21l-5.6-10.4L2.8 21H0l8.4-15.6L14 15.8l6.3-11.7-1.4-2.6H21l4.2 7.8L14 21z"/><circle cx="23.5" cy="4.5" r="4.5"/></svg>
                     </a>
                 </div>
             </div>
-
-            {{-- KANAN: Form --}}
-            <div class="contact-form-wrapper">
-                <form action="{{ route('contact.store') }}" method="POST" class="contact-form">
-                    @csrf
-
-                    @if(session('success'))
-                        <div class="alert alert-success mb-4">{{ session('success') }}</div>
-                    @endif
-
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="first_name" data-i18n="contact.firstname">Nama Depan</label>
-                            <input type="text" id="first_name" name="first_name" value="{{ old('first_name') }}" class="@error('first_name') is-invalid @enderror">
-                            @error('first_name')
-                                <span class="error-text">{{ $message }}</span>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label for="last_name" data-i18n="contact.lastname">Nama Belakang</label>
-                            <input type="text" id="last_name" name="last_name" value="{{ old('last_name') }}" class="@error('last_name') is-invalid @enderror">
-                            @error('last_name')
-                                <span class="error-text">{{ $message }}</span>
-                            @enderror
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="email">Email <span class="text-danger">*</span></label>
-                        <input type="email" id="email" name="email" value="{{ old('email') }}" class="@error('email') is-invalid @enderror">
-                        @error('email')
-                            <span class="error-text">{{ $message }}</span>
-                        @enderror
-                    </div>
-
-                    <div class="form-group">
-                        <label for="message" data-i18n="contact.message">Pesan</label>
-                        <textarea id="message" name="message" rows="5" class="@error('message') is-invalid @enderror">{{ old('message') }}</textarea>
-                        @error('message')
-                            <span class="error-text">{{ $message }}</span>
-                        @enderror
-                    </div>
-
-                    <div class="button-wrapper">
-                        <button type="submit" class="btn-send-contact" data-i18n="contact.submit">Kirim Pesan</button>
-                    </div>
-
-                </form>
-            </div>
-
         </div>
     </section>
 
