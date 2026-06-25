@@ -259,74 +259,30 @@ document.addEventListener("DOMContentLoaded", () => {
         'hero.glass.badge': 'CURRENT STATUS',
         'hero.glass.text': 'Currently developing high-performance web applications with modern architecture.',
 
-        // About Section
-        'about.title': 'About Me',
-        'about.p1': 'I am a Front-End Engineer focused on building modern, fast, and user-friendly websites. I am currently actively contributing in a digital agency environment, building various web solutions with a clean code approach, optimal performance, and a great user experience.',
-        'about.p2': 'For me, web development is not just about writing code, but about translating business needs into effective and sustainable digital products. With experience using modern technologies like React, Next.js, JavaScript, and various professional development tools, I continue to develop my skills to create more efficient and scalable solutions.',
-        'about.p3': 'The technology world is constantly evolving, which is why I always take the time to learn the latest approaches, tools, and workflows to provide results that are relevant to current industry needs.',
+        'about.p1': 'Hi! I am Zenifen, a Front-End Developer diving deep into the world of web development. From writing my first line of HTML to building interactive web applications today, this journey has been full of surprises and exciting new learnings.',
+        'about.p2': 'Currently, I am focused on developing skills in React, modern JavaScript, and creating UIs that are not only visually appealing but also comfortable to use. Every project is an opportunity to learn something new, from performance optimization to design system implementation.',
+        'about.p3': 'For me, writing code is not just about correct syntax but about solving problems efficiently and elegantly. I believe every developer has a unique journey, and I am excited to keep growing in this field.',
 
-        // Skills Section
-        'skills.title': 'My Skills',
-        'skills.programming': 'WEB DEVELOPMENT',
-        'skills.programming.desc': 'Building scalable web architectures with clean code for long-term business sustainability.',
-        'skills.tools': 'TOOLS & WORKFLOWS',
-        'skills.tools.desc': 'Utilizing modern tools and structured workflows to build high-performance web products.',
-        'skills.tech': 'Technologies',
-        'skills.toolset': 'Tools',
-        'skills.highlights': 'Key Highlights',
-        'skills.h1': 'problem solving',
-        'skills.h2': 'clean code',
-        'skills.h3': 'UI/UX understanding',
-        'skills.h4': 'version control',
-        'skills.h5': 'API testing',
-        'skills.h7': 'workflow automation',
-        'skills.learning': '& MORE...',
-        'skills.learning2': '& MORE...',
+        'about.stat1.number': '5+',
+        'about.stat1.label': 'Projects',
+        'about.stat1.number': '5+',
+        'about.stat2.number': '',
+        'about.stat2.label': 'Open to Collaborate',
+        'about.stat3.number': '5+',
+        'about.stat3.label': 'Technologies',
+        'about.stat4.label': 'Always Learning',
 
-        // Projects Section
-        'projects.title': 'My Projects',
-        'projects.view': 'View Project',
-        'projects.view2': 'View Project',
-        'projects.view3': 'View Project',
-        'projects.p1.desc': 'Building the digital backbone that improved company operational efficiency by up to 40% through an integrated system.',
-        'projects.p2.desc': 'An AI experiment that accelerates UMKM growth through data processing and automated financial reporting.',
-        'projects.p3.desc': 'A digital education platform designed to accelerate the mastery of strategic skills in the digital era.',
-
-        // Contact Section
-        'contact.eyebrow': 'Get in Touch',
-        'contact.title': 'Contact Me',
-        'contact.subtitle': "Let's collaborate on your digital solutions.",
-        'contact.firstname': 'First Name',
-        'contact.lastname': 'Last Name',
-        'contact.message': 'Message',
-        'contact.submit': 'Send Message',
-
-        // Footer Section
-        'footer.navigation': 'NAVIGATION',
-        'footer.home': 'Home',
-        'footer.about': 'About',
-        'footer.projects': 'Projects',
-        'footer.skills': 'Skills',
-        'footer.contact': 'Contact',
-        'footer.current': 'CURRENT STATUS',
-        'footer.status': 'Open for work & collaboration',
-        'footer.location': 'Yogyakarta, ID (GMT+7)',
-        'footer.rights': '© 2026 Zenifen. All rights reserved.',
-        'footer.tagline': '"It\'s not about you can\'t do it. It\'s about you don\'t do it" - Zen',
-        'footer.still_making': 'Still Making Websites',
     };
 
     const langToggle = document.getElementById('lang-toggle');
     const langLabel = langToggle ? langToggle.querySelector('.lang-label') : null;
 
-    // Simpan teks original Indonesia saat halaman pertama kali load
     const originalTexts = {};
     document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
         originalTexts[key] = el.innerHTML;
     });
 
-    // Fungsi untuk menerapkan bahasa
     const applyLanguage = (lang) => {
         document.querySelectorAll('[data-i18n]').forEach(el => {
             const key = el.getAttribute('data-i18n');
@@ -337,22 +293,18 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
 
-        // Update label tombol: tampilkan bahasa yang BISA dipilih (kebalikan dari aktif)
         if (langLabel) {
             langLabel.textContent = lang === 'en' ? 'ID' : 'EN';
         }
 
-        // Update html lang attribute
         document.documentElement.setAttribute('lang', lang);
     };
 
-    // Cek bahasa tersimpan di localStorage
     const savedLang = localStorage.getItem('lang') || 'id';
     if (savedLang === 'en') {
         applyLanguage('en');
     }
 
-    // Event listener toggle
     if (langToggle) {
         langToggle.addEventListener('click', () => {
             const currentLang = localStorage.getItem('lang') || 'id';

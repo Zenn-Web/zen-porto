@@ -79,8 +79,6 @@
         <div class="container">
             <div class="card profile-card-horizontal animate-on-scroll">
                 <div class="row g-0 align-items-center">
-
-                    <!-- IMAGE COLUMN -->
                     <div class="col-md-4 profile-img-container text-center py-4 py-md-5">
                         <div class="image-frame">
                             <div class="image-sweep">
@@ -88,55 +86,28 @@
                             </div>
                         </div>
                     </div>
-
-                    <!-- TEXT COLUMN -->
                     <div class="col-md-8">
                         <div class="card-body p-3 p-md-4 p-lg-5">
-
-                            <!-- HEADER -->
-                            <h6 class="text-uppercase fw-bold mb-3 animate-text text-reveal" style="letter-spacing: 2px;" data-i18n="about.title">
-                                Tentang Saya
-                            </h6>
-
-                            <!-- PARAGRAPH 1 -->
-                            <p class="mb-3 animate-text" data-i18n="about.p1">
-                                Saya adalah Front-End Engineer yang berfokus pada pengembangan website modern, cepat, dan mudah digunakan. Saat ini aktif berkontribusi dalam lingkungan agensi digital, membangun berbagai solusi web dengan pendekatan clean code, performa yang optimal, dan pengalaman pengguna yang baik.
-                            </p>
-
-                            <!-- PARAGRAPH 2 -->
-                            <p class="mb-3 animate-text" data-i18n="about.p2">
-                                Bagi saya, pengembangan web bukan hanya tentang menulis kode, tetapi tentang menerjemahkan kebutuhan bisnis menjadi produk digital yang efektif dan berkelanjutan. Dengan pengalaman menggunakan teknologi modern seperti React, Next.js, JavaScript, dan berbagai alat pengembangan profesional, saya terus mengembangkan kemampuan untuk menciptakan solusi yang lebih efisien dan scalable.
-                            </p>
-
-                            <!-- PARAGRAPH 3 -->
-                            <p class="text-secondary mb-4 animate-text" data-i18n="about.p3">
-                                Dunia teknologi terus berkembang, karena itu saya selalu meluangkan waktu untuk mempelajari pendekatan, tools, dan workflow terbaru agar dapat memberikan hasil yang relevan dengan kebutuhan industri saat ini.
-                            </p>
-
-                            <!-- SOCIAL BUTTONS -->
-                            <div class="mt-4 animate-buttons">
-                                <a href="https://www.github.com/Zenn-Web" target="_blank" rel="noopener noreferrer"
-                                    class="social-link github" aria-label="GitHub">
-                                    <i class="bi bi-github"></i>
-                                </a>
-
-                                <a href="https://www.linkedin.com/in/zen-agusti-2928ba38a" target="_blank"
-                                    rel="noopener noreferrer" class="social-link linkedin" aria-label="LinkedIn">
-                                    <i class="bi bi-linkedin"></i>
-                                </a>
-
-                                <a href="https://www.instagram.com/zenagust_" target="_blank" rel="noopener noreferrer"
-                                    class="social-link instagram" aria-label="Instagram">
-                                    <i class="bi bi-instagram"></i>
-                                </a>
+                            <h6 class="text-uppercase fw-bold mb-3 animate-text text-reveal" style="letter-spacing: 2px;" data-i18n="about.title">Tentang Saya</h6>
+                            <p class="mb-3 animate-text" data-i18n="about.p1">Hai! Saya Zenifen, seorang Front-End Developer yang sedang menekuni dunia web development. Dari pertama kali menulis kode HTML hingga sekarang membangun aplikasi web interaktif, perjalanan ini selalu penuh kejutan dan pembelajaran baru yang menyenangkan.</p>
+                            <p class="mb-3 animate-text" data-i18n="about.p2">Saat ini saya fokus mengembangkan kemampuan di React, JavaScript modern, dan menciptakan UI yang tidak hanya menarik secara visual, tetapi juga nyaman digunakan. Setiap project adalah kesempatan untuk belajar sesuatu yang baru, dan saya selalu mulai dari optimasi performa hingga implementasi design system.</p>
+                            <p class="text-secondary mb-4 animate-text" data-i18n="about.p3">Bagi saya, menulis kode bukan cuma soal syntax yang benar, tapi tentang memecahkan masalah dengan cara yang efisien dan elegan. Saya percaya bahwa setiap developer punya journey unik, dan saya excited untuk terus berkembang di bidang ini.</p>
+                            <div class="stats-grid-about mb-4 animate-text">
+                                <div class="stat-item-about"><div class="stat-number-about" data-i18n="about.stat1.number">5+</div><div class="stat-label-about" data-i18n="about.stat1.label">Projek</div></div>
+                                <div class="stat-item-about"><div class="stat-number-about stat-icon-about"><i class="bi bi-people-fill"></i></div><div class="stat-label-about" data-i18n="about.stat2.label">Terbuka untuk Kolaborasi</div></div>
+                                <div class="stat-item-about"><div class="stat-number-about" data-i18n="about.stat3.number">5+</div><div class="stat-label-about" data-i18n="about.stat3.label">Teknologi</div></div>
+                                <div class="stat-item-about"><div class="stat-number-about stat-icon-about"><i class="bi bi-arrow-up-circle-fill"></i></div><div class="stat-label-about" data-i18n="about.stat4.label">Terus Belajar</div></div>
                             </div>
-
+                            <div class="mt-4 animate-buttons">
+                                <a href="https://www.github.com/Zenn-Web" target="_blank" rel="noopener noreferrer" class="social-link github" aria-label="GitHub"><i class="bi bi-github"></i></a>
+                                <a href="https://www.linkedin.com/in/zen-agusti-2928ba38a" target="_blank" rel="noopener noreferrer" class="social-link linkedin" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+                                <a href="https://www.instagram.com/zenagust_" target="_blank" rel="noopener noreferrer" class="social-link instagram" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
     </section>
 
 

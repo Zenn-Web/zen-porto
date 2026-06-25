@@ -1,0 +1,51 @@
+﻿        // About Stats
+        'about.stat1.number': '10+',
+        'about.stat1.label': 'Projects',
+        'about.stat2.number': '500+',
+        'about.stat2.label': 'Hours Coding',
+        'about.stat3.number': '5+',
+        'about.stat3.label': 'Technologies',
+        'about.stat4.label': 'Always Learning',
+
+    };
+
+    const langToggle = document.getElementById('lang-toggle');
+    const langLabel = langToggle ? langToggle.querySelector('.lang-label') : null;
+
+    const originalTexts = {};
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        originalTexts[key] = el.innerHTML;
+    });
+
+    const applyLanguage = (lang) => {
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            if (lang === 'en' && translations[key]) {
+                el.innerHTML = translations[key];
+            } else if (lang === 'id' && originalTexts[key]) {
+                el.innerHTML = originalTexts[key];
+            }
+        });
+
+        if (langLabel) {
+            langLabel.textContent = lang === 'en' ? 'ID' : 'EN';
+        }
+
+        document.documentElement.setAttribute('lang', lang);
+    };
+
+    const savedLang = localStorage.getItem('lang') || 'id';
+    if (savedLang === 'en') {
+        applyLanguage('en');
+    }
+
+    if (langToggle) {
+        langToggle.addEventListener('click', () => {
+            const currentLang = localStorage.getItem('lang') || 'id';
+            const newLang = currentLang === 'id' ? 'en' : 'id';
+
+            localStorage.setItem('lang', newLang);
+            applyLanguage(newLang);
+        });
+    }
