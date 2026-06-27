@@ -20,8 +20,7 @@
                 <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0L15 9L24 12L15 15L12 24L9 15L0 12L9 9L12 0Z"/></svg>
             </div>
 
-            <!-- Halftone Dot Clusters -->
-            <div class="ornament-halftone"></div>
+
         </div>
         
         <div class="container position-relative" style="z-index: 2;">
@@ -206,101 +205,67 @@
             </div>
 
             <div class="row g-3">
+                @forelse($projects as $project)
                 <div class="col-lg-4 col-md-6 mb-4">
                     <div class="stack-animated animate-on-scroll">                        <div
                             class="card card-elegant card-stack-main shadow-none h-100 overflow-hidden">
 
                             <div class="px-3 pt-3">
                                 <div class="img-container">
-                                    <img src="{{ asset('img/eyegilv2.porto.png') }}"
+                                    <img src="{{ asset($project->image) }}"
                                         class="img-fluid border border-opacity-10"
-                                        style="aspect-ratio: 16/10; object-fit: cover; width: 100%;" alt="Project 1">
+                                        style="aspect-ratio: 16/10; object-fit: cover; width: 100%;" alt="{{ $project->title }}">
                                 </div>
                             </div>
 
-                            <div class="card-body p-3">
-                                <div class="project-category-text">UI/UX • DIGITAL BUSINESS • Enterprise Solutions Provider • Custom Software Development Services</div>
+                            <div class="card-body p-3 d-flex flex-column">
+                                <div class="project-category-text" data-i18n="project.category.{{ $project->slug }}">{{ $project->category }}</div>
                                 <div class="project-divider"></div>
 
-                                <h6 class="fw-bold mb-1">Company Website Development – Eyegil.com</h6>
-                                <p class="text-muted extra-small-text mb-2" data-i18n="projects.p1.desc">
-                                  Membangun tulang punggung digital yang meningkatkan efisiensi operasional perusahaan hingga 40% melalui sistem terintegrasi.
+                                <h6 class="fw-bold mb-1" data-i18n="project.title.{{ $project->slug }}">{{ $project->title }}</h6>
+                                <p class="text-muted extra-small-text mb-2" data-i18n="project.description.{{ $project->slug }}">
+                                    {{ $project->description }}
                                 </p>
-                                <div class="d-flex justify-content-between align-items-center mt-auto pt-2">
-                                    <a href="https://eyegil.com"
-                                        class="text-decoration-none fw-bold link-primary extra-small-text" data-i18n="projects.view">Lihat Project</a>
-                                    <span class="text-secondary extra-small-text">2025</span>
+
+                                @if($project->tech_stack_badges)
+                                <div class="mb-2 d-flex flex-wrap gap-1">
+                                    @foreach(array_slice($project->tech_stack_badges, 0, 3) as $badge)
+                                    <span class="card-tech-badge" style="background: color-mix(in srgb, {{ $badge["color"] }} 15%, transparent); color: {{ $badge["color"] }}; border: 1px solid color-mix(in srgb, {{ $badge["color"] }} 30%, transparent);">
+                                        {{ $badge["name"] }}
+                                    </span>
+                                    @endforeach
+                                    @if(count($project->tech_stack_badges) > 3)
+                                    <span class="card-tech-badge text-muted" style="background: var(--card-bg, #f0f0f0);">
+                                        +{{ count($project->tech_stack_badges) - 3 }}
+                                    </span>
+                                    @endif
+                                </div>
+                                @endif
+
+                                <div class="mt-auto pt-2 d-flex flex-wrap gap-2 align-items-center">
+                                    <a href="{{ route("project.show", $project->slug) }}"
+                                        class="text-decoration-none fw-bold link-primary extra-small-text" data-i18n="projects.detail">Detail</a>
+                                    @if($project->live_demo_url)
+                                    <a href="{{ $project->live_demo_url }}" target="_blank" rel="noopener"
+                                        class="text-decoration-none fw-bold extra-small-text" style="color: var(--accent-emerald, #10b981);">
+                                        <i class="bi bi-box-arrow-up-right me-1"></i>Live Demo
+                                    </a>
+                                    @endif
+                                    <span class="text-secondary extra-small-text ms-auto">{{ $project->year }}</span>
                                 </div>
                             </div>
 
                         </div>
                     </div>
                 </div>
-
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="stack-animated animate-on-scroll">                        <div
-                            class="card card-elegant card-stack-main shadow-none h-100 overflow-hidden">
-
-                            <div class="px-3 pt-3">
-                                <div class="img-container">
-                                    <img src="{{ asset('img/UMKM-tumbuh.porto.png') }}"
-                                        class="img-fluid border border-opacity-10"
-                                        style="aspect-ratio: 16/10; object-fit: cover; width: 100%;" alt="Project 2">
-                                </div>
-                            </div>
-
-                            <div class="card-body p-3">
-                                <div class="project-category-text">UI/UX • DEVELOPMENT • Personal Growth Platform • AI Growth Partner</div>
-                                <div class="project-divider"></div>
-
-                                <h6 class="fw-bold mb-1">UMKM Business Management – TUMBUH</h6>
-                                <p class="text-muted extra-small-text mb-2" data-i18n="projects.p2.desc">
-                                    Eksperimen AI yang mengakselerasi pertumbuhan UMKM melalui pengolahan data dan laporan keuangan otomatis.
-                                </p>
-                                <div class="d-flex justify-content-between align-items-center mt-auto pt-2">
-                                    <a href="https://tumbuh-app-web.vercel.app"
-                                        class="text-decoration-none fw-bold link-primary extra-small-text" data-i18n="projects.view2">Lihat Project</a>
-                                    <span class="text-secondary extra-small-text">2026</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                @empty
+                <div class="col-12 text-center py-5">
+                    <p class="text-muted" data-i18n="projects.empty">Belum ada project untuk ditampilkan.</p>
                 </div>
-
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="stack-animated animate-on-scroll">                        <div
-                            class="card card-elegant card-stack-main shadow-none h-100 overflow-hidden">
-
-                            <div class="px-3 pt-3">
-                                <div class="img-container">
-                                    <img src="{{ asset('img/Amazaincompro.porto.png') }}"
-                                        class="img-fluid border border-opacity-10"
-                                        style="aspect-ratio: 16/10; object-fit: cover; width: 100%;" alt="Project 3">
-                                </div>
-                            </div>
-
-                            <div class="card-body p-3">
-                                <div class="project-category-text">UI/UX • DEVELOPMENT • Training Consultant • Human Capital Development </div>
-                                <div class="project-divider"></div>
-
-                                <h6 class="fw-bold mb-1">Training Platform – AMAZAIN</h6>
-                                <p class="text-muted extra-small-text mb-2" data-i18n="projects.p3.desc">
-                                    Platform pendidikan digital yang didesain untuk mempercepat penguasaan skill strategis di era digital.
-                                </p>
-                                <div class="d-flex justify-content-between align-items-center mt-auto pt-2">
-                                    <a href="https://amazaintraining.com/"
-                                        class="text-decoration-none fw-bold link-primary extra-small-text" data-i18n="projects.view3">Lihat Project</a>
-                                    <span class="text-secondary extra-small-text">2026</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+                @endforelse
             </div>
         </div>
     </section>
-
     <section id="contact" class="contact-section reveal-section">
         <div class="container d-flex justify-content-center px-4">
             <div class="contact-card-classic p-4 p-md-5 text-center animate-on-scroll">

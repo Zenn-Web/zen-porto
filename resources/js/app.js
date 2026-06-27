@@ -259,19 +259,80 @@ document.addEventListener("DOMContentLoaded", () => {
         'hero.glass.badge': 'CURRENT STATUS',
         'hero.glass.text': 'Currently developing high-performance web applications with modern architecture.',
 
-        'about.p1': 'Hi! I am Zenifen, a Front-End Developer diving deep into the world of web development. From writing my first line of HTML to building interactive web applications today, this journey has been full of surprises and exciting new learnings.',
-        'about.p2': 'Currently, I am focused on developing skills in React, modern JavaScript, and creating UIs that are not only visually appealing but also comfortable to use. Every project is an opportunity to learn something new, from performance optimization to design system implementation.',
-        'about.p3': 'For me, writing code is not just about correct syntax but about solving problems efficiently and elegantly. I believe every developer has a unique journey, and I am excited to keep growing in this field.',
+        // About Section
+        "about.title": "About Me",
+        "about.p1": 'Hi! I am Zenifen, a Front-End Developer diving deep into the world of web development. From writing my first line of HTML to building interactive web applications today, this journey has been full of surprises and exciting new learnings.',
+        "about.p2": 'Currently, I am focused on developing skills in React, modern JavaScript, and creating UIs that are not only visually appealing but also comfortable to use. Every project is an opportunity to learn something new, from performance optimization to design system implementation.',
+        "about.p3": 'For me, writing code is not just about correct syntax but about solving problems efficiently and elegantly. I believe every developer has a unique journey, and I am excited to keep growing in this field.',
+        "about.stat1.number": "5+",
+        "about.stat1.label": "Projects",
+        "about.stat2.number": "",
+        "about.stat2.label": "Open to Collaborate",
+        "about.stat3.number": "5+",
+        "about.stat3.label": "Technologies",
+        "about.stat4.label": "Always Learning",
 
-        'about.stat1.number': '5+',
-        'about.stat1.label': 'Projects',
-        'about.stat1.number': '5+',
-        'about.stat2.number': '',
-        'about.stat2.label': 'Open to Collaborate',
-        'about.stat3.number': '5+',
-        'about.stat3.label': 'Technologies',
-        'about.stat4.label': 'Always Learning',
+        // Skills Section
+        "skills.title": "My Skills",
+        "skills.programming": "WEB PROGRAMMING",
+        "skills.programming.desc": "Building scalable web architecture with clean code for long-term business sustainability.",
+        "skills.tech": "Technologies",
+        "skills.learning": "& MORE...",
+        "skills.highlights": "Highlights",
+        "skills.h1": "problem solving",
+        "skills.h2": "clean code",
+        "skills.h3": "UI/UX understanding",
+        "skills.tools": "TOOLS & WORKFLOW",
+        "skills.tools.desc": "Using modern tools and structured workflows to build high-performance web products.",
+        "skills.toolset": "Toolset",
+        "skills.learning2": "& MORE...",
+        "skills.h4": "version control",
+        "skills.h5": "API testing",
+        "skills.h7": "workflow automation",
 
+        // Projects Section
+        "projects.title": "My Projects",
+        "projects.detail": "Detail",
+        "projects.empty": "No projects to show yet.",
+
+        // Project detail page elements
+        "project.back": "Back to Portfolio",
+        "project.tech_stack": "Tech Stack",
+        "project.flow": "Workflow / Flow Description",
+        "project.live_demo": "Live Demo",
+        "project.github": "View on GitHub",
+
+        // Dynamic Project details
+        "project.title.company-website-eyegil": "Company Website Development - Eyegil.com",
+        "project.category.company-website-eyegil": "UI/UX &nbsp;&bull;&nbsp; DIGITAL BUSINESS &nbsp;&bull;&nbsp; Enterprise Solutions Provider &nbsp;&bull;&nbsp; Custom Software Development Services",
+        "project.description.company-website-eyegil": "Building a digital backbone that increases company operational efficiency by up to 40% through integrated systems.",
+        "project.flow_description.company-website-eyegil": "This project began with client needs analysis to build a digital platform. The process continued with UI/UX design using Figma, frontend development with Laravel Blade and Bootstrap, and backend integration for content management and customer services.",
+
+        "project.title.umkm-business-tumbuh": "MSME Business Management - TUMBUH",
+        "project.category.umkm-business-tumbuh": "UI/UX &nbsp;&bull;&nbsp; DEVELOPMENT &nbsp;&bull;&nbsp; Personal Growth Platform &nbsp;&bull;&nbsp; AI Growth Partner",
+        "project.description.umkm-business-tumbuh": "An AI experiment that accelerates MSME growth through automated data processing and financial reporting.",
+        "project.flow_description.umkm-business-tumbuh": "This application was developed using Next.js for the frontend and Python for the AI backend. Key features include an automated dashboard, real-time financial reports, and AI-based business recommendations. The development process included user research, prototyping, agile development, and testing.",
+
+        "project.title.training-platform-amazain": "Training Platform - AMAZAIN",
+        "project.category.training-platform-amazain": "UI/UX &nbsp;&bull;&nbsp; DEVELOPMENT &nbsp;&bull;&nbsp; Training Consultant &nbsp;&bull;&nbsp; Human Capital Development",
+        "project.description.training-platform-amazain": "A digital education platform designed to accelerate the mastery of strategic skills in the digital era.",
+        "project.flow_description.training-platform-amazain": "This platform was built with a modular architecture that enables course, user, and certification management. Key features include an enrollment system, interactive learning, progress tracking, and payment gateway integration. Developed using the agile Scrum method.",
+
+        // Contact Section
+        "contact.eyebrow": "Contact Me",
+        "contact.title": "Get In Touch",
+        "contact.subtitle": "Let's work together for your digital solutions.",
+
+        // Footer Section
+        "footer.tagline": '"It\'s not about whether you can\'t do it. It\'s about whether you don\'t do it" - Zen',
+        "footer.navigation": "NAVIGATION",
+        "footer.home": "Home",
+        "footer.about": "About",
+        "footer.projects": "Projects",
+        "footer.skills": "Skills",
+        "footer.contact": "Contact",
+        "footer.still_making": "Still Building Websites",
+        "footer.rights": "All rights reserved.",
     };
 
     const langToggle = document.getElementById('lang-toggle');

@@ -18,6 +18,8 @@
     
     @vite(['resources/sass/app.scss', 'resources/sass/app2.scss', 'resources/js/app.js'])
 
+    @stack('styles')
+
     <script>
         (function() {
             const savedTheme = localStorage.getItem('theme') || 'light';
@@ -39,9 +41,3 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
 </body>
 </html>
-
-
-
-
-
-

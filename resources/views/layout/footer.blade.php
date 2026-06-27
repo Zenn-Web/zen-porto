@@ -54,8 +54,8 @@
 
         <!-- Copyright Row -->
         <div class="d-flex flex-column flex-md-row align-items-center justify-content-between gap-3 text-center text-md-start">
-            <p class="footer-copyright mb-0" data-i18n="footer.rights">
-                &copy; {{ date('Y') }} Zenifen. Seluruh hak dilindungi.
+            <p class="footer-copyright mb-0">
+                &copy; {{ date('Y') }} Zenifen. <span data-i18n="footer.rights">Seluruh hak dilindungi.</span>
             </p>
             <p class="footer-handcrafted mb-0">
                 Made by Zen 
