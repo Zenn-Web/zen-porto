@@ -336,17 +336,17 @@ document.addEventListener("DOMContentLoaded", () => {
         // Dynamic Project details
         "project.title.company-website-eyegil": "Company Website Development - Eyegil.com",
         "project.category.company-website-eyegil": "UI/UX &nbsp;&bull;&nbsp; DIGITAL BUSINESS &nbsp;&bull;&nbsp; Enterprise Solutions Provider &nbsp;&bull;&nbsp; Custom Software Development Services",
-        "project.description.company-website-eyegil": "Building a digital backbone that increases company operational efficiency by up to 40% through integrated systems.",
+        "project.description.company-website-eyegil": "Contributed to building a digital backbone that increases company operational efficiency by up to 40% through integrated systems.",
         "project.flow_description.company-website-eyegil": "This project began with client needs analysis to build a digital platform. The process continued with UI/UX design using Figma, frontend development with Laravel Blade and Bootstrap, and backend integration for content management and customer services.",
 
         "project.title.umkm-business-tumbuh": "MSME Business Management - TUMBUH",
         "project.category.umkm-business-tumbuh": "UI/UX &nbsp;&bull;&nbsp; DEVELOPMENT &nbsp;&bull;&nbsp; Personal Growth Platform &nbsp;&bull;&nbsp; AI Growth Partner",
-        "project.description.umkm-business-tumbuh": "An AI experiment that accelerates MSME growth through automated data processing and financial reporting.",
+        "project.description.umkm-business-tumbuh": "Contributed to an AI experiment that accelerates MSME growth through automated data processing and financial reporting.",
         "project.flow_description.umkm-business-tumbuh": "This application was developed using Next.js for the frontend and Python for the AI backend. Key features include an automated dashboard, real-time financial reports, and AI-based business recommendations. The development process included user research, prototyping, agile development, and testing.",
 
         "project.title.training-platform-amazain": "Training Platform - AMAZAIN",
         "project.category.training-platform-amazain": "UI/UX &nbsp;&bull;&nbsp; DEVELOPMENT &nbsp;&bull;&nbsp; Training Consultant &nbsp;&bull;&nbsp; Human Capital Development",
-        "project.description.training-platform-amazain": "A digital education platform designed to accelerate the mastery of strategic skills in the digital era.",
+        "project.description.training-platform-amazain": "Contributed to developing a digital education platform designed to accelerate the mastery of strategic skills in the digital era.",
         "project.flow_description.training-platform-amazain": "This platform was built with a modular architecture that enables course, user, and certification management. Key features include an enrollment system, interactive learning, progress tracking, and payment gateway integration. Developed using the agile Scrum method.",
 
         // Contact Section

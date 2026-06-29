@@ -215,11 +215,20 @@
 }
 
 .detail-stat-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     width: 14px;
     height: 14px;
     color: var(--text-dim);
     flex-shrink: 0;
     transition: color 0.25s ease;
+
+    svg {
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
 }
 
 .detail-stat-value {
