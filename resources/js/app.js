@@ -205,13 +205,44 @@ document.addEventListener("DOMContentLoaded", () => {
     // 6. THEME TOGGLE (Dark Mode) - Optimized
     const themeToggle = document.getElementById('theme-toggle');
     
+    // Inject style to force transition on all elements during theme switching
+    (function() {
+        if (document.getElementById('theme-force-style')) return;
+        const style = document.createElement('style');
+        style.id = 'theme-force-style';
+        style.textContent = `
+            html.theme-switching,
+            html.theme-switching *,
+            html.theme-switching *::before,
+            html.theme-switching *::after {
+                transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, opacity 0.3s ease, box-shadow 0.3s ease !important;
+                transition-delay: 0s !important;
+                animation: none !important;
+                animation-delay: 0s !important;
+            }
+        `;
+        document.head.appendChild(style);
+    })();
+
     if (themeToggle) {
         themeToggle.addEventListener('click', () => {
+            // Enable transition styling
+            document.documentElement.classList.add('theme-switching');
+            
+            // Force browser reflow to apply transition styles immediately
+            document.documentElement.offsetHeight;
+            
+            // Toggle the theme attribute
             const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
             const newTheme = isDark ? 'light' : 'dark';
             
             document.documentElement.setAttribute('data-theme', newTheme);
             localStorage.setItem('theme', newTheme);
+            
+            // Disable transition styling once transition completes (300ms)
+            setTimeout(() => {
+                document.documentElement.classList.remove('theme-switching');
+            }, 300);
         });
     }
 

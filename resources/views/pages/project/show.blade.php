@@ -2,73 +2,163 @@
 
 @section('content')
 
-{{-- Hero Section --}}
-<section class="project-hero-section position-relative overflow-hidden">
-    <div class="project-hero-bg">
-        <div class="classic-grid-pattern"></div>
-        <div class="ornament-sparkle sparkle-1">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0L15 9L24 12L15 15L12 24L9 15L0 12L9 9L12 0Z"/></svg>
-        </div>
-        <div class="ornament-sparkle sparkle-2">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0L15 9L24 12L15 15L12 24L9 15L0 12L9 9L12 0Z"/></svg>
-        </div>
+@php
+    $cleanCategory = str_replace("\x95", '&#8226;', str_replace("\x96", '&#8211;', $project->category ?? ''));
+    $cleanTitle = str_replace(["\x95", "\x96"], ['&#8226;', '&#8211;'], $project->title ?? '');
+    $shortCategory = preg_replace('/[^A-Za-z0-9\/\+].*/', '', $project->category ?? '') ?: 'Project';
+@endphp
+
+{{-- ============================================ --}}
+{{-- HERO --}}
+{{-- ============================================ --}}
+<section class="detail-hero-section position-relative overflow-hidden">
+    <div class="detail-hero-bg">
+        <img src="{{ asset($project->image) }}" alt="{{ $cleanTitle }}" class="detail-hero-bg-img">
+        <div class="detail-hero-overlay"></div>
+        <div class="detail-hero-gradient"></div>
     </div>
 
-    <div class="container position-relative" style="z-index: 2;">
-        <div class="row justify-content-center">
-            <div class="col-lg-10">
-                {{-- Back Link --}}
-                <a href="{{ url('/#resources') }}" class="project-back-link">
+    <div class="container position-relative h-100 d-flex flex-column justify-content-end" style="z-index: 3;">
+        <div class="row">
+            <div class="col-lg-10 col-xl-9">
+                <a href="{{ url('/#resources') }}" class="detail-back-link" style="animation-delay: 0.1s;">
                     <i class="bi bi-arrow-left me-2"></i>
                     <span data-i18n="project.back">Kembali ke Portfolio</span>
                 </a>
 
-                {{-- Project Image --}}
-                <div class="project-image-wrapper animate-on-scroll">
-                    <img src="{{ asset($project->image) }}" alt="{{ $project->title }}" class="img-fluid project-hero-image">
+                <div class="detail-hero-meta" style="animation-delay: 0.2s;">
+                    <span class="detail-category-badge" data-i18n="project.category.{{ $project->slug }}">{!! $cleanCategory !!}</span>
+                    <span class="detail-year-badge">{{ $project->year }}</span>
                 </div>
 
-                {{-- Project Meta --}}
-                <div class="project-meta-wrapper animate-on-scroll">
-                    <div class="project-category-badge" data-i18n="project.category.{{ $project->slug }}">{{ $project->category }}</div>
-                    <span class="project-year-badge">{{ $project->year }}</span>
-                </div>
-
-                {{-- Title --}}
-                <h1 class="project-title animate-on-scroll text-reveal" data-i18n="project.title.{{ $project->slug }}">{{ $project->title }}</h1>
-
-                {{-- Description --}}
-                <p class="project-description animate-on-scroll" data-i18n="project.description.{{ $project->slug }}">{{ $project->description }}</p>
-
-                {{-- Tech Stack Badges --}}
-                @if($project->tech_stack_badges)
-                    <div class="tech-stack-wrapper animate-on-scroll">
-                        <h5 class="tech-stack-label" data-i18n="project.tech_stack">Tech Stack</h5>
-                        <div class="tech-badges-group">
-                            @foreach($project->tech_stack_badges as $badge)
-                                <span class="tech-badge"
-                                      style="--badge-color: {{ $badge["color"] }};">
-                                    {{ $badge["name"] }}
-                                </span>
-                            @endforeach
-                        </div>
-                    </div>
-                @endif
+                <h1 class="detail-hero-title text-reveal" style="animation-delay: 0.35s;" data-i18n="project.title.{{ $project->slug }}">{!! $cleanTitle !!}</h1>
             </div>
         </div>
     </div>
 </section>
 
-{{-- Flow Description Section --}}
-@if($project->flow_description)
-<section class="project-flow-section reveal-section">
+{{-- ============================================ --}}
+{{-- READING THREAD — connects hero to content --}}
+{{-- ============================================ --}}
+<div class="detail-thread-wrap">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-10">
-                <div class="flow-card animate-on-scroll">
-                    <h5 class="flow-label" data-i18n="project.flow">Alur / Flow Description</h5>
-                    <div class="flow-divider"></div>
-                    <div class="flow-content" data-i18n="project.flow_description.{{ $project->slug }}">
+                <div class="detail-thread-line"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{-- ============================================ --}}
+{{-- STATS BAR --}}
+{{-- ============================================ --}}
+<section class="detail-stats-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="detail-stats-bar" style="animation-delay: 0.15s;">
+                    <div class="detail-stat-item">
+                        <span class="detail-stat-icon">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+                        </span>
+                        <span class="detail-stat-value">{{ $shortCategory }}</span>
+                    </div>
+                    <span class="detail-stat-sep"></span>
+                    <div class="detail-stat-item">
+                        <span class="detail-stat-icon">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                        </span>
+                        <span class="detail-stat-value">{{ $project->year }}</span>
+                    </div>
+                    <span class="detail-stat-sep"></span>
+                    <div class="detail-stat-item">
+                        <span class="detail-stat-icon">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                        </span>
+                        <span class="detail-stat-value">{{ $project->tech_stack_badges ? count($project->tech_stack_badges) . ' tools' : '-' }}</span>
+                    </div>
+                    @if($project->github_url)
+                    <span class="detail-stat-sep"></span>
+                    <div class="detail-stat-item">
+                        <span class="detail-stat-icon">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                        </span>
+                        <span class="detail-stat-value">GitHub</span>
+                    </div>
+                    @endif
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{{-- ============================================ --}}
+{{-- EDITORIAL: Description + Tech Stack --}}
+{{-- ============================================ --}}
+<section class="detail-editorial-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="row g-5">
+                    <div class="col-lg-7">
+                        <div class="detail-description-wrap" style="animation-delay: 0.1s;">
+                            <span class="detail-eyebrow" data-i18n="project.about">Tentang Proyek</span>
+                            <p class="detail-description-text" data-i18n="project.description.{{ $project->slug }}">{{ $project->description }}</p>
+                        </div>
+                    </div>
+
+                    @if($project->tech_stack_badges)
+                    <div class="col-lg-4 offset-lg-1">
+                        <div class="detail-tech-wrap" style="animation-delay: 0.2s;">
+                            <span class="detail-eyebrow" data-i18n="project.tech_stack">Tech Stack</span>
+                            <div class="detail-tech-badges">
+                                @foreach($project->tech_stack_badges as $badge)
+                                    <span class="detail-tech-pill">
+                                        {{ $badge["name"] }}
+                                    </span>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                    @endif
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{{-- ============================================ --}}
+{{-- SECTION DIVIDER --}}
+{{-- ============================================ --}}
+<div class="detail-divider-wrap">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="detail-section-divider">
+                    <span class="detail-divider-diamond"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{-- ============================================ --}}
+{{-- NARRATIVE: Flow / Process --}}
+{{-- ============================================ --}}
+@if($project->flow_description)
+<section class="detail-narrative-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="detail-narrative-header" style="animation-delay: 0.1s;">
+                    <span class="detail-eyebrow" data-i18n="project.flow">Alur / Flow Description</span>
+                </div>
+                <div class="detail-narrative-body" style="animation-delay: 0.2s;">
+                    <div class="detail-narrative-accent">
+                        <span class="detail-narrative-dot"></span>
+                    </div>
+                    <div class="detail-narrative-text" data-i18n="project.flow_description.{{ $project->slug }}">
                         {!! nl2br(e($project->flow_description)) !!}
                     </div>
                 </div>
@@ -78,22 +168,37 @@
 </section>
 @endif
 
-{{-- Action Buttons Section --}}
-<section class="project-action-section reveal-section">
+{{-- ============================================ --}}
+{{-- CLOSING THREAD --}}
+{{-- ============================================ --}}
+<div class="detail-closing-thread-wrap">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-10">
-                <div class="action-buttons-wrapper animate-on-scroll">
+                <div class="detail-closing-thread"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{-- ============================================ --}}
+{{-- CTA --}}
+{{-- ============================================ --}}
+<section class="detail-cta-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="detail-cta-wrap" style="animation-delay: 0.15s;">
                     @if($project->live_demo_url)
-                        <a href="{{ $project->live_demo_url }}" target="_blank" rel="noopener" class="btn-action btn-live-demo">
-                            <i class="bi bi-globe2 me-2"></i>
+                        <a href="{{ $project->live_demo_url }}" target="_blank" rel="noopener" class="detail-cta detail-cta-primary">
                             <span data-i18n="project.live_demo">Live Demo</span>
+                            <i class="bi bi-arrow-up-right"></i>
                         </a>
                     @endif
 
                     @if($project->github_url)
-                        <a href="{{ $project->github_url }}" target="_blank" rel="noopener" class="btn-action btn-github">
-                            <i class="bi bi-github me-2"></i>
+                        <a href="{{ $project->github_url }}" target="_blank" rel="noopener" class="detail-cta detail-cta-secondary">
+                            <i class="bi bi-github"></i>
                             <span data-i18n="project.github">Lihat di GitHub</span>
                         </a>
                     @endif
@@ -102,256 +207,5 @@
         </div>
     </div>
 </section>
-
-{{-- Custom Styles --}}
-@push("styles")
-<style>
-/* Hero Section */
-.project-hero-section {
-    padding: 140px 0 60px;
-    min-height: 60vh;
-}
-
-.project-hero-bg {
-    position: absolute;
-    inset: 0;
-    overflow: hidden;
-    opacity: 0.15;
-}
-
-.project-back-link {
-    display: inline-flex;
-    align-items: center;
-    color: var(--text-color, #333);
-    text-decoration: none;
-    font-weight: 500;
-    margin-bottom: 30px;
-    transition: color 0.3s ease;
-    font-size: 0.95rem;
-}
-
-.project-back-link:hover {
-    color: var(--primary-color, #0d6efd);
-}
-
-.project-image-wrapper {
-    border-radius: 20px;
-    overflow: hidden;
-    margin-bottom: 30px;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.1);
-}
-
-.project-hero-image {
-    width: 100%;
-    display: block;
-}
-
-.project-meta-wrapper {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    margin-bottom: 20px;
-    flex-wrap: wrap;
-}
-
-.project-category-badge {
-    background: var(--primary-color, #0d6efd);
-    color: #fff;
-    padding: 6px 16px;
-    border-radius: 50px;
-    font-size: 0.8rem;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-}
-
-.project-year-badge {
-    background: var(--card-bg, #f0f0f0);
-    color: var(--text-muted, #666);
-    padding: 6px 16px;
-    border-radius: 50px;
-    font-size: 0.8rem;
-    font-weight: 500;
-}
-
-.project-title {
-    font-size: 2.5rem;
-    font-weight: 700;
-    margin-bottom: 20px;
-    color: var(--heading-color, #1a1a2e);
-}
-
-.project-description {
-    font-size: 1.1rem;
-    line-height: 1.8;
-    color: var(--text-color, #555);
-    margin-bottom: 30px;
-}
-
-/* Tech Stack */
-.tech-stack-wrapper {
-    margin-top: 30px;
-}
-
-.tech-stack-label {
-    font-size: 1rem;
-    font-weight: 600;
-    margin-bottom: 15px;
-    color: var(--heading-color, #1a1a2e);
-}
-
-.tech-badges-group {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-}
-
-.tech-badge {
-    display: inline-block;
-    padding: 8px 20px;
-    border-radius: 50px;
-    font-size: 0.85rem;
-    font-weight: 600;
-    background: color-mix(in srgb, var(--badge-color) 15%, transparent);
-    color: var(--badge-color);
-    border: 1.5px solid color-mix(in srgb, var(--badge-color) 40%, transparent);
-    transition: all 0.3s ease;
-}
-
-.tech-badge:hover {
-    background: color-mix(in srgb, var(--badge-color) 25%, transparent);
-    transform: translateY(-2px);
-}
-
-/* Flow Description */
-.project-flow-section {
-    padding: 60px 0;
-}
-
-.flow-card {
-    background: var(--card-bg, #fff);
-    border-radius: 20px;
-    padding: 40px;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.05);
-    border: 1px solid var(--border-color, rgba(0,0,0,0.06));
-}
-
-.flow-label {
-    font-size: 1.1rem;
-    font-weight: 700;
-    margin-bottom: 15px;
-    color: var(--heading-color, #1a1a2e);
-}
-
-.flow-divider {
-    width: 60px;
-    height: 3px;
-    background: var(--primary-color, #0d6efd);
-    border-radius: 2px;
-    margin-bottom: 25px;
-}
-
-.flow-content {
-    font-size: 1rem;
-    line-height: 1.9;
-    color: var(--text-color, #555);
-    white-space: pre-line;
-}
-
-/* Action Buttons */
-.project-action-section {
-    padding: 0 0 80px;
-}
-
-.action-buttons-wrapper {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 16px;
-}
-
-.btn-action {
-    display: inline-flex;
-    align-items: center;
-    padding: 14px 32px;
-    border-radius: 12px;
-    font-weight: 600;
-    font-size: 0.95rem;
-    text-decoration: none;
-    transition: all 0.3s ease;
-}
-
-.btn-live-demo {
-    background: var(--primary-color, #0d6efd);
-    color: #fff;
-    box-shadow: 0 8px 25px rgba(13, 110, 253, 0.3);
-}
-
-.btn-live-demo:hover {
-    background: var(--primary-dark, #0b5ed7);
-    color: #fff;
-    transform: translateY(-3px);
-    box-shadow: 0 12px 35px rgba(13, 110, 253, 0.4);
-}
-
-.btn-github {
-    background: var(--card-bg, #f0f0f0);
-    color: var(--text-color, #333);
-    border: 1.5px solid var(--border-color, rgba(0,0,0,0.1));
-}
-
-.btn-github:hover {
-    background: var(--primary-color, #0d6efd);
-    color: #fff;
-    border-color: var(--primary-color, #0d6efd);
-    transform: translateY(-3px);
-}
-
-/* Dark mode adjustments */
-[data-theme="dark"] .project-image-wrapper {
-    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-}
-
-[data-theme="dark"] .flow-card {
-    background: var(--card-bg, #1e1e2f);
-    border-color: var(--border-color, rgba(255,255,255,0.06));
-}
-
-[data-theme="dark"] .btn-github {
-    border-color: var(--border-color, rgba(255,255,255,0.1));
-}
-
-[data-theme="dark"] .tech-badge {
-    border-color: color-mix(in srgb, var(--badge-color) 50%, transparent);
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-    .project-hero-section {
-        padding: 110px 0 40px;
-    }
-
-    .project-title {
-        font-size: 1.8rem;
-    }
-
-    .project-description {
-        font-size: 1rem;
-    }
-
-    .flow-card {
-        padding: 25px;
-    }
-
-    .btn-action {
-        width: 100%;
-        justify-content: center;
-    }
-
-    .action-buttons-wrapper {
-        flex-direction: column;
-    }
-}
-</style>
-@endpush
 
 @endsection

@@ -16,7 +16,7 @@
     <!-- Lottie Player -->
     <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
     
-    @vite(['resources/sass/app.scss', 'resources/sass/app2.scss', 'resources/js/app.js'])
+    @vite(['resources/sass/app.scss', 'resources/sass/app2.scss', 'resources/sass/Detailproject.scss', 'resources/js/app.js', 'resources/js/projectranslate.js'])
 
     @stack('styles')
 
@@ -41,3 +41,4 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
 </body>
 </html>
+

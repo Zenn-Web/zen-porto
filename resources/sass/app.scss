@@ -617,12 +617,10 @@ section:first-of-type {
         background: var(--text-primary); // Menjadi hitam/gelap sesuai tema
         border-color: var(--text-primary);
         color: var(--bg-primary); // Ikon menjadi warna background (kontras)
-        transform: translateY(-5px);
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
     }
 
     &:active {
-        transform: scale(0.95) translateY(0);
+        transform: scale(0.95);
         box-shadow: none;
     }
 }
@@ -931,8 +929,6 @@ section:not(#about):not(#skills):not(#resources):not(#contact) {
     &:hover {
         background-color: transparent;
         color: var(--text-primary);
-        transform: translateY(-3px);
-        box-shadow: var(--shadow-md);
     }
 }
 
@@ -950,8 +946,6 @@ section:not(#about):not(#skills):not(#resources):not(#contact) {
     &:hover {
         background-color: var(--text-primary);
         color: var(--bg-primary);
-        transform: translateY(-3px);
-        box-shadow: var(--shadow-md);
     }
 }
 
@@ -1090,8 +1084,6 @@ section:not(#about):not(#skills):not(#resources):not(#contact) {
     white-space: nowrap;
 
     &:hover {
-        transform: translateY(-2px);
-        box-shadow: var(--shadow-md);
     }
 }
 

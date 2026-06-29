@@ -71,8 +71,6 @@ html {
 .stack-animated {
     position: relative;
     display: grid;
-    perspective: 1500px;
-    transform-style: preserve-3d;
     align-items: start; // Memastikan semua elemen tumpukan mulai dari atas
     height: 100%;
     
@@ -93,13 +91,14 @@ html {
         position: relative;
         z-index: 1;
         box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-        transform: translateZ(0);
+        overflow: hidden;
+        clip-path: inset(0 round 24px); // Force perfect clip on rounded corners!
     }
 
     // INTERAKSI HOVER (Hanya aktif setelah animasi selesai)
     &.animation-finished:hover {
         .card-stack-main {
-            transform: translateY(-5px) translateZ(50px);
+            transform: translateY(-5px);
             box-shadow: 0 15px 35px rgba(0,0,0,0.08);
             border-color: var(--accent-emerald);
 
@@ -636,8 +635,6 @@ html {
     &:hover {
         background-color: transparent;
         color: var(--text-primary);
-        transform: translateY(-3px);
-        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
     }
     
     // Mobile: full width
@@ -806,7 +803,6 @@ html {
     &:hover:not(.no-link) {
         border-color: var(--accent-emerald, #0fb9a7);
         color: var(--accent-emerald, #0fb9a7);
-        transform: translateY(-2px);
         background-color: rgba(15, 185, 167, 0.02);
     }
     
@@ -836,7 +832,6 @@ html {
 
     &:hover {
         color: var(--accent-emerald, #0fb9a7);
-        transform: translateY(-3px);
     }
 }
 
@@ -858,8 +853,6 @@ html {
         background-color: var(--text-primary, #0f172a);
         color: var(--bg-primary, #ffffff);
         border-color: var(--text-primary, #0f172a);
-        transform: translateY(-5px);
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
     }
 }
 
@@ -1135,8 +1128,6 @@ textarea.is-invalid {
         &:hover {
             background-color: transparent;
             color: var(--btn-solid-bg, #1c1917);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
         }
     }
 
@@ -1148,8 +1139,6 @@ textarea.is-invalid {
         &:hover {
             background-color: var(--btn-solid-bg, #1c1917);
             color: var(--btn-solid-text, #ffffff);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
         }
     }
 
@@ -1641,8 +1630,27 @@ textarea.is-invalid {
     font-weight: 600;
     line-height: 1.5;
     transition: all 0.3s ease;
+    
+    // Unified Theme Color (Emerald Accent)
+    background-color: rgba(var(--accent-emerald-rgb), 0.08);
+    color: var(--accent-emerald);
+    border: 1px solid rgba(var(--accent-emerald-rgb), 0.2);
+
+    &.badge-count {
+        background-color: color-mix(in srgb, var(--text-primary) 8%, transparent);
+        color: var(--text-secondary);
+        border: 1px solid color-mix(in srgb, var(--text-primary) 15%, transparent);
+    }
 }
 
-.card-tech-badge:hover {
-    transform: translateY(-1px);
+[data-theme="dark"] .card-tech-badge {
+    background-color: rgba(var(--accent-emerald-rgb), 0.12);
+    color: var(--accent-emerald);
+    border-color: rgba(var(--accent-emerald-rgb), 0.25);
+
+    &.badge-count {
+        background-color: rgba(255, 255, 255, 0.08);
+        color: var(--text-muted);
+        border-color: rgba(255, 255, 255, 0.12);
+    }
 }

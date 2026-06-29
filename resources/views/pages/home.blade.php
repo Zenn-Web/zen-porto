@@ -206,23 +206,27 @@
 
             <div class="row g-3">
                 @forelse($projects as $project)
+                                @php
+                                    $cleanTitle = str_replace([chr(150), chr(151)], ['&#8211;', '&#8211;'], $project->title ?? '');
+                                    $cleanCategory = str_replace(chr(149), '&#8226;', $project->category ?? '');
+                                @endphp
                 <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="stack-animated animate-on-scroll">                        <div
+                    <div class="stack-animated animate-on-scroll"><div
                             class="card card-elegant card-stack-main shadow-none h-100 overflow-hidden">
 
                             <div class="px-3 pt-3">
                                 <div class="img-container">
                                     <img src="{{ asset($project->image) }}"
-                                        class="img-fluid border border-opacity-10"
-                                        style="aspect-ratio: 16/10; object-fit: cover; width: 100%;" alt="{{ $project->title }}">
+                                        class="img-fluid"
+                                        style="width: 100%; height: auto; display: block; object-fit: contain; background: #1a1a1a;" alt="{!! str_replace([chr(150), chr(151)], ['&#8211;', '&#8211;'], $project->title) !!}">
                                 </div>
                             </div>
 
                             <div class="card-body p-3 d-flex flex-column">
-                                <div class="project-category-text" data-i18n="project.category.{{ $project->slug }}">{{ $project->category }}</div>
+                                <div class="project-category-text" data-i18n="project.category.{{ $project->slug }}">{!! $cleanCategory !!}</div>
                                 <div class="project-divider"></div>
 
-                                <h6 class="fw-bold mb-1" data-i18n="project.title.{{ $project->slug }}">{{ $project->title }}</h6>
+                                <h6 class="fw-bold mb-1" data-i18n="project.title.{{ $project->slug }}">{!! $cleanTitle !!}</h6>
                                 <p class="text-muted extra-small-text mb-2" data-i18n="project.description.{{ $project->slug }}">
                                     {{ $project->description }}
                                 </p>
@@ -230,12 +234,12 @@
                                 @if($project->tech_stack_badges)
                                 <div class="mb-2 d-flex flex-wrap gap-1">
                                     @foreach(array_slice($project->tech_stack_badges, 0, 3) as $badge)
-                                    <span class="card-tech-badge" style="background: color-mix(in srgb, {{ $badge["color"] }} 15%, transparent); color: {{ $badge["color"] }}; border: 1px solid color-mix(in srgb, {{ $badge["color"] }} 30%, transparent);">
+                                    <span class="card-tech-badge">
                                         {{ $badge["name"] }}
                                     </span>
                                     @endforeach
                                     @if(count($project->tech_stack_badges) > 3)
-                                    <span class="card-tech-badge text-muted" style="background: var(--card-bg, #f0f0f0);">
+                                    <span class="card-tech-badge badge-count">
                                         +{{ count($project->tech_stack_badges) - 3 }}
                                     </span>
                                     @endif
@@ -319,3 +323,5 @@
     </section>
 
 @endsection
+
+
