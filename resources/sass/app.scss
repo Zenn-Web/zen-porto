@@ -322,7 +322,7 @@ section:first-of-type {
 
     @media (min-width: 992px) {
         padding-top: 80px !important;
-        padding-bottom: 0 !important;
+        padding-bottom: 120px !important; // Ensure hero content never bleeds to the section bottom edge
         align-items: center;
     }
 }
@@ -332,7 +332,7 @@ section:first-of-type {
 #skills,
 #resources,
 #contact {
-    scroll-margin-top: 80px !important;
+    scroll-margin-top: 75px !important;
     min-height: calc(100vh - 80px) !important;
     display: flex !important;
     flex-direction: column !important;

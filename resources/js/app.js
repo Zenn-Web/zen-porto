@@ -70,10 +70,21 @@ document.addEventListener("DOMContentLoaded", () => {
     const navbarCollapse = document.getElementById('mainNavbar');
     const body = document.body;
 
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    document.querySelectorAll('a[href*="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
-            const targetId = this.getAttribute('href');
-            if (!targetId || targetId === '#' || !targetId.startsWith('#')) return;
+            const href = this.getAttribute('href');
+            const hashIndex = href.indexOf('#');
+            if (hashIndex === -1) return;
+
+            const targetId = href.substring(hashIndex);
+            if (!targetId || targetId === '#') return;
+
+            // Resolve full URL to check pathname
+            const targetUrl = new URL(this.href, window.location.href);
+            if (targetUrl.pathname !== window.location.pathname) {
+                // Allow default navigation to redirect to the home page
+                return;
+            }
 
             const targetElement = document.querySelector(targetId);
             if (targetElement) {
@@ -82,9 +93,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 // Cek jika menu mobile sedang terbuka
                 const isMobileMenuOpen = navbarCollapse && navbarCollapse.classList.contains('show');
                 
-                // Offset selaras dengan scroll-margin-top: 70px di CSS
+                // Offset selaras dengan scroll-margin-top: 75px di CSS (= tinggi navbar)
                 const scrollOptions = { 
-                    offset: -70, 
+                    offset: -75, 
                     duration: 1.4,
                     easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
                 };
@@ -272,6 +283,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // 8. LANGUAGE TOGGLE (ID ↔ EN)
     const translations = {
         // Navbar
+        'nav.home': 'Home',
         'nav.about': 'About',
         'nav.skills': 'Skills',
         'nav.projects': 'Projects',
@@ -292,34 +304,34 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // About Section
         "about.title": "About Me",
-        "about.p1": 'Hi! I am Zenifen, a Front-End Developer diving deep into the world of web development. From writing my first line of HTML to building interactive web applications today, this journey has been full of surprises and exciting new learnings.',
-        "about.p2": 'Currently, I am focused on developing skills in React, modern JavaScript, and creating UIs that are not only visually appealing but also comfortable to use. Every project is an opportunity to learn something new, from performance optimization to design system implementation.',
-        "about.p3": 'For me, writing code is not just about correct syntax but about solving problems efficiently and elegantly. I believe every developer has a unique journey, and I am excited to keep growing in this field.',
+        "about.p1": 'Hi! I am Zenifen, a <strong>Front-End Developer</strong> focused on building interactive web interfaces. Starting from a curiosity about HTML, I now design modern web architectures using <strong>React, modern JavaScript, and Tailwind CSS</strong>.',
+        "about.p2": 'For me, <i>coding</i> is not just about syntax, but about solving problems. From <strong>performance optimization</strong> (Core Web Vitals) to <strong>Design System</strong> implementation, I ensure every line of code makes a real impact on user comfort.',
         "about.stat1.number": "5+",
-        "about.stat1.label": "Projects",
-        "about.stat2.number": "",
-        "about.stat2.label": "Open to Collaborate",
-        "about.stat3.number": "5+",
+        "about.stat1.label": "Real Projects",
+        "about.stat2.number": "100+",
+        "about.stat2.label": "Code Commits",
+        "about.stat3.number": "10+",
         "about.stat3.label": "Technologies",
-        "about.stat4.label": "Always Learning",
+        "about.vision.label": "Vision & Dedication",
+        "about.vision.text": 'Aspiring to build <strong>impactful digital solutions</strong> for various industry needs, and actively contributing to advancing the future ecosystem of web technology.',
 
         // Skills Section
         "skills.title": "My Skills",
         "skills.programming": "WEB PROGRAMMING",
-        "skills.programming.desc": "Building scalable web architecture with clean code for long-term business sustainability.",
-        "skills.tech": "Technologies",
-        "skills.learning": "& MORE...",
-        "skills.highlights": "Highlights",
-        "skills.h1": "problem solving",
-        "skills.h2": "clean code",
-        "skills.h3": "UI/UX understanding",
+        "skills.programming.desc": "Building modern interfaces and robust backend architectures for the best user experience.",
+        "skills.fokus": "Main Focus (Proficient)",
+        "skills.eksplorasi": "Exploration (Familiar)",
+        "skills.praktik": "Implementation Practices",
+        "skills.web.p1": "Building interactive & <i>reusable</i> UI components",
+        "skills.web.p2": "Implementing MVC (Model-View-Controller) architecture patterns",
+        "skills.web.p3": "Optimizing asset performance and layout responsiveness",
         "skills.tools": "TOOLS & WORKFLOW",
-        "skills.tools.desc": "Using modern tools and structured workflows to build high-performance web products.",
-        "skills.toolset": "Toolset",
-        "skills.learning2": "& MORE...",
-        "skills.h4": "version control",
-        "skills.h5": "API testing",
-        "skills.h7": "workflow automation",
+        "skills.tools.desc": "Using a modern tool ecosystem to ensure productivity, collaboration, and code quality.",
+        "skills.kontrol": "Version Control & API",
+        "skills.lingkungan": "Development Environment",
+        "skills.tools.p1": "Collaborative code management using <i>Git Flow</i> principles",
+        "skills.tools.p2": "API <i>endpoint</i> testing for secure system integration",
+        "skills.tools.p3": "Utilizing AI <i>tools</i> for <i>debugging</i> acceleration",
 
         // Projects Section
         "projects.title": "My Projects",

@@ -12,7 +12,7 @@
     "src": "resources/css/app.css"
   },
   "resources/js/app.js": {
-    "file": "assets/app-Cc61mpGU.js",
+    "file": "assets/app-8oflFekz.js",
     "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true
@@ -24,7 +24,7 @@
     "isEntry": true
   },
   "resources/sass/Detailproject.scss": {
-    "file": "assets/Detailproject-Dn2zOW56.css",
+    "file": "assets/Detailproject-CmjHFdpo.css",
     "src": "resources/sass/Detailproject.scss",
     "isEntry": true,
     "name": "Detailproject",
@@ -33,7 +33,7 @@
     ]
   },
   "resources/sass/app.scss": {
-    "file": "assets/app-C4rKaYpZ.css",
+    "file": "assets/app-BqC60CNY.css",
     "src": "resources/sass/app.scss",
     "isEntry": true,
     "name": "app",
@@ -42,7 +42,7 @@
     ]
   },
   "resources/sass/app2.scss": {
-    "file": "assets/app2-hfficvwy.css",
+    "file": "assets/app2-Gw5cSsb3.css",
     "src": "resources/sass/app2.scss",
     "isEntry": true,
     "name": "app2",

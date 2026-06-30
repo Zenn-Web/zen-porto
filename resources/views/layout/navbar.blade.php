@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light custom-navbar fixed-top">
     <div class="container">
-        <a class="navbar-brand brand-logo" href="#home">
+        <a class="navbar-brand brand-logo" href="/#home">
             Zenifen<span class="dot">.</span>
         </a>
 
@@ -20,19 +20,25 @@
             <ul class="navbar-nav mx-auto nav-links-group">
 
                 <li class="nav-item">
-                    <a class="nav-link" href="#about">
+                    <a class="nav-link" href="/#home">
+                        <i class="bi bi-house d-lg-none"></i>
+                        <span data-i18n="nav.home">Beranda</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/#about">
                         <i class="bi bi-person d-lg-none"></i>
                         <span data-i18n="nav.about">Tentang</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#skills">
+                    <a class="nav-link" href="/#skills">
                         <i class="bi bi-journal-code d-lg-none"></i>
                         <span data-i18n="nav.skills">Keahlian</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#resources">
+                    <a class="nav-link" href="/#resources">
                         <i class="bi bi-grid d-lg-none"></i>
                         <span data-i18n="nav.projects">Projek</span>
                     </a>
@@ -53,7 +59,7 @@
                     </button>
                 </div>
 
-                <a href="#contact" class="btn-contact-me">
+                <a href="/#contact" class="btn-contact-me">
                     <i class="bi bi-chat-dots me-2 d-lg-none"></i>
                     <span data-i18n="nav.contact">Kontak Saya</span>
                 </a>

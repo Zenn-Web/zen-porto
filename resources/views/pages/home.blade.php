@@ -76,31 +76,75 @@
 
     <section id="about" class="about-section reveal-section">
         <div class="container">
-            <div class="card profile-card-horizontal animate-on-scroll">
-                <div class="row g-0 align-items-center">
-                    <div class="col-md-4 profile-img-container text-center py-4 py-md-5">
-                        <div class="image-frame">
-                            <div class="image-sweep">
-                                <img src="{{ asset('img/foto_about_me.jpeg') }}" alt="Profile Zenifen Agusti">
+            <div class="about-layout-row row align-items-stretch">
+                <!-- BIO COLUMN -->
+                <div class="col-lg-6 about-bio-col animate-on-scroll">
+                    <span class="about-eyebrow" data-i18n="about.title">Tentang Saya</span>
+                    <h2 class="about-title animate-text text-reveal" data-i18n="about.title">Tentang Saya</h2>
+                    <div class="about-divider animate-text"></div>
+                    
+                    <p class="about-desc animate-text mb-4" data-i18n="about.p1">
+                        Hai! Saya Zenifen, seorang <strong>Front-End Developer</strong> yang fokus membangun antarmuka web interaktif. Berawal dari rasa penasaran dengan HTML, kini saya merancang arsitektur web modern menggunakan <strong>React, JavaScript modern, dan Tailwind CSS</strong>.
+                    </p>
+                    <p class="about-desc animate-text text-secondary" data-i18n="about.p2">
+                        Bagi saya, <i>coding</i> bukan hanya soal sintaks, tapi tentang memecahkan masalah. Mulai dari <strong>optimasi performa</strong> (Core Web Vitals) hingga implementasi <strong>Design System</strong>, saya memastikan setiap baris kode memberi dampak nyata pada kenyamanan pengguna.
+                    </p>
+                    
+                    <div class="mt-2 animate-buttons">
+                        <a href="https://www.github.com/Zenn-Web" target="_blank" rel="noopener noreferrer" class="social-link github" aria-label="GitHub">
+                            <i class="bi bi-github"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/zen-agusti-2928ba38a" target="_blank" rel="noopener noreferrer" class="social-link linkedin" aria-label="LinkedIn">
+                            <i class="bi bi-linkedin"></i>
+                        </a>
+                        <a href="https://www.instagram.com/zenagust_" target="_blank" rel="noopener noreferrer" class="social-link instagram" aria-label="Instagram">
+                            <i class="bi bi-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- DEVELOPER HUD COLUMN -->
+                <div class="col-lg-6 mt-4 mt-lg-0 animate-on-scroll">
+                    <div class="about-hud-card">
+                        <!-- Top HUD section (Profile & Meta info) -->
+                        <div class="about-hud-top">
+                            <div class="about-hud-image-wrap">
+                                <div class="hud-image-frame">
+                                    <img src="{{ asset('img/foto_about_me.jpeg') }}" alt="Profile Zenifen Agusti">
+                                </div>
+                            </div>
+                            <div class="about-hud-meta">
+                                <h3 class="hud-meta-name">Zenifen Agusti</h3>
+                                <p class="hud-meta-role">Web Developer & Front End Enthusiast</p>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-8">
-                        <div class="card-body p-3 p-md-4 p-lg-5">
-                            <h6 class="text-uppercase fw-bold mb-3 animate-text text-reveal" style="letter-spacing: 2px;" data-i18n="about.title">Tentang Saya</h6>
-                            <p class="mb-3 animate-text" data-i18n="about.p1">Hai! Saya Zenifen, seorang Front-End Developer yang sedang menekuni dunia web development. Dari pertama kali menulis kode HTML hingga sekarang membangun aplikasi web interaktif, perjalanan ini selalu penuh kejutan dan pembelajaran baru yang menyenangkan.</p>
-                            <p class="mb-3 animate-text" data-i18n="about.p2">Saat ini saya fokus mengembangkan kemampuan di React, JavaScript modern, dan menciptakan UI yang tidak hanya menarik secara visual, tetapi juga nyaman digunakan. Setiap project adalah kesempatan untuk belajar sesuatu yang baru, dan saya selalu mulai dari optimasi performa hingga implementasi design system.</p>
-                            <p class="text-secondary mb-4 animate-text" data-i18n="about.p3">Bagi saya, menulis kode bukan cuma soal syntax yang benar, tapi tentang memecahkan masalah dengan cara yang efisien dan elegan. Saya percaya bahwa setiap developer punya journey unik, dan saya excited untuk terus berkembang di bidang ini.</p>
-                            <div class="stats-grid-about mb-4 animate-text">
-                                <div class="stat-item-about"><div class="stat-number-about" data-i18n="about.stat1.number">5+</div><div class="stat-label-about" data-i18n="about.stat1.label">Projek</div></div>
-                                <div class="stat-item-about"><div class="stat-number-about stat-icon-about"><i class="bi bi-people-fill"></i></div><div class="stat-label-about" data-i18n="about.stat2.label">Terbuka untuk Kolaborasi</div></div>
-                                <div class="stat-item-about"><div class="stat-number-about" data-i18n="about.stat3.number">5+</div><div class="stat-label-about" data-i18n="about.stat3.label">Teknologi</div></div>
-                                <div class="stat-item-about"><div class="stat-number-about stat-icon-about"><i class="bi bi-arrow-up-circle-fill"></i></div><div class="stat-label-about" data-i18n="about.stat4.label">Terus Belajar</div></div>
+
+                        <!-- Goals/Aspirations HUD section -->
+                        <div class="hud-goals-wrap">
+                            <span class="hud-goals-label" data-i18n="about.vision.label">Visi & Dedikasi</span>
+                            <p class="hud-goals-text" data-i18n="about.vision.text">
+                                Beraspirasi membangun <strong>solusi digital yang bermanfaat</strong> untuk berbagai kebutuhan industri, serta berkontribusi aktif dalam memajukan ekosistem teknologi web masa depan.
+                            </p>
+                        </div>
+
+                        <!-- Bottom HUD section (Grid stats) -->
+                        <div class="about-hud-stats-grid">
+                            <!-- Stat 1 -->
+                            <div class="hud-stat-item">
+                                <span class="hud-stat-number" data-i18n="about.stat1.number">5+</span>
+                                <span class="hud-stat-label" data-i18n="about.stat1.label">Projek Nyata</span>
                             </div>
-                            <div class="mt-4 animate-buttons">
-                                <a href="https://www.github.com/Zenn-Web" target="_blank" rel="noopener noreferrer" class="social-link github" aria-label="GitHub"><i class="bi bi-github"></i></a>
-                                <a href="https://www.linkedin.com/in/zen-agusti-2928ba38a" target="_blank" rel="noopener noreferrer" class="social-link linkedin" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
-                                <a href="https://www.instagram.com/zenagust_" target="_blank" rel="noopener noreferrer" class="social-link instagram" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+                            
+                            <!-- Stat 2 -->
+                            <div class="hud-stat-item">
+                                <span class="hud-stat-number" data-i18n="about.stat2.number">100+</span>
+                                <span class="hud-stat-label" data-i18n="about.stat2.label">Kode Commit</span>
+                            </div>
+                            
+                            <!-- Stat 3 -->
+                            <div class="hud-stat-item">
+                                <span class="hud-stat-number" data-i18n="about.stat3.number">10+</span>
+                                <span class="hud-stat-label" data-i18n="about.stat3.label">Teknologi</span>
                             </div>
                         </div>
                     </div>
@@ -127,32 +171,44 @@
                             <i class="bi bi-code-slash fs-3"></i>
                         </div>
                         <h4 class="fw-bold mb-2 ls-tight" data-i18n="skills.programming">PEMROGRAMAN WEB</h4>
-                        <p class="skill-desc-classic mb-4" data-i18n="skills.programming.desc">Membangun arsitektur web yang skalabel dan clean code untuk keberlanjutan bisnis jangka panjang.</p>
+                        <p class="skill-desc-classic mb-4" data-i18n="skills.programming.desc">Membangun antarmuka modern dan arsitektur backend yang kokoh untuk pengalaman pengguna terbaik.</p>
 
                         <div class="mb-4">
-                            <h6 class="skill-subtitle-classic" data-i18n="skills.tech">Teknologi</h6>
-                            <div class="d-flex flex-wrap gap-2">
+                            <h6 class="skill-subtitle-classic text-muted mb-3" style="font-size: 0.75rem; letter-spacing: 1px; text-transform: uppercase;" data-i18n="skills.fokus">Fokus Utama (Proficient)</h6>
+                            <div class="d-flex flex-wrap gap-2 mb-4">
                                 <span class="badge-tech-classic">HTML</span>
                                 <span class="badge-tech-classic">CSS</span>
-                                <span class="badge-tech-classic">JAVASCRIPT</span>
-                                <span class="badge-tech-classic">NODE.JS</span>
-                                <span class="badge-tech-classic">REACT</span>
-                                <span class="badge-tech-classic">NEXT.JS</span>
+                                <span class="badge-tech-classic">JavaScript</span>
                                 <span class="badge-tech-classic">PHP</span>
-                                <span class="badge-tech-classic">LARAVEL</span>
-                                <span class="badge-tech-classic">JAVA</span>
-                                <span class="badge-tech-classic">TAILWIND CSS</span>
-                                <span class="badge-tech-classic">BOOTSTRAP</span>
-                                <span class="badge-tech-classic-more" title="Terus mengeksplorasi teknologi baru lainnya" data-i18n="skills.learning">& LAINNYA...</span>
+                                <span class="badge-tech-classic">Laravel</span>
+                                <span class="badge-tech-classic">Tailwind CSS</span>
+                                <span class="badge-tech-classic">Bootstrap</span>
+                            </div>
+                            
+                            <h6 class="skill-subtitle-classic text-muted mb-3" style="font-size: 0.75rem; letter-spacing: 1px; text-transform: uppercase;" data-i18n="skills.eksplorasi">Eksplorasi (Familiar)</h6>
+                            <div class="d-flex flex-wrap gap-2">
+                                <span class="badge-tech-classic" style="opacity: 0.7; border-style: dashed; background-color: transparent; color: inherit;">React</span>
+                                <span class="badge-tech-classic" style="opacity: 0.7; border-style: dashed; background-color: transparent; color: inherit;">Next.js</span>
+                                <span class="badge-tech-classic" style="opacity: 0.7; border-style: dashed; background-color: transparent; color: inherit;">Node.js</span>
+                                <span class="badge-tech-classic" style="opacity: 0.7; border-style: dashed; background-color: transparent; color: inherit;">Java</span>
                             </div>
                         </div>
 
                         <div>
-                            <h6 class="skill-subtitle-classic" data-i18n="skills.highlights">Poin Utama</h6>
+                            <h6 class="skill-subtitle-classic mb-3" style="font-size: 0.75rem; letter-spacing: 1px; text-transform: uppercase;" data-i18n="skills.praktik">Praktik Implementasi</h6>
                             <ul class="list-unstyled mb-0">
-                                <li class="highlight-item-classic"><i class="bi bi-arrow-right-short me-2 text-emerald"></i><span data-i18n="skills.h1">pemecahan masalah</span></li>
-                                <li class="highlight-item-classic"><i class="bi bi-arrow-right-short me-2 text-emerald"></i><span data-i18n="skills.h2">kode bersih</span></li>
-                                <li class="highlight-item-classic"><i class="bi bi-arrow-right-short me-2 text-emerald"></i><span data-i18n="skills.h3">pemahaman UI/UX</span></li>
+                                <li class="highlight-item-classic mb-2 d-flex align-items-start">
+                                    <i class="bi bi-check2-square me-2 text-emerald mt-1"></i>
+                                    <span data-i18n="skills.web.p1">Membangun komponen UI yang interaktif & <i>reusable</i></span>
+                                </li>
+                                <li class="highlight-item-classic mb-2 d-flex align-items-start">
+                                    <i class="bi bi-check2-square me-2 text-emerald mt-1"></i>
+                                    <span data-i18n="skills.web.p2">Menerapkan pola arsitektur MVC (Model-View-Controller)</span>
+                                </li>
+                                <li class="highlight-item-classic mb-2 d-flex align-items-start">
+                                    <i class="bi bi-check2-square me-2 text-emerald mt-1"></i>
+                                    <span data-i18n="skills.web.p3">Optimalisasi performa aset dan responsivitas layout</span>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -165,28 +221,40 @@
                             <i class="bi bi-tools fs-3"></i>
                         </div>
                         <h4 class="fw-bold mb-2 ls-tight" data-i18n="skills.tools">ALAT &amp; ALUR KERJA</h4>
-                        <p class="skill-desc-classic mb-4" data-i18n="skills.tools.desc">Menggunakan alat bantu modern dan alur kerja terstruktur untuk membangun produk web performa tinggi.</p>
+                        <p class="skill-desc-classic mb-4" data-i18n="skills.tools.desc">Menggunakan ekosistem alat modern untuk memastikan produktivitas, kolaborasi, dan kualitas kode.</p>
 
                         <div class="mb-4">
-                            <h6 class="skill-subtitle-classic" data-i18n="skills.toolset">Alat Kerja</h6>
+                            <h6 class="skill-subtitle-classic text-muted mb-3" style="font-size: 0.75rem; letter-spacing: 1px; text-transform: uppercase;" data-i18n="skills.kontrol">Kontrol Versi & API</h6>
+                            <div class="d-flex flex-wrap gap-2 mb-4">
+                                <span class="badge-tech-classic">Git</span>
+                                <span class="badge-tech-classic">GitHub</span>
+                                <span class="badge-tech-classic">Postman</span>
+                            </div>
+                            
+                            <h6 class="skill-subtitle-classic text-muted mb-3" style="font-size: 0.75rem; letter-spacing: 1px; text-transform: uppercase;" data-i18n="skills.lingkungan">Lingkungan Pengembangan</h6>
                             <div class="d-flex flex-wrap gap-2">
-                                <span class="badge-tech-classic">GIT</span>
-                                <span class="badge-tech-classic">GITHUB</span>
-                                <span class="badge-tech-classic">POSTMAN</span>
-                                <span class="badge-tech-classic">9ROUTER</span>
-                                <span class="badge-tech-classic">VS CODE</span>
+                                <span class="badge-tech-classic">VS Code</span>
                                 <span class="badge-tech-classic">NPM</span>
-                                <span class="badge-tech-classic">Model Context Protocol (MCP)</span>
-                                <span class="badge-tech-classic-more" title="Terus mengeksplorasi alat lainnya" data-i18n="skills.learning2">& LAINNYA...</span>
+                                <span class="badge-tech-classic">Vite</span>
+                                <span class="badge-tech-classic">MCP (AI Tools)</span>
                             </div>
                         </div>
 
                         <div>
-                            <h6 class="skill-subtitle-classic" data-i18n="skills.highlights">Poin Utama</h6>
+                            <h6 class="skill-subtitle-classic mb-3" style="font-size: 0.75rem; letter-spacing: 1px; text-transform: uppercase;" data-i18n="skills.praktik">Praktik Implementasi</h6>
                             <ul class="list-unstyled mb-0">
-                                <li class="highlight-item-classic"><i class="bi bi-arrow-right-short me-2 text-emerald"></i><span data-i18n="skills.h4">kontrol versi</span></li>
-                                <li class="highlight-item-classic"><i class="bi bi-arrow-right-short me-2 text-emerald"></i><span data-i18n="skills.h5">pengujian API</span></li>
-                                <li class="highlight-item-classic"><i class="bi bi-arrow-right-short me-2 text-emerald"></i><span data-i18n="skills.h7">otomasi alur kerja</span></li>
+                                <li class="highlight-item-classic mb-2 d-flex align-items-start">
+                                    <i class="bi bi-check2-square me-2 text-emerald mt-1"></i>
+                                    <span data-i18n="skills.tools.p1">Manajemen kode kolaboratif dengan prinsip <i>Git Flow</i></span>
+                                </li>
+                                <li class="highlight-item-classic mb-2 d-flex align-items-start">
+                                    <i class="bi bi-check2-square me-2 text-emerald mt-1"></i>
+                                    <span data-i18n="skills.tools.p2">Pengujian <i>endpoint</i> API untuk integrasi sistem yang aman</span>
+                                </li>
+                                <li class="highlight-item-classic mb-2 d-flex align-items-start">
+                                    <i class="bi bi-check2-square me-2 text-emerald mt-1"></i>
+                                    <span data-i18n="skills.tools.p3">Pemanfaatan AI <i>tools</i> untuk akselerasi <i>debugging</i></span>
+                                </li>
                             </ul>
                         </div>
                     </div>
