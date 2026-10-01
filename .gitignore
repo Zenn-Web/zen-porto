@@ -25,13 +25,13 @@ Homestead.json
 Homestead.yaml
 Thumbs.db
 
-# File Kunci & Sertifikat Berbahaya
+# Private keys and certificate bundles
 *.pem
 *.key
 *.pkpass
 *.p12
 *.pfx
 
-# File Konfigurasi Sensitif Lainnya
+# Sensitive environment files; keep the safe template trackable.
 .env.*
 !.env.example
