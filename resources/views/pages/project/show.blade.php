@@ -3,10 +3,16 @@
 @section('content')
 
 @php
-    $cleanCategoryId = str_replace(["\x95", "\x96"], ['&#8226;', '&#8211;'], $project->category ?? '');
-    $cleanCategoryEn = str_replace(["\x95", "\x96"], ['&#8226;', '&#8211;'], $project->category_en ?? $project->category ?? '');
-    $cleanTitleId = str_replace(["\x95", "\x96"], ['&#8226;', '&#8211;'], $project->title ?? '');
-    $cleanTitleEn = str_replace(["\x95", "\x96"], ['&#8226;', '&#8211;'], $project->title_en ?? $project->title ?? '');
+    // Project fields are untrusted: normalise stray Windows-1252 bullet/dash bytes
+    // to real Unicode characters and always output them escaped with {{ }}.
+    $isEn = app()->getLocale() === 'en';
+    $cleanCategoryId = str_replace(["\x95", "\x96"], ["\u{2022}", "\u{2013}"], $project->category ?? '');
+    $cleanCategoryEn = str_replace(["\x95", "\x96"], ["\u{2022}", "\u{2013}"], $project->category_en ?? $project->category ?? '');
+    $cleanTitleId = str_replace(["\x95", "\x96"], ["\u{2022}", "\u{2013}"], $project->title ?? '');
+    $cleanTitleEn = str_replace(["\x95", "\x96"], ["\u{2022}", "\u{2013}"], $project->title_en ?? $project->title ?? '');
+    // Multi-line text is kept as plain text; .dp-narrative-text uses white-space: pre-line.
+    $flowId = $project->flow_description ?? '';
+    $flowEn = $project->flow_description_en ?? $project->flow_description ?? '';
 @endphp
 
 <div class="dp-split-section">
@@ -45,10 +51,8 @@
                         </div>
 
                         <div class="dp-narrative-text" data-dp-anim="fade-up"
-                             data-i18n-id="{!! nl2br(e($project->flow_description)) !!}"
-                             data-i18n-en="{!! nl2br(e($project->flow_description_en ?? $project->flow_description)) !!}">
-                            {!! nl2br(e(app()->getLocale() === 'en' ? ($project->flow_description_en ?? $project->flow_description) : $project->flow_description)) !!}
-                        </div>
+                             data-i18n-id="{{ $flowId }}"
+                             data-i18n-en="{{ $flowEn }}">{{ $isEn ? $flowEn : $flowId }}</div>
                     </div>
                 </div>
                 @endif
@@ -73,8 +77,8 @@
                     {{-- Title --}}
                     <div class="dp-sidebar-element" data-dp-anim="fade-up">
                         <h1 class="dp-project-title"
-                            data-i18n-id="{!! $cleanTitleId !!}"
-                            data-i18n-en="{!! $cleanTitleEn !!}">{!! app()->getLocale() === 'en' ? $cleanTitleEn : $cleanTitleId !!}</h1>
+                            data-i18n-id="{{ $cleanTitleId }}"
+                            data-i18n-en="{{ $cleanTitleEn }}">{{ $isEn ? $cleanTitleEn : $cleanTitleId }}</h1>
                     </div>
 
                     {{-- Description --}}

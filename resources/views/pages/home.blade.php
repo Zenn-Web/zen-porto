@@ -3,6 +3,12 @@
 
 @section('content')
 
+@php
+    // Static translation keys that intentionally contain markup are rendered
+    // server-side in both languages; the language switcher only toggles which
+    // variant is visible (see resources/js/alpine-init.js).
+    $i18nIsEn = app()->getLocale() === 'en';
+@endphp
 
     <section id="home" class="hero-classic-section hero-bg-section position-relative overflow-hidden">
         <!-- Full Background Image -->
@@ -20,9 +26,7 @@
                 <div class="col-lg-8 col-xl-7 text-center">
                     <!-- Eyebrow Badge Pill -->
                     <div class="hero-classic-badge-wrapper animate-on-scroll">
-                        <span class="hero-classic-badge-pill hero-badge-light"
-                              data-i18n-id="{{ __('portfolio.hero_role', [], 'id') }}"
-                              data-i18n-en="{{ __('portfolio.hero_role', [], 'en') }}">{!! __('portfolio.hero_role') !!}</span>
+                        <span class="hero-classic-badge-pill hero-badge-light"><span data-i18n-lang="id" @if($i18nIsEn) hidden @endif>{!! __('portfolio.hero_role', [], 'id') !!}</span><span data-i18n-lang="en" @unless($i18nIsEn) hidden @endunless>{!! __('portfolio.hero_role', [], 'en') !!}</span></span>
                     </div>
 
                     <!-- Name / Main Heading -->
@@ -66,15 +70,13 @@
                         data-i18n-en="{{ __('portfolio.about_title', [], 'en') }}">{{ __('portfolio.about_title') }}</h2>
                     <div class="about-divider animate-text"></div>
                     
-                    <p class="about-desc animate-text mb-4"
-                       data-i18n-id="{{ __('portfolio.about_p1', [], 'id') }}"
-                       data-i18n-en="{{ __('portfolio.about_p1', [], 'en') }}">
-                        {!! __('portfolio.about_p1') !!}
+                    <p class="about-desc animate-text mb-4">
+                        <span data-i18n-lang="id" @if($i18nIsEn) hidden @endif>{!! __('portfolio.about_p1', [], 'id') !!}</span>
+                        <span data-i18n-lang="en" @unless($i18nIsEn) hidden @endunless>{!! __('portfolio.about_p1', [], 'en') !!}</span>
                     </p>
-                    <p class="about-desc animate-text text-secondary mb-4"
-                       data-i18n-id="{{ __('portfolio.about_p2', [], 'id') }}"
-                       data-i18n-en="{{ __('portfolio.about_p2', [], 'en') }}">
-                        {!! __('portfolio.about_p2') !!}
+                    <p class="about-desc animate-text text-secondary mb-4">
+                        <span data-i18n-lang="id" @if($i18nIsEn) hidden @endif>{!! __('portfolio.about_p2', [], 'id') !!}</span>
+                        <span data-i18n-lang="en" @unless($i18nIsEn) hidden @endunless>{!! __('portfolio.about_p2', [], 'en') !!}</span>
                     </p>
                     
                     <div class="animate-buttons">
@@ -97,9 +99,7 @@
                             <img src="{{ asset('img/foto_about_me.jpeg') }}" alt="Zenifen Agusti" class="about-clean-img" width="400" height="500" style="aspect-ratio: 4/5;">
                         </div>
                         <h3 class="about-clean-name">Zenifen Agusti</h3>
-                        <p class="about-clean-role mb-0"
-                           data-i18n-id="{{ __('portfolio.hero_role', [], 'id') }}"
-                           data-i18n-en="{{ __('portfolio.hero_role', [], 'en') }}">{!! __('portfolio.hero_role') !!}</p>
+                        <p class="about-clean-role mb-0"><span data-i18n-lang="id" @if($i18nIsEn) hidden @endif>{!! __('portfolio.hero_role', [], 'id') !!}</span><span data-i18n-lang="en" @unless($i18nIsEn) hidden @endunless>{!! __('portfolio.hero_role', [], 'en') !!}</span></p>
                     </div>
                 </div>
             </div>
@@ -171,10 +171,12 @@
             <div class="d-flex flex-column gap-5 text-start">
                 @forelse($projects as $project)
                     @php
-                        $cleanTitleId = str_replace([chr(150), chr(151)], ['&#8211;', '&#8211;'], $project->title ?? '');
-                        $cleanTitleEn = str_replace([chr(150), chr(151)], ['&#8211;', '&#8211;'], $project->title_en ?? $project->title ?? '');
-                        $cleanCategoryId = str_replace(chr(149), '&#8226;', $project->category ?? '');
-                        $cleanCategoryEn = str_replace(chr(149), '&#8226;', $project->category_en ?? $project->category ?? '');
+                        // Project fields are untrusted: normalise stray Windows-1252 dash/bullet
+                        // bytes to real Unicode characters and always output them escaped.
+                        $cleanTitleId = str_replace([chr(150), chr(151)], ["\u{2013}", "\u{2013}"], $project->title ?? '');
+                        $cleanTitleEn = str_replace([chr(150), chr(151)], ["\u{2013}", "\u{2013}"], $project->title_en ?? $project->title ?? '');
+                        $cleanCategoryId = str_replace(chr(149), "\u{2022}", $project->category ?? '');
+                        $cleanCategoryEn = str_replace(chr(149), "\u{2022}", $project->category_en ?? $project->category ?? '');
                     @endphp
                     <div class="project-centered-item animate-on-scroll w-100 pb-4 {{ !$loop->last ? 'border-bottom border-secondary border-opacity-10' : '' }}">
                         <!-- Developer Role & Project Domain Lines -->
@@ -183,7 +185,7 @@
                                 FrontEnd &bull; UI/UX &bull; Contributor GIT
                             </div>
                             <div class="project-meta-line d-flex flex-wrap align-items-center gap-2">
-                                <span data-i18n-id="{!! $cleanCategoryId !!}" data-i18n-en="{!! $cleanCategoryEn !!}">{!! app()->getLocale() === 'en' ? $cleanCategoryEn : $cleanCategoryId !!}</span>
+                                <span data-i18n-id="{{ $cleanCategoryId }}" data-i18n-en="{{ $cleanCategoryEn }}">{{ $i18nIsEn ? $cleanCategoryEn : $cleanCategoryId }}</span>
                                 <span>&bull;</span>
                                 <span>{{ $project->year }}</span>
                             </div>
@@ -191,9 +193,9 @@
 
                         <!-- Title -->
                         <h3 class="project-split-title fw-bold mb-3"
-                            data-i18n-id="{!! $cleanTitleId !!}"
-                            data-i18n-en="{!! $cleanTitleEn !!}">
-                            {!! app()->getLocale() === 'en' ? $cleanTitleEn : $cleanTitleId !!}
+                            data-i18n-id="{{ $cleanTitleId }}"
+                            data-i18n-en="{{ $cleanTitleEn }}">
+                            {{ $i18nIsEn ? $cleanTitleEn : $cleanTitleId }}
                         </h3>
 
                         <!-- Description -->
@@ -216,10 +218,9 @@
 
                         <!-- CTA Links -->
                         <div class="d-flex flex-wrap gap-3 align-items-center">
-                            <a href="{{ route('project.show', $project->slug) }}" class="btn-project-link-primary"
-                               data-i18n-id="{{ __('portfolio.projects_detail', [], 'id') }} <i class='bi bi-arrow-right ms-1'></i>"
-                               data-i18n-en="{{ __('portfolio.projects_detail', [], 'en') }} <i class='bi bi-arrow-right ms-1'></i>">
-                                {{ __('portfolio.projects_detail') }} <i class="bi bi-arrow-right ms-1"></i>
+                            <a href="{{ route('project.show', $project->slug) }}" class="btn-project-link-primary">
+                                <span data-i18n-id="{{ __('portfolio.projects_detail', [], 'id') }}"
+                                      data-i18n-en="{{ __('portfolio.projects_detail', [], 'en') }}">{{ __('portfolio.projects_detail') }}</span> <i class="bi bi-arrow-right ms-1"></i>
                             </a>
                             @if($project->live_demo_url)
                             <a href="{{ $project->live_demo_url }}" target="_blank" rel="noopener" class="btn-project-link-secondary">
