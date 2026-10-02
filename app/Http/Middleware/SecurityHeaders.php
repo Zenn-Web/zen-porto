@@ -35,12 +35,20 @@ class SecurityHeaders
     {
         $response = $next($request);
 
-        $response->headers->set('X-Content-Type-Options', 'nosniff');
-        $response->headers->set('Referrer-Policy', 'strict-origin-when-cross-origin');
-        $response->headers->set(
-            'Permissions-Policy',
-            implode(', ', array_map(fn (string $feature) => "{$feature}=()", self::DISABLED_FEATURES)),
-        );
+        $defaults = [
+            'X-Content-Type-Options' => 'nosniff',
+            'Referrer-Policy' => 'strict-origin-when-cross-origin',
+            'Permissions-Policy' => implode(', ', array_map(fn (string $feature) => "{$feature}=()", self::DISABLED_FEATURES)),
+            // Nothing embeds the portfolio; only same-origin framing is allowed.
+            'X-Frame-Options' => 'SAMEORIGIN',
+        ];
+
+        // Never override a header a route or controller set deliberately.
+        foreach ($defaults as $name => $value) {
+            if (! $response->headers->has($name)) {
+                $response->headers->set($name, $value);
+            }
+        }
 
         return $response;
     }
