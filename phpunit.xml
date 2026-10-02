@@ -19,6 +19,8 @@
     </source>
     <php>
         <env name="APP_ENV" value="testing"/>
+        <!-- TEST-ONLY key, randomly generated for the test suite. Not used by any real environment. -->
+        <env name="APP_KEY" value="base64:BAEoBKp6vh2uxC4uBbRJIXyLmjwQgyqmjaculO75A6E="/>
         <env name="APP_MAINTENANCE_DRIVER" value="file"/>
         <env name="BCRYPT_ROUNDS" value="4"/>
         <env name="BROADCAST_CONNECTION" value="null"/>
@@ -26,6 +28,8 @@
         <env name="DB_CONNECTION" value="sqlite"/>
         <env name="DB_DATABASE" value=":memory:"/>
         <env name="MAIL_MAILER" value="array"/>
+        <!-- Test-only placeholder recipient so the suite does not depend on a local .env. -->
+        <env name="CONTACT_RECIPIENT_EMAIL" value="contact-tests@example.test"/>
         <env name="QUEUE_CONNECTION" value="sync"/>
         <env name="SESSION_DRIVER" value="array"/>
         <env name="PULSE_ENABLED" value="false"/>

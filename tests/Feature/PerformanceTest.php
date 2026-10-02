@@ -1,46 +1,63 @@
-﻿<?php
+<?php
 
-test('home page responds within acceptable time', function () {
-    $start = microtime(true);
+use App\Models\Project;
+use Illuminate\Support\Facades\DB;
 
-    $this->get('/');
+/*
+ * Deterministic performance guards. Wall-clock thresholds were removed because
+ * they depend on machine load and cold caches; query counts do not.
+ */
 
-    $duration = (microtime(true) - $start) * 1000;
-    expect($duration)->toBeLessThan(2000);
-});
+function queriesExecutedDuring(callable $callback): int
+{
+    DB::flushQueryLog();
+    DB::enableQueryLog();
 
-test('contact form validation responds within acceptable time', function () {
-    $start = microtime(true);
+    $callback();
 
-    $this->post(route('contact.store'), []);
+    $count = count(DB::getQueryLog());
+    DB::disableQueryLog();
 
-    $duration = (microtime(true) - $start) * 1000;
-    expect($duration)->toBeLessThan(2000);
-});
+    return $count;
+}
 
-test('multiple sequential requests maintain performance', function () {
-    $times = [];
-
-    for ($i = 0; $i < 10; $i++) {
-        $start = microtime(true);
-        $this->get('/');
-        $times[] = (microtime(true) - $start) * 1000;
+function createProjects(int $count, string $prefix): void
+{
+    for ($i = 1; $i <= $count; $i++) {
+        Project::create([
+            'title' => "Project {$i}",
+            'slug' => "{$prefix}-{$i}",
+            'year' => '2026',
+            'tech_stack' => ['Laravel', 'Tailwind'],
+        ]);
     }
+}
 
-    $average = array_sum($times) / count($times);
-    expect($average)->toBeLessThan(1500);
+test('home page query count does not grow with the number of projects', function () {
+    createProjects(1, 'few');
+    $withOneProject = queriesExecutedDuring(fn () => $this->get('/')->assertOk());
+
+    createProjects(9, 'many');
+    $withTenProjects = queriesExecutedDuring(fn () => $this->get('/')->assertOk());
+
+    expect($withOneProject)->toBeGreaterThan(0);
+    expect($withTenProjects)->toBe($withOneProject);
 });
 
-test('contact form with valid data responds within acceptable time', function () {
-    $start = microtime(true);
+test('project detail page uses a constant number of queries', function () {
+    createProjects(10, 'detail');
 
-    $this->post(route('contact.store'), [
-        'first_name' => 'John',
-        'last_name'  => 'Doe',
-        'email'      => 'john@example.com',
-        'message'    => 'Performance test message for contact form.',
-    ]);
+    $first = queriesExecutedDuring(fn () => $this->get('/project/detail-1')->assertOk());
+    $last = queriesExecutedDuring(fn () => $this->get('/project/detail-10')->assertOk());
 
-    $duration = (microtime(true) - $start) * 1000;
-    expect($duration)->toBeLessThan(3000);
+    expect($first)->toBe($last);
+    expect($first)->toBeLessThanOrEqual(2);
+});
+
+test('invalid contact submissions are rejected without touching the database', function () {
+    $queries = queriesExecutedDuring(
+        fn () => $this->post(route('contact.store'), [])->assertSessionHasErrors()
+    );
+
+    expect($queries)->toBe(0);
 });

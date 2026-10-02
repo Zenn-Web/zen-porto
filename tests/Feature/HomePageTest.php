@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 test('home page returns a successful response', function () {
     $response = $this->get('/');
@@ -30,4 +30,25 @@ test('home page returns 404 for non-existent page', function () {
     $response = $this->get('/non-existent-page');
 
     $response->assertStatus(404);
+});
+
+test('home page links to every seeded project detail page', function () {
+    $this->seed(Database\Seeders\ProjectSeeder::class);
+
+    $slugs = App\Models\Project::pluck('slug');
+    expect($slugs)->toHaveCount(3);
+
+    $response = $this->get('/')->assertOk();
+
+    foreach ($slugs as $slug) {
+        $response->assertSee('href="'.route('project.show', $slug).'"', false);
+    }
+});
+
+test('home page renders without any projects', function () {
+    expect(App\Models\Project::count())->toBe(0);
+
+    $this->get('/')
+        ->assertOk()
+        ->assertViewHas('projects', fn ($projects) => $projects->isEmpty());
 });
