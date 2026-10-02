@@ -36,7 +36,7 @@ php artisan test
 - a **test-only** `APP_KEY`, randomly generated for the suite (it is not, and must never be, used by a real environment);
 - a placeholder `CONTACT_RECIPIENT_EMAIL` on the reserved `example.test` domain.
 
-Values in `phpunit.xml` take precedence over `.env`, but they do not override a variable that is already exported in the process environment (for example by a CI runner).
+Values in `phpunit.xml` take precedence over `.env`. Except for `CACHE_STORE` and `SESSION_DRIVER` (forced to `array` so query-count tests stay exact), they do not override a variable that is already exported in the process environment (for example by a CI runner).
 
 ## Environment variables
 
@@ -134,6 +134,7 @@ It checks Git-tracked **path names only** (never file contents) and exits non-ze
 - **No Content-Security-Policy yet.** Inventory for a future policy: scripts from `'self'` plus one inline theme script in `layout/welcome.blade.php` (needs a nonce or hash) and Alpine.js's standard build (needs `'unsafe-eval'` or a move to `@alpinejs/csp`); styles from `'self'`, `https://fonts.googleapis.com` and inline `style=""` attributes; fonts from `'self'` and `https://fonts.gstatic.com`; images from `'self'` and `data:`; `connect-src 'self'` (language switch); `form-action 'self'`; plus `base-uri 'self'`, `object-src 'none'`, `frame-ancestors 'self'`. Local dev additionally needs the Vite dev-server origin and `ws:`.
 - **Static files** in `public/` do not get the security headers unless the web server adds them.
 - Project `live_demo_url` / `github_url` are escaped but their URL scheme is not validated.
+- **Old build output is tracked and publicly served:** `public/build.pre-alpine-backup/` holds an outdated pre-Alpine JavaScript/CSS build that the pages no longer load but that is still reachable under `/build.pre-alpine-backup/`. Remove it in a follow-up change.
 
 ## Secret rotation
 
