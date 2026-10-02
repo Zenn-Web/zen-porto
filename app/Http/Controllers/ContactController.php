@@ -2,32 +2,38 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\ContactRequest;
+use App\Mail\ContactMessage;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
+use Throwable;
 
 class ContactController extends Controller
 {
-    public function store(Request $request)
+    public function store(ContactRequest $request): RedirectResponse
     {
-        $validated = $request->validate([
-            'first_name' => 'required|string|max:255',
-            'last_name'  => 'required|string|max:255',
-            'email'      => 'required|email',
-            'message'    => 'required|string',
-        ]);
+        $validated = $request->validated();
+        $redirectTo = url()->previous().'#contact';
 
-        Mail::raw(
-            "Nama: {$validated['first_name']} {$validated['last_name']}\n" .
-            "Email: {$validated['email']}\n\n" .
-            "Pesan:\n{$validated['message']}",
-            function ($mail) use ($validated) {
-                $mail->to(config('mail.contact_recipient'))
-                     ->subject('Pesan Baru dari ' . $validated['first_name'] . ' ' . $validated['last_name'])
-                     ->replyTo($validated['email']);
-            }
-        );
+        try {
+            Mail::to(config('mail.contact_recipient'))->queue(new ContactMessage(
+                $validated['first_name'],
+                $validated['last_name'],
+                $validated['email'],
+                $validated['message'],
+            ));
+        } catch (Throwable $exception) {
+            // Only the exception class is logged: queue driver errors can embed the payload.
+            Log::error('Contact message could not be queued.', [
+                'exception' => $exception::class,
+            ]);
 
-        return redirect(url()->previous() . '#contact')->with('success', 'Pesan berhasil dikirim!');
+            return redirect($redirectTo)
+                ->withInput()
+                ->withErrors(['contact' => 'Pesan gagal dikirim. Silakan coba lagi nanti.']);
+        }
+
+        return redirect($redirectTo)->with('success', 'Pesan berhasil dikirim!');
     }
 }
-

@@ -38,8 +38,8 @@ test('contact form validates oversized input to prevent dos', function () {
         'message' => str_repeat('C', 100000),
     ]);
 
-    // first_name and last_name have max:255 validation, message does not
-    $response->assertSessionHasErrors(['first_name', 'last_name']);
+    // first_name and last_name have max:255 validation, message has max:5000
+    $response->assertSessionHasErrors(['first_name', 'last_name', 'message']);
 });
 
 test('contact form rejects duplicate submissions gracefully', function () {
@@ -225,4 +225,64 @@ test('project display text still decodes legacy html entities', function () {
     $project = new App\Models\Project(['category_en' => 'UI/UX &nbsp;&bull;&nbsp; Ö']);
 
     expect($project->displayText('category_en'))->toBe("UI/UX \u{00A0}\u{2022}\u{00A0} Ö");
+});
+
+test('api contact endpoint no longer exists', function () {
+    Mail::fake();
+
+    $response = $this->postJson('/api/contact', [
+        'first_name' => 'John',
+        'last_name' => 'Doe',
+        'email' => 'john@example.com',
+        'message' => 'Hello',
+    ]);
+
+    expect($response->getStatusCode())->toBeIn([404, 405]);
+    expect($response->getContent())->not->toContain('john@example.com');
+    Mail::assertNothingQueued();
+});
+
+test('contact form rejects line breaks in name fields to prevent header injection', function () {
+    Mail::fake();
+
+    $this->post(route('contact.store'), [
+        'first_name' => "John\r\nBcc: victim@example.com",
+        'last_name' => "Doe\nX-Injected: 1",
+        'email' => 'john@example.com',
+        'message' => "Multi-line\nmessages stay allowed.",
+    ])->assertSessionHasErrors(['first_name', 'last_name']);
+
+    Mail::assertNothingQueued();
+});
+
+test('contact message subject never contains control characters', function () {
+    $mail = new App\Mail\ContactMessage("John\r\nBcc: victim@example.com", 'Doe', 'john@example.com', 'Hi');
+
+    expect($mail->envelope()->subject)->not->toMatch('/[\r\n]/');
+});
+
+test('api project routes are rate limited and keep their response shape', function () {
+    App\Models\Project::create(['title' => 'Probe', 'slug' => 'probe', 'year' => '2026']);
+
+    $list = $this->getJson('/api/projects')
+        ->assertOk()
+        ->assertJsonStructure(['success', 'message', 'data'])
+        ->assertJsonPath('success', true)
+        ->assertJsonPath('message', 'List data projek portofolio')
+        ->assertHeader('X-RateLimit-Limit', '60');
+
+    $this->getJson('/api/projects/probe')
+        ->assertOk()
+        ->assertJsonStructure(['success', 'data'])
+        ->assertJsonPath('data.slug', 'probe');
+
+    $this->getJson('/api/projects/missing')
+        ->assertNotFound()
+        ->assertExactJson(['success' => false, 'message' => 'Projek tidak ditemukan']);
+
+    for ($i = 0; $i < 57; $i++) {
+        $this->getJson('/api/projects')->assertOk();
+    }
+
+    $this->getJson('/api/projects')->assertStatus(429);
 });
