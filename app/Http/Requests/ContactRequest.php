@@ -30,10 +30,10 @@ class ContactRequest extends FormRequest
     }
 
     /**
-     * Keep the web contact UX: invalid submissions return to the contact section.
+     * Invalid submissions return to the fixed contact section on the home page (never the Referer).
      */
     protected function getRedirectUrl(): string
     {
-        return url()->previous().'#contact';
+        return url('/').'#contact';
     }
 }

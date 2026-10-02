@@ -14,7 +14,7 @@ class ContactController extends Controller
     public function store(ContactRequest $request): RedirectResponse
     {
         $validated = $request->validated();
-        $redirectTo = url()->previous().'#contact';
+        $redirectTo = url('/').'#contact';
 
         try {
             Mail::to(config('mail.contact_recipient'))->queue(new ContactMessage(

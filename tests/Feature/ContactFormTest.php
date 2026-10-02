@@ -275,3 +275,71 @@ test('contact form is throttled per normalized email across ip addresses', funct
 
     Mail::assertQueued(ContactMessage::class, 3);
 });
+
+test('contact mailable is encrypted on the queue', function () {
+    expect(new ContactMessage('John', 'Doe', 'john@example.com', 'Hi'))
+        ->toBeInstanceOf(Illuminate\Contracts\Queue\ShouldBeEncrypted::class);
+});
+
+test('queued contact payload does not store personal data in plain text', function () {
+    config([
+        'queue.default' => 'database',
+        'mail.contact_recipient' => 'owner@example.test',
+    ]);
+
+    $this->post(route('contact.store'), validContactPayload([
+        'first_name' => 'Zebulon',
+        'email' => 'zebulon.private@example.com',
+        'message' => 'very secret body text',
+    ]))->assertSessionHas('success', 'Pesan berhasil dikirim!');
+
+    $payloads = Illuminate\Support\Facades\DB::table('jobs')->pluck('payload');
+
+    expect($payloads)->toHaveCount(1);
+    expect($payloads->first())
+        ->not->toContain('very secret body text')
+        ->not->toContain('zebulon.private@example.com')
+        ->not->toContain('Zebulon');
+});
+
+test('contact form redirects to the fixed home contact section regardless of referer', function () {
+    Mail::fake();
+    $target = url('/').'#contact';
+
+    $this->from('https://evil.example/phish')
+        ->post(route('contact.store'), validContactPayload())
+        ->assertRedirect($target)
+        ->assertSessionHas('success');
+
+    $this->from('https://evil.example/phish')
+        ->post(route('contact.store'), validContactPayload(['email' => 'invalid']))
+        ->assertRedirect($target)
+        ->assertSessionHasErrors(['email']);
+});
+
+test('contact form failure redirect ignores the referer', function () {
+    Mail::shouldReceive('to')->andThrow(new RuntimeException('queue unavailable'));
+
+    $this->from('https://evil.example/phish')
+        ->post(route('contact.store'), validContactPayload())
+        ->assertRedirect(url('/').'#contact')
+        ->assertSessionHasErrors(['contact']);
+});
+
+test('throttled contact submission redirects to the fixed section and keeps input', function () {
+    Mail::fake();
+
+    for ($i = 1; $i <= 5; $i++) {
+        $this->post(route('contact.store'), validContactPayload(['email' => "user{$i}@example.com"]));
+    }
+
+    $this->from('https://evil.example/phish')
+        ->post(route('contact.store'), validContactPayload([
+            'email' => 'user6@example.com',
+            'message' => 'Please keep this text.',
+        ]))
+        ->assertRedirect(url('/').'#contact')
+        ->assertSessionHasErrors(['contact'])
+        ->assertSessionHasInput('email', 'user6@example.com')
+        ->assertSessionHasInput('message', 'Please keep this text.');
+});

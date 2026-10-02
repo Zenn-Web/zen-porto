@@ -28,7 +28,8 @@ class AppServiceProvider extends ServiceProvider
     private function configureRateLimiting(): void
     {
         RateLimiter::for('contact', function (Request $request) {
-            $throttled = fn (Request $request, array $headers) => redirect(url()->previous().'#contact')
+            $throttled = fn (Request $request, array $headers) => redirect(url('/').'#contact')
+                ->withInput()
                 ->withErrors(['contact' => 'Terlalu banyak permintaan. Silakan coba lagi nanti.'])
                 ->withHeaders($headers);
 

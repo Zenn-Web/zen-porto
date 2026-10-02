@@ -3,6 +3,7 @@
 namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldBeEncrypted;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Address;
@@ -11,7 +12,7 @@ use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Support\Facades\Log;
 use Throwable;
 
-class ContactMessage extends Mailable implements ShouldQueue
+class ContactMessage extends Mailable implements ShouldBeEncrypted, ShouldQueue
 {
     use Queueable;
 
