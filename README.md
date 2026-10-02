@@ -133,7 +133,6 @@ It checks Git-tracked **path names only** (never file contents) and exits non-ze
 - **No contact form renders feedback.** The `#contact` section only offers mailto/WhatsApp links. The controller flashes `success` and the errors `contact`/field errors, but no view displays them. A future form must show `session('success')`, `$errors->first('contact')` and the field errors.
 - **No Content-Security-Policy yet.** Inventory for a future policy: scripts from `'self'` plus one inline theme script in `layout/welcome.blade.php` (needs a nonce or hash) and Alpine.js's standard build (needs `'unsafe-eval'` or a move to `@alpinejs/csp`); styles from `'self'`, `https://fonts.googleapis.com` and inline `style=""` attributes; fonts from `'self'` and `https://fonts.gstatic.com`; images from `'self'` and `data:`; `connect-src 'self'` (language switch); `form-action 'self'`; plus `base-uri 'self'`, `object-src 'none'`, `frame-ancestors 'self'`. Local dev additionally needs the Vite dev-server origin and `ws:`.
 - **Static files** in `public/` do not get the security headers unless the web server adds them.
-- Project `live_demo_url` / `github_url` are escaped but their URL scheme is not validated.
 - **Old build output is tracked and publicly served:** `public/build.pre-alpine-backup/` holds an outdated pre-Alpine JavaScript/CSS build that the pages no longer load but that is still reachable under `/build.pre-alpine-backup/`. Remove it in a follow-up change.
 
 ## Secret rotation

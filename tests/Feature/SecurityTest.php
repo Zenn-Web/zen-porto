@@ -367,3 +367,80 @@ test('bootstrap npm dependency is pinned to the locked version', function () {
         ->and($declared)->toBe($locked)
         ->and($lock['packages']['']['dependencies']['bootstrap'] ?? null)->toBe($declared);
 });
+
+function projectWithLinks(?string $liveDemoUrl, ?string $githubUrl): App\Models\Project
+{
+    return App\Models\Project::create([
+        'title' => 'Link probe',
+        'slug' => 'link-probe',
+        'category' => 'Web',
+        'description' => 'Link probe description',
+        'year' => '2026',
+        'tech_stack' => ['Laravel'],
+        'live_demo_url' => $liveDemoUrl,
+        'github_url' => $githubUrl,
+    ]);
+}
+
+dataset('unsafe project urls', [
+    'javascript' => ['javascript:alert(1)'],
+    'mixed case with leading space' => [' JaVaScRiPt:alert(2)'],
+    'data uri' => ['data:text/html,<script>alert(3)</script>'],
+]);
+
+test('project links with a non-http scheme are never rendered as href', function (string $url) {
+    projectWithLinks($url, $url);
+
+    $pages = [
+        $this->get('/')->assertOk()->getContent(),
+        $this->get('/project/link-probe')->assertOk()->getContent(),
+    ];
+
+    foreach ($pages as $content) {
+        expect($content)
+            ->not->toMatch('/href\s*=\s*["\']\s*(javascript|data|vbscript):/i')
+            ->not->toContain('alert(1)')
+            ->not->toContain('alert(2)')
+            ->not->toContain('alert(3)');
+    }
+
+    // Without a usable repository link the detail page shows the private-repo state.
+    expect($pages[1])->toContain('dp-btn-cta--locked')
+        ->not->toContain('dp-btn-cta--primary');
+})->with('unsafe project urls');
+
+test('project links with an https scheme are still rendered', function () {
+    projectWithLinks('https://demo.example.test/app', 'https://github.com/example/repo');
+
+    $this->get('/')->assertOk()
+        ->assertSee('href="https://demo.example.test/app"', false);
+
+    $this->get('/project/link-probe')->assertOk()
+        ->assertSee('href="https://demo.example.test/app"', false)
+        ->assertSee('href="https://github.com/example/repo"', false)
+        ->assertDontSee('dp-btn-cta--locked', false);
+});
+
+test('project safe url allows only http and https', function () {
+    $project = new App\Models\Project;
+
+    $cases = [
+        'https://example.test' => 'https://example.test',
+        '  HTTP://example.test/path  ' => 'HTTP://example.test/path',
+        'javascript:alert(1)' => null,
+        ' JaVaScRiPt:alert(2)' => null,
+        'data:text/html,x' => null,
+        'ftp://example.test' => null,
+        '//example.test' => null,
+        '/relative/path' => null,
+        '' => null,
+    ];
+
+    foreach ($cases as $input => $expected) {
+        $project->live_demo_url = $input;
+        expect($project->safeUrl('live_demo_url'))->toBe($expected);
+    }
+
+    $project->github_url = null;
+    expect($project->safeUrl('github_url'))->toBeNull();
+});

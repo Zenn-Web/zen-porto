@@ -221,8 +221,8 @@
                                 <span data-i18n-id="{{ __('portfolio.projects_detail', [], 'id') }}"
                                       data-i18n-en="{{ __('portfolio.projects_detail', [], 'en') }}">{{ __('portfolio.projects_detail') }}</span> <i class="bi bi-arrow-right ms-1"></i>
                             </a>
-                            @if($project->live_demo_url)
-                            <a href="{{ $project->live_demo_url }}" target="_blank" rel="noopener" class="btn-project-link-secondary">
+                            @if($project->safeUrl('live_demo_url'))
+                            <a href="{{ $project->safeUrl('live_demo_url') }}" target="_blank" rel="noopener" class="btn-project-link-secondary">
                                 <i class="bi bi-box-arrow-up-right me-1"></i>Live Demo
                             </a>
                             @endif

@@ -97,16 +97,16 @@
 
                     {{-- CTA Action Buttons --}}
                     <div class="dp-sidebar-element dp-cta-wrap" data-dp-anim="fade-up">
-                        @if($project->live_demo_url)
-                            <a href="{{ $project->live_demo_url }}" target="_blank" rel="noopener" class="dp-btn-cta dp-btn-cta--primary">
+                        @if($project->safeUrl('live_demo_url'))
+                            <a href="{{ $project->safeUrl('live_demo_url') }}" target="_blank" rel="noopener" class="dp-btn-cta dp-btn-cta--primary">
                                 <span data-i18n-id="{{ __('portfolio.project_live_demo', [], 'id') }}"
                                       data-i18n-en="{{ __('portfolio.project_live_demo', [], 'en') }}">{{ __('portfolio.project_live_demo') }}</span>
                                 <i class="bi bi-arrow-up-right"></i>
                             </a>
                         @endif
 
-                        @if($project->github_url)
-                            <a href="{{ $project->github_url }}" target="_blank" rel="noopener" class="dp-btn-cta dp-btn-cta--secondary">
+                        @if($project->safeUrl('github_url'))
+                            <a href="{{ $project->safeUrl('github_url') }}" target="_blank" rel="noopener" class="dp-btn-cta dp-btn-cta--secondary">
                                 <i class="bi bi-github"></i>
                                 <span data-i18n-id="{{ __('portfolio.project_github', [], 'id') }}"
                                       data-i18n-en="{{ __('portfolio.project_github', [], 'en') }}">{{ __('portfolio.project_github') }}</span>

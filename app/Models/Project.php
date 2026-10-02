@@ -54,6 +54,30 @@ class Project extends Model
         return html_entity_decode($value, ENT_QUOTES | ENT_HTML5, 'UTF-8');
     }
 
+    /**
+     * Link value for an external URL field (e.g. "live_demo_url", "github_url"),
+     * or null when it is empty or does not use the http/https scheme.
+     *
+     * Blocks javascript:, data: and similar URLs from ever reaching an href.
+     * The result must still be output escaped ({{ }}).
+     */
+    public function safeUrl(string $field): ?string
+    {
+        $value = trim((string) $this->getAttribute($field));
+
+        if ($value === '') {
+            return null;
+        }
+
+        $scheme = parse_url($value, PHP_URL_SCHEME);
+
+        if (! is_string($scheme) || ! in_array(strtolower($scheme), ['http', 'https'], true)) {
+            return null;
+        }
+
+        return $value;
+    }
+
     // --- Locale-aware accessors ---
 
     public function getTranslatedTitleAttribute(): string
