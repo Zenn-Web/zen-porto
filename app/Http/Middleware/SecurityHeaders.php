@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
  * frontend (inline theme script, Google Fonts, Vite assets/dev server).
  *
  * A Content-Security-Policy is intentionally not sent yet; see the CSP
- * source inventory in the security-hardening plan before adding one.
+ * source inventory under "Known gaps" in README.md before adding one.
  */
 class SecurityHeaders
 {
