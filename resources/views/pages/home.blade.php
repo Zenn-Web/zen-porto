@@ -171,12 +171,11 @@
             <div class="d-flex flex-column gap-5 text-start">
                 @forelse($projects as $project)
                     @php
-                        // Project fields are untrusted: normalise stray Windows-1252 dash/bullet
-                        // bytes to real Unicode characters and always output them escaped.
-                        $cleanTitleId = str_replace([chr(150), chr(151)], ["\u{2013}", "\u{2013}"], $project->title ?? '');
-                        $cleanTitleEn = str_replace([chr(150), chr(151)], ["\u{2013}", "\u{2013}"], $project->title_en ?? $project->title ?? '');
-                        $cleanCategoryId = str_replace(chr(149), "\u{2022}", $project->category ?? '');
-                        $cleanCategoryEn = str_replace(chr(149), "\u{2022}", $project->category_en ?? $project->category ?? '');
+                        // Plain text (legacy entities decoded); always output escaped with {{ }}.
+                        $cleanTitleId = $project->displayText('title');
+                        $cleanTitleEn = $project->displayText('title_en', 'title');
+                        $cleanCategoryId = $project->displayText('category');
+                        $cleanCategoryEn = $project->displayText('category_en', 'category');
                     @endphp
                     <div class="project-centered-item animate-on-scroll w-100 pb-4 {{ !$loop->last ? 'border-bottom border-secondary border-opacity-10' : '' }}">
                         <!-- Developer Role & Project Domain Lines -->

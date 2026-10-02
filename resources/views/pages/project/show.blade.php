@@ -3,13 +3,11 @@
 @section('content')
 
 @php
-    // Project fields are untrusted: normalise stray Windows-1252 bullet/dash bytes
-    // to real Unicode characters and always output them escaped with {{ }}.
+    // Project fields are untrusted plain text (legacy entities decoded by
+    // Project::displayText); always output them escaped with {{ }}.
     $isEn = app()->getLocale() === 'en';
-    $cleanCategoryId = str_replace(["\x95", "\x96"], ["\u{2022}", "\u{2013}"], $project->category ?? '');
-    $cleanCategoryEn = str_replace(["\x95", "\x96"], ["\u{2022}", "\u{2013}"], $project->category_en ?? $project->category ?? '');
-    $cleanTitleId = str_replace(["\x95", "\x96"], ["\u{2022}", "\u{2013}"], $project->title ?? '');
-    $cleanTitleEn = str_replace(["\x95", "\x96"], ["\u{2022}", "\u{2013}"], $project->title_en ?? $project->title ?? '');
+    $cleanTitleId = $project->displayText('title');
+    $cleanTitleEn = $project->displayText('title_en', 'title');
     // Multi-line text is kept as plain text; .dp-narrative-text uses white-space: pre-line.
     $flowId = $project->flow_description ?? '';
     $flowEn = $project->flow_description_en ?? $project->flow_description ?? '';

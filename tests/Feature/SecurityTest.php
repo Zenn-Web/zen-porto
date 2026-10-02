@@ -149,3 +149,58 @@ test('language switcher never parses data attributes as html', function () {
         ->not->toContain('insertAdjacentHTML')
         ->toContain('textContent');
 });
+
+test('shipped alpine-init bundle does not write data-i18n values through innerHTML', function () {
+    $manifest = json_decode(file_get_contents(public_path('build/manifest.json')), true);
+    $bundlePath = public_path('build/'.$manifest['resources/js/alpine-init.js']['file']);
+
+    expect($bundlePath)->toBeFile();
+    $bundle = file_get_contents($bundlePath);
+
+    // The bundle must be built from the fixed source (static-markup toggle present).
+    expect($bundle)->toContain('data-i18n-lang')->toContain('textContent');
+
+    // No innerHTML assignment inside the data-i18n handler. Alpine's own x-html
+    // directive also uses innerHTML, so only an assignment that follows a
+    // "data-i18n" reference within the same block (no closing brace) counts.
+    expect(preg_match('/data-i18n[^}]*\.innerHTML\s*=/', $bundle))->toBe(0);
+});
+
+test('legacy html entities in project text are decoded and shown as plain text', function () {
+    App\Models\Project::create([
+        'title' => 'Legacy &ndash; Title',
+        'title_en' => '&lt;script&gt;alert(5)&lt;/script&gt;',
+        'slug' => 'legacy-entities',
+        'category' => 'UI/UX &nbsp;&bull;&nbsp; DEVELOPMENT',
+        'category_en' => 'UI/UX &nbsp;&bull;&nbsp; DIGITAL BUSINESS',
+        'year' => '2026',
+    ]);
+
+    $home = $this->withSession(['locale' => 'en'])->get('/')->assertOk()->getContent();
+    $show = $this->withSession(['locale' => 'en'])->get('/project/legacy-entities')->assertOk()->getContent();
+
+    foreach ([$home, $show] as $content) {
+        expect($content)
+            ->not->toContain('&amp;bull;')
+            ->not->toContain('&amp;nbsp;')
+            ->not->toContain('&amp;ndash;')
+            // An entity-encoded payload decodes to text but is escaped again on output.
+            ->not->toContain('<script>alert(5)</script>')
+            ->toContain('data-i18n-en="&lt;script&gt;alert(5)&lt;/script&gt;"')
+            ->toContain("Legacy \u{2013} Title");
+    }
+
+    expect($home)->toContain("UI/UX \u{00A0}\u{2022}\u{00A0} DIGITAL BUSINESS");
+});
+
+test('seeded project categories render bullets instead of literal entities', function () {
+    $this->seed(Database\Seeders\ProjectSeeder::class);
+
+    $content = $this->withSession(['locale' => 'en'])->get('/')->assertOk()->getContent();
+
+    expect($content)
+        ->not->toContain('&amp;bull;')
+        ->not->toContain('&amp;nbsp;')
+        ->not->toContain('&bull;&nbsp;')
+        ->toContain("UI/UX \u{2022} DIGITAL BUSINESS");
+});
