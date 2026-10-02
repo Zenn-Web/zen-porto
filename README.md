@@ -113,7 +113,7 @@ Before committing, run from the repository root:
 powershell -ExecutionPolicy Bypass -File scripts/check-sensitive-files.ps1
 ```
 
-It checks Git-tracked **path names only** (never file contents) and exits non-zero if `.env`, private keys or certificate bundles (`*.pem`, `*.key`, `*.p12`, `*.pfx`, `*.pkpass`) are tracked, or if `.env` is not ignored. `.env.example` is allowed.
+It checks Git-tracked **path names only** (never file contents) and exits non-zero if `.env` or any `.env.*` variant, SSH private keys (`id_rsa`, `id_dsa`, `id_ecdsa`, `id_ed25519`), or key and certificate stores (`*.pem`, `*.key`, `*.p12`, `*.pfx`, `*.pkpass`, `*.jks`, `*.keystore`) are tracked, or if `.env` is not ignored. `.env.example` and `*.pub` public keys are allowed.
 
 ## Deployment checklist
 

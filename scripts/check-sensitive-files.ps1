@@ -10,8 +10,10 @@ try {
     }
     $trackedPaths = @($gitOutput | Where-Object { $_ -is [string] })
 
-    $sensitivePattern = '(^|/)(\.env|.*\.(pem|key|p12|pfx|pkpass))$'
-    $sensitivePaths = @($trackedPaths | Where-Object { $_ -match $sensitivePattern })
+    # .env and any .env.* variant, extensionless SSH private keys, and key/certificate stores.
+    $sensitivePattern = '(^|/)(\.env(\..+)?|id_(rsa|dsa|ecdsa|ed25519)|.*\.(pem|key|p12|pfx|pkpass|jks|keystore))$'
+    $allowedPattern = '(^|/)\.env\.example$'
+    $sensitivePaths = @($trackedPaths | Where-Object { $_ -match $sensitivePattern -and $_ -notmatch $allowedPattern })
 
     if ($sensitivePaths.Count -gt 0) {
         [Console]::Error.WriteLine('Sensitive filenames are tracked: ' + ($sensitivePaths -join ', '))
