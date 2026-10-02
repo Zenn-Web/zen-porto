@@ -204,3 +204,25 @@ test('seeded project categories render bullets instead of literal entities', fun
         ->not->toContain('&bull;&nbsp;')
         ->toContain("UI/UX \u{2022} DIGITAL BUSINESS");
 });
+
+test('project display text leaves valid utf-8 untouched', function () {
+    $project = new App\Models\Project(['title' => 'Ö × Õ 中文 😕 ok']);
+
+    expect($project->displayText('title'))->toBe('Ö × Õ 中文 😕 ok');
+});
+
+test('project display text remaps legacy windows-1252 bytes only in invalid utf-8', function () {
+    $project = new App\Models\Project([
+        'title' => "a \x96 b",
+        'category' => "x \x95 y \x97 z",
+    ]);
+
+    expect($project->displayText('title'))->toBe("a \u{2013} b")
+        ->and($project->displayText('category'))->toBe("x \u{2022} y \u{2013} z");
+});
+
+test('project display text still decodes legacy html entities', function () {
+    $project = new App\Models\Project(['category_en' => 'UI/UX &nbsp;&bull;&nbsp; Ö']);
+
+    expect($project->displayText('category_en'))->toBe("UI/UX \u{00A0}\u{2022}\u{00A0} Ö");
+});

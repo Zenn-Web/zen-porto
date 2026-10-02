@@ -43,7 +43,13 @@ class Project extends Model
             ?? ($fallback !== null ? $this->getAttribute($fallback) : null)
             ?? '';
 
-        $value = str_replace([chr(149), chr(150), chr(151)], ["\u{2022}", "\u{2013}", "\u{2013}"], (string) $value);
+        $value = (string) $value;
+
+        // Only remap legacy bytes when the text is not valid UTF-8; in valid UTF-8
+        // these bytes are continuation bytes of characters such as "Ö" or "×".
+        if (! mb_check_encoding($value, 'UTF-8')) {
+            $value = str_replace([chr(149), chr(150), chr(151)], ["\u{2022}", "\u{2013}", "\u{2013}"], $value);
+        }
 
         return html_entity_decode($value, ENT_QUOTES | ENT_HTML5, 'UTF-8');
     }
