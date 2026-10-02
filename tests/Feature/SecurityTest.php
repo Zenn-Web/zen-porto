@@ -286,3 +286,84 @@ test('api project routes are rate limited and keep their response shape', functi
 
     $this->getJson('/api/projects')->assertStatus(429);
 });
+
+/**
+ * Extract every <script src="..."> tag from rendered HTML.
+ *
+ * @return array<int, array{tag: string, src: string}>
+ */
+function renderedScriptTags(string $html): array
+{
+    preg_match_all('/<script\b[^>]*\bsrc\s*=\s*["\']([^"\']+)["\'][^>]*>/i', $html, $matches, PREG_SET_ORDER);
+
+    return array_map(fn (array $match) => ['tag' => $match[0], 'src' => $match[1]], $matches);
+}
+
+function renderedPagesForScriptAudit(): array
+{
+    App\Models\Project::create(['title' => 'Probe', 'slug' => 'script-probe', 'year' => '2026']);
+
+    return [
+        'home' => test()->get('/')->assertOk()->getContent(),
+        'project' => test()->get('/project/script-probe')->assertOk()->getContent(),
+    ];
+}
+
+test('rendered pages do not load unpinned @latest scripts', function () {
+    foreach (renderedPagesForScriptAudit() as $page => $html) {
+        expect(str_contains($html, '@latest'))->toBeFalse("{$page} page references an unpinned @latest asset");
+    }
+});
+
+test('rendered pages load bootstrap javascript from a single bundled source', function () {
+    foreach (renderedPagesForScriptAudit() as $page => $html) {
+        $bootstrapScripts = array_filter(
+            renderedScriptTags($html),
+            fn (array $script) => preg_match('/bootstrap|popper/i', $script['src']) === 1,
+        );
+
+        expect($bootstrapScripts)->toBeEmpty("{$page} page loads Bootstrap/Popper outside the Vite bundle")
+            ->and($html)->not->toContain('cdn.jsdelivr.net')
+            ->and($html)->not->toContain('bootstrap.min.js');
+    }
+});
+
+test('any external script on rendered pages is pinned with sri and crossorigin', function () {
+    foreach (renderedPagesForScriptAudit() as $page => $html) {
+        foreach (renderedScriptTags($html) as $script) {
+            if (preg_match('#^(https?:)?//#i', $script['src']) !== 1) {
+                continue;
+            }
+
+            // Same-origin Vite assets are rendered as absolute APP_URL links.
+            if (parse_url($script['src'], PHP_URL_HOST) === parse_url(config('app.url'), PHP_URL_HOST)) {
+                continue;
+            }
+
+            expect($script['tag'])
+                ->toMatch('/\bintegrity\s*=\s*["\']sha(256|384|512)-[A-Za-z0-9+\/=]+["\']/', "{$page}: {$script['src']} has no SRI")
+                ->toMatch('/\bcrossorigin\s*=\s*["\']anonymous["\']/', "{$page}: {$script['src']} has no crossorigin");
+        }
+    }
+});
+
+test('navbar collapse uses the bundled bootstrap module instead of a global', function () {
+    $script = file_get_contents(resource_path('js/app.js'));
+
+    expect($script)
+        ->toMatch('/import\s+Collapse\s+from\s+[\'"]bootstrap\/js\/dist\/collapse(\.js)?[\'"]/')
+        ->not->toMatch('/\bbootstrap\.Collapse\b/')
+        ->not->toMatch('/window\.bootstrap\b/');
+});
+
+test('bootstrap npm dependency is pinned to the locked version', function () {
+    $package = json_decode(file_get_contents(base_path('package.json')), true);
+    $lock = json_decode(file_get_contents(base_path('package-lock.json')), true);
+
+    $declared = $package['dependencies']['bootstrap'] ?? null;
+    $locked = $lock['packages']['node_modules/bootstrap']['version'] ?? null;
+
+    expect($declared)->toMatch('/^\d+\.\d+\.\d+$/')
+        ->and($declared)->toBe($locked)
+        ->and($lock['packages']['']['dependencies']['bootstrap'] ?? null)->toBe($declared);
+});

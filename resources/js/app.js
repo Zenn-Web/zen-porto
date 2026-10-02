@@ -10,6 +10,9 @@
  */
 import './bootstrap';
 import Lenis from 'lenis';
+// Bootstrap JS: hanya plugin Collapse (navbar mobile) yang dipakai. Import modul ini
+// juga mendaftarkan data-API `data-bs-toggle="collapse"`, jadi tidak perlu CDN global.
+import Collapse from 'bootstrap/js/dist/collapse';
 
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -132,7 +135,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 };
 
                 if (isMobileMenuOpen && navbarCollapse.contains(this)) {
-                    const bsCollapse = bootstrap.Collapse.getInstance(navbarCollapse) || new bootstrap.Collapse(navbarCollapse, { toggle: false });
+                    const bsCollapse = Collapse.getInstance(navbarCollapse) || new Collapse(navbarCollapse, { toggle: false });
                     if (bsCollapse) bsCollapse.hide();
                     setTimeout(doScroll, 200);
                 } else {
