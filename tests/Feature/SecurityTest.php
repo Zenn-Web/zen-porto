@@ -151,8 +151,9 @@ test('language switcher never parses data attributes as html', function () {
 });
 
 test('shipped alpine-init bundle does not write data-i18n values through innerHTML', function () {
+    // alpine-init.js is no longer a Vite entry; it ships inside the app.js bundle.
     $manifest = json_decode(file_get_contents(public_path('build/manifest.json')), true);
-    $bundlePath = public_path('build/'.$manifest['resources/js/alpine-init.js']['file']);
+    $bundlePath = public_path('build/'.$manifest['resources/js/app.js']['file']);
 
     expect($bundlePath)->toBeFile();
     $bundle = file_get_contents($bundlePath);

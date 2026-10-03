@@ -25,7 +25,9 @@ function applicationRouteSignatures(): array
     return collect(Route::getRoutes()->getRoutes())
         ->reject(fn ($route) => in_array($route->uri(), ['up', 'storage/{path}'], true)
             || str_starts_with($route->uri(), 'sanctum/')
-            || str_starts_with($route->uri(), '_boost/'))
+            || str_starts_with($route->uri(), '_boost/')
+            // Livewire's own asset/update endpoints (the prefix carries an install-specific hash).
+            || preg_match('#^livewire(-[0-9a-f]+)?/#', $route->uri()) === 1)
         ->map(fn ($route) => implode('|', $route->methods()).' '.$route->uri())
         ->sort()
         ->values()

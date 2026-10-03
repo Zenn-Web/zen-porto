@@ -9,6 +9,7 @@
  * - Bootstrap navbar collapse listener (sudah stabil, ganti = risiko regresi)
  */
 import './bootstrap';
+import './alpine-init';
 import Lenis from 'lenis';
 // Bootstrap JS: hanya plugin Collapse (navbar mobile) yang dipakai. Import modul ini
 // juga mendaftarkan data-API `data-bs-toggle="collapse"`, jadi tidak perlu CDN global.

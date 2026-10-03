@@ -1,1 +1,12 @@
-/* app.css */
+/*
+ * Tailwind entrypoint.
+ * Preflight is intentionally NOT imported while Bootstrap/Sass is still loaded
+ * (its reset would fight Bootstrap's). Task 4 enables it:
+ *   @import "tailwindcss/preflight.css" layer(base);
+ */
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities);
+
+/* Temporary parity styles live below until the Sass migration is complete. */
+@layer components {
+}
