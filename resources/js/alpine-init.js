@@ -1,6 +1,52 @@
 // Alpine itself is bundled and started by Livewire (@livewireScripts). This module only
 // registers custom behavior; it must never import, expose, or start Alpine.
 document.addEventListener('alpine:init', () => {
+    // Mobile navbar. `mounted` controls display, `open` controls the visual (.show) state;
+    // they are split so the nav-item enter transitions run (display must change a frame
+    // earlier than the class) and the exit transition finishes before display is removed.
+    window.Alpine.data('navMenu', () => ({
+        open: false,
+        mounted: false,
+        closeTimer: null,
+
+        toggle() {
+            this.open ? this.close() : this.openMenu();
+        },
+
+        openMenu() {
+            clearTimeout(this.closeTimer);
+            this.mounted = true;
+            this.$nextTick(() => {
+                this.$refs.menu.offsetHeight; // force reflow so the transitions start from the closed state
+                this.open = true;
+                this.syncScrollLock();
+            });
+        },
+
+        close() {
+            if (!this.open && !this.mounted) {
+                return;
+            }
+            this.open = false;
+            this.syncScrollLock();
+            this.closeTimer = setTimeout(() => {
+                this.mounted = false;
+                // Navbar height is back to normal now; anchor scrolling waits for this.
+                window.dispatchEvent(new CustomEvent('nav-closed'));
+            }, 450);
+        },
+
+        // Lock page scroll (and Lenis) while the mobile menu is open.
+        syncScrollLock() {
+            document.body.classList.toggle('mobile-menu-open', this.open);
+            if (this.open) {
+                window.lenis?.stop();
+            } else {
+                window.lenis?.start();
+            }
+        },
+    }));
+
     window.Alpine.store('lang', {
         current: document.documentElement.getAttribute('lang') || 'id',
         toggle() {

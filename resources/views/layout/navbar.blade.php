@@ -1,22 +1,28 @@
-<nav class="navbar navbar-expand-lg navbar-light custom-navbar fixed-top">
+<nav class="navbar navbar-expand-lg navbar-light custom-navbar fixed-top"
+     x-data="navMenu"
+     @nav-close.window="close()">
     <div class="container">
         <a class="navbar-brand brand-logo" href="/#home">
             Zenifen<span class="dot">.</span>
         </a>
 
         <!-- HAMBURGER CUSTOM (Animated) -->
-        <button class="navbar-toggler custom-toggler" type="button" 
-                data-bs-toggle="collapse" 
-                data-bs-target="#mainNavbar"
+        <button class="navbar-toggler custom-toggler" type="button"
+                @click="toggle()"
                 aria-controls="mainNavbar"
                 aria-expanded="false"
+                :aria-expanded="open.toString()"
                 aria-label="Toggle navigation">
             <span class="hamburger-line"></span>
             <span class="hamburger-line"></span>
             <span class="hamburger-line"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="mainNavbar">
+        {{-- No Bootstrap `collapse` class: Tailwind also ships a `.collapse` utility (visibility: collapse). --}}
+        <div class="navbar-collapse" id="mainNavbar" x-ref="menu"
+             style="display: none"
+             :class="{ 'show': open }"
+             :style="{ display: mounted ? 'block' : 'none' }">
             <ul class="navbar-nav mx-auto nav-links-group">
 
                 <li class="nav-item">

@@ -348,13 +348,17 @@ test('any external script on rendered pages is pinned with sri and crossorigin',
     }
 });
 
-test('navbar collapse uses the bundled bootstrap module instead of a global', function () {
+test('navbar collapse is driven by alpine, not by bootstrap javascript', function () {
     $script = file_get_contents(resource_path('js/app.js'));
+    $navbar = file_get_contents(resource_path('views/layout/navbar.blade.php'));
 
     expect($script)
-        ->toMatch('/import\s+Collapse\s+from\s+[\'"]bootstrap\/js\/dist\/collapse(\.js)?[\'"]/')
+        ->not->toContain('bootstrap/js')
         ->not->toMatch('/\bbootstrap\.Collapse\b/')
-        ->not->toMatch('/window\.bootstrap\b/');
+        ->not->toMatch('/window\.bootstrap\b/')
+        ->and($navbar)
+        ->not->toContain('data-bs-')
+        ->toContain('x-data="navMenu"');
 });
 
 test('bootstrap npm dependency is pinned to the locked version', function () {

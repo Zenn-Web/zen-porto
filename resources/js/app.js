@@ -6,14 +6,11 @@
  * - Anchor-scroll (terikat erat ke Lenis)
  * - Live clock (opsional, bisa dimigrasikan di masa depan)
  * - IntersectionObserver scroll-reveal (risiko re-timing animasi)
- * - Bootstrap navbar collapse listener (sudah stabil, ganti = risiko regresi)
+ * Navbar mobile (buka/tutup + scroll lock Lenis) ada di komponen Alpine `navMenu`.
  */
 import './bootstrap';
 import './alpine-init';
 import Lenis from 'lenis';
-// Bootstrap JS: hanya plugin Collapse (navbar mobile) yang dipakai. Import modul ini
-// juga mendaftarkan data-API `data-bs-toggle="collapse"`, jadi tidak perlu CDN global.
-import Collapse from 'bootstrap/js/dist/collapse';
 
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -96,7 +93,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // 3. UNIFIED ANCHOR SCROLL (Desktop & Mobile)
     const navbarCollapse = document.getElementById('mainNavbar');
-    const body = document.body;
 
     document.querySelectorAll('a[href*="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
@@ -136,9 +132,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 };
 
                 if (isMobileMenuOpen && navbarCollapse.contains(this)) {
-                    const bsCollapse = Collapse.getInstance(navbarCollapse) || new Collapse(navbarCollapse, { toggle: false });
-                    if (bsCollapse) bsCollapse.hide();
-                    setTimeout(doScroll, 200);
+                    // Alpine navMenu closes, then announces `nav-closed`; measure the navbar only after that.
+                    window.addEventListener('nav-closed', doScroll, { once: true });
+                    window.dispatchEvent(new CustomEvent('nav-close'));
                 } else {
                     doScroll();
                 }
@@ -219,18 +215,7 @@ document.addEventListener("DOMContentLoaded", () => {
         observer.observe(el);
     });
 
-    // 4. MOBILE MENU SCROLL LOCK (Lenis Integration)
-    if (navbarCollapse) {
-        navbarCollapse.addEventListener('show.bs.collapse', () => {
-            body.classList.add('mobile-menu-open');
-            lenis.stop(); // Kunci scroll Lenis saat menu terbuka
-        });
-
-        navbarCollapse.addEventListener('hide.bs.collapse', () => {
-            body.classList.remove('mobile-menu-open');
-            lenis.start(); // Aktifkan kembali scroll Lenis saat menu tertutup
-        });
-    }
+    // 4. MOBILE MENU SCROLL LOCK: handled by the Alpine `navMenu` component (alpine-init.js).
 
     // 5. AUTO-SCROLL TO CONTACT ON ERROR/SUCCESS
     const hasErrors = document.querySelector('.is-invalid');
