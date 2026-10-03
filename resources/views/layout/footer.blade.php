@@ -1,16 +1,16 @@
 <footer class="footer-section">
-    <div class="container-fluid px-4 px-md-5">
-        
+    <div class="mx-auto w-full px-6 md:px-12">
+
         <!-- Center Stack: Brand Logo -> Inline Navigation Menu -> Social Icons -->
-        <div class="d-flex flex-column align-items-center justify-content-center text-center">
-            
+        <div class="flex flex-col items-center justify-center text-center">
+
             <!-- 1. Brand Logo -->
-            <a class="footer-brand mb-3 d-inline-block" href="/#home">
+            <a class="footer-brand mb-4 inline-block" href="/#home">
                 Zenifen<span class="dot">.</span>
             </a>
 
             <!-- 2. Centered Horizontal Navigation Menu -->
-            <ul class="footer-nav-inline list-unstyled d-flex flex-wrap justify-content-center gap-3 gap-md-4 mb-3">
+            <ul class="footer-nav-inline list-none ps-0 flex flex-wrap justify-center gap-4 md:gap-6 mb-4">
                 <li><a href="/#home" data-i18n-id="{{ __('portfolio.footer_home', [], 'id') }}" data-i18n-en="{{ __('portfolio.footer_home', [], 'en') }}">{{ __('portfolio.footer_home') }}</a></li>
                 <li><a href="/#about" data-i18n-id="{{ __('portfolio.footer_about', [], 'id') }}" data-i18n-en="{{ __('portfolio.footer_about', [], 'en') }}">{{ __('portfolio.footer_about') }}</a></li>
                 <li><a href="/#skills" data-i18n-id="{{ __('portfolio.footer_skills', [], 'id') }}" data-i18n-en="{{ __('portfolio.footer_skills', [], 'en') }}">{{ __('portfolio.footer_skills') }}</a></li>
@@ -19,7 +19,7 @@
             </ul>
 
             <!-- 3. Social Media Icons -->
-            <div class="footer-socials d-flex gap-3 justify-content-center mb-4">
+            <div class="footer-socials flex gap-4 justify-center mb-6">
                 <a href="https://www.github.com/Zenn-Web" target="_blank" rel="noopener noreferrer" class="social-link-rounded github" aria-label="GitHub">
                     <i class="bi bi-github"></i>
                 </a>
@@ -36,10 +36,10 @@
 
         </div>
 
-        <hr class="footer-divider mb-3">
+        <hr class="footer-divider mb-4">
 
         <!-- Copyright Row (Full width corner-to-corner) -->
-        <div class="d-flex flex-column flex-md-row align-items-center justify-content-between gap-2">
+        <div class="flex flex-col md:flex-row items-center justify-between gap-2">
             <p class="footer-copyright mb-0">
                 &copy; {{ date('Y') }} Zenifen. <span data-i18n-id="{{ __('portfolio.footer_rights', [], 'id') }}" data-i18n-en="{{ __('portfolio.footer_rights', [], 'en') }}">{{ __('portfolio.footer_rights') }}</span>
             </p>

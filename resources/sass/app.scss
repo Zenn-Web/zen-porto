@@ -5,7 +5,25 @@
 // ================================================================
 
 // 1. Core Frameworks
-@import "bootstrap/scss/bootstrap";
+// Bootstrap is being phased out in favour of Tailwind (migration plan, Task 4). It is imported
+// here module by module instead of `bootstrap/scss/bootstrap`, WITHOUT `helpers` and
+// `utilities/api`: Bootstrap's utility classes (mb-3, d-flex, gap-4, ...) share names with
+// Tailwind's but use a different scale, and being `!important` they would always win.
+// What remains is only what the markup still uses: reboot, type, images, forms/alert (contact
+// form, until it becomes the Livewire component). Container/grid/nav/navbar are gone: the markup
+// uses Tailwind utilities and resources/css/app.css (`.container`).
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/variables-dark";
+@import "bootstrap/scss/maps";
+@import "bootstrap/scss/mixins";
+@import "bootstrap/scss/utilities";
+@import "bootstrap/scss/root";
+@import "bootstrap/scss/reboot";
+@import "bootstrap/scss/type";
+@import "bootstrap/scss/images";
+@import "bootstrap/scss/forms";
+@import "bootstrap/scss/alert";
 @import "bootstrap-icons/font/bootstrap-icons.css";
 
 // 2. Design Tokens & Variables

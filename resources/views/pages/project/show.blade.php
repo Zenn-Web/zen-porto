@@ -14,13 +14,13 @@
 @endphp
 
 <div class="dp-split-section">
-    <div class="container-fluid px-lg-5">
-        <div class="row g-lg-5">
+    <div class="w-full mx-auto px-3 lg:px-12">
+        <div class="flex flex-wrap -mx-3 lg:-mx-6 lg:-mt-12">
             
             {{-- ============================================ --}}
             {{-- LEFT COLUMN: Scrollable Content               --}}
             {{-- ============================================ --}}
-            <div class="col-lg-7 dp-content-col order-2 order-lg-1">
+            <div class="w-full max-w-full shrink-0 px-3 lg:px-6 lg:mt-12 lg:flex-none lg:w-7/12 dp-content-col order-2 lg:order-1">
                 
                 {{-- 1. Showcase Image --}}
                 <div class="dp-showcase-wrap" data-dp-anim="slide-right">
@@ -60,7 +60,7 @@
             {{-- ============================================ --}}
             {{-- RIGHT COLUMN: Sticky Sidebar                  --}}
             {{-- ============================================ --}}
-            <div class="col-lg-5 dp-sidebar-col order-1 order-lg-2">
+            <div class="w-full max-w-full shrink-0 px-3 lg:px-6 lg:mt-12 lg:flex-none lg:w-5/12 dp-sidebar-col order-1 lg:order-2">
                 <div class="dp-sidebar-sticky">
                     
                     {{-- Back to Portfolio --}}

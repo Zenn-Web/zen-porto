@@ -704,15 +704,7 @@ section:first-of-type {
     transform: translateY(0);
 }
 
-.container {
-    @media (min-width: 1200px) {
-        max-width: 1400px;
-    }
-
-    @media (min-width: 1600px) {
-        max-width: 1520px;
-    }
-}
+// `.container` (base + these widths) now lives in resources/css/app.css.
 
 
 // Global section reset — tidak override section spesifik

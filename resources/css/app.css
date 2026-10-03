@@ -1,11 +1,57 @@
 /*
  * Tailwind entrypoint.
- * Preflight is intentionally NOT imported while Bootstrap/Sass is still loaded
- * (its reset would fight Bootstrap's). Task 4 enables it:
- *   @import "tailwindcss/preflight.css" layer(base);
+ *
+ * Migration state (see docs/superpowers/plans/2026-10-03-portfolio-stack-migration-plan.md):
+ *  - Preflight is NOT imported while Bootstrap/Sass is still loaded (its reset would fight
+ *    Bootstrap's). Task 4 enables it:  @import "tailwindcss/preflight.css" layer(base);
+ *  - Utilities are imported WITHOUT `layer(utilities)` and with `important`, on purpose, to mimic
+ *    Bootstrap's utility classes: unlayered, and `!important`, so they override both Bootstrap's
+ *    element rules (e.g. `ul { margin-bottom }`) and the custom Sass (e.g. `fw-semibold` beating a
+ *    `font-weight: 700` rule). Once Bootstrap is removed and the custom CSS sits in
+ *    `@layer components`, restore `layer(utilities)` and drop `important`.
  */
 @import "tailwindcss/theme.css" layer(theme);
-@import "tailwindcss/utilities.css" layer(utilities);
+@import "tailwindcss/utilities.css" important;
+
+/*
+ * Bootstrap-compatible scales so utilities replace Bootstrap classes 1:1 during the migration.
+ * Breakpoints: Bootstrap sm 576 / md 768 / lg 992 / xl 1200 / xxl 1400 (Tailwind default lg is 1024).
+ * Spacing: Tailwind's 0.25rem step matches Bootstrap's: B1=T1, B2=T2, B3=T4, B4=T6, B5=T12.
+ */
+@theme {
+    --breakpoint-sm: 36rem;
+    --breakpoint-md: 48rem;
+    --breakpoint-lg: 62rem;
+    --breakpoint-xl: 75rem;
+    --breakpoint-2xl: 87.5rem;
+
+    /* Bootstrap's $secondary / secondary-color, for `text-secondary`, `text-muted`, `border-secondary/10`. */
+    --color-secondary: #6c757d;
+    --color-muted: rgba(33, 37, 41, 0.75);
+}
+
+/*
+ * `container` is still provided by Bootstrap's containers partial plus the custom Sass during the
+ * migration. Never generate Tailwind's own `.container` (it would be `!important` here and override
+ * the Sass/inline max-widths). Part 2 of Task 4 replaces it with a real container.
+ */
+@source not inline("container");
+
+/*
+ * Site container: Bootstrap's behaviour (fluid below 576px, stepped max-widths, 0.75rem gutters)
+ * plus the wider desktop widths this site always used (formerly an override in _app_ref.scss).
+ * Defined here (unlayered, like the Sass it replaces) so inline `style="max-width: ..."` still wins.
+ */
+.container {
+    width: 100%;
+    margin-inline: auto;
+    padding-inline: 0.75rem;
+}
+@media (min-width: 36rem) { .container { max-width: 540px; } }
+@media (min-width: 48rem) { .container { max-width: 720px; } }
+@media (min-width: 62rem) { .container { max-width: 960px; } }
+@media (min-width: 75rem) { .container { max-width: 1400px; } }
+@media (min-width: 100rem) { .container { max-width: 1520px; } }
 
 /* Temporary parity styles live below until the Sass migration is complete. */
 @layer components {

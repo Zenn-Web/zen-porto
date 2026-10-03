@@ -1,13 +1,13 @@
-<nav class="navbar navbar-expand-lg navbar-light custom-navbar fixed-top"
+<nav class="custom-navbar fixed inset-x-0 top-0 z-[1030] flex flex-wrap items-center justify-between lg:flex-nowrap lg:justify-start"
      x-data="navMenu"
      @nav-close.window="close()">
-    <div class="container">
-        <a class="navbar-brand brand-logo" href="/#home">
+    <div class="container flex flex-wrap items-center justify-between lg:flex-nowrap">
+        <a class="brand-logo py-[0.3125rem] me-4 whitespace-nowrap no-underline" href="/#home">
             Zenifen<span class="dot">.</span>
         </a>
 
         <!-- HAMBURGER CUSTOM (Animated) -->
-        <button class="navbar-toggler custom-toggler" type="button"
+        <button class="custom-toggler lg:hidden" type="button"
                 @click="toggle()"
                 aria-controls="mainNavbar"
                 aria-expanded="false"
@@ -19,40 +19,40 @@
         </button>
 
         {{-- No Bootstrap `collapse` class: Tailwind also ships a `.collapse` utility (visibility: collapse). --}}
-        <div class="navbar-collapse" id="mainNavbar" x-ref="menu"
+        <div class="navbar-collapse basis-full grow items-center lg:basis-auto" id="mainNavbar" x-ref="menu"
              style="display: none"
              :class="{ 'show': open }"
              :style="{ display: mounted ? 'block' : 'none' }">
-            <ul class="navbar-nav mx-auto nav-links-group">
+            <ul class="nav-links-group flex flex-col lg:flex-row ps-0 list-none">
 
                 <li class="nav-item">
-                    <a class="nav-link" href="/#home">
-                        <i class="bi bi-house d-lg-none"></i>
+                    <a class="nav-link lg:block no-underline" href="/#home">
+                        <i class="bi bi-house lg:hidden"></i>
                         <span data-i18n-id="{{ __('portfolio.nav_home', [], 'id') }}" data-i18n-en="{{ __('portfolio.nav_home', [], 'en') }}">{{ __('portfolio.nav_home') }}</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/#about">
-                        <i class="bi bi-person d-lg-none"></i>
+                    <a class="nav-link lg:block no-underline" href="/#about">
+                        <i class="bi bi-person lg:hidden"></i>
                         <span data-i18n-id="{{ __('portfolio.nav_about', [], 'id') }}" data-i18n-en="{{ __('portfolio.nav_about', [], 'en') }}">{{ __('portfolio.nav_about') }}</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/#skills">
-                        <i class="bi bi-journal-code d-lg-none"></i>
+                    <a class="nav-link lg:block no-underline" href="/#skills">
+                        <i class="bi bi-journal-code lg:hidden"></i>
                         <span data-i18n-id="{{ __('portfolio.nav_skills', [], 'id') }}" data-i18n-en="{{ __('portfolio.nav_skills', [], 'en') }}">{{ __('portfolio.nav_skills') }}</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/#resources">
-                        <i class="bi bi-grid d-lg-none"></i>
+                    <a class="nav-link lg:block no-underline" href="/#resources">
+                        <i class="bi bi-grid lg:hidden"></i>
                         <span data-i18n-id="{{ __('portfolio.nav_projects', [], 'id') }}" data-i18n-en="{{ __('portfolio.nav_projects', [], 'en') }}">{{ __('portfolio.nav_projects') }}</span>
                     </a>
                 </li>
             </ul>
 
-            <div class="nav-actions d-flex align-items-center gap-3 gap-lg-4">
-                <div class="utility-toggles d-flex gap-2">
+            <div class="nav-actions flex items-center gap-4 lg:gap-6">
+                <div class="utility-toggles flex gap-2">
                     <!-- Language Toggle Button -->
                     <button id="lang-toggle" x-data @click="$store.lang.toggle()" class="btn-lang-toggle" aria-label="Switch Language">
                         <span class="lang-label">{{ app()->getLocale() === 'en' ? 'ID' : 'EN' }}</span>
@@ -85,7 +85,7 @@
                 </div>
 
                 <a href="/#contact" class="btn-contact-me">
-                    <i class="bi bi-chat-dots me-2 d-lg-none"></i>
+                    <i class="bi bi-chat-dots me-2 lg:hidden"></i>
                     <span data-i18n-id="{{ __('portfolio.nav_contact', [], 'id') }}" data-i18n-en="{{ __('portfolio.nav_contact', [], 'en') }}">{{ __('portfolio.nav_contact') }}</span>
                 </a>
             </div>

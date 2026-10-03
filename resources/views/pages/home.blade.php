@@ -10,7 +10,7 @@
     $i18nIsEn = app()->getLocale() === 'en';
 @endphp
 
-    <section id="home" class="hero-classic-section hero-bg-section position-relative overflow-hidden">
+    <section id="home" class="hero-classic-section hero-bg-section relative overflow-hidden">
         <!-- Full Background Image -->
         <div class="hero-bg-image-wrapper">
             <img src="{{ asset('img/hero-classical-muse.png') }}" alt="" class="hero-bg-image" aria-hidden="true" width="1920" height="1080" style="aspect-ratio: 16/9;">
@@ -20,17 +20,17 @@
 
 
 
-        <div class="container position-relative" style="z-index: 3;">
-            <div class="row justify-content-center">
+        <div class="container relative" style="z-index: 3;">
+            <div class="flex flex-wrap justify-center -mx-3 max-lg:flex-col max-lg:text-center">
                 <!-- TEXT COLUMN — Centered -->
-                <div class="col-lg-8 col-xl-7 text-center">
+                <div class="w-full max-w-full shrink-0 px-3 lg:flex-none lg:w-8/12 xl:w-7/12 text-center">
                     <!-- Eyebrow Badge Pill -->
                     <div class="hero-classic-badge-wrapper animate-on-scroll">
                         <span class="hero-classic-badge-pill hero-badge-light"><span data-i18n-lang="id" @if($i18nIsEn) hidden @endif>{!! __('portfolio.hero_role', [], 'id') !!}</span><span data-i18n-lang="en" @unless($i18nIsEn) hidden @endunless>{!! __('portfolio.hero_role', [], 'en') !!}</span></span>
                     </div>
 
                     <!-- Name / Main Heading -->
-                    <h1 class="hero-classic-title hero-title-light fw-semibold animate-on-scroll text-reveal">
+                    <h1 class="hero-classic-title hero-title-light font-semibold animate-on-scroll text-reveal">
                         Zenifen Caesarof Agusti
                     </h1>
 
@@ -59,9 +59,9 @@
 
     <section id="about" class="about-section reveal-section">
         <div class="container">
-            <div class="row align-items-center justify-content-center g-4 g-lg-5 mx-auto" style="max-width: 1050px;">
+            <div class="flex flex-wrap items-center justify-center mx-auto -mt-6 lg:-mt-12" style="max-width: 1050px;">
                 <!-- BIO COLUMN -->
-                <div class="col-lg-6 about-bio-col animate-on-scroll">
+                <div class="w-full max-w-full shrink-0 ps-3 lg:ps-6 mt-6 lg:mt-12 lg:flex-none lg:w-6/12 about-bio-col animate-on-scroll">
                     <span class="about-eyebrow"
                           data-i18n-id="{{ __('portfolio.about_title', [], 'id') }}"
                           data-i18n-en="{{ __('portfolio.about_title', [], 'en') }}">{{ __('portfolio.about_title') }}</span>
@@ -70,11 +70,11 @@
                         data-i18n-en="{{ __('portfolio.about_title', [], 'en') }}">{{ __('portfolio.about_title') }}</h2>
                     <div class="about-divider animate-text"></div>
                     
-                    <p class="about-desc animate-text mb-4">
+                    <p class="about-desc animate-text mb-6">
                         <span data-i18n-lang="id" @if($i18nIsEn) hidden @endif>{!! __('portfolio.about_p1', [], 'id') !!}</span>
                         <span data-i18n-lang="en" @unless($i18nIsEn) hidden @endunless>{!! __('portfolio.about_p1', [], 'en') !!}</span>
                     </p>
-                    <p class="about-desc animate-text text-secondary mb-4">
+                    <p class="about-desc animate-text text-secondary mb-6">
                         <span data-i18n-lang="id" @if($i18nIsEn) hidden @endif>{!! __('portfolio.about_p2', [], 'id') !!}</span>
                         <span data-i18n-lang="en" @unless($i18nIsEn) hidden @endunless>{!! __('portfolio.about_p2', [], 'en') !!}</span>
                     </p>
@@ -93,9 +93,9 @@
                 </div>
 
                 <!-- PROFILE PHOTO COLUMN (Centered Showcase - Hidden on Mobile) -->
-                <div class="col-lg-5 offset-lg-1 col-xl-4 offset-xl-1 mt-4 mt-lg-0 animate-on-scroll d-none d-lg-flex justify-content-center">
+                <div class="w-full max-w-full shrink-0 px-3 lg:px-6 lg:flex-none lg:w-5/12 xl:w-4/12 lg:ml-[8.33333333%] mt-6 lg:mt-0 animate-on-scroll hidden lg:flex justify-center">
                     <div class="about-clean-photo-card text-center">
-                        <div class="about-clean-image-wrap mb-3">
+                        <div class="about-clean-image-wrap mb-4">
                             <img src="{{ asset('img/foto_about_me.jpeg') }}" alt="Zenifen Agusti" class="about-clean-img" width="400" height="500" style="aspect-ratio: 4/5;">
                         </div>
                         <h3 class="about-clean-name">Zenifen Agusti</h3>
@@ -109,15 +109,15 @@
     <section id="skills" class="skills-section reveal-section">
         <div class="container" style="max-width: 800px;">
 
-            <div class="mb-5 text-center">
-                <h2 class="fw-bold mb-0 animate-on-scroll text-reveal d-inline-block"
+            <div class="mb-12 text-center">
+                <h2 class="font-bold mb-0 animate-on-scroll text-reveal inline-block"
                     data-i18n-id="{{ __('portfolio.skills_title', [], 'id') }}"
                     data-i18n-en="{{ __('portfolio.skills_title', [], 'en') }}">{{ __('portfolio.skills_title') }}</h2>
                 <div class="mx-auto mt-2 animate-on-scroll" style="width: 50px; height: 3px; background: var(--accent-emerald);"></div>
             </div>
 
             <!-- Vertical Stack of 3 Clean Skill Groups (Centered) -->
-            <div class="d-flex flex-column gap-4 animate-on-scroll">
+            <div class="flex flex-col gap-6 animate-on-scroll">
                 
                 <!-- Group 1: Front-End -->
                 <div class="skills-clean-block">
@@ -161,14 +161,14 @@
     <section id="resources" class="projects-section reveal-section">
         <div class="container" style="max-width: 800px;">
 
-            <div class="mb-5 text-center">
-                <h2 class="fw-bold mb-0 animate-on-scroll text-reveal d-inline-block"
+            <div class="mb-12 text-center">
+                <h2 class="font-bold mb-0 animate-on-scroll text-reveal inline-block"
                     data-i18n-id="{{ __('portfolio.projects_title', [], 'id') }}"
                     data-i18n-en="{{ __('portfolio.projects_title', [], 'en') }}">{{ __('portfolio.projects_title') }}</h2>
                 <div class="mx-auto mt-2 animate-on-scroll" style="width: 50px; height: 3px; background: var(--accent-emerald);"></div>
             </div>
 
-            <div class="d-flex flex-column gap-5 text-start">
+            <div class="flex flex-col gap-12 text-left">
                 @forelse($projects as $project)
                     @php
                         // Plain text (legacy entities decoded); always output escaped with {{ }}.
@@ -177,13 +177,13 @@
                         $cleanCategoryId = $project->displayText('category');
                         $cleanCategoryEn = $project->displayText('category_en', 'category');
                     @endphp
-                    <div class="project-centered-item animate-on-scroll w-100 pb-4 {{ !$loop->last ? 'border-bottom border-secondary border-opacity-10' : '' }}">
+                    <div class="project-centered-item animate-on-scroll w-full pb-6 {{ !$loop->last ? 'border-b border-secondary/10' : '' }}">
                         <!-- Developer Role & Project Domain Lines -->
                         <div class="mb-2">
                             <div class="project-role-badge mb-1">
                                 FrontEnd &bull; UI/UX &bull; Contributor GIT
                             </div>
-                            <div class="project-meta-line d-flex flex-wrap align-items-center gap-2">
+                            <div class="project-meta-line flex flex-wrap items-center gap-2">
                                 <span data-i18n-id="{{ $cleanCategoryId }}" data-i18n-en="{{ $cleanCategoryEn }}">{{ $i18nIsEn ? $cleanCategoryEn : $cleanCategoryId }}</span>
                                 <span>&bull;</span>
                                 <span>{{ $project->year }}</span>
@@ -191,14 +191,14 @@
                         </div>
 
                         <!-- Title -->
-                        <h3 class="project-split-title fw-bold mb-3"
+                        <h3 class="project-split-title font-bold mb-4"
                             data-i18n-id="{{ $cleanTitleId }}"
                             data-i18n-en="{{ $cleanTitleEn }}">
                             {{ $i18nIsEn ? $cleanTitleEn : $cleanTitleId }}
                         </h3>
 
                         <!-- Description -->
-                        <p class="text-secondary mb-3" style="line-height: 1.7;"
+                        <p class="text-secondary mb-4" style="line-height: 1.7;"
                            data-i18n-id="{{ $project->description }}"
                            data-i18n-en="{{ $project->description_en ?? $project->description }}">
                             {{ app()->getLocale() === 'en' ? ($project->description_en ?? $project->description) : $project->description }}
@@ -206,7 +206,7 @@
 
                         <!-- Tech Stack Pills -->
                         @if($project->tech_stack_badges)
-                        <div class="mb-4 d-flex flex-wrap gap-2">
+                        <div class="mb-6 flex flex-wrap gap-2">
                             @foreach($project->tech_stack_badges as $badge)
                             <span class="project-split-tech-pill">
                                 {{ $badge["name"] }}
@@ -216,7 +216,7 @@
                         @endif
 
                         <!-- CTA Links -->
-                        <div class="d-flex flex-wrap gap-3 align-items-center">
+                        <div class="flex flex-wrap gap-4 items-center">
                             <a href="{{ route('project.show', $project->slug) }}" class="btn-project-link-primary">
                                 <span data-i18n-id="{{ __('portfolio.projects_detail', [], 'id') }}"
                                       data-i18n-en="{{ __('portfolio.projects_detail', [], 'en') }}">{{ __('portfolio.projects_detail') }}</span> <i class="bi bi-arrow-right ms-1"></i>
@@ -229,7 +229,7 @@
                         </div>
                     </div>
                 @empty
-                    <div class="col-12 text-center py-5">
+                    <div class="w-full flex-none text-center py-12">
                         <p class="text-muted"
                            data-i18n-id="{{ __('portfolio.projects_empty', [], 'id') }}"
                            data-i18n-en="{{ __('portfolio.projects_empty', [], 'en') }}">{{ __('portfolio.projects_empty') }}</p>
@@ -239,25 +239,25 @@
         </div>
     </section>
     <section id="contact" class="contact-section reveal-section">
-        <div class="container d-flex justify-content-center px-4">
-            <div class="contact-card-classic p-4 p-md-5 text-center animate-on-scroll">
+        <div class="container flex justify-center px-6">
+            <div class="contact-card-classic p-6 md:p-12 text-center animate-on-scroll">
                 <!-- Eyebrow -->
                 <p class="contact-eyebrow-classic mb-2"
                    data-i18n-id="{{ __('portfolio.contact_eyebrow', [], 'id') }}"
                    data-i18n-en="{{ __('portfolio.contact_eyebrow', [], 'en') }}">{{ __('portfolio.contact_eyebrow') }}</p>
                 
                 <!-- Title -->
-                <h2 class="contact-title-classic mb-3 text-reveal"
+                <h2 class="contact-title-classic mb-4 text-reveal"
                     data-i18n-id="{{ __('portfolio.contact_title', [], 'id') }}"
                     data-i18n-en="{{ __('portfolio.contact_title', [], 'en') }}">{{ __('portfolio.contact_title') }}</h2>
                 
                 <!-- Subtitle -->
-                <p class="contact-subtitle-classic mb-4 mb-md-5"
+                <p class="contact-subtitle-classic mb-6 md:mb-12"
                    data-i18n-id="{{ __('portfolio.contact_subtitle', [], 'id') }}"
                    data-i18n-en="{{ __('portfolio.contact_subtitle', [], 'en') }}">{{ __('portfolio.contact_subtitle') }}</p>
 
                 <!-- Clean Contact Buttons Grid/Row -->
-                <div class="d-flex flex-wrap justify-content-center gap-3 mb-0">
+                <div class="flex flex-wrap justify-center gap-4 mb-0">
                     <!-- Email Method -->
                     <a href="mailto:zenifenagusti70@gmail.com" class="contact-btn-classic">
                         <i class="bi bi-envelope-fill me-2 text-emerald"></i>
