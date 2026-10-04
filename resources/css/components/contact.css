@@ -1,0 +1,115 @@
+/* Generated from resources/sass/components/_contact.scss during the Bootstrap/Sass removal (migration plan, Task 4). Edit this file directly from now on. */
+/* CONTACT SECTION */
+.contact-section {
+  background-color: var(--bg-primary);
+  padding: 60px 0;
+}
+@media (max-width: 768px) {
+  .contact-section {
+    padding: 40px 0;
+  }
+}
+
+.contact-card-classic {
+  max-width: 750px;
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.contact-eyebrow-classic {
+  font-family: "Poppins", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent-emerald, #0fb9a7);
+}
+
+.contact-title-classic {
+  font-family: "Poppins", sans-serif;
+  font-size: clamp(2rem, 6vw, 2.75rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text-primary-classic, #1c1917);
+}
+
+.contact-subtitle-classic {
+  font-family: "Poppins", sans-serif;
+  font-size: 0.95rem;
+  color: var(--text-secondary-classic, #44403c);
+  max-width: 520px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+}
+
+.contact-btn-classic {
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 22px;
+  border-radius: 9999px;
+  background: transparent;
+  border: 1.5px solid var(--border-classic, #e7e5e4);
+  font-family: "Poppins", sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-primary-classic, #1c1917);
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+.contact-btn-classic i {
+  font-size: 1rem;
+}
+.contact-btn-classic:hover:not(.no-link) {
+  border-color: var(--accent-emerald, #0fb9a7);
+  color: var(--accent-emerald, #0fb9a7);
+  background-color: rgba(15, 185, 167, 0.02);
+}
+.contact-btn-classic.no-link {
+  cursor: default;
+}
+@media (max-width: 576px) {
+  .contact-btn-classic {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+.contact-divider-classic {
+  width: 60px;
+  height: 1.5px;
+  background-color: var(--border-classic, #e7e5e4);
+}
+
+.social-icon-classic {
+  color: var(--text-secondary-classic, #44403c);
+  font-size: 1.4rem;
+  transition: all 0.25s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.social-icon-classic:hover {
+  color: var(--accent-emerald, #0fb9a7);
+}
+
+.social-link-rounded {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  font-size: 1.2rem;
+  color: var(--text-secondary-classic, #64748b);
+  background-color: transparent;
+  border: 1px solid var(--border-classic, #e2e8f0);
+  border-radius: 50%; /* Bulat / Rounded */
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+.social-link-rounded:hover {
+  background-color: var(--text-primary, #0f172a);
+  color: var(--bg-primary, #ffffff);
+  border-color: var(--text-primary, #0f172a);
+}

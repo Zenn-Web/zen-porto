@@ -9,7 +9,6 @@ export default defineConfig({
                 'resources/css/app.css',
                 'resources/js/app.js',
                 // Transitional Sass bundles: removed in Task 4 once the pages stop loading them.
-                'resources/sass/app.scss',
                 'resources/sass/detail-project.scss',
                 'resources/js/detail-animations.js'
             ],

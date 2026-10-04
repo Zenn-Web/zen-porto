@@ -1,0 +1,203 @@
+/* Generated from resources/sass/components/_responsive-overrides.scss during the Bootstrap/Sass removal (migration plan, Task 4). Edit this file directly from now on. */
+/* RESPONSIVENESS OVERRIDES */
+@media (max-width: 991.98px) {
+  .hero-classic-section {
+    padding: 90px 0 40px 0; /* Compact padding */
+    min-height: auto;
+  }
+  .hero-classic-section .row {
+    flex-direction: column; /* Text on top, image card on bottom */
+    text-align: center !important; /* Center align text */
+  }
+  .hero-classic-section .col-lg-6 {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center child elements like badge & cta */
+  }
+  .hero-classic-section .hero-classic-badge-wrapper {
+    margin-bottom: 0.75rem;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+  .hero-classic-section .hero-classic-badge-pill {
+    font-size: 0.65rem;
+    padding: 5px 12px;
+  }
+  .hero-classic-section .hero-classic-title {
+    font-size: clamp(2rem, 7.5vw, 2.3rem); /* Compact size */
+    margin-bottom: 0.75rem;
+    line-height: 1.15;
+    text-align: center;
+    width: 100%;
+  }
+  .hero-classic-section .hero-classic-bio {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 1.25rem;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .hero-classic-section .hero-classic-cta {
+    flex-direction: row; /* Side by side buttons */
+    align-items: center;
+    justify-content: center; /* Center buttons horizontally */
+    width: 100%;
+    max-width: 320px; /* Restrict width so they remain compact side-by-side */
+    margin-left: auto;
+    margin-right: auto;
+    gap: 10px;
+  }
+  .hero-classic-section .hero-classic-cta .btn-classic-solid, .hero-classic-section .hero-classic-cta .btn-classic-outline {
+    flex: 1; /* Equal widths */
+    width: auto;
+    padding: 10px 16px; /* Compact padding */
+    font-size: 0.8rem;
+  }
+  .hero-classic-section .hero-classic-card {
+    max-width: 100%;
+    width: 100%;
+    height: 280px; /* Shorter card for better fit */
+    margin: 1.75rem auto 0 auto;
+    border-radius: 20px;
+  }
+  .hero-classic-section .hero-classic-glass-badge {
+    bottom: 12px;
+    left: 12px;
+    right: 12px;
+    padding: 10px 14px;
+    border-radius: 12px;
+    text-align: left; /* Revert to left-align for status details */
+  }
+  .hero-classic-section .hero-classic-glass-badge .glass-badge-header {
+    margin-bottom: 4px;
+  }
+  .hero-classic-section .hero-classic-glass-badge .glass-badge-title {
+    font-size: 0.6rem;
+  }
+  .hero-classic-section .hero-classic-glass-badge .glass-badge-text {
+    font-size: 0.7rem;
+    line-height: 1.35;
+  }
+  .hero-classic-section .ornament-sparkle.sparkle-1 {
+    top: 45%;
+    left: 5%;
+  }
+  .hero-classic-section .ornament-sparkle.sparkle-3 {
+    bottom: 45%;
+    right: 5%;
+  }
+}
+/* ==================== STATS GRID - ABOUT SECTION ==================== */
+.stats-grid-about {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+@media (max-width: 768px) {
+  .stats-grid-about {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+}
+@media (max-width: 480px) {
+  .stats-grid-about {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+}
+
+.stat-item-about {
+  text-align: center;
+  padding: 1.25rem 1rem;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-primary);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+.stat-item-about:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  border-color: var(--accent-emerald);
+}
+
+.stat-number-about {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--accent-emerald);
+  line-height: 1;
+  margin-bottom: 0.5rem;
+  font-family: "Poppins", sans-serif;
+}
+@media (max-width: 768px) {
+  .stat-number-about {
+    font-size: 1.75rem;
+  }
+}
+
+.stat-icon-about {
+  font-size: 2.25rem;
+}
+.stat-icon-about i {
+  color: var(--accent-emerald);
+  animation: pulse-gentle 2s ease-in-out infinite;
+}
+
+.stat-label-about {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  line-height: 1.2;
+}
+@media (max-width: 768px) {
+  .stat-label-about {
+    font-size: 0.75rem;
+  }
+}
+
+@keyframes pulse-gentle {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.9;
+  }
+}
+/* Tech badges for portfolio cards */
+.card-tech-badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 50px;
+  font-size: 0.65rem;
+  font-weight: 600;
+  line-height: 1.5;
+  transition: all 0.3s ease;
+  /* Unified Theme Color (Emerald Accent) */
+  background-color: rgba(var(--accent-emerald-rgb), 0.08);
+  color: var(--accent-emerald);
+  border: 1px solid rgba(var(--accent-emerald-rgb), 0.2);
+}
+.card-tech-badge.badge-count {
+  background-color: color-mix(in srgb, var(--text-primary) 8%, transparent);
+  color: var(--text-secondary);
+  border: 1px solid color-mix(in srgb, var(--text-primary) 15%, transparent);
+}
+
+[data-theme=dark] .card-tech-badge {
+  background-color: rgba(var(--accent-emerald-rgb), 0.12);
+  color: var(--accent-emerald);
+  border-color: rgba(var(--accent-emerald-rgb), 0.25);
+}
+[data-theme=dark] .card-tech-badge.badge-count {
+  background-color: rgba(255, 255, 255, 0.08);
+  color: var(--text-muted);
+  border-color: rgba(255, 255, 255, 0.12);
+}

@@ -26,22 +26,5 @@
 @import "bootstrap/scss/alert";
 @import "bootstrap-icons/font/bootstrap-icons.css";
 
-// 2. Design Tokens & Variables
-@import "variables";
-
-// 3. Global Styles, Lenis, Resets (dari app.scss asli commit a819ff1c)
-@import "app_ref";
-
-// 4. UI Components — dipecah per komponen (dari app2.scss asli commit a819ff1c)
-@import "components/base-mobile";
-@import "components/navbar";
-@import "components/buttons";
-@import "components/contact";
-@import "components/skills";
-@import "components/projects";
-@import "components/footer";
-@import "components/hero";
-@import "components/responsive-overrides";
-
-// 5. About Section Redesign
-@import "about_redesign";
+// The custom styles (tokens, base, components, about) were converted to plain CSS and are now
+// imported by resources/css/app.css, after this Bootstrap bundle.

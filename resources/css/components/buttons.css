@@ -1,0 +1,113 @@
+/* Generated from resources/sass/components/_buttons.scss during the Bootstrap/Sass removal (migration plan, Task 4). Edit this file directly from now on. */
+/* CONTACT BUTTON */
+.btn-contact-me {
+  background-color: var(--text-primary);
+  color: var(--bg-primary);
+  padding: 0 24px;
+  height: 40px; /* Sama dengan tinggi toggle */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.85rem;
+  border: 2px solid var(--text-primary);
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  white-space: nowrap;
+}
+.btn-contact-me:hover {
+  background-color: transparent;
+  color: var(--text-primary);
+}
+.btn-contact-me {
+  /* Mobile: full width */
+}
+@media (max-width: 991px) {
+  .btn-contact-me {
+    width: 100%;
+    display: flex;
+    height: 44px;
+    padding: 0 28px;
+    font-size: 0.9rem;
+  }
+}
+
+/* THEME TOGGLE BUTTON */
+.btn-theme-toggle {
+  background: transparent;
+  border: 1.5px solid var(--border-dim);
+  color: var(--text-primary);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+.btn-theme-toggle:hover {
+  border-color: var(--text-primary);
+  transform: scale(1.05);
+}
+.btn-theme-toggle i {
+  font-size: 1.2rem;
+  position: absolute;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+}
+.btn-theme-toggle .sun-icon {
+  opacity: 1;
+  transform: translateY(0);
+}
+.btn-theme-toggle .moon-icon {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+/* Theme specific icon states */
+[data-theme=dark] .btn-theme-toggle .sun-icon {
+  opacity: 0;
+  transform: translateY(-30px);
+}
+[data-theme=dark] .btn-theme-toggle .moon-icon {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* LANGUAGE TOGGLE BUTTON */
+.btn-lang-toggle {
+  background: transparent;
+  border: 1.5px solid var(--border-dim);
+  color: var(--text-primary);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+.btn-lang-toggle:hover {
+  border-color: var(--text-primary);
+  transform: scale(1.05);
+}
+.btn-lang-toggle:active {
+  transform: scale(0.95);
+}
+.btn-lang-toggle .lang-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1;
+  user-select: none;
+  transition: all 0.3s ease;
+}
+.btn-lang-toggle:hover .lang-label {
+  color: var(--accent-emerald);
+}
