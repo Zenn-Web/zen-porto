@@ -130,5 +130,5 @@
 @endsection
 
 @push('scripts')
-    @vite(['resources/sass/detail-project.scss', 'resources/js/detail-animations.js'])
+    @vite(['resources/css/detail-project.css', 'resources/js/detail-animations.js'])
 @endpush

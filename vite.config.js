@@ -8,8 +8,7 @@ export default defineConfig({
             input: [
                 'resources/css/app.css',
                 'resources/js/app.js',
-                // Transitional Sass bundles: removed in Task 4 once the pages stop loading them.
-                'resources/sass/detail-project.scss',
+                'resources/css/detail-project.css',
                 'resources/js/detail-animations.js'
             ],
             refresh: true,
