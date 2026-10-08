@@ -362,6 +362,7 @@ chore: remove legacy frontend runtime dependencies
 **Files:**
 - Test: all existing tests under `tests/`
 - Verify: `composer.json`, `package.json`, `vite.config.js`, `resources/views/layout/welcome.blade.php`
+- Review against: `docs/owasp-top-10-mapping.md` (OWASP Top 10:2025 mapping)
 - Optional documentation update only if required: `README.md`
 
 **Interfaces:**
@@ -374,7 +375,17 @@ chore: remove legacy frontend runtime dependencies
 - [ ] Run `php artisan route:list --except-vendor` and compare public routes with the Global Constraints list.
 - [ ] Run `rg "livewire|tailwind|alpine|gsap|lenis|bootstrap|sass" composer.json package.json vite.config.js resources app` and verify each result has an intentional role.
 - [ ] Confirm the plan's known CSP gap remains explicit: no CSP header was added, and any future CSP work is tracked separately with Livewire 4/Alpine CSP or nonce requirements.
-- [ ] Manually verify at minimum: homepage, project detail, mobile navigation, theme toggle, language toggle, anchor navigation, contact success, contact validation error, contact throttling, external project links, and reduced-motion behavior.
+- [ ] **OWASP Top 10:2025 review.** Re-read `docs/owasp-top-10-mapping.md` and check every category against the evidence in the final code, writing down the result (finding, evidence such as a test or command output, or "not applicable"). At minimum:
+  - **A01 Broken Access Control:** the endpoints Livewire registers (`update`, `upload-file`, `preview-file`) are understood and nothing beyond `ContactForm` is reachable; the unused upload endpoint is signed/throttled or disabled.
+  - **A02 Security Misconfiguration:** no CSP is sent (known gap above); the other security headers still pass `SecurityHeadersTest`; no debug or example configuration was introduced.
+  - **A03 / A08 Supply Chain and Integrity:** run `composer audit` and `npm audit`; list the advisories that touch code this application runs (for example `laravel/framework`, and the `email:rfc` validation rule used by `ContactRules`), and record whether each needs action. Do not upgrade Laravel or other packages inside this migration; report it as a separate decision. External scripts keep their pinned/SRI tests green.
+  - **A05 Injection:** project data stays escaped, the language switcher still writes `textContent` only, the Livewire view uses escaped output, and header injection through the contact fields is still rejected.
+  - **A06 Insecure Design:** the contact rate limits (per IP and per normalized email) hold on both `POST /contact` and the Livewire path, including the spoofed `X-Forwarded-For` case.
+  - **A09 Logging:** contact failures are logged without personal data; note that 429/validation events are not monitored (operational follow-up, not part of this migration).
+  - **A10 Exceptional Conditions:** a queue failure is never reported as success on either contact path.
+  - Prove the CSRF protection of the Livewire update endpoint with a real check (Laravel skips CSRF verification while running tests, so the Pest suite does not show it): a request without a valid token must be rejected in a running application.
+  - Update `docs/owasp-top-10-mapping.md` to the current state (it still describes the pre-migration audit of 2026-10-01) as a separate documentation commit.
+- [ ] Manually verify at minimum: homepage, project detail, mobile navigation, theme toggle, language toggle, anchor navigation, and external project links. The contact form is not placed on any page (the Livewire component and its minimal view exist and are covered by automated tests: success, validation error, throttling, queue failure), and reduced-motion behavior is a known gap (the site does not implement it); record both as follow-ups instead of verifying them manually.
 - [ ] Confirm no CMS/admin/auth/API expansion, new table, unrelated package upgrade, or content rewrite entered the diff.
 - [ ] Report any remaining visual mismatch as a separate follow-up issue; do not expand the migration task to redesign the portfolio.
 
@@ -383,6 +394,7 @@ chore: remove legacy frontend runtime dependencies
 - Full Pest suite passes.
 - Production asset build passes.
 - Public route and security contracts pass.
+- Every OWASP Top 10:2025 category has a recorded result (finding, evidence, or not applicable), and dependency advisories are reported as a separate decision rather than fixed inside this migration.
 - The final diff is limited to the files and responsibilities described in this plan.
 
 **Commit:**
