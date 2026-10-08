@@ -3,7 +3,44 @@
 **Tanggal:** 2026-10-01  
 **Scope:** static review terhadap source code dan temuan audit sebelumnya; bukan penetration test, deployment review, atau sertifikasi compliance.
 
-## Kesimpulan singkat
+## Status terkini — pasca migrasi frontend (2026-10-08)
+
+Bagian ini menggantikan penilaian status di bawahnya, yang menggambarkan audit 2026-10-01 sebelum migrasi Blade/Tailwind/Alpine/Livewire. Tabel dan prioritas di bagian-bagian berikutnya dipertahankan sebagai catatan historis. Scope sama seperti di atas: review berbasis kode dan perintah yang dijalankan, bukan penetration test atau sertifikasi. Seluruh suite Pest (137 tes) lolos saat review ini dibuat.
+
+### Temuan audit awal: status sekarang
+
+| Temuan 2026-10-01 | Kategori 2025 | Status sekarang | Bukti |
+|---|---|---|---|
+| `.env` pernah ada di history Git | A02, A04 | **Tidak berubah oleh migrasi; masih tindakan operasional.** `.env` tidak ter-track. Validitas secret dan rotasi tidak dinilai ulang. | `git ls-files --error-unmatch .env` → tidak dikenal; runbook: `docs/security/secret-rotation-runbook.md` (dirujuk README) |
+| `{!! !!}` dan `innerHTML` | A05 | **Tertutup untuk sink yang ditinjau.** Pergantian bahasa memakai `textContent`; tidak ada `innerHTML`/`outerHTML`/`insertAdjacentHTML`/`x-html` di JS maupun view. `{!! !!}` tersisa di terjemahan statis tepercaya (home) dan template email teks-biasa. | Tes XSS/escaping/`data-i18n` (9 tes), `rg` atas DOM sink kosong |
+| Tanpa rate limit, tanpa batas `message`, email sinkron | A06 | **Tertutup di kedua jalur kontak.** `POST /contact` memakai `throttle:contact`; komponen Livewire menegakkan batas yang sama sendiri karena request Livewire tidak lewat middleware route. IP dari koneksi server, bukan dari header klien. Email diantrekan, terenkripsi, retry terbatas. | Tes route (4) dan Livewire (12), termasuk `X-Forwarded-For` palsu dan email lintas IP |
+| CDN tanpa pin/SRI, `@latest` | A03, A08 | **Tertutup untuk script.** Tidak ada `<script>` eksternal; satu stylesheet Google Fonts tersisa (CSS tidak mendukung SRI). Bootstrap/Popper/Sass sudah dibuang dari dependensi. | `rg` atas layout; `SecurityTest` |
+| Tanpa CSP dan security headers | A02 | **Header dasar ada, CSP belum.** Terkirim: `X-Content-Type-Options`, `Referrer-Policy`, `Permissions-Policy`, `X-Frame-Options`. Tidak ada `Content-Security-Policy` maupun `Strict-Transport-Security` dari aplikasi (HSTS biasanya dipasang di server/TLS terminator; tidak diverifikasi). | Respons nyata + `SecurityHeadersTest` |
+| `.env.example` ≠ runtime production | A02 | **Tidak berubah.** Template: `APP_ENV=local`, `APP_DEBUG=true`; runtime: `APP_ENV=Production`, `APP_DEBUG=false`. | Dibaca dari kedua file (hanya dua variabel itu) |
+| Pint gagal, warning Sass | — | **Warning Sass hilang** (Sass dibuang). Pint masih melaporkan 7 isu gaya di 60 file lama (`line_ending`, dll.); file migrasi bersih. Bukan isu OWASP. | `vendor/bin/pint --test` |
+| `Project::all()` tanpa pagination | A06 bersyarat | **Tidak berubah** (dataset kecil, 3 proyek). | — |
+
+### Temuan baru dari migrasi dan review ini
+
+1. **A03 — advisory dependensi (perlu keputusan terpisah).**
+   - `composer audit`: 46 advisory di 15 paket. `laravel/framework` terpasang **12.44.0**; versi 12.69.0 atau lebih baru menutup keempat advisory Laravel: *CRLF injection di rule email bawaan* (high, diperbaiki di 12.60.0), *Temporary Signed URL Path Confusion* (medium, 12.61.1), *XSS di halaman debug* (low, 12.69.0), dan satu duplikat CRLF.
+   - **CRLF email: tidak dapat dinyatakan tidak terdampak.** Advisory (GHSA-5vg9-5847-vvmq) tidak menyebut sintaks rule maupun payload; ia menyebut cara Symfony Mailer/Mime menangani urutan karakter tertentu, dan email pengirim form kontak dipakai sebagai alamat Reply-To. Uji empiris pada 12.44.0: variasi CR, LF, CRLF+`Bcc:`, NUL, dan tab ditolak oleh `email:rfc` (dan juga oleh `email` biasa), tetapi itu belum mereproduksi payload advisory. Tes regresi untuk varian itu sudah ditambahkan ke `ContactRulesTest`. Perbaikan yang sebenarnya adalah upgrade.
+   - `guzzlehttp/guzzle`, `guzzlehttp/psr7`, `league/commonmark`, `league/flysystem`: dependensi framework (Guzzle juga dibutuhkan `laravel/boost`). Kode aplikasi tidak memakainya langsung; surel dikirim lewat SMTP (bukan Guzzle) dan tidak ada render Markdown. Tidak terbukti dapat dijangkau dari jalur runtime aplikasi; belum dibaca satu per satu.
+   - `npm audit`: 8 kerentanan (6 high, 2 critical), semuanya alat build (`vite`, `rollup`, `postcss`, `nanoid`, `picomatch`, `source-map-js`, `concurrently`, `shell-quote`). Tidak ada paket runtime browser (`gsap`, `lenis`, `bootstrap-icons`) di daftar itu.
+   - Rekomendasi: upgrade patch `laravel/framework` dalam `^12.0` beserta `composer update` dependensi terkait dan `npm audit fix`, di branch terpisah dengan suite penuh dan pengukuran visual.
+2. **A01 — endpoint baru dari Livewire.** `update`, `upload-file`, `preview-file`, dan aset JS/CSS. Tidak ada komponen yang memakai unggah file. Hasil uji: `upload-file` dan `preview-file` tanpa tanda tangan → **401**; `update` tanpa header `X-Livewire` → **404**. Catatan: keandalan tanda tangan bergantung pada advisory *Signed URL Path Confusion* di atas, satu alasan lagi untuk upgrade.
+3. **CSRF pada endpoint Livewire — terbukti di aplikasi berjalan** (Laravel mematikan CSRF saat tes, jadi ini diuji dengan `curl`): tanpa token, `POST /contact`, `POST /lang/en`, dan update Livewire → **419**; dengan sesi dan token valid lolos CSRF; token palsu → **419**.
+4. **A10 — kegagalan antrean tidak pernah dilaporkan sukses** di kedua jalur kontak dan tidak membocorkan pesan exception. Tes: 3.
+5. **A09 — logging.** Kegagalan antrean dan pengiriman dicatat hanya dengan nama kelas exception, tanpa data pribadi atau isi pesan (tes). Belum ada pencatatan atau pemantauan untuk 429 dan kegagalan validasi: tindak lanjut operasional, belum dikerjakan.
+6. **A02 — masa depan CSP.** Livewire 4 menyertakan build CSP-safe (`vendor/livewire/livewire/dist/livewire.csp.min.js`); Alpine standar butuh `'unsafe-eval'` atau mode CSP, dan skrip tema inline di layout butuh nonce/hash. Inventaris sumber untuk CSP ada di README, bagian Known gaps. Belum dikerjakan; tercatat di rencana migrasi sebagai celah yang diterima.
+7. **Tidak termasuk migrasi:** form kontak belum dipasang di halaman mana pun (komponen dan view minimalnya ada dan bertes), dukungan `prefers-reduced-motion` belum ada.
+
+### Kategori yang tidak ditemukan relevan
+A07 Authentication Failures (tidak ada login atau akun) dan SSRF (tidak ada fetch sisi server; link proyek hanya dirender sebagai anchor ber-`rel="noopener"`, skema dibatasi http/https oleh `Project::safeUrl`).
+
+---
+
+## Kesimpulan singkat (audit 2026-10-01, historis)
 
 Ya, temuan project ini dapat dikaitkan dengan OWASP Top 10. Namun, tidak semua temuan adalah vulnerability OWASP secara langsung. OWASP Top 10 adalah dokumen awareness dan titik awal, bukan checklist lengkap atau bukti bahwa seluruh kategori telah diaudit. Versi resmi terbaru adalah **OWASP Top 10:2025**; beberapa temuan audit sebelumnya memakai istilah Top 10:2021, sehingga nama kategorinya berubah.
 
