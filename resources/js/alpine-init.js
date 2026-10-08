@@ -31,8 +31,9 @@ document.addEventListener('alpine:init', () => {
             this.syncScrollLock();
             this.closeTimer = setTimeout(() => {
                 this.mounted = false;
-                // Navbar height is back to normal now; anchor scrolling waits for this.
-                window.dispatchEvent(new CustomEvent('nav-closed'));
+                // Announce only after Alpine has applied `display: none`: anchor scrolling measures the
+                // navbar height on this event, and the open menu would still be counted before that.
+                this.$nextTick(() => window.dispatchEvent(new CustomEvent('nav-closed')));
             }, 450);
         },
 
