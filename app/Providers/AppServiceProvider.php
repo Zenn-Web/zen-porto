@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Support\ContactRateLimiter;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
@@ -27,22 +28,30 @@ class AppServiceProvider extends ServiceProvider
 
     private function configureRateLimiting(): void
     {
+        // Keys, numbers and message come from ContactRateLimiter, which the Livewire ContactForm
+        // also uses (its requests do not pass through this route middleware).
         RateLimiter::for('contact', function (Request $request) {
             $throttled = fn (Request $request, array $headers) => redirect(url('/').'#contact')
                 ->withInput()
-                ->withErrors(['contact' => 'Terlalu banyak permintaan. Silakan coba lagi nanti.'])
+                ->withErrors(['contact' => ContactRateLimiter::THROTTLED_MESSAGE])
                 ->withHeaders($headers);
 
             $limits = [
-                Limit::perMinute(5)->by('contact-ip:'.$request->ip())->response($throttled),
+                (new Limit(
+                    ContactRateLimiter::ipKey($request->ip()),
+                    ContactRateLimiter::IP_ATTEMPTS,
+                    ContactRateLimiter::IP_DECAY_SECONDS,
+                ))->response($throttled),
             ];
 
-            $email = $request->input('email');
+            $emailKey = ContactRateLimiter::emailKey($request->input('email'));
 
-            if (is_string($email) && trim($email) !== '') {
-                $limits[] = Limit::perHour(3)
-                    ->by('contact-email:'.hash('sha256', mb_strtolower(trim($email))))
-                    ->response($throttled);
+            if ($emailKey !== null) {
+                $limits[] = (new Limit(
+                    $emailKey,
+                    ContactRateLimiter::EMAIL_ATTEMPTS,
+                    ContactRateLimiter::EMAIL_DECAY_SECONDS,
+                ))->response($throttled);
             }
 
             return $limits;
