@@ -361,16 +361,20 @@ test('navbar collapse is driven by alpine, not by bootstrap javascript', functio
         ->toContain('x-data="navMenu"');
 });
 
-test('bootstrap npm dependency is pinned to the locked version', function () {
+test('the legacy frontend runtime is gone and the target stack is declared', function () {
     $package = json_decode(file_get_contents(base_path('package.json')), true);
     $lock = json_decode(file_get_contents(base_path('package-lock.json')), true);
 
-    $declared = $package['dependencies']['bootstrap'] ?? null;
-    $locked = $lock['packages']['node_modules/bootstrap']['version'] ?? null;
+    $declared = array_merge($package['dependencies'] ?? [], $package['devDependencies'] ?? []);
 
-    expect($declared)->toMatch('/^\d+\.\d+\.\d+$/')
-        ->and($declared)->toBe($locked)
-        ->and($lock['packages']['']['dependencies']['bootstrap'] ?? null)->toBe($declared);
+    // Bootstrap (CSS/JS), Sass and a directly installed Alpine were replaced by Tailwind and the
+    // Alpine that Livewire ships. Neither package.json nor the lock file may still carry them.
+    foreach (['bootstrap', 'sass', 'alpinejs'] as $legacy) {
+        expect($declared)->not->toHaveKey($legacy)
+            ->and($lock['packages'])->not->toHaveKey("node_modules/{$legacy}");
+    }
+
+    expect($declared)->toHaveKeys(['tailwindcss', '@tailwindcss/vite', 'bootstrap-icons', 'gsap', 'lenis']);
 });
 
 function projectWithLinks(?string $liveDemoUrl, ?string $githubUrl): App\Models\Project
