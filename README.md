@@ -30,7 +30,9 @@ npm run build                 # or `npm run dev` while developing
 php artisan test
 ```
 
-`phpunit.xml` provides everything the suite needs, so tests do not depend on a local `.env`:
+> **Build the front-end assets first.** The tests render real pages, and the `@vite` directive reads `public/build/manifest.json`. `public/build` is Git-ignored, so on a fresh clone run `npm ci && npm run build` before `php artisan test` (or `composer test`); without it every test that renders a page fails with `ViteManifestNotFoundException`. `composer run setup` already builds them.
+
+`phpunit.xml` provides everything else the suite needs, so tests do not depend on a local `.env`:
 
 - an in-memory SQLite database, `array` cache/session/mail drivers and the `sync` queue;
 - a **test-only** `APP_KEY`, randomly generated for the suite (it is not, and must never be, used by a real environment);
@@ -119,7 +121,7 @@ It checks Git-tracked **path names only** (never file contents) and exits non-ze
 
 1. Set all required [environment variables](#environment-variables) in the host's secret store, including `APP_KEY`, the mail settings and `CONTACT_RECIPIENT_EMAIL`; keep `APP_DEBUG` false.
 2. `composer install --no-dev --optimize-autoloader`
-3. `npm ci && npm run build` (or deploy the committed `public/build`).
+3. `npm ci && npm run build`. `public/build` is Git-ignored (not committed), so build it on the server or in CI; if you build elsewhere, ship the generated `public/build` directory with the release.
 4. `php artisan migrate --force`
 5. `php artisan config:cache`, `php artisan route:cache`, `php artisan view:cache`
 6. Start or keep a queue worker running (`php artisan queue:work --tries=3`) and run `php artisan queue:restart`, or deliberately use `QUEUE_CONNECTION=sync`.
