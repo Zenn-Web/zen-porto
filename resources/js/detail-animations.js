@@ -5,6 +5,7 @@
  */
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { prefersReducedMotion } from './motion';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -12,6 +13,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Guard: only run on detail page
     if (!document.querySelector('.dp-split-section')) return;
+
+    // "Reduce motion": no animation, just the end state the animations would have reached.
+    if (prefersReducedMotion()) {
+        gsap.set('[data-dp-anim]', { opacity: 1, x: 0, y: 0 });
+        gsap.set('.dp-narrative-timeline-track', { scaleY: 1 });
+        gsap.set('.dp-narrative-timeline-dot', { opacity: 1 });
+        return;
+    }
 
     // ═══════════════════════════════════
     // 1. SIDEBAR ENTRANCE — Cinematic Fade Up Stagger

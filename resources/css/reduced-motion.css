@@ -1,0 +1,19 @@
+/*
+ * Visitors who ask their system for less motion: no CSS animation or transition plays, and the
+ * page does not scroll smoothly. The JavaScript side (smooth scroll, scroll reveal, detail page
+ * animations) checks the same setting in resources/js/motion.js.
+ */
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        transition-delay: 0s !important;
+    }
+}

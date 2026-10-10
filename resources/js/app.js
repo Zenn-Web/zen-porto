@@ -4,28 +4,37 @@
  * - Lenis smooth scroll (library eksternal)
  * - Navbar height updater (util kecil, tanpa state UI)
  * - Anchor-scroll (terikat erat ke Lenis)
- * - Live clock (opsional, bisa dimigrasikan di masa depan)
  * - IntersectionObserver scroll-reveal (risiko re-timing animasi)
  * Navbar mobile (buka/tutup + scroll lock Lenis) ada di komponen Alpine `navMenu`.
  */
-import './bootstrap';
 import './alpine-init';
 import Lenis from 'lenis';
+import { prefersReducedMotion } from './motion';
 
 document.addEventListener("DOMContentLoaded", () => {
+    const reduceMotion = prefersReducedMotion();
 
-    // 0. INITIALIZE LENIS (Smooth Scroll)
-    const lenis = new Lenis({
-        duration: 1.2,
-        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-        direction: 'vertical',
-        gestureDirection: 'vertical',
-        smooth: true,
-        mouseMultiplier: 1,
-        smoothTouch: false,
-        touchMultiplier: 2,
-        infinite: false,
-    });
+    // 0. INITIALIZE LENIS (Smooth Scroll). With "reduce motion" there is no smooth scrolling:
+    // a stand-in with the same few methods the rest of the code uses scrolls natively and instantly.
+    const lenis = reduceMotion
+        ? {
+            scrollTo: (y) => window.scrollTo(0, y),
+            stop() {},
+            start() {},
+            resize() {},
+            raf() {},
+        }
+        : new Lenis({
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            direction: 'vertical',
+            gestureDirection: 'vertical',
+            smooth: true,
+            mouseMultiplier: 1,
+            smoothTouch: false,
+            touchMultiplier: 2,
+            infinite: false,
+        });
     window.lenis = lenis;
 
     // Dynamic navbar height calculation for perfect scroll offset
@@ -46,7 +55,9 @@ document.addEventListener("DOMContentLoaded", () => {
         requestAnimationFrame(raf);
     }
 
-    requestAnimationFrame(raf);
+    if (!reduceMotion) {
+        requestAnimationFrame(raf);
+    }
 
     // 0.1 TEXT REVEAL LOGIC (Split Characters - Fixed Word Breaking)
     const splitChars = (el) => {
@@ -89,7 +100,9 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     // Terapkan splitChars ke elemen yang ditandai
-    document.querySelectorAll('.text-reveal').forEach(el => splitChars(el));
+    if (!reduceMotion) {
+        document.querySelectorAll('.text-reveal').forEach(el => splitChars(el));
+    }
 
     // 3. UNIFIED ANCHOR SCROLL (Desktop & Mobile)
     const navbarCollapse = document.getElementById('mainNavbar');
@@ -146,21 +159,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 
-    // 1. FUNGSI JAM (Live Clock)
-    const updateClock = () => {
-        const clockElement = document.getElementById('live-clock');
-        if (clockElement) {
-            const now = new Date();
-            const hours = String(now.getHours()).padStart(2, '0');
-            const minutes = String(now.getMinutes()).padStart(2, '0');
-            clockElement.textContent = `${hours}:${minutes}`;
-        }
-    };
-
-    updateClock(); // Jalankan pertama kali saat halaman load
-    setInterval(updateClock, 60000); // Update setiap 60 detik
-
-
     // 2. LOGIKA ANIMASI (Intersection Observer) - CSS Transition Based
     const observerOptions = {
         threshold: 0, 
@@ -210,24 +208,15 @@ document.addEventListener("DOMContentLoaded", () => {
         'section h1', 'section h2'
     ].join(', ');
 
-    // Mulai mengamati
+    // Mulai mengamati. With "reduce motion" everything is shown at once (and hover effects enabled).
     document.querySelectorAll(animationSelectors).forEach(el => {
-        observer.observe(el);
+        if (reduceMotion) {
+            el.classList.add('reveal-active', 'animation-finished');
+        } else {
+            observer.observe(el);
+        }
     });
 
     // 4. MOBILE MENU SCROLL LOCK: handled by the Alpine `navMenu` component (alpine-init.js).
-
-    // 5. AUTO-SCROLL TO CONTACT ON ERROR/SUCCESS
-    const hasErrors = document.querySelector('.is-invalid');
-    const hasSuccess = document.querySelector('.alert-success');
-    
-    if (hasErrors || hasSuccess) {
-        setTimeout(() => {
-            const contactSection = document.getElementById('contact');
-            if (contactSection) {
-                lenis.scrollTo(contactSection); // Gunakan Lenis untuk konsistensi
-            }
-        }, 500);
-    }
 
 });

@@ -24,6 +24,7 @@
 @import "./components/hero.css" layer(components);
 @import "./components/responsive-overrides.css" layer(components);
 @import "./about.css" layer(components);
+@import "./reduced-motion.css" layer(components);
 
 @import "tailwindcss/utilities.css" layer(utilities);
 

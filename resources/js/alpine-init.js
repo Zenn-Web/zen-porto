@@ -1,5 +1,7 @@
 // Alpine itself is bundled and started by Livewire (@livewireScripts). This module only
 // registers custom behavior; it must never import, expose, or start Alpine.
+import { prefersReducedMotion } from './motion';
+
 document.addEventListener('alpine:init', () => {
     // Mobile navbar. `mounted` controls display, `open` controls the visual (.show) state;
     // they are split so the nav-item enter transitions run (display must change a frame
@@ -34,7 +36,7 @@ document.addEventListener('alpine:init', () => {
                 // Announce only after Alpine has applied `display: none`: anchor scrolling measures the
                 // navbar height on this event, and the open menu would still be counted before that.
                 this.$nextTick(() => window.dispatchEvent(new CustomEvent('nav-closed')));
-            }, 450);
+            }, prefersReducedMotion() ? 0 : 450);
         },
 
         // Lock page scroll (and Lenis) while the mobile menu is open.
@@ -94,6 +96,9 @@ document.addEventListener('alpine:init', () => {
                     'X-CSRF-TOKEN': token,
                     'Accept': 'application/json'
                 }
+            }).then(() => {
+                // The language is stored in the session now: let Livewire components re-render in it.
+                window.Livewire?.dispatch('locale-changed');
             }).catch(() => {});
         }
     });
