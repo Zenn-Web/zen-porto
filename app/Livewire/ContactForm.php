@@ -5,6 +5,8 @@ namespace App\Livewire;
 use App\Services\ContactMessageService;
 use App\Support\ContactRateLimiter;
 use App\Support\ContactRules;
+use App\Support\SiteLocale;
+use Livewire\Attributes\On;
 use Livewire\Component;
 use Throwable;
 
@@ -26,6 +28,8 @@ class ContactForm extends Component
 
     public function submit(ContactMessageService $messages, ContactRateLimiter $limiter): void
     {
+        SiteLocale::applyFromSession();
+
         $this->status = null;
 
         // The identity comes from the server-side request, never from a field the client controls.
@@ -56,8 +60,46 @@ class ContactForm extends Component
         $this->status = 'sent';
     }
 
+    /**
+     * Short validation messages in the language of the page (the rules stay in ContactRules).
+     * `:max` is filled in by the validator.
+     *
+     * @return array<string, string>
+     */
+    protected function messages(): array
+    {
+        return [
+            'required' => __('portfolio.contact_error_required'),
+            'email' => __('portfolio.contact_error_email'),
+            'max' => __('portfolio.contact_error_max'),
+            'string' => __('portfolio.contact_error_invalid'),
+            'not_regex' => __('portfolio.contact_error_invalid'),
+        ];
+    }
+
+    /**
+     * Sent by the language button once the new language is stored in the session. Error messages are
+     * stored as text when they are produced, so the fields that currently show an error are validated
+     * again to get the same errors in the new language (a field fixed in the meantime just clears).
+     */
+    #[On('locale-changed')]
+    public function refreshLocale(): void
+    {
+        SiteLocale::applyFromSession();
+
+        $fields = array_keys($this->getErrorBag()->toArray());
+
+        if ($fields === []) {
+            return;
+        }
+
+        $this->validate(array_intersect_key(ContactRules::rules(), array_flip($fields)));
+    }
+
     public function render()
     {
+        SiteLocale::applyFromSession();
+
         return view('livewire.contact-form');
     }
 }

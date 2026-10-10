@@ -8,6 +8,10 @@ use Illuminate\Support\Facades\Mail;
 use Livewire\Livewire;
 use Livewire\Mechanisms\HandleRequests\HandleRequests;
 
+// The visitor-facing text follows the session locale. The suite's default is English, but most tests
+// below were written against the Indonesian text POST /contact has always shown, so they run as 'id'.
+beforeEach(fn () => app()->setLocale('id'));
+
 function filledContactForm(array $overrides = [])
 {
     $fields = array_merge([
@@ -184,7 +188,7 @@ test('every field is reachable through a label that points at it', function () {
         preg_match('/<(?:input|textarea)\b[^>]*\bid="([^"]+)"[^>]*wire:model="'.$field.'"/', $html, $control);
 
         expect($control)->not->toBeEmpty("no control is bound to {$field}")
-            ->and($html)->toContain('<label for="'.$control[1].'">');
+            ->and($html)->toMatch('/<label\b[^>]*\bfor="'.preg_quote($control[1], '/').'"/');
     }
 });
 
@@ -210,4 +214,118 @@ test('a valid submission queues the message, clears the form and confirms it', f
             && $mail->hasSubject('Pesan Baru dari John Doe')
             && $mail->body === 'This is a test message.';
     });
+});
+
+test('status messages follow the language of the page', function (string $locale, string $status, string $expected) {
+    app()->setLocale($locale);
+    Mail::fake();
+
+    $form = filledContactForm();
+
+    if ($status === 'failed') {
+        Mail::shouldReceive('to')->andThrow(new RuntimeException('queue unavailable'));
+        Log::shouldReceive('error')->once();
+    }
+
+    if ($status === 'throttled') {
+        foreach (range(1, 5) as $i) {
+            $form->set('email', "user{$i}@example.com")->call('submit');
+        }
+        $form->set('email', 'user6@example.com');
+    }
+
+    $form->call('submit')->assertSet('status', $status)->assertSee($expected);
+})->with([
+    'sent in English' => ['en', 'sent', 'Message sent successfully!'],
+    'sent in Indonesian' => ['id', 'sent', 'Pesan berhasil dikirim!'],
+    'failed in English' => ['en', 'failed', 'The message could not be sent. Please try again later.'],
+    'failed in Indonesian' => ['id', 'failed', 'Pesan gagal dikirim. Silakan coba lagi nanti.'],
+    'throttled in English' => ['en', 'throttled', 'Too many requests. Please try again later.'],
+    'throttled in Indonesian' => ['id', 'throttled', 'Terlalu banyak permintaan. Silakan coba lagi nanti.'],
+]);
+
+test('field errors are short sentences in the language of the page', function (string $locale, string $field, string $value, string $expected) {
+    app()->setLocale($locale);
+
+    filledContactForm([$field => $value])
+        ->call('submit')
+        ->assertHasErrors([$field])
+        ->assertSee($expected);
+})->with([
+    'required, English' => ['en', 'message', '', 'This field is required.'],
+    'required, Indonesian' => ['id', 'message', '', 'Wajib diisi.'],
+    'email, English' => ['en', 'email', 'john doe@example.com', 'Please enter a valid email address.'],
+    'email, Indonesian' => ['id', 'email', 'john doe@example.com', 'Masukkan alamat email yang valid.'],
+    'name too long, English' => ['en', 'first_name', str_repeat('a', 256), 'Please use at most 255 characters.'],
+    'name too long, Indonesian' => ['id', 'first_name', str_repeat('a', 256), 'Maksimal 255 karakter.'],
+    'message too long, English' => ['en', 'message', str_repeat('m', 5001), 'Please use at most 5000 characters.'],
+    'control character, English' => ['en', 'last_name', "Do\x00e", 'This value contains characters that are not allowed.'],
+    'control character, Indonesian' => ['id', 'last_name', "Do\x00e", 'Berisi karakter yang tidak diizinkan.'],
+]);
+
+test('labels carry both languages so the language button can switch them without a reload', function () {
+    app()->setLocale('en');
+    $html = Livewire::test(ContactForm::class)->html();
+
+    foreach ([['First name', 'Nama depan'], ['Last name', 'Nama belakang'], ['Message', 'Pesan'], ['Send message', 'Kirim pesan']] as [$en, $id]) {
+        expect($html)->toContain('data-i18n-en="'.$en.'"')->toContain('data-i18n-id="'.$id.'"');
+    }
+});
+
+test('nothing inside the component uses the scroll-reveal classes that Livewire would undo', function () {
+    // base.css hides these (opacity: 0) until JavaScript adds `.reveal-active`. Livewire restores the
+    // class attribute from the server on every update, so a field using one would vanish after submit.
+    $html = Livewire::test(ContactForm::class)->html();
+
+    foreach (['form-group', 'animate-on-scroll', 'animate-text', 'animate-buttons', 'reveal-ready', 'text-reveal', 'btn-send-contact'] as $class) {
+        expect($html)->not->toMatch('/class="[^"]*(?<![\w-])'.$class.'(?![\w-])/');
+    }
+});
+
+test('the home page puts the form inside the contact card, after the contact buttons', function () {
+    $html = $this->get('/')->assertOk()->assertSeeLivewire(ContactForm::class)->getContent();
+
+    preg_match('#<section id="contact".*?</section>#s', $html, $section);
+
+    expect($section)->not->toBeEmpty()
+        ->and($section[0])->toContain('wire:id=')
+        ->and(strrpos($section[0], 'contact-btn-classic'))->toBeLessThan(strpos($section[0], 'wire:id='));
+});
+
+test('the component follows the language the visitor chose after it was rendered', function () {
+    // Livewire remembers the locale of the first render and restores it on every update, which
+    // would override the language picked with the language button (stored in the session).
+    app()->setLocale('en');
+    $form = Livewire::test(ContactForm::class);
+
+    session(['locale' => 'id']);
+
+    $form->call('submit')
+        ->assertSee('Wajib diisi.')
+        ->assertDontSee('This field is required.');
+});
+
+test('it re-renders in the new language when the page announces a language change', function () {
+    app()->setLocale('en');
+    $form = Livewire::test(ContactForm::class)->call('submit')->assertSee('This field is required.');
+
+    session(['locale' => 'id']);
+
+    $form->dispatch('locale-changed')
+        ->assertSee('Wajib diisi.')
+        ->assertDontSee('This field is required.');
+});
+
+
+test('a field fixed before the language changed no longer shows an error afterwards', function () {
+    app()->setLocale('en');
+    $form = Livewire::test(ContactForm::class)->call('submit')->assertHasErrors(['first_name', 'last_name']);
+
+    $form->set('first_name', 'John');
+    session(['locale' => 'id']);
+
+    $form->dispatch('locale-changed')
+        ->assertHasNoErrors(['first_name'])
+        ->assertHasErrors(['last_name'])
+        ->assertSee('Wajib diisi.');
 });

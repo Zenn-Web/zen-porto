@@ -276,6 +276,13 @@
                         <span>Yogyakarta, Indonesia</span>
                     </span>
                 </div>
+
+                <!-- Direct message form (Livewire) -->
+                <div class="contact-divider-classic mx-auto my-8" aria-hidden="true"></div>
+                <h3 class="contact-form-heading mb-6"
+                    data-i18n-id="{{ __('portfolio.contact_form_title', [], 'id') }}"
+                    data-i18n-en="{{ __('portfolio.contact_form_title', [], 'en') }}">{{ __('portfolio.contact_form_title') }}</h3>
+                <livewire:contact-form />
             </div>
         </div>
     </section>

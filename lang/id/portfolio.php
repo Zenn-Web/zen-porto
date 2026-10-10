@@ -42,6 +42,24 @@ return [
     'contact_title' => 'Kontak Saya',
     'contact_subtitle' => 'Mari bekerjasama untuk solusi digitalmu.',
 
+    // Contact form (Livewire ContactForm)
+    'contact_form_title' => 'Atau kirim pesan langsung',
+    'contact_form_first_name' => 'Nama depan',
+    'contact_form_last_name' => 'Nama belakang',
+    'contact_form_email' => 'Email',
+    'contact_form_message' => 'Pesan',
+    'contact_form_submit' => 'Kirim pesan',
+    'contact_form_sending' => 'Mengirim…',
+    // The next three must equal ContactMessageService::SUCCESS_MESSAGE / FAILURE_MESSAGE and
+    // ContactRateLimiter::THROTTLED_MESSAGE (POST /contact flashes those); a test guards it.
+    'contact_form_sent' => 'Pesan berhasil dikirim!',
+    'contact_form_failed' => 'Pesan gagal dikirim. Silakan coba lagi nanti.',
+    'contact_form_throttled' => 'Terlalu banyak permintaan. Silakan coba lagi nanti.',
+    'contact_error_required' => 'Wajib diisi.',
+    'contact_error_email' => 'Masukkan alamat email yang valid.',
+    'contact_error_max' => 'Maksimal :max karakter.',
+    'contact_error_invalid' => 'Berisi karakter yang tidak diizinkan.',
+
     // Footer
     'footer_home' => 'BERANDA',
     'footer_about' => 'TENTANG',

@@ -52,3 +52,10 @@ test('home page renders without any projects', function () {
         ->assertOk()
         ->assertViewHas('projects', fn ($projects) => $projects->isEmpty());
 });
+
+test('the html lang attribute states the language the page is rendered in', function (string $locale) {
+    // The language button and screen readers rely on it; it used to be a fixed "en".
+    $this->withSession(['locale' => $locale])->get('/')
+        ->assertOk()
+        ->assertSee('<html lang="'.$locale.'"', false);
+})->with(['id', 'en']);

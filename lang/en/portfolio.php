@@ -42,6 +42,22 @@ return [
     'contact_title' => 'Get In Touch',
     'contact_subtitle' => "Let's work together for your digital solutions.",
 
+    // Contact form (Livewire ContactForm)
+    'contact_form_title' => 'Or send me a message',
+    'contact_form_first_name' => 'First name',
+    'contact_form_last_name' => 'Last name',
+    'contact_form_email' => 'Email',
+    'contact_form_message' => 'Message',
+    'contact_form_submit' => 'Send message',
+    'contact_form_sending' => 'Sending…',
+    'contact_form_sent' => 'Message sent successfully!',
+    'contact_form_failed' => 'The message could not be sent. Please try again later.',
+    'contact_form_throttled' => 'Too many requests. Please try again later.',
+    'contact_error_required' => 'This field is required.',
+    'contact_error_email' => 'Please enter a valid email address.',
+    'contact_error_max' => 'Please use at most :max characters.',
+    'contact_error_invalid' => 'This value contains characters that are not allowed.',
+
     // Footer
     'footer_home' => 'HOME',
     'footer_about' => 'ABOUT',
