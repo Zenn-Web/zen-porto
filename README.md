@@ -1,6 +1,6 @@
 # zen-porto
 
-Personal portfolio site for Zenifen Caesarof Agusti, built with Laravel 12, Blade, Tailwind CSS, Alpine.js (the copy bundled with Livewire) and Vite, plus GSAP and Lenis for animation and smooth scrolling. Livewire is used for exactly one component, the contact form. The site has a bilingual (Indonesian/English) home page, project detail pages, a contact endpoint (and the Livewire `ContactForm` component, not placed on a page yet) that deliver mail through the queue, and a small read-only JSON API.
+Personal portfolio site for Zenifen Caesarof Agusti, built with Laravel 12, Blade, Tailwind CSS, Alpine.js (the copy bundled with Livewire) and Vite, plus GSAP and Lenis for animation and smooth scrolling. Livewire is used for exactly one component, the contact form. The site has a bilingual (Indonesian/English) home page, project detail pages, a contact form (the Livewire `ContactForm` component in the `#contact` card, plus the `POST /contact` endpoint) that delivers mail through the queue, and a small read-only JSON API.
 
 > This README lists environment variables **by name only**. Never put real values (keys, passwords, tokens, addresses) in this file, in issues, or in commits. `.env` is git-ignored; `.env.example` is the template and must contain placeholders only.
 
@@ -134,15 +134,12 @@ It checks Git-tracked **path names only** (never file contents) and exits non-ze
 7. Configure trusted proxies if the app runs behind a proxy, load balancer or CDN.
 8. Use a shared cache store when running more than one app server.
 9. Add `nosniff` and framing headers for static files in the web server or CDN configuration.
-10. Smoke-test `/`, a project page and `/up`. No page shows a contact form yet (see [Known gaps](#known-gaps)), so test delivery with a `POST /contact` (it needs a session and a CSRF token) or by temporarily rendering `<livewire:contact-form />`; confirm the message arrives and nothing lands in `failed_jobs`.
+10. Smoke-test `/`, a project page and `/up`. Submit the contact form in the `#contact` section (with a test mailbox, never a real inbox you don't own); confirm the message arrives and nothing lands in `failed_jobs`.
 
 ## Known gaps
 
-- **The contact form is not placed on any page.** The `#contact` section only offers mailto/WhatsApp links. A Livewire `ContactForm` component with a minimal, unstyled view (`app/Livewire/ContactForm.php`, `resources/views/livewire/contact-form.blade.php`) exists and is covered by tests, but its copy, translations and styling are undecided. The `POST /contact` controller flashes `success` and the errors `contact`/field errors, and no view displays them; a plain HTML form would have to show `session('success')`, `$errors->first('contact')` and the field errors.
 - **No Content-Security-Policy yet.** Inventory for a future policy: scripts from `'self'` (the Vite bundle and Livewire's bundled Alpine at `/livewire-<hash>/livewire.min.js`) plus one inline theme script in `layout/welcome.blade.php` (needs a nonce or hash); Alpine's standard build needs `'unsafe-eval'` unless Livewire's CSP-safe build (`livewire.csp.min.js`) is used; styles from `'self'`, `https://fonts.googleapis.com` and inline `style=""` attributes; fonts from `'self'` and `https://fonts.gstatic.com`; images from `'self'` and `data:`; `connect-src 'self'` (language switch and Livewire updates); `form-action 'self'`; plus `base-uri 'self'`, `object-src 'none'`, `frame-ancestors 'self'`. Local dev additionally needs the Vite dev-server origin and `ws:`.
-- **No `prefers-reduced-motion` support.** Lenis smooth scrolling, the scroll-reveal effects and the GSAP detail-page animations always run.
 - **Static files** in `public/` do not get the security headers unless the web server adds them.
-- **Old build output is tracked and publicly served:** `public/build.pre-alpine-backup/` holds an outdated pre-Alpine JavaScript/CSS build that the pages no longer load but that is still reachable under `/build.pre-alpine-backup/`. Remove it in a follow-up change.
 
 ## Secret rotation
 

@@ -1,8 +1,7 @@
 /*
  * Project detail page styles. A separate entry (loaded only by pages/project/show.blade.php) because
  * it contains page-wide rules (e.g. `html, body { overflow-x: visible }`) that the home page must not get.
- * Moved here from resources/sass/detail-project.scss (plain CSS already); wrapped in the same
- * `components` layer as the rest of the site's own styles.
+ * Wrapped in the same `components` layer as the rest of the site's own styles.
  */
 @layer components {
 /* ========================================================= */

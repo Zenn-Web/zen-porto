@@ -1,5 +1,4 @@
-/* Generated from resources/sass/_variables.scss during the Bootstrap/Sass removal (migration plan, Task 4). Edit this file directly from now on. */
-/* COLOR SYSTEM (SASS) */
+/* COLOR SYSTEM */
 /* CSS VARIABLES FOUNDATION */
 :root {
   /* Backgrounds */
@@ -66,7 +65,6 @@
   --shadow-lg: 0 18px 40px rgba(0, 0, 0, 0.5);
   /* NUCLEAR OVERRIDES */
 }
-[data-theme=dark] .card,
 [data-theme=dark] .card-skill-v2,
 [data-theme=dark] .profile-card-horizontal,
 [data-theme=dark] .card-elegant {

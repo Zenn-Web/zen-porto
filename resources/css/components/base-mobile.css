@@ -1,4 +1,3 @@
-/* Generated from resources/sass/components/_base-mobile.scss during the Bootstrap/Sass removal (migration plan, Task 4). Edit this file directly from now on. */
 html {
   /* scroll-behavior: smooth; (Dihapus karena sudah pakai Lenis) */
   scroll-padding-top: 68px; /* Fallback for initial page load hash anchor */
@@ -137,12 +136,6 @@ html {
   border: 1px solid rgba(255, 255, 255, 0.05);
   pointer-events: none;
 }
-.stack-animated .card-stack-main .card-body {
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-  padding: 1.25rem !important;
-}
 .stack-animated .card-stack-main::after {
   content: "";
   position: absolute;
@@ -202,11 +195,6 @@ html {
 .border-base-content {
   border-color: rgba(0, 0, 0, 0.1) !important;
 }
-
-.projects-section .row {
-  display: flex !important;
-  align-items: stretch !important; /* Memaksa semua kolom punya tinggi sama */
-}
 .projects-section [class*=col-] {
   display: flex;
   flex-direction: column;
@@ -249,7 +237,7 @@ html {
   margin: 10px 0 14px 0;
 }
 
-.project-description, .card-body p {
+.project-description {
   font-size: 0.85rem;
   line-height: 1.6;
   color: var(--text-secondary);

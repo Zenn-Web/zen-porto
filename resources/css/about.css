@@ -1,4 +1,3 @@
-/* Generated from resources/sass/_about_redesign.scss during the Bootstrap/Sass removal (migration plan, Task 4). Edit this file directly from now on. */
 /* ==========================================================================
    ABOUT SECTION REDESIGN (Asymmetric Layout & Developer HUD Widget)
    ========================================================================== */
@@ -11,7 +10,7 @@
 }
 @media (min-width: 992px) {
   .about-layout-row {
-    gap: 0; /* Let Bootstrap col system handle gutter */
+    gap: 0;
   }
 }
 

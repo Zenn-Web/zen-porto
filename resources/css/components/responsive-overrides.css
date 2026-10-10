@@ -1,19 +1,8 @@
-/* Generated from resources/sass/components/_responsive-overrides.scss during the Bootstrap/Sass removal (migration plan, Task 4). Edit this file directly from now on. */
 /* RESPONSIVENESS OVERRIDES */
 @media (max-width: 991.98px) {
   .hero-classic-section {
     padding: 90px 0 40px 0; /* Compact padding */
     min-height: auto;
-  }
-  .hero-classic-section .row {
-    flex-direction: column; /* Text on top, image card on bottom */
-    text-align: center !important; /* Center align text */
-  }
-  .hero-classic-section .col-lg-6 {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Center child elements like badge & cta */
   }
   .hero-classic-section .hero-classic-badge-wrapper {
     margin-bottom: 0.75rem;

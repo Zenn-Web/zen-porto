@@ -1,4 +1,3 @@
-/* Generated from resources/sass/_app_ref.scss during the Bootstrap/Sass removal (migration plan, Task 4). Edit this file directly from now on. */
 /* GLOBAL STYLES */
 * {
   font-family: "Poppins", sans-serif !important;
@@ -38,14 +37,6 @@ html.lenis, html.lenis body {
 
 .lenis.lenis-scrolling iframe {
   pointer-events: none;
-}
-
-/* GLOBAL BOOTSTRAP OVERRIDES */
-.card {
-  --bs-card-bg: var(--bg-card);
-  --bs-card-border-color: var(--border-primary);
-  background-color: var(--bs-card-bg) !important;
-  border-color: var(--bs-card-border-color) !important;
 }
 
 section {
@@ -302,7 +293,7 @@ section:first-of-type {
   padding-bottom: 80px !important;
   position: relative;
   overflow: hidden;
-  /* Reset padding Bootstrap container */
+  /* The section container keeps its own padding (reset below) */
 }
 #about > .container,
 #about > .contact-container,
@@ -324,12 +315,6 @@ section:first-of-type {
     padding-top: 60px !important;
     padding-bottom: 60px !important;
   }
-}
-
-.about-section .card,
-.about-section .row,
-.about-section .col-md-4 {
-  overflow: visible;
 }
 
 /* PROFILE CARD - RESPONSIVE */
@@ -477,56 +462,6 @@ section:first-of-type {
 }
 
 /* CARD BODY - RESPONSIVE TEXT */
-.card-body {
-  /* Responsive padding */
-  padding: 25px 20px !important;
-}
-@media (min-width: 768px) {
-  .card-body {
-    padding: 35px 30px !important;
-  }
-}
-@media (min-width: 992px) {
-  .card-body {
-    padding: 50px 40px !important;
-  }
-}
-.card-body h6 {
-  font-size: 0.7rem;
-  letter-spacing: 2px;
-  margin-bottom: 1rem;
-}
-@media (min-width: 768px) {
-  .card-body h6 {
-    font-size: 0.75rem;
-    margin-bottom: 1.25rem;
-  }
-}
-@media (min-width: 992px) {
-  .card-body h6 {
-    font-size: 0.8rem;
-    margin-bottom: 1.5rem;
-  }
-}
-.card-body p {
-  font-size: 0.85rem;
-  line-height: 1.7;
-  margin-bottom: 1rem;
-}
-@media (min-width: 768px) {
-  .card-body p {
-    font-size: 0.9rem;
-    line-height: 1.75;
-    margin-bottom: 1.25rem;
-  }
-}
-@media (min-width: 992px) {
-  .card-body p {
-    font-size: 0.95rem;
-    line-height: 1.8;
-    margin-bottom: 1.5rem;
-  }
-}
 
 /* SOCIAL BUTTONS - RESPONSIVE */
 .animate-buttons {
