@@ -168,7 +168,8 @@
                 <div class="mx-auto mt-2 animate-on-scroll" style="width: 50px; height: 3px; background: var(--accent-primary);"></div>
             </div>
 
-            <div class="flex flex-col gap-12 text-left">
+            <div class="text-left" x-data="projectsCarousel">
+            <div class="projects-carousel" x-ref="track" @scroll.passive="onScroll()">
                 @forelse($projects as $project)
                     @php
                         // Plain text (legacy entities decoded); always output escaped with {{ }}.
@@ -177,7 +178,7 @@
                         $cleanCategoryId = $project->displayText('category');
                         $cleanCategoryEn = $project->displayText('category_en', 'category');
                     @endphp
-                    <div class="project-centered-item animate-on-scroll w-full pb-6 {{ !$loop->last ? 'border-b border-secondary/10' : '' }}">
+                    <div class="project-centered-item animate-on-scroll w-full pb-6 {{ !$loop->last ? 'lg:border-b lg:border-secondary/10' : '' }}">
                         <!-- Developer Role & Project Domain Lines -->
                         <div class="mb-2">
                             <div class="project-role-badge mb-1">
@@ -216,7 +217,7 @@
                         @endif
 
                         <!-- CTA Links -->
-                        <div class="flex flex-wrap gap-4 items-center">
+                        <div class="mt-auto flex flex-wrap gap-4 items-center">
                             <a href="{{ route('project.show', $project->slug) }}" class="btn-project-link-primary">
                                 <span data-i18n-id="{{ __('portfolio.projects_detail', [], 'id') }}"
                                       data-i18n-en="{{ __('portfolio.projects_detail', [], 'en') }}">{{ __('portfolio.projects_detail') }}</span> <i class="bi bi-arrow-right ms-1"></i>
@@ -235,6 +236,19 @@
                            data-i18n-en="{{ __('portfolio.projects_empty', [], 'en') }}">{{ __('portfolio.projects_empty') }}</p>
                     </div>
                 @endforelse
+            </div>
+
+            {{-- Carousel position dots: only shown below 992px, and only when there is more than one project. --}}
+            @if($projects->count() > 1)
+            <div class="projects-dots" role="group">
+                @foreach($projects as $project)
+                    <button type="button" class="projects-dot" :class="{ 'is-active': active === {{ $loop->index }} }"
+                            :aria-current="active === {{ $loop->index }} ? 'true' : 'false'"
+                            aria-label="{{ $loop->iteration }} / {{ $projects->count() }}"
+                            @click="go({{ $loop->index }})"></button>
+                @endforeach
+            </div>
+            @endif
             </div>
         </div>
     </section>
