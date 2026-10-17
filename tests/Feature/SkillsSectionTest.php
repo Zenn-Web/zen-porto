@@ -82,3 +82,9 @@ test('in dark mode the description stays one step below the skill list', functio
 
     expect(cssBlock($css, '[data-theme=dark] .skills-clean-desc.text-secondary'))->toContain('color: var(--text-muted) !important');
 });
+
+test('the centred skills text is kept to a comfortable line length', function () {
+    $block = cssBlock(file_get_contents(resource_path('css/components/skills.css')), '.skills-clean-block');
+
+    expect($block)->toContain('max-width: 36rem')->and($block)->toContain('margin-inline: auto');
+});

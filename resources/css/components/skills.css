@@ -8,6 +8,9 @@
   position: relative;
   background: transparent;
   text-align: center;
+  /* Centred lines get hard to read when they run the full width: wrap them at about 576px. */
+  max-width: 36rem;
+  margin-inline: auto;
 }
 
 /* A short quiet line in the middle of the gap between two neighbouring groups. */
