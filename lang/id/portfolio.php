@@ -53,6 +53,11 @@ return [
     'contact_title' => 'Kontak Saya',
     'contact_subtitle' => 'Mari bekerjasama untuk solusi digitalmu.',
 
+    'contact_open_form' => 'Kirim pesan',
+    'contact_page_title' => 'Kirim Pesan',
+    'contact_page_lead' => 'Isi formulir di bawah ini. Pesanmu langsung masuk ke email saya.',
+    'contact_page_back' => 'Kembali ke beranda',
+
     // Contact form (Livewire ContactForm)
     'contact_form_title' => 'Atau kirim pesan langsung',
     'contact_form_first_name' => 'Nama depan',

@@ -45,13 +45,14 @@ test('application routes are properly registered', function () {
     expect($contactRoute->getName())->toEqual('contact.store');
 });
 
-test('contact route uses POST method only', function () {
-    $routes = collect(Route::getRoutes()->getRoutes());
-    $contactRoute = $routes->first(fn ($r) => $r->uri() === 'contact');
+test('submitting the contact form is POST-only, and GET only shows the form page', function () {
+    $contactRoutes = collect(Route::getRoutes()->getRoutes())->filter(fn ($r) => $r->uri() === 'contact');
 
-    expect($contactRoute)->not->toBeNull();
-    expect($contactRoute->methods())->toContain('POST');
-    expect($contactRoute->methods())->not->toContain('GET');
+    $submit = $contactRoutes->first(fn ($r) => $r->getName() === 'contact.store');
+    $page = $contactRoutes->first(fn ($r) => $r->getName() === 'contact.show');
+
+    expect($submit)->not->toBeNull()->and($submit->methods())->toBe(['POST']);
+    expect($page)->not->toBeNull()->and($page->methods())->toBe(['GET', 'HEAD']);
 });
 
 test('public route table matches the documented compatibility surface', function () {
@@ -59,6 +60,7 @@ test('public route table matches the documented compatibility surface', function
         'GET|HEAD /',
         'GET|HEAD api/projects',
         'GET|HEAD api/projects/{slug}',
+        'GET|HEAD contact',
         'POST contact',
         'POST lang/{locale}',
         'GET|HEAD project/{project}',
@@ -67,6 +69,7 @@ test('public route table matches the documented compatibility surface', function
 
 test('named routes keep their public urls', function () {
     expect(route('contact.store', absolute: false))->toBe('/contact');
+    expect(route('contact.show', absolute: false))->toBe('/contact');
     expect(route('lang.switch', 'en', absolute: false))->toBe('/lang/en');
     expect(route('project.show', 'company-website-eyegil', absolute: false))
         ->toBe('/project/company-website-eyegil');

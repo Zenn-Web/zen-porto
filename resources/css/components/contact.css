@@ -244,3 +244,37 @@
   border-color: var(--form-danger);
   background-color: var(--form-danger-soft);
 }
+
+/* The message form has its own page (/contact): clear the fixed navbar and keep the card comfortable. */
+.contact-page {
+  padding-top: calc(var(--navbar-height, 76px) + 3rem);
+  min-height: 100vh;
+}
+.contact-page-back {
+  display: inline-flex;
+  align-items: center;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.contact-page-back:hover {
+  color: var(--accent-text);
+}
+
+/* The call to action on the home page that opens the form. */
+.contact-btn-classic--primary {
+  background: var(--btn-solid-bg, var(--text-primary));
+  border-color: var(--btn-solid-bg, var(--text-primary));
+  color: var(--btn-solid-text, var(--bg-primary));
+}
+.contact-btn-classic--primary i {
+  color: inherit !important;
+}
+.contact-btn-classic--primary:hover:not(.no-link) {
+  background: transparent;
+  border-color: var(--btn-solid-bg, var(--text-primary));
+  color: var(--text-primary);
+}

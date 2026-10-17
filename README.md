@@ -1,6 +1,6 @@
 # zen-porto
 
-Personal portfolio site for Zenifen Caesarof Agusti, built with Laravel 12, Blade, Tailwind CSS, Alpine.js (the copy bundled with Livewire) and Vite, plus GSAP and Lenis for animation and smooth scrolling. Livewire is used for exactly one component, the contact form. The site has a bilingual (Indonesian/English) home page, project detail pages, a contact form (the Livewire `ContactForm` component in the `#contact` card, plus the `POST /contact` endpoint) that delivers mail through the queue, and a small read-only JSON API.
+Personal portfolio site for Zenifen Caesarof Agusti, built with Laravel 12, Blade, Tailwind CSS, Alpine.js (the copy bundled with Livewire) and Vite, plus GSAP and Lenis for animation and smooth scrolling. Livewire is used for exactly one component, the contact form. The site has a bilingual (Indonesian/English) home page, project detail pages, a contact form (the Livewire `ContactForm` component on its own page, `/contact`, linked from the home page's `#contact` card, plus the `POST /contact` endpoint) that delivers mail through the queue, and a small read-only JSON API.
 
 > This README lists environment variables **by name only**. Never put real values (keys, passwords, tokens, addresses) in this file, in issues, or in commits. `.env` is git-ignored; `.env.example` is the template and must contain placeholders only.
 
@@ -104,6 +104,7 @@ No `Content-Security-Policy` is sent yet (see [Known gaps](#known-gaps)). Files 
 | --- | --- | --- |
 | GET | `/` | |
 | GET | `/project/{slug}` | `project.show` |
+| GET | `/contact` | `contact.show` |
 | POST | `/contact` | `contact.store` |
 | POST | `/lang/{locale}` (`id` or `en`) | `lang.switch` |
 | GET | `/api/projects` | |
@@ -134,7 +135,7 @@ It checks Git-tracked **path names only** (never file contents) and exits non-ze
 7. Configure trusted proxies if the app runs behind a proxy, load balancer or CDN.
 8. Use a shared cache store when running more than one app server.
 9. Add `nosniff` and framing headers for static files in the web server or CDN configuration.
-10. Smoke-test `/`, a project page and `/up`. Submit the contact form in the `#contact` section (with a test mailbox, never a real inbox you don't own); confirm the message arrives and nothing lands in `failed_jobs`.
+10. Smoke-test `/`, a project page and `/up`. Submit the contact form on `/contact` (with a test mailbox, never a real inbox you don't own); confirm the message arrives and nothing lands in `failed_jobs`.
 
 ## Known gaps
 

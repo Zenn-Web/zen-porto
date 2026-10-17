@@ -15,6 +15,9 @@ Route::get('/', function () {
 // Route untuk detail project
 Route::get('/project/{project:slug}', [ProjectController::class, 'show'])->name('project.show');
 
+// Halaman formulir pesan (komponen Livewire ContactForm)
+Route::view('/contact', 'pages.contact')->name('contact.show');
+
 // Route untuk contact form
 Route::post('/contact', [ContactController::class, 'store'])
     ->middleware('throttle:contact')

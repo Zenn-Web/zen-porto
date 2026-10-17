@@ -98,10 +98,12 @@ test('contact form validates max string length', function () {
     $response->assertSessionHasErrors(['first_name', 'last_name']);
 });
 
-test('contact form rejects non-POST methods', function () {
-    $response = $this->get('/contact');
+test('contact form submission rejects every method but POST (GET only opens the form page)', function () {
+    $this->get('/contact')->assertOk()->assertViewIs('pages.contact');
 
-    $response->assertStatus(405);
+    foreach (['put', 'patch', 'delete'] as $method) {
+        $this->{$method}('/contact')->assertStatus(405);
+    }
 });
 
 test('contact form does not send email when validation fails', function () {

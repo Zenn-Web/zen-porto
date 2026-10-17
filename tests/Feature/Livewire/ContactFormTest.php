@@ -282,16 +282,6 @@ test('nothing inside the component uses the scroll-reveal classes that Livewire 
     }
 });
 
-test('the home page puts the form inside the contact card, after the contact buttons', function () {
-    $html = $this->get('/')->assertOk()->assertSeeLivewire(ContactForm::class)->getContent();
-
-    preg_match('#<section id="contact".*?</section>#s', $html, $section);
-
-    expect($section)->not->toBeEmpty()
-        ->and($section[0])->toContain('wire:id=')
-        ->and(strrpos($section[0], 'contact-btn-classic'))->toBeLessThan(strpos($section[0], 'wire:id='));
-});
-
 test('the component follows the language the visitor chose after it was rendered', function () {
     // Livewire remembers the locale of the first render and restores it on every update, which
     // would override the language picked with the language button (stored in the session).

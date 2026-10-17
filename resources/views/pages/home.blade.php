@@ -305,12 +305,14 @@
                     </span>
                 </div>
 
-                <!-- Direct message form (Livewire) -->
-                <div class="contact-divider-classic mx-auto my-8" aria-hidden="true"></div>
-                <h3 class="contact-form-heading mb-6"
-                    data-i18n-id="{{ __('portfolio.contact_form_title', [], 'id') }}"
-                    data-i18n-en="{{ __('portfolio.contact_form_title', [], 'en') }}">{{ __('portfolio.contact_form_title') }}</h3>
-                <livewire:contact-form />
+                <!-- The message form lives on its own page -->
+                <div class="mt-8">
+                    <a href="{{ route('contact.show') }}" class="contact-btn-classic contact-btn-classic--primary">
+                        <i class="bi bi-chat-dots-fill me-2" aria-hidden="true"></i>
+                        <span data-i18n-id="{{ __('portfolio.contact_open_form', [], 'id') }}"
+                              data-i18n-en="{{ __('portfolio.contact_open_form', [], 'en') }}">{{ __('portfolio.contact_open_form') }}</span>
+                    </a>
+                </div>
             </div>
         </div>
     </section>

@@ -53,6 +53,11 @@ return [
     'contact_title' => 'Get In Touch',
     'contact_subtitle' => "Let's work together for your digital solutions.",
 
+    'contact_open_form' => 'Send a message',
+    'contact_page_title' => 'Send a Message',
+    'contact_page_lead' => 'Fill in the form below. Your message goes straight to my inbox.',
+    'contact_page_back' => 'Back to home',
+
     // Contact form (Livewire ContactForm)
     'contact_form_title' => 'Or send me a message',
     'contact_form_first_name' => 'First name',
