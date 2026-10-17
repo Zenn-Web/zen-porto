@@ -9,6 +9,9 @@
  * The group titles are translated as portfolio.skills_group_{key}.
  */
 return [
+    // The group open when the page loads: the one that shows the role best (Laravel, Spring Boot...).
+    'default_group' => 'frameworks',
+
     'groups' => [
         ['key' => 'languages', 'items' => [
             ['name' => 'Java', 'status' => 'using'],

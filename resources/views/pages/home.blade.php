@@ -107,13 +107,15 @@
     </section>
 
     <section id="skills" class="skills-section reveal-section">
-        <div class="container" style="max-width: 1040px;">
+        <div class="container" style="max-width: 1120px;">
 
-            <div class="mb-12 text-center">
+            <div class="skills-layout">
+            <div class="skills-intro">
+            <div class="skills-title-block">
                 <h2 class="font-bold mb-0 animate-on-scroll text-reveal inline-block"
                     data-i18n-id="{{ __('portfolio.skills_title', [], 'id') }}"
                     data-i18n-en="{{ __('portfolio.skills_title', [], 'en') }}">{{ __('portfolio.skills_title') }}</h2>
-                <div class="mx-auto mt-2 animate-on-scroll" style="width: 50px; height: 3px; background: var(--accent-primary);"></div>
+                <div class="skills-title-rule animate-on-scroll"></div>
             </div>
 
             <p class="skills-subtitle animate-on-scroll"
@@ -131,31 +133,85 @@
                 @endforeach
             </ul>
 
-            <!-- Skill groups (centred), data in config/skills.php -->
-            <div class="skills-clean-list animate-on-scroll">
-                @foreach(config('skills.groups') as $group)
-                    <div class="skills-clean-block">
-                        <span class="skills-clean-label"
-                              data-i18n-id="{{ __('portfolio.skills_group_'.$group['key'], [], 'id') }}"
-                              data-i18n-en="{{ __('portfolio.skills_group_'.$group['key'], [], 'en') }}">{{ __('portfolio.skills_group_'.$group['key']) }}</span>
-                        <ul class="skill-chips">
-                            @foreach($group['items'] as $item)
-                                <li class="skill-chip skill-chip--{{ $item['status'] }}">
-                                    <span class="skill-dot" aria-hidden="true"></span>
-                                    <span>{{ $item['name'] }}</span>
-                                    @isset($item['note'])
-                                        <span class="skill-chip-note"
-                                              data-i18n-id="{{ __('portfolio.skills_note_'.$item['note'], [], 'id') }}"
-                                              data-i18n-en="{{ __('portfolio.skills_note_'.$item['note'], [], 'en') }}">{{ __('portfolio.skills_note_'.$item['note']) }}</span>
-                                    @endisset
-                                    <span class="sr-only"
-                                          data-i18n-id="{{ __('portfolio.skills_status_'.$item['status'], [], 'id') }}"
-                                          data-i18n-en="{{ __('portfolio.skills_status_'.$item['status'], [], 'en') }}">{{ __('portfolio.skills_status_'.$item['status']) }}</span>
-                                </li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endforeach
+            @php
+                $skillGroups = config('skills.groups');
+                $defaultSkillGroup = max(0, (int) array_search(config('skills.default_group'), array_column($skillGroups, 'key'), true));
+                $skillTally = ['using' => 0, 'learning' => 0, 'planned' => 0];
+                foreach ($skillGroups as $skillGroup) {
+                    foreach ($skillGroup['items'] as $skillItem) {
+                        $skillTally[$skillItem['status']]++;
+                    }
+                }
+            @endphp
+
+            <p class="skills-summary animate-on-scroll"
+               data-i18n-id="{{ __('portfolio.skills_summary', $skillTally, 'id') }}"
+               data-i18n-en="{{ __('portfolio.skills_summary', $skillTally, 'en') }}">{{ __('portfolio.skills_summary', $skillTally) }}</p>
+
+            <p class="skills-hint animate-on-scroll">
+                <i class="bi bi-cursor-fill" aria-hidden="true"></i>
+                <span data-i18n-id="{{ __('portfolio.skills_hint', [], 'id') }}"
+                      data-i18n-en="{{ __('portfolio.skills_hint', [], 'en') }}">{{ __('portfolio.skills_hint') }}</span>
+            </p>
+
+            </div>
+
+            <!-- Skills tree: role -> groups -> technologies (data in config/skills.php) -->
+            <div class="skills-tree animate-on-scroll" x-data="skillsTree({{ $defaultSkillGroup }})">
+                {{-- Without JavaScript every group stays open (the connectors and the open/close are script-only). --}}
+                <noscript><style>.skill-leaves { display: flex !important; }</style></noscript>
+                <svg class="skills-tree-links" x-ref="links" aria-hidden="true" focusable="false"></svg>
+                <div class="skills-tree-grid" x-ref="grid">
+                    <div class="skill-node skill-node--root" x-ref="root"
+                         data-i18n-id="{{ __('portfolio.hero_role', [], 'id') }}"
+                         data-i18n-en="{{ __('portfolio.hero_role', [], 'en') }}">{{ __('portfolio.hero_role') }}</div>
+
+                    @foreach($skillGroups as $group)
+                        <div class="skill-branch">
+                            <button type="button" id="skill-group-{{ $group['key'] }}"
+                                    class="skill-node skill-node--group{{ $loop->index === $defaultSkillGroup ? ' is-active' : '' }}"
+                                    aria-controls="skill-leaves-{{ $group['key'] }}"
+                                    aria-expanded="{{ $loop->index === $defaultSkillGroup ? 'true' : 'false' }}"
+                                    :aria-expanded="active === {{ $loop->index }} ? 'true' : 'false'"
+                                    :class="{ 'is-active': active === {{ $loop->index }} }"
+                                    style="--i: {{ $loop->index }}; --n: {{ count($skillGroups) }}"
+                                    @click="select({{ $loop->index }})"
+                                    @keydown.arrow-down.prevent="focusGroup({{ $loop->index + 1 }})"
+                                    @keydown.arrow-right.prevent="focusGroup({{ $loop->index + 1 }})"
+                                    @keydown.arrow-up.prevent="focusGroup({{ $loop->index - 1 }})"
+                                    @keydown.arrow-left.prevent="focusGroup({{ $loop->index - 1 }})">
+                                <span data-i18n-id="{{ __('portfolio.skills_group_'.$group['key'], [], 'id') }}"
+                                      data-i18n-en="{{ __('portfolio.skills_group_'.$group['key'], [], 'en') }}">{{ __('portfolio.skills_group_'.$group['key']) }}</span>
+                                <span class="skill-node-count" aria-hidden="true">{{ count($group['items']) }}</span>
+                                <i class="bi bi-chevron-right skill-node-chevron" aria-hidden="true"></i>
+                            </button>
+
+                            <ul class="skill-leaves{{ $loop->index === $defaultSkillGroup ? ' is-active' : '' }}" id="skill-leaves-{{ $group['key'] }}"
+                                aria-labelledby="skill-group-{{ $group['key'] }}"
+                                :class="{ 'is-active': active === {{ $loop->index }} }">
+                                {{-- Panel title on wide screens (the list already has its label for screen readers). --}}
+                                <li class="skill-leaves-title" aria-hidden="true"
+                                    data-i18n-id="{{ __('portfolio.skills_group_'.$group['key'], [], 'id') }}"
+                                    data-i18n-en="{{ __('portfolio.skills_group_'.$group['key'], [], 'en') }}">{{ __('portfolio.skills_group_'.$group['key']) }}</li>
+                                @foreach($group['items'] as $item)
+                                    <li class="skill-chip skill-chip--{{ $item['status'] }}" style="--i: {{ $loop->index }}">
+                                        <span class="skill-dot" aria-hidden="true"></span>
+                                        <span>{{ $item['name'] }}</span>
+                                        @isset($item['note'])
+                                            <span class="skill-chip-note"
+                                                  data-i18n-id="{{ __('portfolio.skills_note_'.$item['note'], [], 'id') }}"
+                                                  data-i18n-en="{{ __('portfolio.skills_note_'.$item['note'], [], 'en') }}">{{ __('portfolio.skills_note_'.$item['note']) }}</span>
+                                        @endisset
+                                        <span class="sr-only"
+                                              data-i18n-id="{{ __('portfolio.skills_status_'.$item['status'], [], 'id') }}"
+                                              data-i18n-en="{{ __('portfolio.skills_status_'.$item['status'], [], 'en') }}">{{ __('portfolio.skills_status_'.$item['status']) }}</span>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
             </div>
 
         </div>

@@ -22,10 +22,12 @@ return [
     // Skills Section
     'skills_title' => 'My Skills',
     'skills_subtitle' => 'A Backend Developer strengthening backend foundations and growing DevOps skills step by step.',
+    'skills_hint' => 'Click a group to see its technologies.',
+    'skills_summary' => ':using in use · :learning learning · :planned planned',
     'skills_status_using' => 'Using',
     'skills_status_learning' => 'Currently learning',
     'skills_status_planned' => 'Planned',
-    'skills_note_runtime' => 'JS/TS runtime & toolkit',
+    'skills_note_runtime' => 'JS/TS runtime',
     'skills_group_languages' => 'Programming Languages',
     'skills_group_frameworks' => 'Backend Frameworks & Runtime',
     'skills_group_api' => 'API Development & Testing',

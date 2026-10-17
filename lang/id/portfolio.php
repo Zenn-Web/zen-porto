@@ -22,10 +22,12 @@ return [
     // Skills Section
     'skills_title' => 'Keahlian Saya',
     'skills_subtitle' => 'Backend Developer yang memperkuat fondasi backend dan mengembangkan kemampuan DevOps secara bertahap.',
+    'skills_hint' => 'Klik sebuah grup untuk melihat teknologinya.',
+    'skills_summary' => ':using dipakai · :learning sedang dipelajari · :planned direncanakan',
     'skills_status_using' => 'Dipakai',
     'skills_status_learning' => 'Sedang dipelajari',
     'skills_status_planned' => 'Direncanakan',
-    'skills_note_runtime' => 'runtime & toolkit JS/TS',
+    'skills_note_runtime' => 'runtime JS/TS',
     'skills_group_languages' => 'Bahasa Pemrograman',
     'skills_group_frameworks' => 'Framework & Runtime Backend',
     'skills_group_api' => 'Pengembangan & Pengujian API',

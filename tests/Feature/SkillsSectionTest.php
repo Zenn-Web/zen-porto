@@ -1,6 +1,6 @@
 <?php
 
-// The Skills section is centred and typeset like the About section above it.
+// What stays true of the Skills section whatever its layout (the tree itself is covered by SkillsTreeTest).
 
 /** All declarations of every rule whose selector list contains exactly this selector. */
 function cssBlock(string $css, string $selector): string
@@ -15,46 +15,14 @@ function cssBlock(string $css, string $selector): string
         }
     }
 
-    return implode("
-", $bodies);
+    return implode("\n", $bodies);
 }
 
-test('every skills group is centred under the centred heading', function () {
-    $block = cssBlock(file_get_contents(resource_path('css/components/skills.css')), '.skills-clean-block');
-
-    expect($block)->toContain('text-align: center');
-});
-
-test('skills labels use the About eyebrow style', function () {
-    $skills = cssBlock(file_get_contents(resource_path('css/components/skills.css')), '.skills-clean-label');
-    $about = cssBlock(file_get_contents(resource_path('css/about.css')), '.about-bio-col .about-eyebrow');
-
-    foreach (['font-size', 'letter-spacing', 'font-weight'] as $property) {
-        preg_match("/{$property}:\s*([^;]+);/", $about, $expected);
-        expect($skills)->toContain("{$property}: {$expected[1]}");
-    }
-});
-
-test('the skill groups are spaced apart with a short divider between neighbours, not stacked', function () {
+test('the heading, subtitle and legend stay centred above the tree', function () {
     $css = file_get_contents(resource_path('css/components/skills.css'));
 
-    expect(cssBlock($css, '.skills-clean-list'))->toContain('gap: 2rem');
-
-    $divider = cssBlock($css, '.skills-clean-block + .skills-clean-block::before');
-    expect($divider)->toContain('width: 40px')->and($divider)->toContain('height: 1px')->and($divider)->toContain('left: 50%');
-});
-
-test('the skills groups sit in the spaced list wrapper', function () {
-    $html = $this->get('/')->getContent();
-    preg_match('/<section id="skills".*?<section id="resources"/s', $html, $section);
-
-    expect($section[0] ?? '')->toContain('skills-clean-list')->not->toContain('gap-6');
-});
-
-test('the centred skills text is kept to a comfortable line length', function () {
-    $block = cssBlock(file_get_contents(resource_path('css/components/skills.css')), '.skills-clean-block');
-
-    expect($block)->toContain('max-width: 36rem')->and($block)->toContain('margin-inline: auto');
+    expect(cssBlock($css, '.skills-subtitle'))->toContain('text-align: center')
+        ->and(cssBlock($css, '.skills-legend'))->toContain('justify-content: center');
 });
 
 test('technology chips show their status by shape and stay readable', function () {
@@ -66,39 +34,18 @@ test('technology chips show their status by shape and stay readable', function (
     expect(cssBlock($css, '.skill-chip--planned .skill-dot'))->toContain('dashed');
 });
 
-test('from 992px the groups form a two-column grid with the supporting group spanning the bottom, and no divider lines', function () {
-    $css = file_get_contents(resource_path('css/components/skills.css'));
-    preg_match('/@media \(min-width: 992px\)\s*\{(.*?)\n\}\n/s', $css, $m);
-    $desktop = $m[1] ?? '';
-
-    expect($desktop)->toMatch('/\.skills-clean-list\s*\{[^}]*display:\s*grid[^}]*grid-template-columns:\s*repeat\(2, minmax\(0, 1fr\)\)/s')
-        ->and($desktop)->toMatch('/\.skills-clean-block:last-child\s*\{[^}]*grid-column:\s*1 \/ -1/s')
-        ->and($desktop)->toMatch('/\.skills-clean-block \+ \.skills-clean-block::before\s*\{[^}]*display:\s*none/s');
-});
-
-test('the skills container is wide enough for two columns', function () {
+test('the skills container is wide enough for the three tree columns', function () {
     $section = $this->get('/')->getContent();
     preg_match('/<section id="skills".*?<section id="resources"/s', $section, $m);
 
-    expect($m[0] ?? '')->toContain('max-width: 1040px');
+    expect($m[0] ?? '')->toContain('max-width: 1120px');
 });
 
-test('the list layout lives in the stylesheet, so a utility class cannot override the grid', function () {
+test('the old stacked-list classes are gone from the page', function () {
     $section = $this->get('/')->getContent();
-    preg_match('/<div class="skills-clean-list[^"]*"/', $section, $m);
+    preg_match('/<section id="skills".*?<section id="resources"/s', $section, $m);
 
-    expect($m[0] ?? '')->not->toContain('flex');
-});
-
-test('a thin vertical line runs through the gap between the two columns and stops above the closing group', function () {
-    $css = file_get_contents(resource_path('css/components/skills.css'));
-    preg_match('/@media \(min-width: 992px\)\s*\{(.*?)\n\}\n/s', $css, $m);
-    $desktop = $m[1] ?? '';
-
-    expect($desktop)->toMatch('/\.skills-clean-block:nth-child\(odd\):not\(:last-child\)::after\s*\{(?=[^}]*width:\s*1px)(?=[^}]*bottom:\s*-2\.75rem)[^}]*\}/s')
-        ->and($desktop)->toMatch('/\.skills-clean-block:nth-child\(5\):not\(:last-child\)::after\s*\{[^}]*bottom:\s*0/s');
-
-    // The last-pair rule must be at least as specific as the general one, otherwise it never applies.
-    $specificity = fn (string $selector) => substr_count($selector, ':') - substr_count($selector, '::') * 2 + substr_count($selector, '::');
-    expect($specificity('.skills-clean-block:nth-child(5):not(:last-child)::after'))->toBeGreaterThanOrEqual($specificity('.skills-clean-block:nth-child(odd):not(:last-child)::after'));
+    foreach (['skills-clean-list', 'skills-clean-block', 'skills-clean-label'] as $removed) {
+        expect($m[0] ?? '')->not->toContain($removed);
+    }
 });
