@@ -1,4 +1,4 @@
-<nav class="custom-navbar fixed inset-x-0 top-0 z-[1030] flex flex-wrap items-center justify-between lg:flex-nowrap lg:justify-start"
+<nav class="custom-navbar fixed inset-x-0 top-0 z-[1030] flex flex-wrap items-center justify-between lg:flex-nowrap lg:justify-start{{ request()->is('/') ? ' is-over-hero' : '' }}"
      x-data="navMenu"
      @nav-close.window="close()">
     <div class="container flex flex-wrap items-center justify-between lg:flex-nowrap">

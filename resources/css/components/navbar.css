@@ -5,10 +5,64 @@
   padding: 10px 0;
   border-bottom: 1px solid var(--border-light);
   font-family: "Plus Jakarta Sans", sans-serif;
+  transition: background-color 0.3s ease, border-color 0.3s ease, backdrop-filter 0.3s ease;
   /* Pastikan container bisa jadi acuan absolute positioning */
 }
 .custom-navbar .container {
   position: relative;
+}
+
+/* OVER THE HERO: transparent bar over the photo, light content (the hero is dark in both themes).
+   Set by app.js while the hero is under the bar; app.js removes it once the About section reaches it. */
+.custom-navbar.is-over-hero {
+  --nav-ink: #f7f4ec;
+  background-color: transparent;
+  backdrop-filter: blur(0px);
+  border-bottom-color: transparent;
+}
+.custom-navbar.is-over-hero .brand-logo,
+.custom-navbar.is-over-hero .brand-logo .dot {
+  color: var(--nav-ink) !important;
+}
+.custom-navbar.is-over-hero .custom-toggler .hamburger-line {
+  background-color: var(--nav-ink);
+}
+@media (max-width: 991px) {
+  /* The open mobile menu stays a fully solid panel over the photo (the usual 98% lets the hero text ghost through). */
+  .custom-navbar.is-over-hero .navbar-collapse {
+    background: var(--bg-card);
+  }
+}
+@media (min-width: 992px) {
+  /* over-hero desktop */
+  .custom-navbar.is-over-hero .nav-link {
+    color: rgba(247, 244, 236, 0.85) !important;
+  }
+  .custom-navbar.is-over-hero .nav-link:hover, .custom-navbar.is-over-hero .nav-link.active {
+    color: var(--nav-ink) !important;
+  }
+  .custom-navbar.is-over-hero .nav-link::after {
+    background-color: var(--nav-ink);
+  }
+  .custom-navbar.is-over-hero .btn-lang-toggle, .custom-navbar.is-over-hero .btn-theme-toggle {
+    color: var(--nav-ink);
+    border-color: rgba(247, 244, 236, 0.45);
+  }
+  .custom-navbar.is-over-hero .btn-lang-toggle:hover, .custom-navbar.is-over-hero .btn-theme-toggle:hover {
+    border-color: var(--nav-ink);
+  }
+  .custom-navbar.is-over-hero .btn-lang-toggle:hover .lang-label {
+    color: var(--accent-primary-light);
+  }
+  .custom-navbar.is-over-hero .btn-contact-me {
+    background-color: var(--nav-ink);
+    color: #171714;
+    border-color: var(--nav-ink);
+  }
+  .custom-navbar.is-over-hero .btn-contact-me:hover {
+    background-color: transparent;
+    color: var(--nav-ink);
+  }
 }
 
 .brand-logo {

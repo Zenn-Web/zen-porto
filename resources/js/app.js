@@ -50,6 +50,27 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(updateNavbarHeight, 150); // Fallback for transition rendering delay
     window.addEventListener('resize', updateNavbarHeight);
 
+    // Transparent over the hero, solid once the next section reaches the bar. Only pages with a hero.
+    const heroSection = document.getElementById('home');
+    const navbarEl = document.querySelector('.custom-navbar');
+    if (heroSection && navbarEl) {
+        let navTick = false;
+        const syncNavbarOverHero = () => {
+            navTick = false;
+            const overHero = heroSection.getBoundingClientRect().bottom > navbarEl.offsetHeight;
+            navbarEl.classList.toggle('is-over-hero', overHero);
+        };
+        const queueNavbarSync = () => {
+            if (!navTick) {
+                navTick = true;
+                requestAnimationFrame(syncNavbarOverHero);
+            }
+        };
+        syncNavbarOverHero();
+        window.addEventListener('scroll', queueNavbarSync, { passive: true });
+        window.addEventListener('resize', queueNavbarSync);
+    }
+
     function raf(time) {
         lenis.raf(time);
         requestAnimationFrame(raf);
