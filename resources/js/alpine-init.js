@@ -51,9 +51,13 @@ document.addEventListener('alpine:init', () => {
     }));
 
     // Projects carousel (below 992px the project list scrolls sideways and snaps). Only the position
-    // dots need script: `active` follows the scroll, `go(i)` scrolls to a project.
+    // controls need script: `active` follows the scroll, `go(i)` scrolls to a project, `prev()`/`next()` step one.
     window.Alpine.data('projectsCarousel', () => ({
         active: 0,
+
+        get count() {
+            return this.$refs.track.children.length;
+        },
 
         onScroll() {
             const track = this.$refs.track;
@@ -73,6 +77,14 @@ document.addEventListener('alpine:init', () => {
                 }
             });
             this.active = nearest;
+        },
+
+        prev() {
+            this.go(Math.max(0, this.active - 1));
+        },
+
+        next() {
+            this.go(Math.min(this.count - 1, this.active + 1));
         },
 
         go(index) {

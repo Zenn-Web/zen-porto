@@ -238,15 +238,25 @@
                 @endforelse
             </div>
 
-            {{-- Carousel position dots: only shown below 992px, and only when there is more than one project. --}}
+            {{-- Carousel controls (previous, position dots, next): only shown below 992px, and only when there is more than one project. --}}
             @if($projects->count() > 1)
-            <div class="projects-dots" role="group">
-                @foreach($projects as $project)
-                    <button type="button" class="projects-dot" :class="{ 'is-active': active === {{ $loop->index }} }"
-                            :aria-current="active === {{ $loop->index }} ? 'true' : 'false'"
-                            aria-label="{{ $loop->iteration }} / {{ $projects->count() }}"
-                            @click="go({{ $loop->index }})"></button>
-                @endforeach
+            <div class="projects-controls">
+                <button type="button" class="projects-arrow projects-arrow--prev" :disabled="active === 0" @click="prev()">
+                    <i class="bi bi-chevron-left" aria-hidden="true"></i>
+                    <span class="sr-only" data-i18n-id="{{ __('portfolio.projects_prev', [], 'id') }}" data-i18n-en="{{ __('portfolio.projects_prev', [], 'en') }}">{{ __('portfolio.projects_prev') }}</span>
+                </button>
+                <div class="projects-dots" role="group">
+                    @foreach($projects as $project)
+                        <button type="button" class="projects-dot" :class="{ 'is-active': active === {{ $loop->index }} }"
+                                :aria-current="active === {{ $loop->index }} ? 'true' : 'false'"
+                                aria-label="{{ $loop->iteration }} / {{ $projects->count() }}"
+                                @click="go({{ $loop->index }})"></button>
+                    @endforeach
+                </div>
+                <button type="button" class="projects-arrow projects-arrow--next" :disabled="active >= count - 1" @click="next()">
+                    <i class="bi bi-chevron-right" aria-hidden="true"></i>
+                    <span class="sr-only" data-i18n-id="{{ __('portfolio.projects_next', [], 'id') }}" data-i18n-en="{{ __('portfolio.projects_next', [], 'en') }}">{{ __('portfolio.projects_next') }}</span>
+                </button>
             </div>
             @endif
             </div>

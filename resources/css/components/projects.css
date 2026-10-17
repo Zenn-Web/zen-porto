@@ -77,7 +77,7 @@
   flex-direction: column;
 }
 
-.projects-dots {
+.projects-controls {
   display: none;
 }
 
@@ -96,8 +96,9 @@
   }
 
   .project-centered-item {
-    flex: 0 0 86%;
+    flex: 0 0 100%;
     scroll-snap-align: start;
+    scroll-snap-stop: always; /* one project per swipe, never skipping past a neighbour */
     padding: 1.5rem;
     background: var(--bg-card);
     border: 1px solid var(--border-dim);
@@ -105,11 +106,39 @@
     box-shadow: var(--shadow-sm);
   }
 
+  .projects-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1.25rem;
+  }
   .projects-dots {
     display: flex;
     justify-content: center;
     gap: 0.5rem;
-    margin-top: 1.25rem;
+  }
+  .projects-arrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    border: 1.5px solid var(--border-control);
+    border-radius: 50%;
+    background: transparent;
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: border-color 0.25s ease, opacity 0.25s ease, color 0.25s ease;
+  }
+  .projects-arrow:hover:not(:disabled) {
+    border-color: var(--accent-primary);
+    color: var(--accent-text);
+  }
+  .projects-arrow:disabled {
+    opacity: 0.35;
+    cursor: default;
   }
   .projects-dot {
     width: 8px;

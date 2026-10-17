@@ -29,6 +29,8 @@ return [
     'projects_title' => 'My Projects',
     'projects_detail' => 'Project Detail',
     'projects_empty' => 'No projects to show yet.',
+    'projects_prev' => 'Previous project',
+    'projects_next' => 'Next project',
 
     // Project Detail Page
     'project_back' => 'Back to Portfolio',

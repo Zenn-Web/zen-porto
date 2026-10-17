@@ -29,6 +29,8 @@ return [
     'projects_title' => 'Projek Saya',
     'projects_detail' => 'Detail Projek',
     'projects_empty' => 'Belum ada project untuk ditampilkan.',
+    'projects_prev' => 'Project sebelumnya',
+    'projects_next' => 'Project berikutnya',
 
     // Project Detail Page
     'project_back' => 'Kembali ke Portfolio',
