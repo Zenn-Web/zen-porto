@@ -21,9 +21,18 @@ return [
 
     // Skills Section
     'skills_title' => 'My Skills',
-    'skills_frontend_desc' => 'Focused on building responsive, modern user interfaces and prioritizing the best user experience.',
-    'skills_backend_desc' => 'Designing robust server architecture, efficient database management, and secure API development.',
-    'skills_tools_desc' => 'Using a modern development tool ecosystem to increase work efficiency and team collaboration.',
+    'skills_subtitle' => 'A Backend Developer strengthening backend foundations and growing DevOps skills step by step.',
+    'skills_status_using' => 'Using',
+    'skills_status_learning' => 'Currently learning',
+    'skills_status_planned' => 'Planned',
+    'skills_note_runtime' => 'JS/TS runtime & toolkit',
+    'skills_group_languages' => 'Programming Languages',
+    'skills_group_frameworks' => 'Backend Frameworks & Runtime',
+    'skills_group_api' => 'API Development & Testing',
+    'skills_group_data' => 'Database & Data Management',
+    'skills_group_tools' => 'Development Tools',
+    'skills_group_devops' => 'DevOps & Deployment',
+    'skills_group_frontend' => 'Front-End (Supporting)',
 
     // Projects Section
     'projects_title' => 'My Projects',

@@ -116,42 +116,46 @@
                 <div class="mx-auto mt-2 animate-on-scroll" style="width: 50px; height: 3px; background: var(--accent-primary);"></div>
             </div>
 
-            <!-- Vertical Stack of 3 Clean Skill Groups (Centered) -->
+            <p class="skills-subtitle animate-on-scroll"
+               data-i18n-id="{{ __('portfolio.skills_subtitle', [], 'id') }}"
+               data-i18n-en="{{ __('portfolio.skills_subtitle', [], 'en') }}">{{ __('portfolio.skills_subtitle') }}</p>
+
+            {{-- Legend: the three statuses. Shape differs as well as colour, so it never relies on colour alone. --}}
+            <ul class="skills-legend animate-on-scroll">
+                @foreach(['using', 'learning', 'planned'] as $status)
+                    <li class="skills-legend-item skills-legend-item--{{ $status }}">
+                        <span class="skill-dot" aria-hidden="true"></span>
+                        <span data-i18n-id="{{ __('portfolio.skills_status_'.$status, [], 'id') }}"
+                              data-i18n-en="{{ __('portfolio.skills_status_'.$status, [], 'en') }}">{{ __('portfolio.skills_status_'.$status) }}</span>
+                    </li>
+                @endforeach
+            </ul>
+
+            <!-- Skill groups (centred), data in config/skills.php -->
             <div class="skills-clean-list flex flex-col animate-on-scroll">
-                
-                <!-- Group 1: Front-End -->
-                <div class="skills-clean-block">
-                    <span class="skills-clean-label">FRONT-END</span>
-                    <p class="skills-clean-text mb-2">HTML, CSS, JavaScript, React, Tailwind CSS, Bootstrap</p>
-                    <p class="skills-clean-desc text-secondary mb-0"
-                       data-i18n-id="{{ __('portfolio.skills_frontend_desc', [], 'id') }}"
-                       data-i18n-en="{{ __('portfolio.skills_frontend_desc', [], 'en') }}">
-                        {{ __('portfolio.skills_frontend_desc') }}
-                    </p>
-                </div>
-
-                <!-- Group 2: Back-End & Database -->
-                <div class="skills-clean-block">
-                    <span class="skills-clean-label">BACK-END &amp; DATABASE</span>
-                    <p class="skills-clean-text mb-2">Laravel, PHP, Java, MySQL, PostgreSQL, Go</p>
-                    <p class="skills-clean-desc text-secondary mb-0"
-                       data-i18n-id="{{ __('portfolio.skills_backend_desc', [], 'id') }}"
-                       data-i18n-en="{{ __('portfolio.skills_backend_desc', [], 'en') }}">
-                        {{ __('portfolio.skills_backend_desc') }}
-                    </p>
-                </div>
-
-                <!-- Group 3: Tools & Workflow -->
-                <div class="skills-clean-block">
-                    <span class="skills-clean-label">TOOLS &amp; WORKFLOW</span>
-                    <p class="skills-clean-text mb-2">Git, GitHub, Bruno, Vite, VS Code, IntelliJ IDEA, Laragon, Canva</p>
-                    <p class="skills-clean-desc text-secondary mb-0"
-                       data-i18n-id="{{ __('portfolio.skills_tools_desc', [], 'id') }}"
-                       data-i18n-en="{{ __('portfolio.skills_tools_desc', [], 'en') }}">
-                        {{ __('portfolio.skills_tools_desc') }}
-                    </p>
-                </div>
-
+                @foreach(config('skills.groups') as $group)
+                    <div class="skills-clean-block">
+                        <span class="skills-clean-label"
+                              data-i18n-id="{{ __('portfolio.skills_group_'.$group['key'], [], 'id') }}"
+                              data-i18n-en="{{ __('portfolio.skills_group_'.$group['key'], [], 'en') }}">{{ __('portfolio.skills_group_'.$group['key']) }}</span>
+                        <ul class="skill-chips">
+                            @foreach($group['items'] as $item)
+                                <li class="skill-chip skill-chip--{{ $item['status'] }}">
+                                    <span class="skill-dot" aria-hidden="true"></span>
+                                    <span>{{ $item['name'] }}</span>
+                                    @isset($item['note'])
+                                        <span class="skill-chip-note"
+                                              data-i18n-id="{{ __('portfolio.skills_note_'.$item['note'], [], 'id') }}"
+                                              data-i18n-en="{{ __('portfolio.skills_note_'.$item['note'], [], 'en') }}">{{ __('portfolio.skills_note_'.$item['note']) }}</span>
+                                    @endisset
+                                    <span class="sr-only"
+                                          data-i18n-id="{{ __('portfolio.skills_status_'.$item['status'], [], 'id') }}"
+                                          data-i18n-en="{{ __('portfolio.skills_status_'.$item['status'], [], 'en') }}">{{ __('portfolio.skills_status_'.$item['status']) }}</span>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endforeach
             </div>
 
         </div>

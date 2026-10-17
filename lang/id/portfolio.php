@@ -21,9 +21,18 @@ return [
 
     // Skills Section
     'skills_title' => 'Keahlian Saya',
-    'skills_frontend_desc' => 'Fokus pada pembuatan antarmuka pengguna yang responsif, modern, dan mengedepankan pengalaman pengguna terbaik.',
-    'skills_backend_desc' => 'Merancang arsitektur server yang kokoh, manajemen database yang efisien, serta pengembangan API yang aman.',
-    'skills_tools_desc' => 'Menggunakan ekosistem alat pengembangan modern untuk meningkatkan efisiensi kerja dan kolaborasi tim.',
+    'skills_subtitle' => 'Backend Developer yang memperkuat fondasi backend dan mengembangkan kemampuan DevOps secara bertahap.',
+    'skills_status_using' => 'Dipakai',
+    'skills_status_learning' => 'Sedang dipelajari',
+    'skills_status_planned' => 'Direncanakan',
+    'skills_note_runtime' => 'runtime & toolkit JS/TS',
+    'skills_group_languages' => 'Bahasa Pemrograman',
+    'skills_group_frameworks' => 'Framework & Runtime Backend',
+    'skills_group_api' => 'Pengembangan & Pengujian API',
+    'skills_group_data' => 'Database & Manajemen Data',
+    'skills_group_tools' => 'Alat Pengembangan',
+    'skills_group_devops' => 'DevOps & Deployment',
+    'skills_group_frontend' => 'Front-End (Pendukung)',
 
     // Projects Section
     'projects_title' => 'Projek Saya',
