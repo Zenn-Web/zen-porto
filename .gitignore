@@ -36,3 +36,7 @@ Thumbs.db
 # Sensitive environment files; keep the safe template trackable.
 .env.*
 !.env.example
+
+# Local AI-assistant working folders (notes, reports, launch configs); never part of the project.
+/.superpowers/
+/.claude/
