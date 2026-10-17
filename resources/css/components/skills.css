@@ -374,22 +374,23 @@
   .skill-leaves-title {
     display: none;
   }
+  /* WATERFALL: the role at the top, one dashed line flowing down the middle, the groups centred along it. */
   .skills-tree-grid {
     display: flex;
     flex-direction: column;
-    gap: 0.6rem;
+    align-items: center;
+    gap: 1.1rem;
     max-width: 26rem;
     margin-inline: auto;
-    padding-left: 1.75rem;
   }
-  /* A dashed rail down the left joins the root to every group. */
   .skills-tree-grid::before {
     content: "";
     position: absolute;
-    left: 0.7rem;
+    left: 50%;
     top: 2.6rem;
     bottom: 1.2rem;
     width: 2px;
+    transform: translateX(-50%);
     background: repeating-linear-gradient(to bottom, var(--border-control) 0 6px, transparent 6px 12px);
     background-size: 2px 12px;
     animation: skill-rail 1.1s linear infinite;
@@ -397,15 +398,25 @@
   @keyframes skill-rail {
     to { background-position-y: 12px; }
   }
+  /* The nodes sit above the line, so it only shows in the gaps between them. */
+  .skill-node--root,
+  .skill-node--group {
+    position: relative;
+    z-index: 1;
+  }
   .skill-node--root {
-    align-self: flex-start;
-    margin-left: -1.75rem;
-    margin-bottom: 0.4rem;
+    align-self: center;
+  }
+  .skill-node--group {
+    justify-content: center;
+    text-align: center;
   }
   .skill-branch {
     display: flex;
     flex-direction: column;
-    gap: 0.6rem;
+    align-items: center;
+    gap: 1.1rem;
+    width: 100%;
   }
   /* Below 992px the leaves open underneath, so the chevron points down (and up when open). */
   .skill-node-chevron {
@@ -415,17 +426,17 @@
     transform: rotate(-90deg);
   }
   .skill-node--group::before {
-    content: "";
-    position: absolute;
-    left: -1.05rem;
-    top: 50%;
-    width: 0.8rem;
-    border-top: 2px dashed var(--border-control);
+    display: none;
   }
+  /* The open group's technologies sit on the page colour, so the line does not run through the chips. */
   .skill-leaves.is-active {
+    position: relative;
+    z-index: 1;
     flex-wrap: wrap;
+    justify-content: center;
     gap: 0.5rem;
-    padding: 0.1rem 0 0.4rem 0.75rem;
+    padding: 0.4rem 0.25rem;
+    background: var(--bg-primary);
   }
 }
 @media (prefers-reduced-motion: reduce) {

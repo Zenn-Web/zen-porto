@@ -237,3 +237,28 @@ test('the ring can be walked with all four arrow keys', function () {
         expect($section)->toContain("@keydown.{$key}.prevent");
     }
 });
+
+test('below 992px the tree is a centred waterfall: one dashed line down the middle, centred nodes, no left rail', function () {
+    preg_match('/@media \(max-width: 991px\)\s*\{(.*?)\n\}\n/s', skillsCss(), $m);
+    $mobile = $m[1] ?? '';
+
+    expect($mobile)->toMatch('/\.skills-tree-grid::before\s*\{[^}]*left:\s*50%[^}]*translateX\(-50%\)/s')
+        ->and($mobile)->toMatch('/\.skills-tree-grid\s*\{[^}]*align-items:\s*center/s')
+        ->and($mobile)->not->toMatch('/\.skills-tree-grid\s*\{[^}]*padding-left/s')
+        ->and($mobile)->toMatch('/\.skill-node--root\s*\{[^}]*align-self:\s*center/s')
+        ->and($mobile)->toMatch('/\.skill-node--group\s*\{[^}]*justify-content:\s*center/s')
+        ->and($mobile)->toMatch('/\.skill-node--group::before\s*\{[^}]*display:\s*none/s');
+});
+
+test('the open group\'s technologies are centred and sit on the page colour so the line does not run through the chips', function () {
+    preg_match('/@media \(max-width: 991px\)\s*\{(.*?)\n\}\n/s', skillsCss(), $m);
+
+    expect($m[1] ?? '')->toMatch('/\.skill-leaves\.is-active\s*\{[^}]*justify-content:\s*center[^}]*background:\s*var\(--bg-primary\)/s');
+});
+
+test('the nodes sit above the waterfall line and are spaced far enough apart for it to show', function () {
+    preg_match('/@media \(max-width: 991px\)\s*\{(.*?)\n\}\n/s', skillsCss(), $m);
+
+    expect($m[1] ?? '')->toMatch('/\.skill-node--root,\s*\.skill-node--group\s*\{[^}]*position:\s*relative[^}]*z-index:\s*1/s')
+        ->and($m[1] ?? '')->toMatch('/\.skills-tree-grid\s*\{[^}]*gap:\s*1\.1rem/s');
+});
