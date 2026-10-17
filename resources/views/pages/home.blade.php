@@ -117,7 +117,7 @@
             </div>
 
             <!-- Vertical Stack of 3 Clean Skill Groups (Centered) -->
-            <div class="flex flex-col gap-6 animate-on-scroll">
+            <div class="skills-clean-list flex flex-col animate-on-scroll">
                 
                 <!-- Group 1: Front-End -->
                 <div class="skills-clean-block">

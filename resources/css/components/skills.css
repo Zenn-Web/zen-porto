@@ -1,8 +1,25 @@
 /* SKILLS CLEAN MINIMALIST */
 /* Centred, and typeset like the About section above (eyebrow, paragraph size and line height). */
+.skills-clean-list {
+  gap: 2rem;
+}
+
 .skills-clean-block {
+  position: relative;
   background: transparent;
   text-align: center;
+}
+
+/* A short quiet line in the middle of the gap between two neighbouring groups. */
+.skills-clean-block + .skills-clean-block::before {
+  content: "";
+  position: absolute;
+  top: -1rem;
+  left: 50%;
+  width: 40px;
+  height: 1px;
+  background: var(--border-control);
+  transform: translateX(-50%);
 }
 
 .skills-clean-label {
@@ -24,8 +41,9 @@
 }
 
 .skills-clean-text {
-  color: var(--text-secondary, #aaa38f);
-  font-weight: 400;
+  /* The group's headline: stronger than its description underneath. */
+  color: var(--text-primary);
+  font-weight: 500;
   margin-bottom: 0;
 }
 
@@ -43,4 +61,10 @@
   letter-spacing: 0.08em;
   color: var(--text-secondary, #aaa38f);
   text-transform: uppercase;
+}
+
+/* The dark-mode override that turns every .text-secondary into the primary colour (tokens.css) would flatten
+   the hierarchy here: keep the description one step below the skill list. */
+[data-theme=dark] .skills-clean-desc.text-secondary {
+  color: var(--text-muted) !important;
 }
