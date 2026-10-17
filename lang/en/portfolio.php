@@ -9,15 +9,15 @@ return [
     'nav_contact' => 'Contact Me',
 
     // Hero Section
-    'hero_role' => 'Web Developer &amp; Front End Enthusiast',
-    'hero_extra' => 'I build websites that combine modern design, high performance, and memorable user experiences.',
+    'hero_role' => 'Backend Developer × DevOps',
+    'hero_extra' => 'I build reliable backend systems and APIs, and I am growing my DevOps skills to ship them with confidence.',
     'hero_btn_projects' => 'See My Work',
     'hero_btn_contact' => "Let's Chat",
 
     // About Section
     'about_title' => 'About Me',
-    'about_p1' => 'Hi! I am Zenifen, a <strong>Front-End Developer</strong> focused on building interactive web interfaces. Starting from a curiosity about HTML, I now design modern web architectures using <strong>React, modern JavaScript, and Tailwind CSS</strong>.',
-    'about_p2' => 'For me, <i>coding</i> is not just about syntax, but about solving problems. From <strong>performance optimization</strong> (Core Web Vitals) to <strong>Design System</strong> implementation, I ensure every line of code makes a real impact on user comfort.',
+    'about_p1' => 'Hi! I am Zenifen, a <strong>Backend Developer</strong> focused on building reliable server-side systems and APIs. Starting from a curiosity about how websites work, I now build backend architectures using <strong>Laravel, PHP, and Java</strong>, and I am growing into <strong>DevOps</strong> step by step.',
+    'about_p2' => 'For me, <i>coding</i> is not just about syntax, but about solving problems. From <strong>secure API design</strong> and <strong>efficient database management</strong> to learning automated deployment, I make sure every line of code runs reliably.',
 
     // Skills Section
     'skills_title' => 'My Skills',

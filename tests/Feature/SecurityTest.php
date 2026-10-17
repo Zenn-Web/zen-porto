@@ -137,7 +137,7 @@ test('project detail page escapes untrusted project fields in text and data attr
 test('trusted static translation markup is still rendered on the home page', function () {
     $content = $this->withSession(['locale' => 'en'])->get('/')->assertOk()->getContent();
 
-    expect($content)->toContain('<strong>Front-End Developer</strong>');
+    expect($content)->toContain('<strong>Backend Developer</strong>');
 });
 
 test('language switcher never parses data attributes as html', function () {

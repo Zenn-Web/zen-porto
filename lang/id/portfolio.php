@@ -9,15 +9,15 @@ return [
     'nav_contact' => 'Kontak Saya',
 
     // Hero Section
-    'hero_role' => 'Web Developer &amp; Front End Enthusiast',
-    'hero_extra' => 'Saya membuat website yang menggabungkan desain modern, performa tinggi, dan pengalaman pengguna yang berkesan.',
+    'hero_role' => 'Backend Developer × DevOps',
+    'hero_extra' => 'Saya membangun sistem backend dan API yang andal, sambil terus mengembangkan kemampuan DevOps agar bisa merilisnya dengan percaya diri.',
     'hero_btn_projects' => 'Lihat Karya Saya',
     'hero_btn_contact' => 'Mari Ngobrol',
 
     // About Section
     'about_title' => 'Tentang Saya',
-    'about_p1' => 'Hai! Saya Zenifen, seorang <strong>Front-End Developer</strong> yang fokus membangun antarmuka web interaktif. Berawal dari rasa penasaran dengan HTML, kini saya merancang arsitektur web modern menggunakan <strong>React, JavaScript modern, dan Tailwind CSS</strong>.',
-    'about_p2' => 'Bagi saya, <i>coding</i> bukan hanya soal sintaks, tapi tentang memecahkan masalah. Mulai dari <strong>optimasi performa</strong> (Core Web Vitals) hingga implementasi <strong>Design System</strong>, saya memastikan setiap baris kode memberi dampak nyata pada kenyamanan pengguna.',
+    'about_p1' => 'Hai! Saya Zenifen, seorang <strong>Backend Developer</strong> yang fokus membangun sistem sisi server dan API yang andal. Berawal dari rasa penasaran tentang cara kerja website, kini saya membangun arsitektur backend menggunakan <strong>Laravel, PHP, dan Java</strong>, dan secara bertahap mengembangkan kemampuan <strong>DevOps</strong>.',
+    'about_p2' => 'Bagi saya, <i>coding</i> bukan hanya soal sintaks, tapi tentang memecahkan masalah. Mulai dari <strong>desain API yang aman</strong> dan <strong>pengelolaan database yang efisien</strong> hingga belajar deployment otomatis, saya memastikan setiap baris kode berjalan dengan andal.',
 
     // Skills Section
     'skills_title' => 'Keahlian Saya',
