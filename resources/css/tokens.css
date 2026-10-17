@@ -1,64 +1,75 @@
-/* COLOR SYSTEM */
+/* COLOR SYSTEM: Archive Ochre (see docs/superpowers/specs/2026-10-04-archive-ochre-palette-design.md) */
 /* CSS VARIABLES FOUNDATION */
 :root {
-  /* Backgrounds */
-  --bg-primary: #ffffff;
-  --bg-secondary: #f9f9f9;
-  --bg-card: #ffffff;
-  --bg-glass: rgba(255, 255, 255, 0.25);
-  --bg-navbar: rgba(255, 255, 255, 0.95);
-  --bg-navbar-mobile: rgba(255, 255, 255, 0.98);
-  /* Text */
-  --text-primary: #111111;
-  --text-secondary: #555555;
-  --text-muted: #888888;
-  --text-dim: #aaaaaa;
+  /* Backgrounds: warm paper */
+  --bg-primary: #e8e3d5;
+  --bg-secondary: #f1eee6;
+  --bg-card: #f7f4ec;
+  --bg-glass: rgba(247, 244, 236, 0.35);
+  --bg-navbar: rgba(232, 227, 213, 0.95);
+  --bg-navbar-mobile: rgba(232, 227, 213, 0.98);
+  /* Text: near-black ink */
+  --text-primary: #171714;
+  --text-secondary: #5d5b52;
+  --text-muted: #645f53;
+  --text-dim: #9a9588;
   --text-white: #ffffff;
   /* Borders & Dividers */
-  --border-primary: #000000;
-  --border-light: #f1f1f1;
-  --border-dim: #e0e0e0;
-  /* Accents (Emerald) */
-  --accent-emerald: #0fb9a7;
-  --accent-emerald-light: #34d399;
-  --accent-emerald-deep: #0a8f7a;
-  --accent-emerald-rgb: 15, 185, 167;
+  --border-primary: #171714;
+  --border-light: #e0dacc;
+  --border-dim: #d4ccb8;
+  /* Outline of form fields and contact pills: at least 3:1 against the paper */
+  --border-control: #7a7468;
+  /* Accent (ochre). The plain accent is for non-text (buttons, dividers, icons, rings, markers);
+     coloured text uses --accent-text, which is the darker ochre in light mode (4.5:1 on paper). */
+  --accent-primary: #b59a3a;
+  --accent-primary-light: #d8c98f;
+  --accent-primary-deep: #6f5e1f;
+  --accent-primary-rgb: 181, 154, 58;
+  --accent-text: var(--accent-primary-deep);
+  /* Text on top of an ochre / deep-ochre surface (buttons, hover states) */
+  --accent-on-primary: #171714;
+  --accent-on-deep: #f7f4ec;
   /* Shadows */
   --shadow-sm: 0 4px 15px rgba(0, 0, 0, 0.05);
   --shadow-md: 0 10px 40px rgba(0, 0, 0, 0.08);
   --shadow-lg: 0 18px 40px rgba(0, 0, 0, 0.25);
   /* Footer Light Theme */
-  --bg-footer: #ffffff;
-  --border-footer: var(--border-dim, #e0e0e0);
-  --text-footer-primary: var(--text-primary, #111111);
-  --text-footer-secondary: var(--text-secondary, #555555);
-  --bg-footer-card: var(--bg-secondary, #f9f9f9);
-  --border-footer-card: var(--border-dim, #e0e0e0);
+  --bg-footer: var(--bg-primary);
+  --border-footer: var(--border-dim);
+  --text-footer-primary: var(--text-primary);
+  --text-footer-secondary: var(--text-secondary);
+  --bg-footer-card: var(--bg-secondary);
+  --border-footer-card: var(--border-dim);
 }
 
 [data-theme=dark] {
-  /* Backgrounds */
-  --bg-primary: #0f172a; /* Slate 900 */
-  --bg-secondary: #1e293b; /* Slate 800 */
-  --bg-card: #1e293b;
-  --bg-glass: rgba(30, 41, 59, 0.5);
-  --bg-navbar: rgba(15, 23, 42, 0.9);
-  --bg-navbar-mobile: rgba(30, 41, 59, 0.98);
+  /* Backgrounds: warm near-black */
+  --bg-primary: #11110f;
+  --bg-secondary: #1c1b17;
+  --bg-card: #242219;
+  --bg-glass: rgba(36, 34, 25, 0.5);
+  --bg-navbar: rgba(17, 17, 15, 0.9);
+  --bg-navbar-mobile: rgba(28, 27, 23, 0.98);
   /* Text */
-  --text-primary: #f8fafc; /* Slate 50 */
-  --text-secondary: #e2e8f0; /* Slate 200 (Increased contrast) */
-  --text-muted: #cbd5e1; /* Slate 300 (Increased contrast) */
-  --text-dim: #94a3b8; /* Slate 400 */
+  --text-primary: #f1eee5;
+  --text-secondary: #d0cab9;
+  --text-muted: #aaa38f;
+  --text-dim: #8f8873;
   --text-white: #ffffff;
   /* Borders & Dividers */
-  --border-primary: #334155; /* Slate 700 */
-  --border-light: #1e293b;
-  --border-dim: #334155;
-  /* Accents (Emerald stays vibrant) */
-  --accent-emerald: #10b981;
-  --accent-emerald-light: #34d399;
-  --accent-emerald-deep: #059669;
-  --accent-emerald-rgb: 16, 185, 129;
+  --border-primary: #4a4330;
+  --border-light: #29271f;
+  --border-dim: #3b3628;
+  --border-control: #766c58;
+  /* Accent: raised slightly for contrast on dark (7 to 9:1), so it serves as text too */
+  --accent-primary: #c9af55;
+  --accent-primary-light: #e0d091;
+  --accent-primary-deep: #a88d36;
+  --accent-primary-rgb: 201, 175, 85;
+  --accent-text: var(--accent-primary);
+  --accent-on-primary: #11110f;
+  --accent-on-deep: #11110f;
   /* Shadows (Invert or soften shadows for dark mode) */
   --shadow-sm: 0 4px 15px rgba(0, 0, 0, 0.3);
   --shadow-md: 0 10px 40px rgba(0, 0, 0, 0.4);
@@ -92,10 +103,10 @@
 }
 [data-theme=dark] {
   /* Footer Dark Theme */
-  --bg-footer: #0f172a;
-  --border-footer: rgba(255, 255, 255, 0.05);
-  --text-footer-primary: #f8fafc;
-  --text-footer-secondary: #94a3b8;
-  --bg-footer-card: rgba(255, 255, 255, 0.02);
-  --border-footer-card: rgba(255, 255, 255, 0.08);
+  --bg-footer: #11110f;
+  --border-footer: rgba(241, 238, 229, 0.06);
+  --text-footer-primary: #f1eee5;
+  --text-footer-secondary: #aaa38f;
+  --bg-footer-card: rgba(241, 238, 229, 0.03);
+  --border-footer-card: rgba(241, 238, 229, 0.09);
 }

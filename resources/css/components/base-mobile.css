@@ -86,7 +86,7 @@ html {
 .stack-animated.animation-finished:hover .card-stack-main {
   transform: translateY(-5px);
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
-  border-color: var(--accent-emerald);
+  border-color: var(--accent-primary);
   /* Efek Zoom Gambar */
 }
 .stack-animated.animation-finished:hover .card-stack-main .img-container img {

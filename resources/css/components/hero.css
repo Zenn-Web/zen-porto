@@ -373,43 +373,43 @@
 :root {
   --bg-primary-classic: #ffffff;
   --dot-color-classic: rgba(0, 0, 0, 0.04);
-  --text-primary-classic: #1c1917;
-  --text-secondary-classic: #44403c;
-  --border-classic: #e7e5e4;
-  --sparkle-color: #d6d3d1;
-  --btn-solid-bg: #1c1917;
-  --btn-solid-text: #ffffff;
-  --btn-outline-text: #1c1917;
-  --btn-outline-border: #1c1917;
-  --badge-bg: rgba(255, 255, 255, 0.92);
+  --text-primary-classic: var(--text-primary);
+  --text-secondary-classic: var(--text-secondary);
+  --border-classic: var(--border-dim);
+  --sparkle-color: #cfc6b0;
+  --btn-solid-bg: #171714;
+  --btn-solid-text: #f7f4ec;
+  --btn-outline-text: #171714;
+  --btn-outline-border: #171714;
+  --badge-bg: rgba(247, 244, 236, 0.92);
   --badge-border: rgba(0, 0, 0, 0.04);
-  --badge-text: #1c1917;
+  --badge-text: #171714;
   /* Glassmorphic badge variables */
-  --badge-glass-bg: rgba(255, 255, 255, 0.55);
+  --badge-glass-bg: rgba(247, 244, 236, 0.55);
   --badge-glass-border: rgba(255, 255, 255, 0.25);
-  --badge-glass-title: #1c1917;
-  --badge-glass-text: #44403c;
+  --badge-glass-title: #171714;
+  --badge-glass-text: #5d5b52;
 }
 
 [data-theme=dark] {
-  --bg-primary-classic: #0f172a;
+  --bg-primary-classic: var(--bg-card);
   --dot-color-classic: rgba(255, 255, 255, 0.05);
-  --text-primary-classic: #f8fafc;
-  --text-secondary-classic: #cbd5e1;
-  --border-classic: #334155;
-  --sparkle-color: #475569;
-  --btn-solid-bg: #f8fafc;
-  --btn-solid-text: #0f172a;
-  --btn-outline-text: #f8fafc;
-  --btn-outline-border: #f8fafc;
-  --badge-bg: rgba(30, 41, 59, 0.92);
+  --text-primary-classic: var(--text-primary);
+  --text-secondary-classic: var(--text-secondary);
+  --border-classic: var(--border-dim);
+  --sparkle-color: #5c5441;
+  --btn-solid-bg: #f1eee5;
+  --btn-solid-text: #11110f;
+  --btn-outline-text: #f1eee5;
+  --btn-outline-border: #f1eee5;
+  --badge-bg: rgba(36, 34, 25, 0.92);
   --badge-border: rgba(255, 255, 255, 0.04);
-  --badge-text: #f8fafc;
+  --badge-text: #f1eee5;
   /* Glassmorphic badge variables */
-  --badge-glass-bg: rgba(30, 41, 59, 0.55);
+  --badge-glass-bg: rgba(36, 34, 25, 0.55);
   --badge-glass-border: rgba(255, 255, 255, 0.08);
-  --badge-glass-title: #f8fafc;
-  --badge-glass-text: #cbd5e1;
+  --badge-glass-title: #f1eee5;
+  --badge-glass-text: #d0cab9;
 }
 
 /* SKILLS CARD REDESIGN - WARM CLASSIC-MODERN STYLE */
@@ -421,7 +421,7 @@
 }
 
 .skill-icon-classic {
-  color: var(--accent-emerald, #0fb9a7);
+  color: var(--accent-text);
 }
 
 .skill-desc-classic {
@@ -454,16 +454,16 @@
   transition: all 0.2s ease;
 }
 .badge-tech-classic:hover, .badge-tech-classic-more:hover {
-  border-color: var(--accent-emerald, #0fb9a7);
-  color: var(--accent-emerald, #0fb9a7);
+  border-color: var(--accent-primary);
+  color: var(--accent-text);
 }
 
 .badge-tech-classic-more {
-  color: var(--accent-emerald, #0fb9a7);
-  border-color: rgba(15, 185, 167, 0.3);
+  color: var(--accent-text);
+  border-color: rgba(var(--accent-primary-rgb), 0.3);
 }
 .badge-tech-classic-more:hover {
-  background: rgba(15, 185, 167, 0.05);
+  background: rgba(var(--accent-primary-rgb), 0.05);
 }
 
 .highlight-item-classic {
@@ -476,8 +476,8 @@
   margin-bottom: 6px;
   text-transform: capitalize;
 }
-.highlight-item-classic .text-emerald {
-  color: var(--accent-emerald, #0fb9a7);
+.highlight-item-classic .text-accent {
+  color: var(--accent-text);
 }
 
 /* UNIFIED CLASSIC-MODERN STYLE FOR ALL MAIN CARDS */

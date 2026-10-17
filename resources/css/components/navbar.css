@@ -238,8 +238,8 @@
     display: none !important; /* Hide left indicator */
   }
   .custom-navbar .nav-link:hover, .custom-navbar .nav-link.active {
-    background: rgba(15, 185, 167, 0.08) !important; /* Emerald light tint */
-    color: var(--accent-emerald, #0fb9a7) !important;
+    background: rgba(var(--accent-primary-rgb), 0.08) !important; /* ochre tint */
+    color: var(--accent-text) !important;
     padding-left: 24px !important; /* Keep padding symmetric */
   }
   .custom-navbar .nav-link::after {
@@ -251,7 +251,7 @@
 }
 @media (max-width: 991px) {
   .custom-navbar .nav-link:hover, .custom-navbar .nav-link.active {
-    color: var(--accent-emerald, #0fb9a7) !important;
+    color: var(--accent-text) !important;
   }
 }
 

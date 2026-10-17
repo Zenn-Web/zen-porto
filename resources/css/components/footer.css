@@ -2,7 +2,7 @@
 .footer-section {
   background-color: var(--bg-footer, #0b0f19);
   border-top: 1px solid var(--border-footer, rgba(255, 255, 255, 0.05)) !important;
-  color: var(--text-footer-primary, #f8fafc);
+  color: var(--text-footer-primary, #f1eee5);
   padding: 40px 0 24px 0 !important;
   font-family: "Poppins", sans-serif;
   transition: all 0.3s ease;
@@ -13,7 +13,7 @@
   padding: 0;
 }
 .footer-nav-inline a {
-  color: var(--text-footer-secondary, #94a3b8);
+  color: var(--text-footer-secondary, #aaa38f);
   font-size: 0.78rem;
   font-weight: 600;
   letter-spacing: 0.12em;
@@ -22,7 +22,7 @@
   transition: all 0.25s ease;
 }
 .footer-nav-inline a:hover {
-  color: var(--accent-emerald, #0fb9a7);
+  color: var(--accent-text);
 }
 
 .footer-brand {
@@ -35,7 +35,7 @@
   transition: color 0.2s ease;
 }
 .footer-brand .dot {
-  color: var(--accent-emerald, #0fb9a7);
+  color: var(--accent-text);
 }
 .footer-brand:hover {
   color: var(--text-footer-primary, #ffffff);
@@ -44,7 +44,7 @@
 .footer-tagline {
   font-size: 0.88rem;
   line-height: 1.6;
-  color: var(--text-footer-secondary, #94a3b8);
+  color: var(--text-footer-secondary, #aaa38f);
   max-width: 320px;
 }
 
@@ -57,13 +57,13 @@
 }
 
 .footer-nav-links a {
-  color: var(--text-footer-secondary, #94a3b8);
+  color: var(--text-footer-secondary, #aaa38f);
   font-size: 0.9rem;
   text-decoration: none;
   transition: color 0.2s ease;
 }
 .footer-nav-links a:hover {
-  color: var(--accent-emerald, #0fb9a7);
+  color: var(--accent-text);
 }
 
 .footer-status-card {
@@ -74,15 +74,15 @@
 .footer-status-card .status-text {
   font-size: 0.88rem;
   font-weight: 500;
-  color: var(--text-footer-primary, #f8fafc);
+  color: var(--text-footer-primary, #f1eee5);
   line-height: 1.4;
 }
 .footer-status-card .location-text {
   font-size: 0.85rem;
-  color: var(--text-footer-secondary, #94a3b8);
+  color: var(--text-footer-secondary, #aaa38f);
 }
 .footer-status-card .bi-geo-alt-fill {
-  color: var(--accent-emerald, #0fb9a7) !important;
+  color: var(--accent-text) !important;
   font-size: 1rem;
 }
 
@@ -102,12 +102,12 @@
 
 .footer-copyright {
   font-size: 0.85rem;
-  color: var(--text-footer-secondary, #64748b);
+  color: var(--text-footer-secondary, #5d5b52);
 }
 
 .footer-handcrafted {
   font-size: 0.85rem;
-  color: var(--text-footer-secondary, #64748b);
+  color: var(--text-footer-secondary, #5d5b52);
   font-weight: 500;
 }
 

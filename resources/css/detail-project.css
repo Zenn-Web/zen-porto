@@ -66,14 +66,14 @@ html, body {
     background: var(--bg-glass);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(var(--accent-emerald-rgb), 0.12);
+    border: 1px solid rgba(var(--accent-primary-rgb), 0.12);
     transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
 
 .dp-back-btn:hover {
-    background: var(--accent-emerald);
-    color: #fff;
-    border-color: var(--accent-emerald);
+    background: var(--accent-primary);
+    color: var(--accent-on-primary);
+    border-color: var(--accent-primary);
 }
 
 /* ─── Title ─── */
@@ -99,7 +99,7 @@ html, body {
 .dp-tech-plain-text {
     font-size: 0.88rem;
     line-height: 1.6;
-    color: var(--accent-emerald);
+    color: var(--accent-text);
     font-weight: 500;
     margin-bottom: 0;
     opacity: 0.9;
@@ -112,7 +112,7 @@ html, body {
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.18em;
-    color: var(--accent-emerald);
+    color: var(--accent-text);
     margin-bottom: 12px;
 }
 
@@ -140,9 +140,9 @@ html, body {
 }
 
 .dp-btn-cta--primary {
-    background: var(--accent-emerald);
-    color: #fff;
-    box-shadow: 0 4px 20px rgba(var(--accent-emerald-rgb), 0.2);
+    background: var(--accent-primary);
+    color: var(--accent-on-primary);
+    box-shadow: 0 4px 20px rgba(var(--accent-primary-rgb), 0.2);
     
     i {
         font-size: 1rem;
@@ -150,10 +150,10 @@ html, body {
     }
     
     &:hover {
-        background: var(--accent-emerald-deep);
-        color: #fff;
+        background: var(--accent-primary-deep);
+        color: var(--accent-on-deep);
         transform: translateY(-2px);
-        box-shadow: 0 6px 24px rgba(var(--accent-emerald-rgb), 0.3);
+        box-shadow: 0 6px 24px rgba(var(--accent-primary-rgb), 0.3);
         
         i {
             transform: translate(2px, -2px);
@@ -243,8 +243,8 @@ html, body {
     height: 100%;
     background: linear-gradient(
         to bottom,
-        var(--accent-emerald) 0%,
-        rgba(var(--accent-emerald-rgb), 0.3) 60%,
+        var(--accent-primary) 0%,
+        rgba(var(--accent-primary-rgb), 0.3) 60%,
         transparent 100%
     );
     border-radius: 2px;
@@ -259,11 +259,11 @@ html, body {
     left: -5px;
     width: 13px;
     height: 13px;
-    background: var(--accent-emerald);
+    background: var(--accent-primary);
     border: 3px solid var(--bg-primary);
     border-radius: 50%;
     z-index: 2;
-    box-shadow: 0 0 0 2px rgba(var(--accent-emerald-rgb), 0.2);
+    box-shadow: 0 0 0 2px rgba(var(--accent-primary-rgb), 0.2);
     opacity: 0;
 }
 

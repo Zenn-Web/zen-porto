@@ -40,8 +40,8 @@
     --breakpoint-2xl: 87.5rem;
 
     /* Used by `text-secondary`, `text-muted` and `border-secondary/10` (the former Bootstrap greys). */
-    --color-secondary: #6c757d;
-    --color-muted: rgba(33, 37, 41, 0.75);
+    --color-secondary: #5d5b52;
+    --color-muted: rgba(23, 23, 20, 0.75);
 }
 
 /*

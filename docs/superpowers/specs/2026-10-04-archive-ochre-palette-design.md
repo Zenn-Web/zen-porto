@@ -1,6 +1,6 @@
 # Archive Ochre Palette Design
 
-**Status:** Approved direction; implementation not started
+**Status:** Approved direction; refined 2026-10-17 (see "Decisions of 2026-10-17"); implementation not started
 **Date:** 2026-10-04
 **Scope:** Light/dark theme color tokens and their use across the existing portfolio UI
 
@@ -67,6 +67,20 @@ Dark mode keeps the same identity but raises the accent slightly for contrast in
 5. Preserve the existing dark-mode toggle and component structure.
 6. Use semantic `accent-primary` tokens in new or touched styles. Existing `accent-emerald` references should be migrated in the focused palette pass so the code no longer describes the wrong visual identity.
 
+## Decisions of 2026-10-17
+
+Made after measuring contrast and rendering the palette over the real pages (an injected-CSS simulation; no project files were changed).
+
+1. **Token names.** `--accent-emerald*` becomes `--accent-primary*` everywhere (about 80 references in 14 files) and the roughly 40 hard-coded green hex/rgba values move to the tokens. The old names are not kept as aliases.
+2. **Gradients.** The three green gradients in `base.css` become flat ochre, per usage rule 4.
+3. **Status dot.** The green "available" dot in the hero (`#10b981`, `hero.css`) stays green: it is a status signal, not a brand accent. Project technology colours stay untouched.
+4. **Coloured text on light mode uses the deep ochre.** Ochre `#B59A3A` on paper measures 2.1:1, so it is limited to non-text uses (buttons, dividers, icons, markers, focus rings). Links, labels and other coloured text use `--accent-primary-deep`. Dark mode keeps the plain accent (7 to 9:1).
+5. **Contrast corrections to the tables above** (WCAG AA, 4.5:1 for text):
+   - light `--accent-primary-deep` `#786522` (4.45:1 on paper) becomes `#6F5E1F` (about 5:1);
+   - light `--text-muted` `#817D70` (3.2:1 on paper) becomes `#645F53` (about 5:1).
+6. **Paper background in full.** Light `--bg-primary` is `#E8E3D5` as specified, not a lighter cream. Because the cream page makes the existing pale borders vanish, light-mode input fields and the email/WhatsApp contact pills get a darker border (to be chosen during implementation; at least 3:1 against the paper for the field outline).
+7. **Hard-coded slate colours** in the footer and dark-mode overrides (for example `#94a3b8` footer links) move to the warm tokens, otherwise they stay blue against the warm dark theme.
+
 ## Implementation boundary
 
 The implementation pass will update the shared token foundation and the existing references in navbar, hero, buttons, skills, projects, contact, footer, about, and detail-project styles. It will not change layout, typography, content, routes, animation behavior, or the selected project technology colors.
@@ -74,7 +88,9 @@ The implementation pass will update the shared token foundation and the existing
 Verification should cover:
 
 - Light and dark theme screenshots of the homepage and project detail page.
-- CTA and link contrast, especially ochre text on paper and dark ink on ochre.
+- CTA and link contrast, especially deep-ochre text on paper and dark ink on ochre.
+- No leftover teal or green: a search of `resources/` for the old hex/rgba values and `accent-emerald` finds only the hero status dot.
+- Form fields and contact pills are clearly visible in light mode; footer links are warm, not blue, in dark mode.
 - Existing theme toggle behavior.
 - Existing automated test suite plus a production asset build.
 

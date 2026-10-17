@@ -22,7 +22,7 @@
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--accent-emerald, #0fb9a7);
+  color: var(--accent-text);
 }
 
 .contact-title-classic {
@@ -49,7 +49,7 @@
   padding: 10px 22px;
   border-radius: 9999px;
   background: transparent;
-  border: 1.5px solid var(--border-classic, #e7e5e4);
+  border: 1.5px solid var(--border-control);
   font-family: "Poppins", sans-serif;
   font-size: 0.85rem;
   font-weight: 600;
@@ -61,9 +61,9 @@
   font-size: 1rem;
 }
 .contact-btn-classic:hover:not(.no-link) {
-  border-color: var(--accent-emerald, #0fb9a7);
-  color: var(--accent-emerald, #0fb9a7);
-  background-color: rgba(15, 185, 167, 0.02);
+  border-color: var(--accent-primary);
+  color: var(--accent-text);
+  background-color: rgba(var(--accent-primary-rgb), 0.02);
 }
 .contact-btn-classic.no-link {
   cursor: default;
@@ -90,7 +90,7 @@
   justify-content: center;
 }
 .social-icon-classic:hover {
-  color: var(--accent-emerald, #0fb9a7);
+  color: var(--accent-text);
 }
 
 .social-link-rounded {
@@ -100,17 +100,17 @@
   width: 45px;
   height: 45px;
   font-size: 1.2rem;
-  color: var(--text-secondary-classic, #64748b);
+  color: var(--text-secondary-classic, #5d5b52);
   background-color: transparent;
-  border: 1px solid var(--border-classic, #e2e8f0);
+  border: 1px solid var(--border-classic, #d4ccb8);
   border-radius: 50%; /* Bulat / Rounded */
   text-decoration: none;
   transition: all 0.3s ease;
 }
 .social-link-rounded:hover {
-  background-color: var(--text-primary, #0f172a);
+  background-color: var(--text-primary, #171714);
   color: var(--bg-primary, #ffffff);
-  border-color: var(--text-primary, #0f172a);
+  border-color: var(--text-primary, #171714);
 }
 
 /* CONTACT FORM (Livewire ContactForm, inside .contact-card-classic) */
@@ -166,7 +166,7 @@
 .contact-input {
   width: 100%;
   padding: 12px 16px;
-  border: 1.5px solid var(--border-classic, #e7e5e4);
+  border: 1.5px solid var(--border-control);
   border-radius: 14px;
   background: transparent;
   font-family: "Poppins", sans-serif;
@@ -176,8 +176,8 @@
 }
 .contact-input:focus {
   outline: none;
-  border-color: var(--accent-emerald, #0fb9a7);
-  box-shadow: 0 0 0 3px rgba(15, 185, 167, 0.15);
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 3px rgba(var(--accent-primary-rgb), 0.15);
 }
 .contact-input[aria-invalid=true] {
   border-color: var(--form-danger);
@@ -233,7 +233,7 @@
 .contact-status-message {
   margin: 0 0 1rem;
   padding: 10px 16px;
-  border: 1.5px solid var(--accent-emerald, #0fb9a7);
+  border: 1.5px solid var(--accent-primary);
   border-radius: 14px;
   font-family: "Poppins", sans-serif;
   font-size: 0.85rem;

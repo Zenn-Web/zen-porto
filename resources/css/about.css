@@ -30,7 +30,7 @@
   font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.15em;
-  color: var(--accent-emerald);
+  color: var(--accent-text);
   text-transform: uppercase;
   margin-bottom: 0.75rem;
 }
@@ -50,7 +50,7 @@
 .about-bio-col .about-divider {
   width: 60px;
   height: 3px;
-  background-color: var(--accent-emerald);
+  background-color: var(--accent-primary);
   margin-bottom: 2rem;
 }
 .about-bio-col .about-desc {
@@ -97,7 +97,7 @@
 
 .about-clean-role {
   font-size: 0.82rem;
-  color: var(--accent-emerald);
+  color: var(--accent-text);
   font-weight: 500;
 }
 
@@ -138,7 +138,7 @@
   position: absolute;
   width: 24px;
   height: 24px;
-  border: 3px solid var(--accent-emerald);
+  border: 3px solid var(--accent-primary);
   z-index: 2;
   transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
   pointer-events: none;
@@ -183,7 +183,7 @@
   margin-bottom: 1.75rem;
   padding: 1.25rem;
   background-color: var(--bg-secondary);
-  border-left: 3px solid var(--accent-emerald);
+  border-left: 3px solid var(--accent-primary);
   border-radius: 4px 16px 16px 4px;
   border-top: 1px solid var(--border-primary);
   border-right: 1px solid var(--border-primary);
@@ -195,7 +195,7 @@
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--accent-emerald);
+  color: var(--accent-text);
   margin-bottom: 0.5rem;
 }
 .hud-goals-wrap .hud-goals-text {
@@ -237,13 +237,13 @@
   transition: all 0.3s ease;
 }
 .hud-stat-item:hover {
-  border-color: rgba(var(--accent-emerald-rgb), 0.45) !important;
-  background-color: color-mix(in srgb, var(--accent-emerald) 3%, var(--bg-secondary)) !important;
+  border-color: rgba(var(--accent-primary-rgb), 0.45) !important;
+  background-color: color-mix(in srgb, var(--accent-primary) 3%, var(--bg-secondary)) !important;
 }
 .hud-stat-item .hud-stat-number {
   font-size: 1.75rem;
   font-weight: 700;
-  color: var(--accent-emerald);
+  color: var(--accent-text);
   line-height: 1.1;
   margin-bottom: 0.25rem;
   display: flex;
@@ -252,7 +252,7 @@
 }
 .hud-stat-item .hud-stat-number i {
   font-size: 1.75rem;
-  color: var(--accent-emerald);
+  color: var(--accent-text);
 }
 .hud-stat-item .hud-stat-label {
   font-size: 0.72rem;

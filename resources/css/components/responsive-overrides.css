@@ -111,13 +111,13 @@
 .stat-item-about:hover {
   transform: translateY(-3px);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-  border-color: var(--accent-emerald);
+  border-color: var(--accent-primary);
 }
 
 .stat-number-about {
   font-size: 2rem;
   font-weight: 700;
-  color: var(--accent-emerald);
+  color: var(--accent-text);
   line-height: 1;
   margin-bottom: 0.5rem;
   font-family: "Poppins", sans-serif;
@@ -132,7 +132,7 @@
   font-size: 2.25rem;
 }
 .stat-icon-about i {
-  color: var(--accent-emerald);
+  color: var(--accent-text);
   animation: pulse-gentle 2s ease-in-out infinite;
 }
 
@@ -169,10 +169,10 @@
   font-weight: 600;
   line-height: 1.5;
   transition: all 0.3s ease;
-  /* Unified Theme Color (Emerald Accent) */
-  background-color: rgba(var(--accent-emerald-rgb), 0.08);
-  color: var(--accent-emerald);
-  border: 1px solid rgba(var(--accent-emerald-rgb), 0.2);
+  /* Unified Theme Color (ochre accent) */
+  background-color: rgba(var(--accent-primary-rgb), 0.08);
+  color: var(--accent-text);
+  border: 1px solid rgba(var(--accent-primary-rgb), 0.2);
 }
 .card-tech-badge.badge-count {
   background-color: color-mix(in srgb, var(--text-primary) 8%, transparent);
@@ -181,9 +181,9 @@
 }
 
 [data-theme=dark] .card-tech-badge {
-  background-color: rgba(var(--accent-emerald-rgb), 0.12);
-  color: var(--accent-emerald);
-  border-color: rgba(var(--accent-emerald-rgb), 0.25);
+  background-color: rgba(var(--accent-primary-rgb), 0.12);
+  color: var(--accent-text);
+  border-color: rgba(var(--accent-primary-rgb), 0.25);
 }
 [data-theme=dark] .card-tech-badge.badge-count {
   background-color: rgba(255, 255, 255, 0.08);

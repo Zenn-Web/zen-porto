@@ -108,5 +108,5 @@
   transition: all 0.3s ease;
 }
 .btn-lang-toggle:hover .lang-label {
-  color: var(--accent-emerald);
+  color: var(--accent-text);
 }

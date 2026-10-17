@@ -113,7 +113,7 @@
                 <h2 class="font-bold mb-0 animate-on-scroll text-reveal inline-block"
                     data-i18n-id="{{ __('portfolio.skills_title', [], 'id') }}"
                     data-i18n-en="{{ __('portfolio.skills_title', [], 'en') }}">{{ __('portfolio.skills_title') }}</h2>
-                <div class="mx-auto mt-2 animate-on-scroll" style="width: 50px; height: 3px; background: var(--accent-emerald);"></div>
+                <div class="mx-auto mt-2 animate-on-scroll" style="width: 50px; height: 3px; background: var(--accent-primary);"></div>
             </div>
 
             <!-- Vertical Stack of 3 Clean Skill Groups (Centered) -->
@@ -165,7 +165,7 @@
                 <h2 class="font-bold mb-0 animate-on-scroll text-reveal inline-block"
                     data-i18n-id="{{ __('portfolio.projects_title', [], 'id') }}"
                     data-i18n-en="{{ __('portfolio.projects_title', [], 'en') }}">{{ __('portfolio.projects_title') }}</h2>
-                <div class="mx-auto mt-2 animate-on-scroll" style="width: 50px; height: 3px; background: var(--accent-emerald);"></div>
+                <div class="mx-auto mt-2 animate-on-scroll" style="width: 50px; height: 3px; background: var(--accent-primary);"></div>
             </div>
 
             <div class="flex flex-col gap-12 text-left">
@@ -260,19 +260,19 @@
                 <div class="flex flex-wrap justify-center gap-4 mb-0">
                     <!-- Email Method -->
                     <a href="mailto:zenifenagusti70@gmail.com" class="contact-btn-classic">
-                        <i class="bi bi-envelope-fill me-2 text-emerald"></i>
+                        <i class="bi bi-envelope-fill me-2 text-accent"></i>
                         <span>zenifenagusti70@gmail.com</span>
                     </a>
                     
                     <!-- WhatsApp Method -->
                     <a href="https://wa.me/6285174344683" target="_blank" rel="noopener" class="contact-btn-classic">
-                        <i class="bi bi-whatsapp me-2 text-emerald"></i>
+                        <i class="bi bi-whatsapp me-2 text-accent"></i>
                         <span>WhatsApp</span>
                     </a>
 
                     <!-- Location Method -->
                     <span class="contact-btn-classic no-link">
-                        <i class="bi bi-geo-alt-fill me-2 text-emerald"></i>
+                        <i class="bi bi-geo-alt-fill me-2 text-accent"></i>
                         <span>Yogyakarta, Indonesia</span>
                     </span>
                 </div>
