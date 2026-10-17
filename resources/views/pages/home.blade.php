@@ -107,7 +107,7 @@
     </section>
 
     <section id="skills" class="skills-section reveal-section">
-        <div class="container" style="max-width: 800px;">
+        <div class="container" style="max-width: 1040px;">
 
             <div class="mb-12 text-center">
                 <h2 class="font-bold mb-0 animate-on-scroll text-reveal inline-block"
@@ -132,7 +132,7 @@
             </ul>
 
             <!-- Skill groups (centred), data in config/skills.php -->
-            <div class="skills-clean-list flex flex-col animate-on-scroll">
+            <div class="skills-clean-list animate-on-scroll">
                 @foreach(config('skills.groups') as $group)
                     <div class="skills-clean-block">
                         <span class="skills-clean-label"

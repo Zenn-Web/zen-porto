@@ -65,3 +65,27 @@ test('technology chips show their status by shape and stay readable', function (
     expect(cssBlock($css, '.skill-chip--learning .skill-dot'))->toContain('border: 2px solid var(--accent-primary)');
     expect(cssBlock($css, '.skill-chip--planned .skill-dot'))->toContain('dashed');
 });
+
+test('from 992px the groups form a two-column grid with the supporting group spanning the bottom, and no divider lines', function () {
+    $css = file_get_contents(resource_path('css/components/skills.css'));
+    preg_match('/@media \(min-width: 992px\)\s*\{(.*?)\n\}\n/s', $css, $m);
+    $desktop = $m[1] ?? '';
+
+    expect($desktop)->toMatch('/\.skills-clean-list\s*\{[^}]*display:\s*grid[^}]*grid-template-columns:\s*repeat\(2, minmax\(0, 1fr\)\)/s')
+        ->and($desktop)->toMatch('/\.skills-clean-block:last-child\s*\{[^}]*grid-column:\s*1 \/ -1/s')
+        ->and($desktop)->toMatch('/\.skills-clean-block \+ \.skills-clean-block::before\s*\{[^}]*display:\s*none/s');
+});
+
+test('the skills container is wide enough for two columns', function () {
+    $section = $this->get('/')->getContent();
+    preg_match('/<section id="skills".*?<section id="resources"/s', $section, $m);
+
+    expect($m[0] ?? '')->toContain('max-width: 1040px');
+});
+
+test('the list layout lives in the stylesheet, so a utility class cannot override the grid', function () {
+    $section = $this->get('/')->getContent();
+    preg_match('/<div class="skills-clean-list[^"]*"/', $section, $m);
+
+    expect($m[0] ?? '')->not->toContain('flex');
+});
