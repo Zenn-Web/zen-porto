@@ -123,7 +123,7 @@
                 <div class="skills-clean-block">
                     <span class="skills-clean-label">FRONT-END</span>
                     <p class="skills-clean-text mb-2">HTML, CSS, JavaScript, React, Tailwind CSS, Bootstrap</p>
-                    <p class="skills-clean-desc text-secondary mb-0" style="font-size: 0.88rem; line-height: 1.6;"
+                    <p class="skills-clean-desc text-secondary mb-0"
                        data-i18n-id="{{ __('portfolio.skills_frontend_desc', [], 'id') }}"
                        data-i18n-en="{{ __('portfolio.skills_frontend_desc', [], 'en') }}">
                         {{ __('portfolio.skills_frontend_desc') }}
@@ -134,7 +134,7 @@
                 <div class="skills-clean-block">
                     <span class="skills-clean-label">BACK-END &amp; DATABASE</span>
                     <p class="skills-clean-text mb-2">Laravel, PHP, Java, MySQL, PostgreSQL, Go</p>
-                    <p class="skills-clean-desc text-secondary mb-0" style="font-size: 0.88rem; line-height: 1.6;"
+                    <p class="skills-clean-desc text-secondary mb-0"
                        data-i18n-id="{{ __('portfolio.skills_backend_desc', [], 'id') }}"
                        data-i18n-en="{{ __('portfolio.skills_backend_desc', [], 'en') }}">
                         {{ __('portfolio.skills_backend_desc') }}
@@ -145,7 +145,7 @@
                 <div class="skills-clean-block">
                     <span class="skills-clean-label">TOOLS &amp; WORKFLOW</span>
                     <p class="skills-clean-text mb-2">Git, GitHub, Bruno, Vite, VS Code, IntelliJ IDEA, Laragon, Canva</p>
-                    <p class="skills-clean-desc text-secondary mb-0" style="font-size: 0.88rem; line-height: 1.6;"
+                    <p class="skills-clean-desc text-secondary mb-0"
                        data-i18n-id="{{ __('portfolio.skills_tools_desc', [], 'id') }}"
                        data-i18n-en="{{ __('portfolio.skills_tools_desc', [], 'en') }}">
                         {{ __('portfolio.skills_tools_desc') }}

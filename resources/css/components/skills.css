@@ -1,21 +1,29 @@
 /* SKILLS CLEAN MINIMALIST */
+/* Centred, and typeset like the About section above (eyebrow, paragraph size and line height). */
 .skills-clean-block {
   background: transparent;
+  text-align: center;
 }
 
 .skills-clean-label {
   display: block;
-  font-size: 0.68rem;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.75rem;
   font-weight: 700;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.15em;
   color: var(--accent-text);
   text-transform: uppercase;
-  margin-bottom: 0.35rem;
+  margin-bottom: 0.75rem;
+}
+
+.skills-clean-text,
+.skills-clean-desc {
+  font-family: "Poppins", sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.8;
 }
 
 .skills-clean-text {
-  font-size: 0.95rem;
-  line-height: 1.7;
   color: var(--text-secondary, #aaa38f);
   font-weight: 400;
   margin-bottom: 0;
