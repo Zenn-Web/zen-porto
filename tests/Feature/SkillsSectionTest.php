@@ -89,3 +89,16 @@ test('the list layout lives in the stylesheet, so a utility class cannot overrid
 
     expect($m[0] ?? '')->not->toContain('flex');
 });
+
+test('a thin vertical line runs through the gap between the two columns and stops above the closing group', function () {
+    $css = file_get_contents(resource_path('css/components/skills.css'));
+    preg_match('/@media \(min-width: 992px\)\s*\{(.*?)\n\}\n/s', $css, $m);
+    $desktop = $m[1] ?? '';
+
+    expect($desktop)->toMatch('/\.skills-clean-block:nth-child\(odd\):not\(:last-child\)::after\s*\{(?=[^}]*width:\s*1px)(?=[^}]*bottom:\s*-2\.75rem)[^}]*\}/s')
+        ->and($desktop)->toMatch('/\.skills-clean-block:nth-child\(5\):not\(:last-child\)::after\s*\{[^}]*bottom:\s*0/s');
+
+    // The last-pair rule must be at least as specific as the general one, otherwise it never applies.
+    $specificity = fn (string $selector) => substr_count($selector, ':') - substr_count($selector, '::') * 2 + substr_count($selector, '::');
+    expect($specificity('.skills-clean-block:nth-child(5):not(:last-child)::after'))->toBeGreaterThanOrEqual($specificity('.skills-clean-block:nth-child(odd):not(:last-child)::after'));
+});

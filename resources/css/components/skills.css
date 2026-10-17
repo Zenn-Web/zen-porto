@@ -163,4 +163,19 @@
   .skills-clean-block + .skills-clean-block::before {
     display: none;
   }
+  /* One thin line down the middle of the gap, joining the rows and stopping above the closing group.
+     Each left-column group draws its piece (to the middle of the row gap below it, except the last pair). */
+  .skills-clean-block:nth-child(odd):not(:last-child)::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: -2.75rem;
+    right: -1.75rem;
+    width: 1px;
+    background: var(--border-control);
+    opacity: 0.45;
+  }
+  .skills-clean-block:nth-child(5):not(:last-child)::after {
+    bottom: 0;
+  }
 }
