@@ -21,8 +21,9 @@ return [
 
     // Skills Section
     'skills_title' => 'Keahlian Saya',
-    'skills_subtitle' => 'Backend Developer yang memperkuat fondasi backend dan mengembangkan kemampuan DevOps secara bertahap.',
-    'skills_hint' => 'Klik sebuah grup untuk melihat teknologinya.',
+    'skills_subtitle' => 'Backend Developer yang memperkuat fondasi backend dan mengembangkan kemampuan DevOps secara bertahap. Bayangkan satu folder berisi semuanya: teknologi yang saya pakai sekarang, yang sedang saya pelajari, dan yang akan saya pelajari berikutnya.',
+    'skills_hint' => 'Klik folder untuk membukanya, lalu pilih grup untuk melihat teknologinya.',
+    'skills_closed' => ':groups folder · :items teknologi di dalamnya. Klik folder untuk membukanya.',
     'skills_summary' => ':using dipakai · :learning sedang dipelajari · :planned direncanakan',
     'skills_status_using' => 'Dipakai',
     'skills_status_learning' => 'Sedang dipelajari',

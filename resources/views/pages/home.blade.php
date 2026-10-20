@@ -157,42 +157,46 @@
             </div>
 
             <!-- Skills tree: role -> groups -> technologies (data in config/skills.php) -->
-            <div class="skills-tree animate-on-scroll" x-data="skillsTree({{ $defaultSkillGroup }})">
-                {{-- Without JavaScript every group stays open (the connectors and the open/close are script-only). --}}
-                <noscript><style>.skill-leaves { display: flex !important; }</style></noscript>
-                <svg class="skills-tree-links" x-ref="links" aria-hidden="true" focusable="false"></svg>
-                <div class="skills-tree-grid" x-ref="grid">
-                    <div class="skill-node skill-node--root" x-ref="root"
-                         data-i18n-id="{{ __('portfolio.hero_role', [], 'id') }}"
-                         data-i18n-en="{{ __('portfolio.hero_role', [], 'en') }}">{{ __('portfolio.hero_role') }}</div>
+            <div class="skills-tree animate-on-scroll" x-data="skillsTree({{ $defaultSkillGroup }})" :class="{ 'is-open': open }">
+                {{-- Without JavaScript everything stays open and the closed note is hidden (opening is script-only). --}}
+                <noscript><style>.skill-leaves { display: flex !important; } .skill-branches { display: block !important; } .skill-closed-note { display: none !important; }</style></noscript>
+                <div class="skills-tree-grid">
+                    <button type="button" id="skill-root"
+                            aria-controls="skill-branches"
+                            aria-expanded="false"
+                            :aria-expanded="open ? 'true' : 'false'"
+                            @click="toggle()"
+                            class="skill-node skill-node--root">
+                        <i class="bi bi-folder2 skill-node-icon"
+                           :class="{ 'bi-folder2-open': open, 'bi-folder2': !open }"
+                           aria-hidden="true"></i>
+                        <span data-i18n-id="{{ __('portfolio.hero_role', [], 'id') }}"
+                              data-i18n-en="{{ __('portfolio.hero_role', [], 'en') }}">{{ __('portfolio.hero_role') }}</span>
+                    </button>
 
+                    <div class="skill-branches" id="skill-branches">
                     @foreach($skillGroups as $group)
-                        <div class="skill-branch">
+                        <div class="skill-branch" style="--b: {{ $loop->index }}">
                             <button type="button" id="skill-group-{{ $group['key'] }}"
                                     class="skill-node skill-node--group{{ $loop->index === $defaultSkillGroup ? ' is-active' : '' }}"
                                     aria-controls="skill-leaves-{{ $group['key'] }}"
                                     aria-expanded="{{ $loop->index === $defaultSkillGroup ? 'true' : 'false' }}"
                                     :aria-expanded="active === {{ $loop->index }} ? 'true' : 'false'"
                                     :class="{ 'is-active': active === {{ $loop->index }} }"
-                                    style="--i: {{ $loop->index }}; --n: {{ count($skillGroups) }}"
                                     @click="select({{ $loop->index }})"
                                     @keydown.arrow-down.prevent="focusGroup({{ $loop->index + 1 }})"
-                                    @keydown.arrow-right.prevent="focusGroup({{ $loop->index + 1 }})"
-                                    @keydown.arrow-up.prevent="focusGroup({{ $loop->index - 1 }})"
-                                    @keydown.arrow-left.prevent="focusGroup({{ $loop->index - 1 }})">
+                                    @keydown.arrow-up.prevent="focusGroup({{ $loop->index - 1 }})">
+                                <i class="bi {{ $loop->index === $defaultSkillGroup ? 'bi-folder2-open' : 'bi-folder2' }} skill-node-icon"
+                                   :class="{ 'bi-folder2-open': active === {{ $loop->index }}, 'bi-folder2': active !== {{ $loop->index }} }"
+                                   aria-hidden="true"></i>
                                 <span data-i18n-id="{{ __('portfolio.skills_group_'.$group['key'], [], 'id') }}"
                                       data-i18n-en="{{ __('portfolio.skills_group_'.$group['key'], [], 'en') }}">{{ __('portfolio.skills_group_'.$group['key']) }}</span>
                                 <span class="skill-node-count" aria-hidden="true">{{ count($group['items']) }}</span>
-                                <i class="bi bi-chevron-right skill-node-chevron" aria-hidden="true"></i>
                             </button>
 
                             <ul class="skill-leaves{{ $loop->index === $defaultSkillGroup ? ' is-active' : '' }}" id="skill-leaves-{{ $group['key'] }}"
                                 aria-labelledby="skill-group-{{ $group['key'] }}"
                                 :class="{ 'is-active': active === {{ $loop->index }} }">
-                                {{-- Panel title on wide screens (the list already has its label for screen readers). --}}
-                                <li class="skill-leaves-title" aria-hidden="true"
-                                    data-i18n-id="{{ __('portfolio.skills_group_'.$group['key'], [], 'id') }}"
-                                    data-i18n-en="{{ __('portfolio.skills_group_'.$group['key'], [], 'en') }}">{{ __('portfolio.skills_group_'.$group['key']) }}</li>
                                 @foreach($group['items'] as $item)
                                     <li class="skill-chip skill-chip--{{ $item['status'] }}" style="--i: {{ $loop->index }}">
                                         <span class="skill-dot" aria-hidden="true"></span>
@@ -210,6 +214,11 @@
                             </ul>
                         </div>
                     @endforeach
+                    </div>
+
+                    <p class="skill-closed-note"
+                       data-i18n-id="{{ __('portfolio.skills_closed', ['groups' => count($skillGroups), 'items' => array_sum(array_map(fn ($g) => count($g['items']), $skillGroups))], 'id') }}"
+                       data-i18n-en="{{ __('portfolio.skills_closed', ['groups' => count($skillGroups), 'items' => array_sum(array_map(fn ($g) => count($g['items']), $skillGroups))], 'en') }}">{{ __('portfolio.skills_closed', ['groups' => count($skillGroups), 'items' => array_sum(array_map(fn ($g) => count($g['items']), $skillGroups))]) }}</p>
                 </div>
             </div>
             </div>

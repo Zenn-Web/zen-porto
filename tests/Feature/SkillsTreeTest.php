@@ -31,8 +31,7 @@ test('the skills are drawn as a tree with the role as its root', function () {
 
     expect($section)->toContain('x-data="skillsTree(')
         ->and($section)->toContain('class="skill-node skill-node--root"')
-        ->and($section)->toContain('data-i18n-en="'.__('portfolio.hero_role', [], 'en').'"')
-        ->and($section)->toContain('skills-tree-links');
+        ->and($section)->toContain('data-i18n-en="'.__('portfolio.hero_role', [], 'en').'"');
 });
 
 test('every group is a button that opens its own list, only the default group open', function () {
@@ -62,15 +61,6 @@ test('the group that best shows the role (frameworks and runtime) is open first'
     preg_match('/<ul class="skill-leaves is-active" id="skill-leaves-([a-z]+)"/', $section, $open);
 
     expect($open[1] ?? '')->toBe('frameworks');
-});
-
-test('a hint tells visitors the groups can be clicked, and each group node carries a chevron', function () {
-    $section = treeSection($this->get('/')->getContent());
-
-    expect($section)->toContain('class="skills-hint')
-        ->and($section)->toContain('data-i18n-en="'.__('portfolio.skills_hint', [], 'en').'"')
-        ->and($section)->toContain('data-i18n-id="'.__('portfolio.skills_hint', [], 'id').'"')
-        ->and(substr_count($section, 'skill-node-chevron'))->toBe(count(config('skills.groups')));
 });
 
 test('the summary counts the technologies by status, computed from the config', function () {
@@ -112,15 +102,6 @@ test('a group shows how many technologies it holds', function () {
     }
 });
 
-test('the connectors are dashed and flow on the active path, and stand still for reduced motion', function () {
-    $css = skillsCss();
-
-    expect($css)->toMatch('/\.skill-link\s*\{[^}]*stroke-dasharray:/s')
-        ->and($css)->toMatch('/\.skill-link\.is-active\s*\{[^}]*animation:\s*skill-flow/s')
-        ->and($css)->toContain('@keyframes skill-flow')
-        ->and($css)->toMatch('/@media \(prefers-reduced-motion: reduce\)\s*\{[^}]*\.skill-link[^}]*animation:\s*none/s');
-});
-
 test('only the open group shows its technologies', function () {
     expect(skillsCss())->toMatch('/\.skill-leaves\s*\{[^}]*display:\s*none/s')
         ->and(skillsCss())->toMatch('/\.skill-leaves\.is-active\s*\{[^}]*display:\s*flex/s');
@@ -135,18 +116,6 @@ test('the open node keeps readable contrast in both themes', function (string $t
     // The active node is filled with the text colour and written in the card colour.
     expect(treeContrast($text[1], $card[1]))->toBeGreaterThanOrEqual(4.5);
 })->with(['light', 'dark']);
-
-test('the tree is wired up with Alpine, redraws on resize and picks a group by click or arrow keys', function () {
-    $js = file_get_contents(resource_path('js/alpine-init.js'));
-
-    expect($js)->toContain("Alpine.data('skillsTree'")
-        ->and($js)->toContain('ResizeObserver')
-        ->and($js)->toContain('select(')
-        ->and($js)->toContain('createElementNS');
-
-    $section = treeSection($this->get('/')->getContent());
-    expect($section)->toContain('@click="select(')->and($section)->toContain('@keydown.arrow-down.prevent');
-});
 
 test('the supporting front-end group is the last branch and Bun keeps its runtime note', function () {
     $section = treeSection($this->get('/')->getContent());
@@ -179,64 +148,12 @@ test('from 992px the intro sits on the left and the tree on the right, left alig
 
     expect($desktop)->toMatch('/\.skills-layout\s*\{[^}]*display:\s*grid[^}]*grid-template-columns:\s*minmax\(0, 4fr\) minmax\(0, 8fr\)/s')
         ->and($desktop)->toMatch('/\.skills-intro\s*\{[^}]*text-align:\s*left/s')
-        ->and($desktop)->toMatch('/\.skills-legend\s*\{[^}]*flex-direction:\s*column/s')
         ->and($desktop)->toMatch('/\.skills-title-rule\s*\{[^}]*margin-left:\s*0/s');
 });
 
 test('the Bun note is short enough to stay on one line inside its chip', function (string $locale) {
     expect(mb_strlen(__('portfolio.skills_note_runtime', [], $locale)))->toBeLessThanOrEqual(16);
 })->with(['id', 'en']);
-
-test('from 992px the tree is a hub: the role in the centre, the groups on a ring, the technologies in a panel under it', function () {
-    preg_match('/@media \(min-width: 992px\)\s*\{(.*?)\n\}\n/s', skillsCss(), $m);
-    $desktop = $m[1] ?? '';
-
-    expect($desktop)->toMatch('/\.skills-tree-grid\s*\{[^}]*display:\s*grid[^}]*grid-template-rows:/s')
-        ->and($desktop)->toMatch('/\.skill-node--root\s*\{[^}]*grid-area:\s*1 \/ 1[^}]*place-self:\s*center/s')
-        ->and($desktop)->toMatch('/\.skill-node--group\s*\{[^}]*grid-area:\s*1 \/ 1[^}]*transform:\s*translate\(\s*calc\(cos\(var\(--angle\)\)/s')
-        ->and($desktop)->toMatch('/\.skill-leaves\s*\{[^}]*grid-area:\s*2 \/ 1/s');
-});
-
-test('below 992px the tree stays the vertical list with its dashed rail', function () {
-    preg_match('/@media \(max-width: 991px\)\s*\{(.*?)\n\}\n/s', skillsCss(), $m);
-
-    expect($m[1] ?? '')->toMatch('/\.skills-tree-links\s*\{[^}]*display:\s*none/s')
-        ->and($m[1] ?? '')->toMatch('/\.skills-tree-grid\s*\{[^}]*flex-direction:\s*column/s')
-        ->and($m[1] ?? '')->toMatch('/\.skill-leaves-title\s*\{[^}]*display:\s*none/s');
-});
-
-test('each group knows its place on the ring (index and count), so the ring follows the config', function () {
-    $section = treeSection($this->get('/')->getContent());
-    $count = count(config('skills.groups'));
-
-    foreach (array_keys(config('skills.groups')) as $i) {
-        expect($section)->toContain("--i: {$i}; --n: {$count}");
-    }
-    expect(skillsCss())->toMatch('/--angle:\s*calc\(-90deg \+ 360deg \* var\(--i\) \/ var\(--n\)\)/');
-});
-
-test('the panel under the hub names the open group, in the accent colour, and is hidden from screen readers (the list already has its label)', function () {
-    $section = treeSection($this->get('/')->getContent());
-
-    expect(substr_count($section, 'class="skill-leaves-title"'))->toBe(count(config('skills.groups')))
-        ->and($section)->toContain('<li class="skill-leaves-title" aria-hidden="true"')
-        ->and(skillsCss())->toMatch('/\.skill-leaves-title\s*\{[^}]*color:\s*var\(--accent-text\)/s');
-});
-
-test('the lines run from the centre of the hub to each group, with no lines to the technologies', function () {
-    $js = file_get_contents(resource_path('js/alpine-init.js'));
-
-    expect($js)->toContain('const centre')
-        ->and($js)->not->toContain(".skill-leaves.is-active .skill-chip");
-});
-
-test('the ring can be walked with all four arrow keys', function () {
-    $section = treeSection($this->get('/')->getContent());
-
-    foreach (['arrow-down', 'arrow-up', 'arrow-left', 'arrow-right'] as $key) {
-        expect($section)->toContain("@keydown.{$key}.prevent");
-    }
-});
 
 test('below 992px the tree is a centred waterfall: one dashed line down the middle, centred nodes, no left rail', function () {
     preg_match('/@media \(max-width: 991px\)\s*\{(.*?)\n\}\n/s', skillsCss(), $m);
@@ -262,3 +179,155 @@ test('the nodes sit above the waterfall line and are spaced far enough apart for
     expect($m[1] ?? '')->toMatch('/\.skill-node--root,\s*\.skill-node--group\s*\{[^}]*position:\s*relative[^}]*z-index:\s*1/s')
         ->and($m[1] ?? '')->toMatch('/\.skills-tree-grid\s*\{[^}]*gap:\s*1\.1rem/s');
 });
+
+test('a hint tells visitors the folders can be clicked, and each group is a folder with an icon that opens', function () {
+    $section = treeSection($this->get('/')->getContent());
+    $groups = config('skills.groups');
+    $default = array_search(config('skills.default_group'), array_column($groups, 'key'), true);
+
+    expect($section)->toContain('class="skills-hint')
+        ->and($section)->toContain('data-i18n-en="'.__('portfolio.skills_hint', [], 'en').'"')
+        ->and(substr_count($section, 'skill-node-icon'))->toBe(count($groups) + 1); // the groups, plus the parent folder
+
+    preg_match_all('/<i class="bi (bi-folder2(?:-open)?) skill-node-icon"/', $section, $icons);
+    foreach (array_slice($icons[1], 1) as $i => $icon) { // the first icon is the parent folder's
+        expect($icon)->toBe($i === $default ? 'bi-folder2-open' : 'bi-folder2');
+    }
+});
+
+test('there is no hub drawing any more: no SVG overlay, no ring, no line-drawing script', function () {
+    $section = treeSection($this->get('/')->getContent());
+    $js = file_get_contents(resource_path('js/alpine-init.js'));
+
+    expect($section)->not->toContain('<svg')->and($section)->not->toContain('--angle')->and($section)->not->toContain('--n:');
+    expect($js)->not->toContain('createElementNS')->and($js)->not->toContain('ResizeObserver')->and($js)->not->toContain('draw()');
+    expect(skillsCss())->not->toContain('cos(var(--angle))')->and(skillsCss())->not->toContain('.skills-tree-links');
+});
+
+test('the tree script picks a group by click or the up and down arrow keys', function () {
+    $js = file_get_contents(resource_path('js/alpine-init.js'));
+    $section = treeSection($this->get('/')->getContent());
+
+    expect($js)->toContain("Alpine.data('skillsTree'")->and($js)->toContain('select(')->and($js)->toContain('focusGroup(');
+    expect($section)->toContain('@click="select(')
+        ->and($section)->toContain('@keydown.arrow-down.prevent')
+        ->and($section)->toContain('@keydown.arrow-up.prevent');
+});
+
+test('the open folder is the one that flows: its stub and its list of files light up in the accent colour and move', function () {
+    preg_match('/@media \(min-width: 992px\)\s*\{(.*?)\n\}\n/s', skillsCss(), $m);
+    $desktop = $m[1] ?? '';
+
+    expect($desktop)->toMatch('/\.skill-node--group\.is-active::before\s*\{[^}]*animation:\s*skill-flow-x/s')
+        ->and($desktop)->toMatch('/\.skill-leaves\.is-active::before\s*\{[^}]*animation:\s*skill-rail/s')
+        ->and(skillsCss())->toContain('@keyframes skill-flow-x')
+        ->and(skillsCss())->toMatch('/@media \(prefers-reduced-motion: reduce\)\s*\{[^}]*\.skill-leaves\.is-active::before[^}]*animation:\s*none/s');
+});
+
+test('below 992px the folder tree stays the centred waterfall and drops the desktop trunk', function () {
+    preg_match('/@media \(max-width: 991px\)\s*\{(.*?)\n\}\n/s', skillsCss(), $m);
+
+    expect($m[1] ?? '')->toMatch('/\.skills-tree-grid\s*\{[^}]*flex-direction:\s*column/s')
+        ->and($m[1] ?? '')->toMatch('/\.skill-branch::before,\s*\.skill-node--group::before\s*\{[^}]*display:\s*none/s')
+        ->and($m[1] ?? '')->toMatch('/\.skill-leaves\.is-active::before\s*\{[^}]*display:\s*none/s');
+});
+
+test('from 992px the role is the parent folder on the left and the folders hang off a dashed trunk to its right', function () {
+    preg_match('/@media \(min-width: 992px\)\s*\{(.*?)\n\}\n/s', skillsCss(), $m);
+    $desktop = $m[1] ?? '';
+
+    expect($desktop)->toMatch('/\.skills-tree-grid\s*\{[^}]*display:\s*grid[^}]*grid-template-columns:\s*auto minmax\(0, 1fr\)/s')
+        ->and($desktop)->toMatch('/\.skill-node--root\s*\{[^}]*flex-direction:\s*column[^}]*align-self:\s*center/s')
+        ->and($desktop)->toMatch('/\.skill-node--root::after\s*\{[^}]*border-top:\s*2px dashed/s')
+        ->and($desktop)->toMatch('/\.skill-branch:first-child::before\s*\{[^}]*top:\s*1\.05rem/s')
+        ->and($desktop)->toMatch('/\.skill-branch\s*\{[^}]*position:\s*relative[^}]*padding-left:\s*2\.25rem/s')
+        ->and($desktop)->toMatch('/\.skill-branch::before\s*\{[^}]*border-left:\s*2px dashed/s')
+        ->and($desktop)->toMatch('/\.skill-node--group::before\s*\{[^}]*border-top:\s*2px dashed/s')
+        ->and($desktop)->toMatch('/\.skill-leaves\s*\{[^}]*flex-direction:\s*column[^}]*padding-left:\s*2\.25rem/s')
+        ->and($desktop)->toMatch('/\.skill-leaves \.skill-chip::before\s*\{[^}]*border-top:\s*2px dashed/s');
+});
+
+test('the description of the section is longer: what the folder holds and what the three states mean', function (string $locale) {
+    $text = __('portfolio.skills_subtitle', [], $locale);
+
+    expect(mb_strlen($text))->toBeGreaterThanOrEqual(190)
+        ->and($text)->toContain('DevOps');
+})->with(['id', 'en']);
+
+test('below 992px the wrapper keeps the waterfall spacing', function () {
+    preg_match('/@media \(max-width: 991px\)\s*\{(.*?)\n\}\n/s', skillsCss(), $m);
+
+    expect($m[1] ?? '')->toMatch('/\.skill-branches\s*\{[^}]*flex-direction:\s*column[^}]*gap:\s*1\.1rem/s')
+        ->and($m[1] ?? '')->toMatch('/\.skill-node--root::after\s*\{[^}]*display:\s*none/s');
+});
+
+test('the parent folder is a button that starts closed and controls the folders', function () {
+    $section = treeSection($this->get('/')->getContent());
+
+    expect($section)->toMatch('/<button type="button" id="skill-root"[^>]*aria-controls="skill-branches"[^>]*aria-expanded="false"[^>]*class="skill-node skill-node--root">/s')
+        ->and($section)->toContain('@click="toggle()"')
+        ->and($section)->toContain('<div class="skill-branches" id="skill-branches">')
+        ->and($section)->toMatch('/<i class="bi bi-folder2 skill-node-icon"[^>]*:class="\{ \'bi-folder2-open\': open, \'bi-folder2\': !open \}"/s')
+        ->and($section)->toContain('data-i18n-en="'.__('portfolio.hero_role', [], 'en').'"');
+});
+
+test('the tree starts closed (no is-open class from the server) and Alpine toggles it', function () {
+    $section = treeSection($this->get('/')->getContent());
+    $js = file_get_contents(resource_path('js/alpine-init.js'));
+
+    expect($section)->toMatch('/<div class="skills-tree animate-on-scroll"[^>]*:class="\{ \'is-open\': open \}"/s')
+        ->and($section)->not->toContain('skills-tree is-open');
+    expect($js)->toContain('open: false')->and($js)->toContain('toggle()');
+});
+
+test('while closed a note says what is inside, with the real counts, in both languages', function (string $locale) {
+    $groups = count(config('skills.groups'));
+    $items = collect(config('skills.groups'))->sum(fn ($g) => count($g['items']));
+    $section = treeSection($this->withSession(['locale' => $locale])->get('/')->getContent());
+    $text = __('portfolio.skills_closed', ['groups' => $groups, 'items' => $items], $locale);
+
+    expect($text)->toContain((string) $groups)->and($text)->toContain((string) $items);
+    expect($section)->toContain('class="skill-closed-note"')
+        ->and($section)->toContain('data-i18n-'.$locale.'="'.e($text).'"');
+})->with(['id', 'en']);
+
+test('each folder knows its order so the folders can appear one after another', function () {
+    $section = treeSection($this->get('/')->getContent());
+
+    foreach (array_keys(config('skills.groups')) as $i) {
+        expect($section)->toContain('style="--b: '.$i.'"');
+    }
+});
+
+test('without JavaScript everything is open and the closed note is hidden', function () {
+    $section = treeSection($this->get('/')->getContent());
+
+    expect($section)->toMatch('/<noscript><style>[^<]*\.skill-branches\s*\{\s*display:\s*block !important/s')
+        ->and($section)->toMatch('/<noscript><style>[^<]*\.skill-closed-note\s*\{\s*display:\s*none !important/s');
+});
+
+test('closed hides the folders, open shows them one after another, and the note fills the gap while closed', function () {
+    $css = skillsCss();
+
+    expect($css)->toMatch('/\.skills-tree:not\(\.is-open\) \.skill-branches\s*\{[^}]*display:\s*none/s')
+        ->and($css)->toMatch('/\.skills-tree\.is-open \.skill-branch\s*\{[^}]*animation:\s*skill-branch-in[^}]*animation-delay:\s*calc\(var\(--b, 0\) \* 60ms\)/s')
+        ->and($css)->toContain('@keyframes skill-branch-in')
+        ->and($css)->toMatch('/\.skills-tree:not\(\.is-open\) \.skill-closed-note\s*\{[^}]*display:\s*flex/s')
+        ->and($css)->toMatch('/\.skills-tree:not\(\.is-open\) \.skill-node--root\s*\{[^}]*animation:\s*skill-root-pulse/s')
+        ->and($css)->toMatch('/\.skill-node--root:hover\s*\{[^}]*transform:\s*translateY/s');
+});
+
+test('the line from the parent folder draws itself when it opens, and nothing animates for reduced motion', function () {
+    $css = skillsCss();
+    preg_match('/@media \(min-width: 992px\)\s*\{(.*?)\n\}\n/s', $css, $m);
+
+    expect($m[1] ?? '')->toMatch('/\.skill-node--root::after\s*\{[^}]*transform:\s*scaleX\(0\)/s')
+        ->and($m[1] ?? '')->toMatch('/\.skills-tree\.is-open \.skill-node--root::after\s*\{[^}]*transform:\s*scaleX\(1\)/s')
+        ->and($css)->toMatch('/@media \(prefers-reduced-motion: reduce\)\s*\{[^}]*\.skills-tree\.is-open \.skill-branch[^}]*animation:\s*none/s');
+});
+
+test('the hint now says to open the folder first', function (string $locale) {
+    $hint = __('portfolio.skills_hint', [], $locale);
+
+    expect(mb_strtolower($hint))->toContain($locale === 'en' ? 'open' : 'buka');
+})->with(['id', 'en']);

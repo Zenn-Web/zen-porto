@@ -139,19 +139,13 @@
   text-transform: uppercase;
 }
 
-/* SKILLS TREE: the role at the root, the groups as branches, the technologies as leaves (like a mind map).
-   Desktop: three columns joined by dashed curves drawn by script (alpine-init.js). Mobile: one vertical tree. */
+/* SKILLS TREE: a folder tree. The role is the root of the repository, the groups are folders and the technologies
+   are the files inside the open folder, joined by dashed lines. The open folder's lines light up and flow.
+   Wide screens: a trunk down the left with a branch to each folder and the files nested under the open one.
+   Narrow screens: a centred waterfall (see the max-width block). */
 .skills-tree {
   position: relative;
   margin-top: 0.5rem;
-}
-.skills-tree-links {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  overflow: visible;
 }
 .skills-tree-grid {
   position: relative;
@@ -179,12 +173,58 @@
   background: var(--text-primary);
   border-color: var(--text-primary);
   color: var(--bg-card);
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.skill-node--root:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+}
+.skill-node--root:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 3px;
+}
+/* Closed: the folders are hidden, the parent folder gently pulses to invite a click, and a note says what is inside. */
+.skills-tree:not(.is-open) .skill-branches {
+  display: none;
+}
+.skills-tree:not(.is-open) .skill-node--root {
+  animation: skill-root-pulse 2.6s ease-in-out infinite;
+}
+@keyframes skill-root-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(var(--accent-primary-rgb), 0.4); }
+  50% { box-shadow: 0 0 0 10px rgba(var(--accent-primary-rgb), 0); }
+}
+.skill-closed-note {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  min-height: 6rem;
+  margin: 0;
+  padding: 1rem 1.25rem;
+  border: 2px dashed var(--border-control);
+  border-radius: 14px;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  text-align: center;
+  color: var(--text-secondary);
+}
+.skills-tree:not(.is-open) .skill-closed-note {
+  display: flex;
+}
+/* Open: the folders slide in one after another. */
+.skills-tree.is-open .skill-branch {
+  animation: skill-branch-in 0.4s ease both;
+  animation-delay: calc(var(--b, 0) * 60ms);
+}
+@keyframes skill-branch-in {
+  from { opacity: 0; transform: translateX(-8px); }
+  to { opacity: 1; transform: none; }
 }
 .skill-node--group {
   position: relative;
   width: 100%;
-  justify-content: space-between;
-  text-align: left;
   cursor: pointer;
   color: var(--text-secondary);
   transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
@@ -202,11 +242,10 @@
   border-color: var(--text-primary);
   color: var(--bg-card);
 }
-.skill-node-chevron {
+.skill-node-icon {
   flex: none;
-  font-size: 0.8rem;
-  opacity: 0.7;
-  transition: transform 0.3s ease;
+  font-size: 1.05rem;
+  line-height: 1;
 }
 .skill-node-count {
   flex: none;
@@ -229,9 +268,6 @@
 .skill-leaves.is-active {
   display: flex;
 }
-.skill-leaves-title {
-  list-style: none;
-}
 .skill-leaves .skill-chip {
   animation: skill-leaf-in 0.35s ease both;
   animation-delay: calc(var(--i, 0) * 45ms);
@@ -240,33 +276,29 @@
   from { opacity: 0; }
   to { opacity: 1; }
 }
+@keyframes skill-flow-x {
+  to { background-position-x: 12px; }
+}
+@keyframes skill-rail {
+  to { background-position-y: 12px; }
+}
 
-/* The connectors: dashed curves; the active path flows, the others rest. */
-.skill-link {
-  fill: none;
-  stroke: var(--border-control);
-  stroke-width: 1.5;
-  stroke-dasharray: 6 6;
-  opacity: 0.35;
-  transition: opacity 0.3s ease, stroke 0.3s ease;
-}
-.skill-link.is-active {
-  stroke: var(--accent-primary);
-  stroke-width: 2;
-  opacity: 1;
-  animation: skill-flow 1.1s linear infinite;
-}
-@keyframes skill-flow {
-  to { stroke-dashoffset: -12; }
-}
 @media (prefers-reduced-motion: reduce) {
-  .skill-link.is-active,
+  .skills-tree.is-open .skill-branch,
+  .skills-tree:not(.is-open) .skill-node--root,
+  .skill-leaves.is-active::before,
+  .skill-node--group.is-active::before,
+  .skills-tree-grid::before,
   .skill-leaves .skill-chip {
     animation: none;
   }
 }
 
 @media (min-width: 992px) {
+  /* base.css sets 80px !important on #skills; the folder tree needs the height more than the air. */
+  #skills {
+    padding-block: 3.5rem !important;
+  }
   .skills-layout {
     display: grid;
     grid-template-columns: minmax(0, 4fr) minmax(0, 8fr);
@@ -285,14 +317,14 @@
   }
   .skills-subtitle {
     margin: 0;
-    max-width: 26rem;
+    max-width: 30rem;
     text-align: left;
   }
   .skills-legend {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.5rem;
-    margin: 1.25rem 0;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 0.4rem 1.25rem;
+    margin: 1rem 0;
   }
   .skills-summary {
     margin: 0 0 0.75rem;
@@ -305,84 +337,142 @@
   .skills-tree {
     margin-top: 0;
   }
-  /* HUB: the role in the centre, the groups on a ring around it, the open group's technologies in a panel below.
-     Group positions come from --i / --n set in the markup, so the ring follows the number of groups. */
+
+  /* The folder tree. The role is the parent folder on the left; the folders hang off a dashed trunk to its right.
+     Each folder is a branch: padding-left makes room for the trunk (at 1rem) and the stub. */
   .skills-tree-grid {
     display: grid;
-    grid-template-columns: minmax(0, 1fr);
-    grid-template-rows: 27rem auto;
-    justify-items: center;
+    grid-template-columns: auto minmax(0, 1fr);
+    column-gap: 2rem;
+    align-items: start;
+    width: 100%;
+    max-width: 40rem;
+    margin-inline: auto;
   }
   .skill-node--root {
-    grid-area: 1 / 1;
-    place-self: center;
-    z-index: 1;
-    max-width: 10rem;
-    padding: 1rem 1.1rem;
-    font-size: 0.95rem;
-    box-shadow: 0 0 0 6px rgba(var(--accent-primary-rgb), 0.14);
+    position: relative;
+    flex-direction: column;
+    align-self: center;
+    gap: 0.5rem;
+    width: 9.5rem;
+    padding: 1rem 0.8rem;
+    font-size: 0.9rem;
+  }
+  .skill-node--root .skill-node-icon {
+    font-size: 1.7rem;
+  }
+  /* The line from the parent folder to the trunk (the column gap plus the trunk's 1rem). */
+  .skill-node--root::after {
+    content: "";
+    position: absolute;
+    left: 100%;
+    top: 50%;
+    width: 3rem;
+    border-top: 2px dashed var(--border-control);
+    opacity: 0.7;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.35s ease 0.05s;
+  }
+  .skills-tree.is-open .skill-node--root::after {
+    transform: scaleX(1);
+  }
+  .skill-branches {
+    min-width: 0;
+  }
+  .skill-closed-note {
+    grid-column: 2;
+    align-self: center;
   }
   .skill-branch {
-    display: contents;
+    position: relative;
+    width: 100%;
+    margin-top: 0.35rem;
+    padding-left: 2.25rem;
+  }
+  /* The trunk: runs beside the folder (and its files when open); the last folder's trunk stops at its stub. */
+  .skill-branch::before {
+    content: "";
+    position: absolute;
+    left: 1rem;
+    top: -0.35rem;
+    bottom: 0;
+    border-left: 2px dashed var(--border-control);
+    opacity: 0.7;
+  }
+  .skill-branch:first-child::before {
+    top: 1.05rem;
+  }
+  .skill-branch:last-child::before {
+    bottom: auto;
+    height: 1.4rem;
   }
   .skill-node--group {
-    --angle: calc(-90deg + 360deg * var(--i) / var(--n));
-    grid-area: 1 / 1;
-    place-self: center;
-    z-index: 1;
-    width: 10.5rem;
-    justify-content: center;
-    gap: 0.4rem;
-    padding: 0.55rem 0.8rem;
-    font-size: 0.8rem;
-    text-align: center;
-    transform: translate(calc(cos(var(--angle)) * 14.5rem), calc(sin(var(--angle)) * 10.25rem));
+    justify-content: flex-start;
+    min-height: 2.1rem;
+    padding: 0.35rem 0.8rem;
+    font-size: 0.85rem;
+    text-align: left;
   }
-  .skill-node--group .skill-node-chevron {
-    display: none;
+  .skill-node--group .skill-node-count {
+    margin-left: auto;
   }
+  /* The branch from the trunk to the folder. */
+  .skill-node--group::before {
+    content: "";
+    position: absolute;
+    left: -1.25rem;
+    top: 50%;
+    width: 1.25rem;
+    border-top: 2px dashed var(--border-control);
+    opacity: 0.7;
+  }
+  .skill-node--group.is-active::before {
+    height: 2px;
+    border-top: 0;
+    background: repeating-linear-gradient(to right, var(--accent-primary) 0 6px, transparent 6px 12px);
+    background-size: 12px 2px;
+    opacity: 1;
+    animation: skill-flow-x 1.1s linear infinite;
+  }
+
+  /* The files of the open folder, nested under it with their own trunk and a stub to each. */
   .skill-leaves {
-    grid-area: 2 / 1;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    gap: 0.5rem;
-    width: 100%;
-    margin-top: 0.75rem;
-    padding: 1rem 1.25rem 1.25rem;
-    border: 1px dashed var(--border-control);
-    border-radius: 18px;
-    background: rgba(var(--accent-primary-rgb), 0.06);
+    position: relative;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+    padding-top: 0.4rem;
+    padding-bottom: 0.2rem;
+    padding-left: 2.25rem;
   }
-  .skill-leaves-title {
-    flex-basis: 100%;
-    margin-bottom: 0.25rem;
-    text-align: center;
-    font-family: "Poppins", sans-serif;
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--accent-text);
+  .skill-leaves.is-active::before {
+    content: "";
+    position: absolute;
+    left: 1rem;
+    top: 0;
+    bottom: 1.05rem;
+    width: 2px;
+    background: repeating-linear-gradient(to bottom, var(--accent-primary) 0 6px, transparent 6px 12px);
+    background-size: 2px 12px;
+    animation: skill-rail 1.1s linear infinite;
+  }
+  .skill-leaves .skill-chip {
+    position: relative;
+    padding: 0.2rem 0.7rem;
+    font-size: 0.78rem;
+  }
+  .skill-leaves .skill-chip::before {
+    content: "";
+    position: absolute;
+    left: -1.25rem;
+    top: 50%;
+    width: 1.25rem;
+    border-top: 2px dashed var(--accent-primary);
   }
 }
 
 @media (max-width: 991px) {
-  .skills-tree-links {
-    display: none;
-  }
-  .skill-leaves-title {
-    display: none;
-  }
-  /* WATERFALL: the role at the top, one dashed line flowing down the middle, the groups centred along it. */
-  .skills-tree-grid {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1.1rem;
-    max-width: 26rem;
-    margin-inline: auto;
-  }
   .skills-tree-grid::before {
     content: "";
     position: absolute;
@@ -395,8 +485,14 @@
     background-size: 2px 12px;
     animation: skill-rail 1.1s linear infinite;
   }
-  @keyframes skill-rail {
-    to { background-position-y: 12px; }
+  /* WATERFALL: the role at the top, one dashed line flowing down the middle, the folders centred along it. */
+  .skills-tree-grid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.1rem;
+    max-width: 26rem;
+    margin-inline: auto;
   }
   /* The nodes sit above the line, so it only shows in the gaps between them. */
   .skill-node--root,
@@ -411,6 +507,22 @@
     justify-content: center;
     text-align: center;
   }
+  .skill-branches {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.1rem;
+    width: 100%;
+  }
+  .skill-node--root::after {
+    display: none;
+  }
+  .skills-tree:not(.is-open) .skills-tree-grid::before {
+    display: none;
+  }
+  .skill-closed-note {
+    width: 100%;
+  }
   .skill-branch {
     display: flex;
     flex-direction: column;
@@ -418,17 +530,14 @@
     gap: 1.1rem;
     width: 100%;
   }
-  /* Below 992px the leaves open underneath, so the chevron points down (and up when open). */
-  .skill-node-chevron {
-    transform: rotate(90deg);
-  }
-  .skill-node--group.is-active .skill-node-chevron {
-    transform: rotate(-90deg);
-  }
+  .skill-branch::before,
   .skill-node--group::before {
     display: none;
   }
-  /* The open group's technologies sit on the page colour, so the line does not run through the chips. */
+  /* The open folder's files sit on the page colour, so the line does not run through the chips. */
+  .skill-leaves.is-active::before {
+    display: none;
+  }
   .skill-leaves.is-active {
     position: relative;
     z-index: 1;
@@ -437,10 +546,5 @@
     gap: 0.5rem;
     padding: 0.4rem 0.25rem;
     background: var(--bg-primary);
-  }
-}
-@media (prefers-reduced-motion: reduce) {
-  .skills-tree-grid::before {
-    animation: none;
   }
 }

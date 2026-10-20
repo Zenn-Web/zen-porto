@@ -49,3 +49,24 @@ test('the old stacked-list classes are gone from the page', function () {
         expect($m[0] ?? '')->not->toContain($removed);
     }
 });
+
+test('on wide screens the legend runs in one line and the section keeps compact vertical padding', function () {
+    $css = file_get_contents(resource_path('css/components/skills.css'));
+    preg_match('/@media \(min-width: 992px\)\s*\{(.*?)\n\}\n/s', $css, $m);
+    $desktop = $m[1] ?? '';
+
+    expect($desktop)->toMatch('/\.skills-legend\s*\{[^}]*flex-wrap:\s*wrap[^}]*justify-content:\s*flex-start/s')
+        ->and($desktop)->not->toMatch('/\.skills-legend\s*\{[^}]*flex-direction:\s*column/s')
+        ->and($desktop)->toMatch('/#skills\s*\{[^}]*padding-block:\s*3\.5rem !important/s');
+});
+
+test('the folder tree is compact: short folders and files, tight gaps', function () {
+    $css = file_get_contents(resource_path('css/components/skills.css'));
+    preg_match('/@media \(min-width: 992px\)\s*\{(.*?)\n\}\n/s', $css, $m);
+    $desktop = $m[1] ?? '';
+
+    expect($desktop)->toMatch('/\.skill-node--group\s*\{[^}]*min-height:\s*2\.1rem/s')
+        ->and($desktop)->toMatch('/\.skill-branch\s*\{[^}]*margin-top:\s*0\.35rem/s')
+        ->and($desktop)->toMatch('/\.skill-leaves\s*\{[^}]*gap:\s*0\.25rem/s')
+        ->and($desktop)->toMatch('/\.skill-leaves \.skill-chip\s*\{[^}]*font-size:\s*0\.78rem/s');
+});

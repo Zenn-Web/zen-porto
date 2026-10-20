@@ -96,26 +96,16 @@ document.addEventListener('alpine:init', () => {
         },
     }));
 
-    // Skills tree: one group is open at a time. On wide screens the role is a hub with the groups on a ring around
-    // it, joined by dashed lines drawn here (SVG) from the real positions of the nodes, so they follow the layout,
-    // the language and the window size; the line to the open group flows. Below 992px the tree is a pure CSS vertical
-    // list and nothing is drawn.
+    // Skills tree (a folder tree: the role is the root, the groups are folders, the technologies are the files inside):
+    // the parent folder starts closed and opens on click (`open`), then one folder is open at a time. The dashed trunk
+    // and branches are pure CSS, so this only keeps track of what is open (`open`, `active`) and lets the arrow keys
+    // walk the folders.
     window.Alpine.data('skillsTree', (initial = 0) => ({
         active: initial,
-        observer: null,
+        open: false,
 
-        init() {
-            this.$nextTick(() => this.draw());
-            this.$watch('active', () => this.$nextTick(() => this.draw()));
-            if (window.ResizeObserver) {
-                this.observer = new ResizeObserver(() => this.draw());
-                this.observer.observe(this.$el);
-            }
-            document.fonts?.ready.then(() => this.draw());
-        },
-
-        destroy() {
-            this.observer?.disconnect();
+        toggle() {
+            this.open = !this.open;
         },
 
         select(index) {
@@ -125,35 +115,6 @@ document.addEventListener('alpine:init', () => {
         focusGroup(index) {
             const groups = this.$el.querySelectorAll('.skill-node--group');
             groups[Math.max(0, Math.min(groups.length - 1, index))]?.focus();
-        },
-
-        draw() {
-            const svg = this.$refs.links;
-            if (!svg) {
-                return;
-            }
-            svg.replaceChildren();
-            if (!window.matchMedia('(min-width: 992px)').matches) {
-                return;
-            }
-
-            const box = this.$el.getBoundingClientRect();
-            svg.setAttribute('viewBox', `0 0 ${box.width} ${box.height}`);
-
-            const centre = (el) => {
-                const r = el.getBoundingClientRect();
-                return [r.left + r.width / 2 - box.left, r.top + r.height / 2 - box.top];
-            };
-            // One straight line from the middle of the hub to the middle of each group. The nodes sit above the
-            // lines, so only the stretch between them shows. The line to the open group flows.
-            const hub = centre(this.$refs.root);
-            this.$el.querySelectorAll('.skill-node--group').forEach((group, i) => {
-                const to = centre(group);
-                const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-                path.setAttribute('d', `M${hub[0]},${hub[1]} L${to[0]},${to[1]}`);
-                path.setAttribute('class', 'skill-link' + (i === this.active ? ' is-active' : ''));
-                svg.appendChild(path);
-            });
         },
     }));
 

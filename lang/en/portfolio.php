@@ -21,8 +21,9 @@ return [
 
     // Skills Section
     'skills_title' => 'My Skills',
-    'skills_subtitle' => 'A Backend Developer strengthening backend foundations and growing DevOps skills step by step.',
-    'skills_hint' => 'Click a group to see its technologies.',
+    'skills_subtitle' => 'A Backend Developer strengthening backend foundations and growing DevOps skills step by step. Think of it as one folder with everything inside: the tools I use today, the ones I am learning right now, and the ones I plan to pick up next.',
+    'skills_hint' => 'Click the folder to open it, then a group to see its technologies.',
+    'skills_closed' => ':groups folders · :items technologies inside. Click the folder to open it.',
     'skills_summary' => ':using in use · :learning learning · :planned planned',
     'skills_status_using' => 'Using',
     'skills_status_learning' => 'Currently learning',
